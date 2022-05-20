@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import logo from './logo.svg'
 import '@styles/App.css'
+import Calendar from '@components/Calendar'
 
 function App() {
   const [count, setCount] = useState(0)
