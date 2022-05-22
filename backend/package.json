@@ -1,0 +1,33 @@
+{
+  "name": "interact-backend",
+  "version": "1.0.0",
+  "description": "Backend server for interact app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "eslint . --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "backend",
+    "mongodb",
+    "mongoose",
+    "express"
+  ],
+  "author": "C5-32",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.4",
+    "uuid": "^8.3.2"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslinrc.json"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "eslint": "^8.16.0"
+  }
+}
