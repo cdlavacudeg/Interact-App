@@ -1,11 +1,12 @@
-const express = require('express');
-const cors = require('cors')
+import express from 'express';
+import cors from 'cors';
+import profesores from '../routes/profesor.route.js';
+
 
 class Server {
-    constructor() {
+    constructor(port) {
         this.app = express();
-        this.port = 3001;
-
+        this.port=port;
         //Middleware
         this.middleware();
 
@@ -23,13 +24,20 @@ class Server {
 
         //Public folder
         this.app.use(express.static('public'));
-    }
+
+         }
 
 
     routes() {
-        this.app.get('/', (req, res) => {
+
+        this.app.use("/api/v1/profesores",profesores); // Route profesores
+
+
+        this.app.get('/hello', (req, res) => {
             res.send('Hello World');
         })
+
+        this.app.use("*",(req,res)=>res.status(404).json({error:"not found"}));
     }
 
     listen() {
@@ -39,4 +47,4 @@ class Server {
     }
 }
 
-module.exports = Server;
+export default Server;
