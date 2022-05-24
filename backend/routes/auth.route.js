@@ -7,3 +7,6 @@ const router = Router()
 
 
 router.get('/login', login)
+
+
+module.exports = router
