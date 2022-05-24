@@ -9,6 +9,10 @@ class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
+        this.path = {
+            auth: '/api/v1/auth',
+            user: '/api/v1/user'
+        }
 
         //Connet Database
         this.connectDB();
@@ -40,14 +44,10 @@ class Server {
 
     routes() {
 
-        this.app.use('api/v1/auth', require('../routes/auth.route.js'));
+        this.app.use(this.path.auth, require('../routes/auth.route.js'));
+        this.app.use(this.path.user, require('../routes/user.route.js'));
 
-        this.app.use("/api/v1/profesores", profesores); // Route profesores
-
-
-        this.app.get('/hello', (req, res) => {
-            res.send('Hello World');
-        })
+        // this.app.use("/api/v1/profesores", profesores); // Route profesores
 
         this.app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
     }
