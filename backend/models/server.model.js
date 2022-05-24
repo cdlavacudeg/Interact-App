@@ -1,17 +1,27 @@
-import express from 'express';
-import cors from 'cors';
-import profesores from '../routes/profesor.route.js';
+const express = require('express');
+const cors = require('cors');
+const profesores = require('../routes/profesor.route.js');
+
+const { dbConection } = require('../database/config.db')
 
 
 class Server {
-    constructor(port) {
+    constructor() {
         this.app = express();
-        this.port=port;
+        this.port = process.env.PORT;
+
+        //Connet Database
+        this.connectDB();
+
         //Middleware
         this.middleware();
 
         //Routes
         this.routes();
+    }
+
+    async connectDB() {
+        await dbConection()
     }
 
     middleware() {
@@ -25,19 +35,21 @@ class Server {
         //Public folder
         this.app.use(express.static('public'));
 
-         }
+    }
 
 
     routes() {
 
-        this.app.use("/api/v1/profesores",profesores); // Route profesores
+        this.app.use('api/v1/auth', require('../routes/auth.route.js'));
+
+        this.app.use("/api/v1/profesores", profesores); // Route profesores
 
 
         this.app.get('/hello', (req, res) => {
             res.send('Hello World');
         })
 
-        this.app.use("*",(req,res)=>res.status(404).json({error:"not found"}));
+        this.app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
     }
 
     listen() {
@@ -47,4 +59,4 @@ class Server {
     }
 }
 
-export default Server;
+module.exports = Server;
