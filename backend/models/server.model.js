@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const profesores = require('../routes/profesor.route.js');
 
 const { dbConection } = require('../database/config.db')
 
@@ -46,9 +45,6 @@ class Server {
 
         this.app.use(this.path.auth, require('../routes/auth.route.js'));
         this.app.use(this.path.user, require('../routes/user.route.js'));
-
-        // this.app.use("/api/v1/profesores", profesores); // Route profesores
-
         this.app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
     }
 
