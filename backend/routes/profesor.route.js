@@ -1,8 +1,9 @@
 
 const { Router } = require('express');
-
+const profesorCtrl = require('../controllers/profesores.crontoller.js')
 const router = Router();
 
-router.get('/', (req, res) => res.send("Lista de profesores extraida desde Mongo"));
+router.get('/', profesorCtrl.getProfesores)
+router.post('/',profesorCtrl.createProfesor)
 
 module.exports = router;
