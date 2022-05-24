@@ -2,7 +2,9 @@
 
 
 
-const login = (req, res) => { }
+const login = (req, res) => {
+    const { body } = req;
+}
 
 
 

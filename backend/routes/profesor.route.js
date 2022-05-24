@@ -1,7 +1,8 @@
-import express from 'express';
 
-const router= express.Router();
+const { Router } = require('express');
 
-router.route('/').get((req,res)=> res.send("Lista de profesores extraida desde Mongo"));
+const router = Router();
 
-export default router;
+router.get('/', (req, res) => res.send("Lista de profesores extraida desde Mongo"));
+
+module.exports = router;
