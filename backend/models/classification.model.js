@@ -16,7 +16,7 @@ const classificationSchema = new Schema({
             required: true
         },
         
-        Obs: {
+        obs: {
             type: String,
         }
 
