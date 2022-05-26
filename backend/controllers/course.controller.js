@@ -55,15 +55,36 @@ const courseDelete= async (req,res)=>{
     
     const courseDel=await Course.findByIdAndDelete(id)
     res.json({
-        msg: 'delet API - Course deleted',
+        msg: 'delete API - Course deleted',
         courseDel
     })
 }
 
+//
+
+const courseGetById = async (req,res)=>{
+    const {id} =req.params
+    const course= await Course.findById(id)
+    res.json({
+        course
+    })
+}
+
+// Get fullName of the students in the course
+const courseGetStudents = async (req,res)=>{
+    const {id}=req.params
+    const course = await Course.findById(id)
+        .populate('students','fullName').exec()
+    res.json({
+        students:course.students
+    })
+}
 
 module.exports = {
     coursesGet,
     coursePost,
     courseUpdate,
-    courseDelete
+    courseDelete,
+    courseGetById,
+    courseGetStudents
 }

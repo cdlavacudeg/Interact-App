@@ -2,13 +2,13 @@ const { Router } = require('express');
 const {check}=require('express-validator');
 const { validateField } = require('../middlewares');
 
-const { coursesGet, coursePost, courseUpdate, courseDelete } = require('../controllers/course.controller.js');
+const { coursesGet, courseGetById,coursePost, courseUpdate, courseDelete, courseGetStudents } = require('../controllers/course.controller.js');
 const {existCourse,existCourseById} = require('../helpers/db-validator.js');
  
 
 const router = Router();
 
-
+// general api operations
 router.get('/', coursesGet)
 
 router.post('/',[
@@ -31,5 +31,19 @@ router.delete('/:id',[
     check('id').custom(existCourseById),
     validateField
 ],courseDelete)
+
+// specific api operations
+
+router.get('/:id',[
+    check('id','id is not mongoId').isMongoId(),
+    check('id').custom(existCourseById),
+    validateField
+],courseGetById)
+
+router.get('/students/:id',[
+    check('id','id is not mongoId').isMongoId(),
+    check('id').custom(existCourseById),
+    validateField    
+],courseGetStudents)
 
 module.exports = router;
