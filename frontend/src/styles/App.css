@@ -1,42 +1,82 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap');
+
+:root{
+
+    --primer-color:  #122b57;
+    --segundo-color: #12676f;
+    --tercer-color: #1aaf99;
+    --cuarto-color: #efb365;
+    --quinto-color: #efcd6a;
+    --white-color: #f4f4f4;
+    --black-color:  #0a0a09;
+
+    --body-font: 'Lato', sans-serif;
+
+    --transition: all 0.3s;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+*{
+    margin:0;
+    padding:0;
+    text-decoration: none;
+    font-family: var(--body-font);
+    
+}
+.container{
+    display:flex;
+}
+main{
+    width: 100%;
+    padding: 20px;
+    background: var(--white-color);
+}
+.sidebar{
+    background:var(--white-color);
+    color:var(--black-color);
+    height: 100vh;
+    width: 200px;
+    transition: var(--transition)
+}
+.top_section{
+    display: flex;
+    align-items:center;
+    padding:20px 15px;
+}
+.logo{
+    font-size: 30px;
+   width: 95%;
+   
+}
+.bars{
+    display: flex;
+    font-size: 25px;
+    margin-left: 50px;
+}
+.link{
+    display: flex;
+    color: var(--black-color);
+    padding: 20px 22px;
+    gap: 15px;
+    transition:  var(--transition)
+    
+}
+.link:hover{
+    background:var(--segundo-color);
+    color: var(--white-color);
+    transition:  var(--transition)
+}
+.active{
+    background: var(--segundo-color);
+    color:var(--white-color);
+}
+.icon, .link_text{
+    font-size: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1{
+    padding: 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-button {
-  font-size: calc(10px + 2vmin);
-}
