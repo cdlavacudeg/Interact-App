@@ -2,8 +2,8 @@ const { Router } = require('express');
 const {check}=require('express-validator');
 const validateField=require('../middlewares/validate-field.js');
 
-const { coursesGet, coursePost } = require('../controllers/course.controller');
-const {existCourse} = require('../helpers/db-validator.js');
+const { coursesGet, coursePost, courseUpdate, courseDelete } = require('../controllers/course.controller');
+const {existCourse,existCourseById} = require('../helpers/db-validator.js');
 
 
 const router = Router();
@@ -18,5 +18,18 @@ router.post('/',[
     check('teacher','Course teacher is required').not().isEmpty(),
     validateField
 ],coursePost)
+
+router.put('/:id',[
+    check('id','id is not mongoId').isMongoId(),
+    check('id').custom(existCourseById),
+    validateField
+],courseUpdate)
+
+
+router.delete('/:id',[
+    check('id','id is not mongoId').isMongoId(),
+    check('id').custom(existCourseById),
+    validateField
+],courseDelete)
 
 module.exports = router;

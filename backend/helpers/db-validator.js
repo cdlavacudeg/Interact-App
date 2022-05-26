@@ -22,4 +22,12 @@ const existCourse = async (courseName = '') => {
         throw new Error(`Course: ${courseName} already exist`)
     }
 }
-module.exports = { existEmailDB, existUserById, existCourse }
+
+// Verify if course exist by id 
+const existCourseById = async (id)=>{
+    const existCourseID= await Course.findById(id)
+    if(!existCourseID){
+        throw new Error(`ID: course with ${id} does not exist`)
+    }
+}
+module.exports = { existEmailDB, existUserById, existCourse, existCourseById }
