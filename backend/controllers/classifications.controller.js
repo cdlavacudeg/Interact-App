@@ -8,10 +8,11 @@ const classificationGet = async (req, res) => {
 }
 
 const classificationPost = async (req, res) => {
-    const {...rest } = req.body
+    const {note,...rest } = req.body
     try {
         const classificationUser = new Classification({
             ...rest, 
+            note
         })
         await classificationUser.save()
         res.json({ classificationUser })
