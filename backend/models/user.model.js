@@ -14,10 +14,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    // courses: {
-    //     type: [Schema.Types.ObjectId],
-    //     ref: 'Course',
-    // },
+    courses: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Course',
+    }],
     status: {
         type: Boolean,
         default: true,

@@ -12,6 +12,7 @@ const usersGet = async (req, res) => {
         await User.find(query)
             .skip(Number(from))
             .limit(Number(limit))
+            .populate('courses').exec()
     ])
 
     res.json({
