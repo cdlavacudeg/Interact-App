@@ -42,7 +42,6 @@ class Server {
 
 
     routes() {
-
         this.app.use(this.path.auth, require('../routes/auth.route.js'));
         this.app.use(this.path.user, require('../routes/user.route.js'));
         this.app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
