@@ -12,4 +12,4 @@ const validateField = (req, res, next) => {
 }
 
 
-module.exports = validateField;
+module.exports = { validateField };

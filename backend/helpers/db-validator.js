@@ -7,6 +7,7 @@ const existEmailDB = async (email = '') => {
         throw new Error(`Email: ${email} already exist`)
     }
 }
+
 //Verify if userID exist in DB
 const existUserById = async (id) => {
     const existUserID = await User.findById(id)

@@ -7,8 +7,6 @@ const { generateJWT } = require('../helpers/generate-JWT')
 const login = async (req, res) => {
     const { email, password } = req.body
 
-    console.log(email, password)
-
     try {
 
         //Verify if email exist in DB
