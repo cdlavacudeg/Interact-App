@@ -10,28 +10,26 @@ const courseSchema=new Schema({
         type:String,
         required:true
     },
-    lessons:{
-        type:[Schema.Types.ObjectId],
-        required:true,
+    lessons:[{
+        type:Schema.Types.ObjectId,
         ref:'Lesson'
-    },
+    }],
     teacher:{
         type:Schema.Types.ObjectId,
         required:true
     },
-    events:{
-        type:[Schema.Types.ObjectId],
+    events:[{
+        type:Schema.Types.ObjectId,
         ref:'Event'
-    },
-    students:{
-        type:[Schema.Types.ObjectId],
-        require:true,
+    }],
+    students:[{
+        type:Schema.Types.ObjectId,
         ref:'User'
-    },
-    grades:{
-        type:[Schema.Types.ObjectId],
+    }],
+    grades:[{
+        type:Schema.Types.ObjectId,
         ref:'Grade'
-    },
+    }],
     forum:{
        type:Schema.Types.ObjectId,
        ref:'Forum'
