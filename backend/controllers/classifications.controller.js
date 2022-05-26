@@ -8,14 +8,11 @@ const classificationGet = async (req, res) => {
 }
 
 const classificationPost = async (req, res) => {
-    const { note , user, ...rest } = req.body
-    const objIdClassification = courses.map(e => ObjectId(e))
+    const {note,...rest } = req.body
     try {
         const classificationUser = new Classification({
-            ...rest,
-            user,
-            note,
-            idClassification: objIdClassification
+            ...rest, 
+            note
         })
         await classificationUser.save()
         res.json({ classificationUser })
