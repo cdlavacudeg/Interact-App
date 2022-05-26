@@ -10,7 +10,8 @@ class Server {
         this.port = process.env.PORT;
         this.path = {
             auth: '/api/v1/auth',
-            user: '/api/v1/user'
+            user: '/api/v1/user',
+            classification: '/api/v1/classification'
         }
 
         //Connet Database
@@ -45,6 +46,7 @@ class Server {
 
         this.app.use(this.path.auth, require('../routes/auth.route.js'));
         this.app.use(this.path.user, require('../routes/user.route.js'));
+        this.app.use(this.path.classification, require('../routes/classifications.route.js'));
         this.app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
     }
 

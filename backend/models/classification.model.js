@@ -1,14 +1,21 @@
 const { Schema, model } = require('mongoose');
 
 const classificationSchema = new Schema({
-        cursos: [Schema.Types.ObjectId],
+        courses: {
+            type: [Schema.Types.ObjectId],
+            ref: 'Course',
+        }, 
 
-        users: [Schema.Types.ObjectId],
+        user:  {   
+            type: [Schema.Types.ObjectId],
+            ref: 'User',
+        },
         
         note: {
             type: Number,
             required: true
         },
+        
         Obs: {
             type: String,
         }

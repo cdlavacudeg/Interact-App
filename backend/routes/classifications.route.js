@@ -1,9 +1,9 @@
 
 const { Router } = require('express');
-const Classification = require('../controllers/classifications.controller.js')
+const {classificationGet, classificationPost} = require('../controllers/classifications.controller.js')
 const router = Router();
 
-router.get('/', )
-router.post('/', )
+router.get('/', classificationGet )
+router.post('/', classificationPost)
 
 module.exports = router;
