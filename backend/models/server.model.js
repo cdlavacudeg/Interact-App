@@ -44,7 +44,6 @@ class Server {
 
 
     routes() {
-
         this.app.use(this.path.auth, require('../routes/auth.route.js'));
         this.app.use(this.path.user, require('../routes/user.route.js'));
         this.app.use(this.path.classification, require('../routes/classifications.route.js'));

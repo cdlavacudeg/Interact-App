@@ -14,18 +14,25 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    courses: {
-        type: [Schema.Types.ObjectId],
-        ref: 'Course',
-    },
+    // courses: {
+    //     type: [Schema.Types.ObjectId],
+    //     ref: 'Course',
+    // },
     status: {
         type: Boolean,
         default: true,
     },
     role: {
         type: String,
-        enum: ['admin', 'teacher','student'],
+        enum: ['admin', 'teacher', 'student'],
+        default: 'student',
     }
 })
+
+userSchema.methods.toJSON = function () {
+    const { __v, password, _id, ...user } = this.toObject()
+    user.uid = _id
+    return user
+}
 
 module.exports = model('User', userSchema)
