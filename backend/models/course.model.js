@@ -1,39 +1,45 @@
-const {Schema,model}= require('mongoose')
+const { Schema, model } = require('mongoose')
 
-const courseSchema=new Schema({
-    courseName:{
-        type:String,
-        unique:true,
-        required:true
+const courseSchema = new Schema({
+    courseName: {
+        type: String,
+        unique: true,
+        required: true
     },
     description: {
-        type:String,
-        required:true
+        type: String,
+        required: true
     },
-    lessons:[{
-        type:Schema.Types.ObjectId,
-        ref:'Lesson'
+    lessons: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Lesson'
     }],
-    teacher:{
-        type:Schema.Types.ObjectId,
-        required:true
+    teacher: {
+        type: Schema.Types.ObjectId,
+        required: true
     },
-    events:[{
-        type:Schema.Types.ObjectId,
-        ref:'Event'
+    events: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Event'
     }],
-    students:[{
-        type:Schema.Types.ObjectId,
-        ref:'User'
+    students: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }],
-    grades:[{
-        type:Schema.Types.ObjectId,
-        ref:'Grade'
+    grades: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Grade'
     }],
-    forum:{
-       type:Schema.Types.ObjectId,
-       ref:'Forum'
+    forum: {
+        type: Schema.Types.ObjectId,
+        ref: 'Forum'
     }
-}) 
+})
 
-module.exports=model('Course',courseSchema)
+courseSchema.methods.toJSON = function () {
+    const { __v, _id, ...course } = this.toObject()
+    course.uid = _id
+    return course
+}
+
+module.exports = model('Course', courseSchema)
