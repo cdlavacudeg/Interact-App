@@ -1,10 +1,10 @@
 const { Router } = require('express');
 const {check}=require('express-validator');
-const validateField=require('../middlewares/validate-field.js');
+const { validateField } = require('../middlewares');
 
-const { coursesGet, coursePost, courseUpdate, courseDelete } = require('../controllers/course.controller');
+const { coursesGet, coursePost, courseUpdate, courseDelete } = require('../controllers/course.controller.js');
 const {existCourse,existCourseById} = require('../helpers/db-validator.js');
-
+ 
 
 const router = Router();
 
