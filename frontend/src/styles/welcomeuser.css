@@ -1,0 +1,34 @@
+
+
+.welcome {
+    margin: 2rem;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 600px;
+    background-color: var(--cuarto-color);
+    border-radius: 30px;
+    position: relative;
+    
+}
+
+.welcome-user {
+
+}
+
+.welcome-title {
+
+}
+
+.welcome-body {
+
+}
+
+.welcome-img {
+    width:45%;
+    position: absolute;
+    top: -60px;
+    right: -40px;
+
+
+} 
