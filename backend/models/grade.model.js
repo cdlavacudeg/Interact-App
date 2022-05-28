@@ -30,4 +30,4 @@ gradeSchema.methods.toJSON = function () {
     return grade
 }
 
-module.exports = model('grade', gradeSchema);
+module.exports = model('Grade', gradeSchema);
