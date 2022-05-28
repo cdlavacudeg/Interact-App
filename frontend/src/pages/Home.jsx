@@ -1,5 +1,5 @@
-import React from 'react';
 
+<<<<<<< HEAD:frontend/src/pages/Home.jsx
 const Home = ({ name }) => {
     return (
         <div>
@@ -8,5 +8,16 @@ const Home = ({ name }) => {
         </div>
     );
 };
+=======
+import * as React from "react";
+import WelcomeUser from "../WelcomeUser";
 
-export default Home;
+>>>>>>> main:frontend/src/components/pages/Home.jsx
+
+export default function Home () {
+    return (
+        <>
+        <WelcomeUser />
+        </>
+    )
+}
