@@ -4,7 +4,7 @@ const Lesson = require('../models/lesson.model.js')
 const {validateField}= require('../middlewares')
 
 const {lessonsGet,lessonPost,lessonUpdate,lessonDelete}=require('../controllers/lesson.controller.js')
-const {existModelDB,existModelById} =require('../helpers/db-validator.js')
+const {existModelById} =require('../helpers/db-validator.js')
 
 const router = Router()
 
@@ -20,17 +20,13 @@ router.post('/',[
 
 router.put('/:id',[
     check('id','id is not mongoId').isMongoId(),
-    check('id').custom(id=>{
-        return existModelById(Lesson,id)        
-    }),
+    check('id').custom(id=>existModelById(Lesson,id)),
     validateField
 ],lessonUpdate)
 
 router.delete('/:id',[
     check('id','id is not mongoId').isMongoId(),
-    check('id').custom((id) =>{
-        return existModelById(Lesson,id)
-    }),
+    check('id').custom(id=>existModelById(Lesson,id)),
     validateField
 ],lessonDelete)
 
