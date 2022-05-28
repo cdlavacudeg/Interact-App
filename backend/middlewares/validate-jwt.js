@@ -34,7 +34,7 @@ const validateJWT = async (req, res, next) => {
             })
         }
 
-        requser = user
+        req.user = user
 
         next()
     } catch (error) {
