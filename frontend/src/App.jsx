@@ -7,12 +7,12 @@ import Materias from '@pages/Materias.jsx';
 import Calificaciones from '@pages/Calificaciones.jsx';
 import Perfil from '@pages/Perfil.jsx';
 import Contacto from '@pages/Contacto.jsx';
-//import loginService from './services/login';
+import loginService from './services/login';
 import Notification from '@components/Notification.jsx';
 
 const App = () => {
 
-  const [username, setUsername] = useState('')
+  const [email, setemail] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
@@ -28,19 +28,14 @@ const App = () => {
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
-      /* const user = await loginService.login({
-         username, password,
-       })
-       setUser(user)*/
-      const user = {
-        user: username,
-        pass: password
-      }
+      const user = await loginService.login({
+        email, password,
+      })
       setUser(user)
       window.localStorage.setItem(
         'loggedAppUser', JSON.stringify(user)
       )
-      setUsername('')
+      setemail('')
       setPassword('')
     } catch (exception) {
       setErrorMessage('fail')
@@ -53,16 +48,16 @@ const App = () => {
   const login = () => (
 
 
-    <div style={{ padding:"2rem", textAlign: "center" }}>
+    <div style={{ padding: "2rem", textAlign: "center" }}>
       <Notification message={errorMessage} />
       <form onSubmit={handleLogin}>
         <div>
           Usuario
           <input
             type="text"
-            value={username}
-            name="Username"
-            onChange={({ target }) => setUsername(target.value)}
+            value={email}
+            name="email"
+            onChange={({ target }) => setemail(target.value)}
           />
         </div>
         <div>
@@ -85,7 +80,7 @@ const App = () => {
     <BrowserRouter>
       <Sidebar>
         <Routes>
-          <Route  path="/" element={<Home name={username} />} />
+          <Route path="/" element={<Home name={email} />} />
           <Route path="/materias" element={<Materias />} />
           <Route path="/calificaciones" element={<Calificaciones />} />
           <Route path="/perfil" element={<Perfil />} />
