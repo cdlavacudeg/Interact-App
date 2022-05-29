@@ -7,7 +7,6 @@ const { usersGet, userPost, userPut, userDelete } = require('../controllers/user
 const { existModelById,existModelDB } = require('../helpers/db-validator');
 const User = require('../models/user.model');
 const Course=require('../models/course.model.js')
-const ObjectId=require('mongodb').ObjectId
 
 
 const router = Router();
@@ -18,7 +17,7 @@ router.post('/',[
     check('fullName', 'fullName is required').not().isEmpty(),
     check('password', 'password is required and must be 6 characters length').isLength({ min: 6 }),
     check('email', 'invalid email').isEmail(),
-    check('email').custom(email=>existModelDB(User,email)),
+    check('email').custom(email=>existModelDB(User,'email',email)),
     check('courses').isArray(),
     check('courses.*').isMongoId(),
     check('courses.*').custom(course_id=>existModelById(Course,course_id)),
