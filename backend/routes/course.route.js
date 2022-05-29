@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {check}=require('express-validator');
+const {check,body}=require('express-validator');
 const { validateField } = require('../middlewares');
 
 const { coursesGet, courseGetById,coursePost, courseUpdate, courseDelete, courseGetStudents } = require('../controllers/course.controller.js');
@@ -16,7 +16,7 @@ router.post('/',[
     check('courseName','Course name must be unique')
         .custom(courseName=>existModelDB(Course,'courseName',courseName)),
     check('description','Course description is required').not().isEmpty(),
-    check('teacher','Course teacher is required').not().isEmpty(),
+    check('teacher').if(body('teacher').not().isEmpty()).isMongoId(),
     validateField
 ],coursePost)
 

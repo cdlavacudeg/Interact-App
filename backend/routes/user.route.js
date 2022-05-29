@@ -28,6 +28,7 @@ router.post('/',[
 router.put('/:id', [
     check('id', 'id is not mongoId').isMongoId(),
     check('id').custom(id=>existModelById(User,id)),
+    body('courses.*').isArray(),
     body('courses.*').isMongoId(),
     body('courses.*').custom(course_id=>existModelById(Course,course_id)),
     validateField
