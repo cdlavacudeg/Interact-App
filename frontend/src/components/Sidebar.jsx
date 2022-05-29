@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Router } from 'react-router-dom';
 import exit from '@img/exit.png'
 import home from '@img/home.png'
 import materias from '@img/materias.png'
@@ -13,6 +13,12 @@ const Sidebar = ({ children }) => {
     const [isOpen, setIsOpen] = useState(true);
     const toggle = () => setIsOpen(!isOpen);
     const toggleMain = () => setIsOpen(false);
+    const logout = () => {
+        if (window.confirm("Cerrar sesion?")) {
+            window.localStorage.removeItem('loggedAppUser')
+            window.location.reload();
+        }
+    }
     const menuItem = [
         {
             path: "/",
@@ -63,10 +69,10 @@ const Sidebar = ({ children }) => {
                     ))
                 }
                 <div style={{ marginTop: '120px' }} >
-                    <NavLink to='/fgfgg' className="link" activeclassName="active">
+                    <div onClick={logout} className="link" activeclassName="active">
                         <div className="icon"><img src={exit} alt="" /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Cerrar sesion</div>
-                    </NavLink>
+                    </div>
                 </div>
             </div>
             <main onClick={() => toggleMain()}>{children}</main>

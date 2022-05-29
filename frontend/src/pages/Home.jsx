@@ -1,6 +1,7 @@
 
 import * as React from "react";
-import WelcomeUser from "../WelcomeUser";
+import WelcomeUser from "../components/WelcomeUser";
+
 
 
 export default function Home () {
