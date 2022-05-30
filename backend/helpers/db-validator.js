@@ -15,7 +15,20 @@ const existModelDB = async (Model, fieldname = '', fieldvalue) => {
         throw new Error(`${Model.modelName}: ${fieldvalue} alredy exists`)
     }
 }
+
+const existModelByIdAndField = async(Model,id,fieldname,fieldvalue)=>{
+    const existModelID = await Model.findById(id)
+    const existField= existModelID[`${fieldname}`] == fieldvalue
+    if(!existModelID){
+        throw new Error(`The ${id} does not exist in ${Model.modelName} DB`) 
+    } else if (!existField){
+        throw new Error(`The ${fieldname} must be ${fieldvalue}`)
+    }
+}
+
+
 module.exports = {
     existModelById,
-    existModelDB
+    existModelDB,
+    existModelByIdAndField
 }
