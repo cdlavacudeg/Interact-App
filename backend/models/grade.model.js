@@ -18,11 +18,16 @@ const gradeSchema = new Schema({
         
         obs: {
             type: String,
+        },
+        type: {
+            type: String,
+        },
+        date: {
+            type: String,
+            required: true
         }
 
   
-}, {
-    timestamps: true
 })
 gradeSchema.methods.toJSON = function () {
     const { __v, _id, ...grade } = this.toObject()
