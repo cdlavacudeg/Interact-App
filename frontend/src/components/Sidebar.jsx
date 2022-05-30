@@ -9,15 +9,16 @@ import contacto from '@img/contacto.png'
 import logo from '@img/logo.png'
 import menu from '@img/menu.png'
 
+
 const Sidebar = ({ children }) => {
     const [isOpen, setIsOpen] = useState(true);
     const toggle = () => setIsOpen(!isOpen);
     const toggleMain = () => setIsOpen(false);
     const logout = () => {
-       
-            window.localStorage.removeItem('loggedAppUser')
-            window.location.reload();
-       
+
+        window.localStorage.removeItem('loggedAppUser')
+        window.location.reload();
+
     }
     const menuItem = [
         {
@@ -84,7 +85,7 @@ const Sidebar = ({ children }) => {
 
                 <p>Calendario Aqui</p>
 
-        
+
             </div>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -96,19 +97,19 @@ const Sidebar = ({ children }) => {
                         </div>
                         <div class="modal-footer ">
                             <div className='container'>
-                            <div className='row'>
-                            <button type="button" class="btn_primary col" data-bs-dismiss="modal">Cancelar</button>
-                            <button style={{ marginLeft: "5px" }} type="button" class="btn_second col" onClick={logout}>Ok</button>
+                                <div className='row'>
+                                    <button type="button" class="btn_primary col" data-bs-dismiss="modal">Cancelar</button>
+                                    <button style={{ marginLeft: "5px" }} type="button" class="btn_second col" onClick={logout}>Ok</button>
+                                </div>
                             </div>
-                            </div>
-                           
-                           
+
+
                         </div>
                     </div>
                 </div>
             </div>
-           
-            
+
+
         </div>
     );
 };
