@@ -1,4 +1,5 @@
 const User = require('../models/user.model')
+const Course = require('../models/course.model.js')
 const bcryptjs = require('bcryptjs')
 const mongodb = require('mongodb')
 const ObjectId = mongodb.ObjectId
@@ -12,7 +13,18 @@ const usersGet = async (req, res) => {
         await User.find(query)
             .skip(Number(from))
             .limit(Number(limit))
-            .populate('courses').exec()
+            .populate([
+                {
+                    path:'courses',
+                    model:'Course',
+                    select:'courseName teacher',
+                    populate:{
+                        path:'teacher',
+                        model:'User',
+                        select:'fullName'
+                    }
+                },
+            ]).exec()
     ])
 
     res.json({
@@ -23,8 +35,7 @@ const usersGet = async (req, res) => {
 
 const userPost = async (req, res) => {
     const { password, courses, fullName, email, role } = req.body
-    // const objIdcourses = courses.map(e => ObjectId(e))
-
+        
     const user = new User({
         password,
         courses,
@@ -34,6 +45,21 @@ const userPost = async (req, res) => {
         courses
     })
 
+    if(courses){
+        courses.map(async course=>{
+            const courseObj=await Course.findById(course)
+
+            if(user.role=='teacher'){
+                courseObj.teacher=user._id
+            }else if (user.role=='student'){
+                courseObj.students.push(user._id)
+            }else{
+                user.courses=[]
+            }
+
+            await courseObj.save()
+        })
+    }
     //Encrypt password
     const salt = bcryptjs.genSaltSync(10)
     user.password = bcryptjs.hashSync(password, salt)
