@@ -12,7 +12,8 @@ const gradesPost = async (req, res) => {
     try {
         const gradesUser = new grades({
             ...rest, 
-            obs,
+            obs, 
+            
             grade, 
         })
         await gradesUser.save()
