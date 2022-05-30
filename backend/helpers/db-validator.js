@@ -7,12 +7,12 @@ const existModelById = async (Model, id) => {
     }
 }
 
-const existModelDB = async (Model, field = '') => {
-    const modelC = await Model.findOne({ field })
-
-    console.log(modelC)
+const existModelDB = async (Model, fieldname = '', fieldvalue) => {
+    let field = {}
+    field[`${fieldname}`] = fieldvalue
+    const modelC = await Model.findOne(field).exec()
     if (modelC) {
-        throw new Error(`${Model.modelName}: ${field} alredy exists`)
+        throw new Error(`${Model.modelName}: ${fieldvalue} alredy exists`)
     }
 }
 module.exports = {
