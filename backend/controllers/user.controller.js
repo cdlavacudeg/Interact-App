@@ -142,10 +142,20 @@ const userDelete = async (req, res) => {
         userAuthenticated
     })
 }
+const userGetById = async (req, res) => {
+    const { id } = req.params
+
+    const user = await User.findById(id)
+    res.json({
+        msg: `get API - User`,
+        user
+    })
+}
 
 module.exports = {
     usersGet,
     userPost,
     userPut,
-    userDelete
+    userDelete,
+    userGetById
 }
