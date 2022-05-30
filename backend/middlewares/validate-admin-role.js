@@ -10,6 +10,8 @@ const isAdminRole = (req, res, next) => {
             msg: `Access denied. ${fullName} is not admin`
         })
     }
+    req.user = req.body
+
     next()
 }
 
