@@ -34,8 +34,10 @@ const usersGet = async (req, res) => {
 }
 
 const userPost = async (req, res) => {
-    const { password, courses, fullName, email, role } = req.body
-        
+    let { password, courses, fullName, email, role } = req.body
+    //Only unique values
+    courses=[...new Set(courses)]
+
     const user = new User({
         password,
         courses,
@@ -46,6 +48,7 @@ const userPost = async (req, res) => {
     })
 
     if(courses){
+
         courses.map(async course=>{
             const courseObj=await Course.findById(course)
 
@@ -74,14 +77,52 @@ const userPost = async (req, res) => {
 
 const userPut = async (req, res) => {
     const { id } = req.params
-    const { password, role, ...rest } = req.body
+    let { password, role, courses,...rest } = req.body
 
     if (password) {
         const salt = bcryptjs.genSaltSync(10)
         rest.password = bcryptjs.hashSync(password, salt)
     }
 
-    const user = await User.findByIdAndUpdate(id, rest,{new:true})
+    courses=[...new Set(courses)]
+
+    const user_past= await User.findById(id)
+    
+    if(user_past.role=='admin'){
+        courses=[]
+    }
+
+    if(courses){
+        user_past.courses.map(async course=>{
+            const courseObj = await Course.findById(course)
+
+            if(user_past.role=='teacher'){
+                courseObj.teacher=ObjectId(0)
+                // await Course.findByIdAndUpdate(course,{teacher:ObjectId(0)})
+            } else if (user_past.role=='student'){
+                let students = courseObj.students.filter(student=>student!=id)
+                //await Course.findByIdAndUpdate(course,{students:students})        
+                courseObj.students=students
+            }
+
+            await courseObj.save()
+        })
+
+        courses.map(async course=>{
+            const courseObj=await Course.findById(course)
+
+            if(user_past.role=='teacher'){
+                courseObj.teacher=ObjectId(id)
+            }else if (user_past.role=='student'){
+                courseObj.students.push(ObjectId(id))
+            }
+            
+            await courseObj.save()
+            
+        })
+    }
+
+    const user = await User.findByIdAndUpdate(id,{courses,rest},{new:true})
 
     res.json({
         msg: `put API - User updated`,

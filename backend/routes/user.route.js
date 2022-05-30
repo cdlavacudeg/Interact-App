@@ -18,9 +18,9 @@ router.post('/',[
     check('password', 'password is required and must be 6 characters length').isLength({ min: 6 }),
     check('email', 'invalid email').isEmail(),
     check('email').custom(email=>existModelDB(User,'email',email)),
-    check('courses').isArray(),
-    check('courses.*').isMongoId(),
-    check('courses.*').custom(course_id=>existModelById(Course,course_id)),
+    body('courses').isArray(),
+    body('courses.*').isMongoId(),
+    body('courses.*').custom(course_id=>existModelById(Course,course_id)),
     check('role', 'inavalid role').isIn(['admin', 'teacher', 'student']),
     validateField
 ], userPost)
@@ -28,7 +28,7 @@ router.post('/',[
 router.put('/:id', [
     check('id', 'id is not mongoId').isMongoId(),
     check('id').custom(id=>existModelById(User,id)),
-    body('courses.*').isArray(),
+    body('courses').isArray(),
     body('courses.*').isMongoId(),
     body('courses.*').custom(course_id=>existModelById(Course,course_id)),
     validateField
