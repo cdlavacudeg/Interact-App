@@ -1,13 +1,13 @@
 const { check } = require('express-validator')
 const { Router } = require('express');
 const { validateField, isTeacherRole , validateJWT} = require('../middlewares');
-const {gradesGet, gradesPost, gradesDelete, gradesUpdate, gradesGetById} = require('../controllers/grades.controller.js')
+const {gradesGet, gradesPost, gradesDelete, gradesUpdate, gradesGetById} = require('../controllers/grades.controller.js');
+
 const router = Router();
 
 router.get('/', gradesGet )
 router.get('/:id', [
     check('id', 'id is required').not().isEmpty(),
-    check('grade', 'grades is required').not().isEmpty(),
     validateField
 ], gradesGetById )
 router.post('/',  [
@@ -16,18 +16,22 @@ router.post('/',  [
     check ('course', 'course is required').not().isEmpty(),
     check('grade', 'grades is required').not().isEmpty(),
     check('user', 'user is required').not().isEmpty(),
+    check('date', 'date is required').not().isEmpty(),
+    check('date', 'date must be in format DD/MM/YYYY').isDate({format: 'DD/MM/YYYY'}),
     validateField
 ], gradesPost)
 router.delete('/:id', [
     validateJWT,
     isTeacherRole,
     check('id', 'id is required').not().isEmpty(),
+
     validateField
 ], gradesDelete)
 router.put('/:id',[
     validateJWT,
     isTeacherRole,
     check('id', 'id is required').not().isEmpty(),
+
     validateField
 ] ,gradesUpdate)
 
