@@ -6,6 +6,10 @@ const courseSchema = new Schema({
         unique: true,
         required: true
     },
+    image:{
+        type:String,
+        require:true
+    },
     description: {
         type: String,
         required: true
