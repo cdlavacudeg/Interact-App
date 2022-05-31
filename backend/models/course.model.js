@@ -14,26 +14,26 @@ const courseSchema = new Schema({
         type: String,
         required: true
     },
-    lessons: [{
+    lesson: {
         type: Schema.Types.ObjectId,
         ref: 'Lesson'
-    }],
+    },
     teacher: {
         type: Schema.Types.ObjectId,
         required: true
     },
-    events: [{
+    events: {
         type: Schema.Types.ObjectId,
         ref: 'Event'
-    }],
+    },
     students: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
-    grades: [{
+    grades: {
         type: Schema.Types.ObjectId,
         ref: 'Grade'
-    }],
+    },
     forum: {
         type: Schema.Types.ObjectId,
         ref: 'Forum'
