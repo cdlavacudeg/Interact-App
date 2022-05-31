@@ -6,30 +6,34 @@ const courseSchema = new Schema({
         unique: true,
         required: true
     },
+    image:{
+        type:String,
+        require:true
+    },
     description: {
         type: String,
         required: true
     },
-    lessons: [{
+    lessons: {
         type: Schema.Types.ObjectId,
         ref: 'Lesson'
-    }],
+    },
     teacher: {
         type: Schema.Types.ObjectId,
         required: true
     },
-    events: [{
+    events: {
         type: Schema.Types.ObjectId,
         ref: 'Event'
-    }],
+    },
     students: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
-    grades: [{
+    grades: {
         type: Schema.Types.ObjectId,
         ref: 'Grade'
-    }],
+    },
     forum: {
         type: Schema.Types.ObjectId,
         ref: 'Forum'

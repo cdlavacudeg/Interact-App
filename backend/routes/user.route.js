@@ -3,7 +3,7 @@ const { check, body } = require('express-validator');
 
 const { validateField, validateJWT, isAdminRole } = require('../middlewares');
 
-const { usersGet, userPost, userPut, userDelete } = require('../controllers/user.controller');
+const { usersGet, userPost, userPut, userDelete, userGetById } = require('../controllers/user.controller');
 const { existModelById, existModelDB } = require('../helpers/db-validator');
 const User = require('../models/user.model');
 const Course = require('../models/course.model.js')
@@ -12,6 +12,11 @@ const Course = require('../models/course.model.js')
 const router = Router();
 
 router.get('/', usersGet)
+
+router.get('/:id', [
+    check('id', 'id is not mongoId').isMongoId(),
+    validateField
+],userGetById)
 
 router.post('/', [
     validateJWT,
