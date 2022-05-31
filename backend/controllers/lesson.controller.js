@@ -1,5 +1,4 @@
 const Lesson=require('../models/lesson.model.js')
-const ObjectId=require('mongodb').ObjectId
 
 const lessonsGet=async (req,res)=>{
     const{limit,from} = req.query
