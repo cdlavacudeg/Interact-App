@@ -14,7 +14,7 @@ const courseSchema = new Schema({
         type: String,
         required: true
     },
-    lesson: {
+    lessons: {
         type: Schema.Types.ObjectId,
         ref: 'Lesson'
     },
