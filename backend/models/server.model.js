@@ -13,7 +13,8 @@ class Server {
             user: '/api/v1/user',
             grade: '/api/v1/grade',
             course: '/api/v1/course',
-            lesson: '/api/v1/lesson'
+            lesson: '/api/v1/lesson',
+            event: '/api/v1/event',
         }
 
         //Connet Database
@@ -50,6 +51,7 @@ class Server {
         this.app.use(this.path.grade, require('../routes/grade.route.js'));
         this.app.use(this.path.course,require('../routes/course.route.js'))
         this.app.use(this.path.lesson,require('../routes/lesson.route.js'))
+        this.app.use(this.path.event,require('../routes/event.route.js'))
         this.app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
     }
 

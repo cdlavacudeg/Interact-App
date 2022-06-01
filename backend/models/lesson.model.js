@@ -16,7 +16,7 @@ const lessonSchema = new Schema({
     course_id:{
         type:Schema.Types.ObjectId,
         required:true,
-        unique:true,
+        unique: true,
         ref:'Course'
     },
     lectures:[{

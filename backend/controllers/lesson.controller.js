@@ -42,7 +42,7 @@ const lessonPost = async (req,res)=>{
 
 const lessonUpdate = async (req,res)=>{
     const {id} = req.params
-    const {...rest} = req.body
+    const {course_id,...rest} = req.body
 
     const lesson = await Lesson.findByIdAndUpdate(id,rest,{new:true})
 
