@@ -8,11 +8,12 @@ const gradesGet = async (req, res) => {
 }
 
 const gradesPost = async (req, res) => {
-    const {grade,...rest } = req.body
+    const {grade, obs,...rest } = req.body
     try {
         const gradesUser = new grades({
             ...rest, 
-            grade
+            obs, 
+            grade, 
         })
         await gradesUser.save()
         res.json({ gradesUser })

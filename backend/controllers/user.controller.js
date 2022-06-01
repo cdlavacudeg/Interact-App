@@ -1,4 +1,5 @@
 const User = require('../models/user.model')
+const Course = require('../models/course.model.js')
 const bcryptjs = require('bcryptjs')
 const mongodb = require('mongodb')
 const ObjectId = mongodb.ObjectId
@@ -12,7 +13,18 @@ const usersGet = async (req, res) => {
         await User.find(query)
             .skip(Number(from))
             .limit(Number(limit))
-            .populate('courses').exec()
+            .populate([
+                {
+                    path:'courses',
+                    model:'Course',
+                    select:'courseName teacher',
+                    populate:{
+                        path:'teacher',
+                        model:'User',
+                        select:'fullName'
+                    }
+                },
+            ]).exec()
     ])
 
     res.json({
@@ -22,8 +34,9 @@ const usersGet = async (req, res) => {
 }
 
 const userPost = async (req, res) => {
-    const { password, courses, fullName, email, role } = req.body
-    // const objIdcourses = courses.map(e => ObjectId(e))
+    let { password, courses, fullName, email, role } = req.body
+    //Only unique values
+    courses=[...new Set(courses)]
 
     const user = new User({
         password,
@@ -34,6 +47,22 @@ const userPost = async (req, res) => {
         courses
     })
 
+    if(courses){
+
+        courses.map(async course=>{
+            const courseObj=await Course.findById(course)
+
+            if(user.role=='teacher'){
+                courseObj.teacher=user._id
+            }else if (user.role=='student'){
+                courseObj.students.push(user._id)
+            }else{
+                user.courses=[]
+            }
+
+            await courseObj.save()
+        })
+    }
     //Encrypt password
     const salt = bcryptjs.genSaltSync(10)
     user.password = bcryptjs.hashSync(password, salt)
@@ -48,14 +77,50 @@ const userPost = async (req, res) => {
 
 const userPut = async (req, res) => {
     const { id } = req.params
-    const { password, role, ...rest } = req.body
+    let { password, role, courses,...rest } = req.body
 
     if (password) {
         const salt = bcryptjs.genSaltSync(10)
         rest.password = bcryptjs.hashSync(password, salt)
     }
 
-    const user = await User.findByIdAndUpdate(id, rest,{new:true})
+    courses=[...new Set(courses)]
+
+    const user_past= await User.findById(id)
+    
+    if(user_past.role=='admin'){
+        courses=[]
+    }
+
+    if(courses){
+        user_past.courses.map(async course=>{
+            const courseObj = await Course.findById(course)
+
+            if(user_past.role=='teacher'){
+                courseObj.teacher=ObjectId(0)
+            } else if (user_past.role=='student'){
+                let students = courseObj.students.filter(student=>student!=id)
+                courseObj.students=students
+            }
+
+            await courseObj.save()
+        })
+
+        courses.map(async course=>{
+            const courseObj=await Course.findById(course)
+
+            if(user_past.role=='teacher'){
+                courseObj.teacher=ObjectId(id)
+            }else if (user_past.role=='student'){
+                courseObj.students.push(ObjectId(id))
+            }
+            
+            await courseObj.save()
+            
+        })
+    }
+
+    const user = await User.findByIdAndUpdate(id,{courses,rest},{new:true})
 
     res.json({
         msg: `put API - User updated`,
@@ -75,10 +140,32 @@ const userDelete = async (req, res) => {
         userAuthenticated
     })
 }
+const userGetById = async (req, res) => {
+    const { id } = req.params
+
+    const user = await User.findById(id).populate([
+        {
+            path:'courses',
+            model:'Course',
+            select:'courseName teacher',
+            populate:{
+                path:'teacher',
+                model:'User',
+                select:'fullName'
+            }
+        },
+    ]).exec()
+
+    res.json({
+        msg: `get API - User`,
+        user
+    })
+}
 
 module.exports = {
     usersGet,
     userPost,
     userPut,
-    userDelete
+    userDelete,
+    userGetById
 }

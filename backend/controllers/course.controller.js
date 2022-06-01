@@ -1,4 +1,4 @@
-const Course= require('../models/course.model.js')
+const {Course,Lesson,Grade,User}= require('../models')
 const ObjectId=require('mongodb').ObjectId
 
 const coursesGet = async (req, res) => {
@@ -10,7 +10,8 @@ const coursesGet = async (req, res) => {
         await Course.find()
             .skip(Number(from))
             .limit(Number(limit))
-            //poupulate -> classifications, events, forum ... 
+            .populate({path:'lessons',select:'lectures'})
+            .populate({path:'grades',select:'studentGrades'}).exec()
     ])
 
     res.json({
@@ -20,16 +21,53 @@ const coursesGet = async (req, res) => {
 }
 
 const coursePost = async (req, res) => {
-    let {...rest} = req.body
+    let {courseName,image,description,teacher,students} = req.body
+    
+
     try {
+        const userTeacher = User.findById(teacher)
+        userTeacher.courses = userTeacher.courses.push(teacher)
+        await userTeacher.save()
+
+        students = [...new Set(students)]
+        if(students){
+            students.map(async student=>{
+                const userStudent = User.findById(student)
+                userStudent.courses = userStudent.courses.push(student)
+                await userStudent.save()
+            })
+        }
+
         const course = new Course({
-            ...rest
+            courseName,
+            image,
+            description,
+            teacher,
+            students
         })
+        
+        const lesson = new Lesson({
+            course_id:course._id,
+            lectures:[]
+        })
+        
+        const grade = new Grade({
+            course_id:course._id,
+            studentGrades:[]
+        })
+        
+        course.lessons = lesson._id
+        course.grades = grade._id
+
+        await lesson.save()
+        await grade.save()
         await course.save()
+
         res.json({
             msg:'post API - Course created',
             course
         })
+
     } catch (error) {
         console.error(`Error en coursePost:${error}`)
         res.json({
