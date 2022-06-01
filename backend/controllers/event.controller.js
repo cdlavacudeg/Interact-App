@@ -1,53 +1,50 @@
-const { Event } = require('../models/index.js')
-const mongodb = require('mongodb')
+const { Event } = require('../models/index.js');
 
 const eventGet = async (req, res) => {
-    const event = await Event.find()
-    res.json(event)
-}
+    const event = await Event.find();
+    res.json(event);
+};
 
 const eventPost = async (req, res) => {
-    const {...rest } = req.body
+    const { ...rest } = req.body;
     try {
         const eventCalendar = new Event({
             ...rest,
-            
-        })
-        await eventCalendar.save()
-        res.json({ eventCalendar })
+        });
+        await eventCalendar.save();
+        res.json({ eventCalendar });
     } catch (error) {
-        console.error(`Error en EventPost:${error}`)
+        console.error(`Error en EventPost:${error}`);
         res.json({
-            "messague": error.message,
-        })
+            messague: error.message,
+        });
     }
-}
+};
 
 const eventDelete = async (req, res) => {
-    const { id } = req.params
+    const { id } = req.params;
 
-    const eventDelete = await Event.findByIdAndDelete(id)
+    const eventDelete = await Event.findByIdAndDelete(id);
     res.json({
         msg: 'delete API - Eventdeleted',
-        eventDelete
-    })
-}
+        eventDelete,
+    });
+};
 
 const eventUpdate = async (req, res) => {
-    const { id } = req.params
-    const { course_id,...rest } = req.body
+    const { id } = req.params;
+    const { ...rest } = req.body;
 
-    const EventUpdate = await Event.findByIdAndUpdate(id, rest, { new: true })
+    const EventUpdate = await Event.findByIdAndUpdate(id, rest, { new: true });
     res.json({
         msg: 'put API - Event updated',
-        EventUpdate
-    })
-}
-
+        EventUpdate,
+    });
+};
 
 module.exports = {
-  eventGet,
-  eventUpdate,
-  eventDelete,
-  eventPost
-}
+    eventGet,
+    eventUpdate,
+    eventDelete,
+    eventPost,
+};

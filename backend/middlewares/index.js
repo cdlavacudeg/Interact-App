@@ -7,5 +7,5 @@ const validateJWT = require('../middlewares/validate-jwt');
 module.exports = {
     ...isAdminRole,
     ...validateField,
-    ...validateJWT
-}
+    ...validateJWT,
+};

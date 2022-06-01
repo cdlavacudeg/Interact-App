@@ -1,5 +1,4 @@
-const { Schema, model } = require('mongoose')
-
+const { Schema, model } = require('mongoose');
 
 const notificationSchema = new Schema({
     title: {
@@ -16,14 +15,14 @@ const notificationSchema = new Schema({
     },
     date: {
         type: String,
-        required: true
-    }
-})
+        required: true,
+    },
+});
 
 notificationSchema.methods.toJSON = function () {
-    const { __v, password, _id, ...notification } = this.toObject()
-    notification.uid = _id
-    return notification
-}
+    const { __v, password, _id, ...notification } = this.toObject();
+    notification.uid = _id;
+    return notification;
+};
 
-module.exports = model('Notification', notificationSchema)
+module.exports = model('Notification', notificationSchema);

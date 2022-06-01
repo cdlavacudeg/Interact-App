@@ -1,49 +1,51 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model } = require('mongoose');
 
 const courseSchema = new Schema({
     courseName: {
         type: String,
         unique: true,
-        required: true
+        required: true,
     },
-    image:{
-        type:String,
-        require:true
+    image: {
+        type: String,
+        require: true,
     },
     description: {
         type: String,
-        required: true
+        required: true,
     },
     lessons: {
         type: Schema.Types.ObjectId,
-        ref: 'Lesson'
+        ref: 'Lesson',
     },
     teacher: {
         type: Schema.Types.ObjectId,
-        required: true
+        required: true,
     },
     events: {
         type: Schema.Types.ObjectId,
-        ref: 'Event'
+        ref: 'Event',
     },
-    students: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }],
+    students: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+        },
+    ],
     grades: {
         type: Schema.Types.ObjectId,
-        ref: 'Grade'
+        ref: 'Grade',
     },
     forum: {
         type: Schema.Types.ObjectId,
-        ref: 'Forum'
-    }
-})
+        ref: 'Forum',
+    },
+});
 
 courseSchema.methods.toJSON = function () {
-    const { __v, _id, ...course } = this.toObject()
-    course.uid = _id
-    return course
-}
+    const { __v, _id, ...course } = this.toObject();
+    course.uid = _id;
+    return course;
+};
 
-module.exports = model('Course', courseSchema)
+module.exports = model('Course', courseSchema);
