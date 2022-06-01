@@ -4,10 +4,11 @@ import mathimg from "@img/Matematicas.png";
 import geoimg from "@img/Geografia.png";
 import "@styles/recentactivities.css";
 
+
 function Recentactivities () {
     return (
         <section className="recent-activities">
-            <h2 className="recent-activities-h2">Actividades Recientes</h2>
+            <h2 className="recent-activities-h2">Actividad Reciente</h2>
             <div className="recent-activities-container">
                 <article className="recent-activities-item">
                     <div className="activities-notification">1</div>
