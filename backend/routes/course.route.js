@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const {check,body}=require('express-validator');
-const { validateField } = require('../middlewares');
+const { validateField, isTeacherRole, validateJWT } = require('../middlewares');
 
 const { coursesGet, courseGetById,coursePost, courseUpdate, courseDelete, courseGetStudents } = require('../controllers/course.controller.js');
 const {existModelById,existModelDB,existModelByIdAndField} = require('../helpers/db-validator.js');
@@ -12,6 +12,8 @@ const router = Router();
 router.get('/', coursesGet)
 
 router.post('/',[
+    validateJWT,
+    isTeacherRole,
     body('courseName','Course name is required').not().isEmpty(),
     body('courseName','Course name must be unique')
         .custom(courseName=>existModelDB(Course,'courseName',courseName)),
@@ -25,6 +27,8 @@ router.post('/',[
 ],coursePost)
 
 router.put('/:id',[
+    validateJWT,
+    isTeacherRole,
     check('id','id is not mongoId').isMongoId(),
     check('id').custom(id=>existModelById(Course,id)),
     body('courseName','Course name must be unique')
@@ -39,6 +43,8 @@ router.put('/:id',[
 
 
 router.delete('/:id',[
+    validateJWT,
+    isTeacherRole,
     check('id','id is not mongoId').isMongoId(),
     check('id').custom(id=>existModelById(Course,id)),
     validateField
