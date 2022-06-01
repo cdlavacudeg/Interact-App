@@ -98,10 +98,8 @@ const userPut = async (req, res) => {
 
             if(user_past.role=='teacher'){
                 courseObj.teacher=ObjectId(0)
-                // await Course.findByIdAndUpdate(course,{teacher:ObjectId(0)})
             } else if (user_past.role=='student'){
                 let students = courseObj.students.filter(student=>student!=id)
-                //await Course.findByIdAndUpdate(course,{students:students})        
                 courseObj.students=students
             }
 
@@ -145,7 +143,19 @@ const userDelete = async (req, res) => {
 const userGetById = async (req, res) => {
     const { id } = req.params
 
-    const user = await User.findById(id)
+    const user = await User.findById(id).populate([
+        {
+            path:'courses',
+            model:'Course',
+            select:'courseName teacher',
+            populate:{
+                path:'teacher',
+                model:'User',
+                select:'fullName'
+            }
+        },
+    ]).exec()
+
     res.json({
         msg: `get API - User`,
         user
