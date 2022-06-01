@@ -1,0 +1,39 @@
+/* Reset */
+:root {
+    box-sizing:border-box;
+}
+
+*, *::after, *::before {
+    box-sizing: inherit;
+}
+
+/* Margin del section */
+.sectionAvisos {
+    margin: 2rem;
+}
+
+
+.h2-avisos {
+    margin-bottom: .5rem;
+}
+
+.ul-avisos {
+    list-style: none;
+}
+
+.ul-avisos li {
+    padding: .2rem;
+}
+.avisos-li {
+    display:flex;
+    width: 600px;
+    border: thin solid black;
+    border-radius: 12px;
+    margin-bottom: .5rem;
+}
+
+/* Tamaño de la imagen */
+.avisosimg {
+    width: 15%;
+    padding: .5rem;
+}
