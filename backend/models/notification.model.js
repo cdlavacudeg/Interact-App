@@ -14,10 +14,16 @@ const notificationSchema = new Schema({
         type: Boolean,
         default: true,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
+    date: {
+        type: String,
+        required: true
     }
 })
+
+notificationSchema.methods.toJSON = function () {
+    const { __v, password, _id, ...notification } = this.toObject()
+    notification.uid = _id
+    return notification
+}
 
 module.exports = model('Notification', notificationSchema)

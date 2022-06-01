@@ -10,11 +10,13 @@ class Server {
         this.port = process.env.PORT;
         this.path = {
             auth: '/api/v1/auth',
-            user: '/api/v1/user',
-            grade: '/api/v1/grade',
             course: '/api/v1/course',
             lesson: '/api/v1/lesson',
             event: '/api/v1/event',
+            grade: '/api/v1/grade',
+            lesson: '/api/v1/lesson',
+            notification: '/api/v1/notification',
+            user: '/api/v1/user',
         }
 
         //Connet Database
@@ -47,11 +49,14 @@ class Server {
 
     routes() {
         this.app.use(this.path.auth, require('../routes/auth.route.js'));
-        this.app.use(this.path.user, require('../routes/user.route.js'));
+        this.app.use(this.path.course, require('../routes/course.route.js'))
         this.app.use(this.path.grade, require('../routes/grade.route.js'));
         this.app.use(this.path.course,require('../routes/course.route.js'))
         this.app.use(this.path.lesson,require('../routes/lesson.route.js'))
         this.app.use(this.path.event,require('../routes/event.route.js'))
+        this.app.use(this.path.lesson, require('../routes/lesson.route.js'))
+        this.app.use(this.path.user, require('../routes/user.route.js'));
+        this.app.use(this.path.notification, require('../routes/notification.route.js'));
         this.app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
     }
 
