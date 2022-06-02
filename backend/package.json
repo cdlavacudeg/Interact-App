@@ -10,7 +10,7 @@
         "format:write": "prettier --write .",
         "lint:check": "eslint .",
         "lint:fix": "eslint --fix .",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "jest"
     },
     "keywords": [
         "backend",
@@ -34,9 +34,14 @@
         "extends": "./node_modules/standard/eslinrc.json"
     },
     "devDependencies": {
+        "@types/jest": "^27.5.2",
+        "@types/supertest": "^2.0.12",
         "eslint": "^8.16.0",
         "eslint-config-prettier": "^8.5.0",
+        "jest": "^28.1.0",
         "nodemon": "^2.0.16",
-        "prettier": "^2.6.2"
+        "prettier": "^2.6.2",
+        "supertest": "^6.2.3",
+        "ts-jest": "^28.0.3"
     }
 }
