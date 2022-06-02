@@ -1,4 +1,3 @@
-
 const User = require('../models/user.model');
 const Course = require('../models/course.model');
 const Grade = require('../models/grade.model');
@@ -12,5 +11,5 @@ module.exports = {
     Grade,
     Lesson,
     Event,
-    Notification
-}
+    Notification,
+};

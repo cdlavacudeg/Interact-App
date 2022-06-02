@@ -1,12 +1,12 @@
-const User = require('../models/user.model')
-const Course = require('../models/course.model.js')
-const bcryptjs = require('bcryptjs')
-const mongodb = require('mongodb')
-const ObjectId = mongodb.ObjectId
+const User = require('../models/user.model');
+const Course = require('../models/course.model.js');
+const bcryptjs = require('bcryptjs');
+const mongodb = require('mongodb');
+const ObjectId = mongodb.ObjectId;
 
 const usersGet = async (req, res) => {
-    const { limit, from } = req.query
-    const query = { status: true }
+    const { limit, from } = req.query;
+    const query = { status: true };
 
     const [total, user] = await Promise.all([
         await User.countDocuments(query),
@@ -15,28 +15,29 @@ const usersGet = async (req, res) => {
             .limit(Number(limit))
             .populate([
                 {
-                    path:'courses',
-                    model:'Course',
-                    select:'courseName teacher',
-                    populate:{
-                        path:'teacher',
-                        model:'User',
-                        select:'fullName'
-                    }
+                    path: 'courses',
+                    model: 'Course',
+                    select: 'courseName teacher',
+                    populate: {
+                        path: 'teacher',
+                        model: 'User',
+                        select: 'fullName',
+                    },
                 },
-            ]).exec()
-    ])
+            ])
+            .exec(),
+    ]);
 
     res.json({
         total,
-        user
-    })
-}
+        user,
+    });
+};
 
 const userPost = async (req, res) => {
-    let { password, courses, fullName, email, role } = req.body
+    let { password, courses, fullName, email, role } = req.body;
     //Only unique values
-    courses=[...new Set(courses)]
+    courses = [...new Set(courses)];
 
     const user = new User({
         password,
@@ -44,128 +45,133 @@ const userPost = async (req, res) => {
         fullName,
         email,
         role,
-        courses
-    })
+    });
 
-    if(courses){
+    if (courses) {
+        courses.map(async (course) => {
+            const courseObj = await Course.findById(course);
 
-        courses.map(async course=>{
-            const courseObj=await Course.findById(course)
-
-            if(user.role=='teacher'){
-                courseObj.teacher=user._id
-            }else if (user.role=='student'){
-                courseObj.students.push(user._id)
-            }else{
-                user.courses=[]
+            if (user.role == 'teacher') {
+                courseObj.teacher = user._id;
+            } else if (user.role == 'student') {
+                courseObj.students.push(user._id);
+            } else {
+                user.courses = [];
             }
 
-            await courseObj.save()
-        })
+            await courseObj.save();
+        });
     }
     //Encrypt password
-    const salt = bcryptjs.genSaltSync(10)
-    user.password = bcryptjs.hashSync(password, salt)
+    const salt = bcryptjs.genSaltSync(10);
+    user.password = bcryptjs.hashSync(password, salt);
 
     //Save user in DB
-    await user.save()
+    await user.save();
     res.json({
         msg: `post API - User created`,
-        user
-    })
-}
+        user,
+    });
+};
 
 const userPut = async (req, res) => {
-    const { id } = req.params
-    let { password, role, courses,...rest } = req.body
+    const { id } = req.params;
+    let { password, role, courses, ...rest } = req.body;
 
     if (password) {
-        const salt = bcryptjs.genSaltSync(10)
-        rest.password = bcryptjs.hashSync(password, salt)
+        const salt = bcryptjs.genSaltSync(10);
+        rest.password = bcryptjs.hashSync(password, salt);
     }
 
-    courses=[...new Set(courses)]
+    courses = [...new Set(courses)];
 
-    const user_past= await User.findById(id)
-    
-    if(user_past.role=='admin'){
-        courses=[]
+    const user_past = await User.findById(id);
+
+    if (user_past.role == 'admin') {
+        courses = [];
     }
 
-    if(courses){
-        user_past.courses.map(async course=>{
-            const courseObj = await Course.findById(course)
+    if (courses) {
+        user_past.courses.map(async (course) => {
+            const courseObj = await Course.findById(course);
 
-            if(user_past.role=='teacher'){
-                courseObj.teacher=ObjectId(0)
-            } else if (user_past.role=='student'){
-                let students = courseObj.students.filter(student=>student!=id)
-                courseObj.students=students
+            if (user_past.role == 'teacher') {
+                courseObj.teacher = ObjectId(0);
+            } else if (user_past.role == 'student') {
+                let students = courseObj.students.filter(
+                    (student) => student != id
+                );
+                courseObj.students = students;
             }
 
-            await courseObj.save()
-        })
+            await courseObj.save();
+        });
 
-        courses.map(async course=>{
-            const courseObj=await Course.findById(course)
+        courses.map(async (course) => {
+            const courseObj = await Course.findById(course);
 
-            if(user_past.role=='teacher'){
-                courseObj.teacher=ObjectId(id)
-            }else if (user_past.role=='student'){
-                courseObj.students.push(ObjectId(id))
+            if (user_past.role == 'teacher') {
+                courseObj.teacher = ObjectId(id);
+            } else if (user_past.role == 'student') {
+                courseObj.students.push(ObjectId(id));
             }
-            
-            await courseObj.save()
-            
-        })
+
+            await courseObj.save();
+        });
     }
 
-    const user = await User.findByIdAndUpdate(id,{courses,rest},{new:true})
+    const user = await User.findByIdAndUpdate(
+        id,
+        { courses, rest },
+        { new: true }
+    );
 
     res.json({
         msg: `put API - User updated`,
-        user
-    })
-}
+        user,
+    });
+};
 
 const userDelete = async (req, res) => {
-    const { id } = req.params
+    const { id } = req.params;
 
-    const user = await User.findByIdAndUpdate(id, { status: false })
-    const userAuthenticated = req.user
+    const user = await User.findByIdAndUpdate(id, { status: false });
+    const userAuthenticated = req.user;
 
     res.json({
         msg: `delete API - User deleted`,
         user,
-        userAuthenticated
-    })
-}
+        userAuthenticated,
+    });
+};
 const userGetById = async (req, res) => {
-    const { id } = req.params
+    const { id } = req.params;
 
-    const user = await User.findById(id).populate([
-        {
-            path:'courses',
-            model:'Course',
-            select:'courseName teacher',
-            populate:{
-                path:'teacher',
-                model:'User',
-                select:'fullName'
-            }
-        },
-    ]).exec()
+    const user = await User.findById(id)
+        .populate([
+            {
+                path: 'courses',
+                model: 'Course',
+                select: 'courseName teacher',
+                populate: {
+                    path: 'teacher',
+                    model: 'User',
+                    select: 'fullName',
+                },
+            },
+        ])
+        .exec();
 
     res.json({
         msg: `get API - User`,
-        user
-    })
-}
+        user,
+    });
+};
 
 module.exports = {
     usersGet,
     userPost,
     userPut,
     userDelete,
-    userGetById
-}
+    userGetById,
+};

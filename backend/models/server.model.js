@@ -1,8 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
-const { dbConection } = require('../database/config.db')
-
+const { dbConection } = require('../database/config.db');
 
 class Server {
     constructor() {
@@ -14,10 +13,9 @@ class Server {
             lesson: '/api/v1/lesson',
             event: '/api/v1/event',
             grade: '/api/v1/grade',
-            lesson: '/api/v1/lesson',
             notification: '/api/v1/notification',
             user: '/api/v1/user',
-        }
+        };
 
         //Connet Database
         this.connectDB();
@@ -30,40 +28,42 @@ class Server {
     }
 
     async connectDB() {
-        await dbConection()
+        await dbConection();
     }
 
     middleware() {
-
         //CORS
-        this.app.use(cors())
+        this.app.use(cors());
 
         // Parse and lecture JSON
         this.app.use(express.json());
 
         //Public folder
         this.app.use(express.static('public'));
-
     }
-
 
     routes() {
         this.app.use(this.path.auth, require('../routes/auth.route.js'));
-        this.app.use(this.path.course, require('../routes/course.route.js'))
+        this.app.use(this.path.course, require('../routes/course.route.js'));
         this.app.use(this.path.grade, require('../routes/grade.route.js'));
-        this.app.use(this.path.course,require('../routes/course.route.js'))
-        this.app.use(this.path.lesson,require('../routes/lesson.route.js'))
-        this.app.use(this.path.event,require('../routes/event.route.js'))
-        this.app.use(this.path.lesson, require('../routes/lesson.route.js'))
+        this.app.use(this.path.course, require('../routes/course.route.js'));
+        this.app.use(this.path.lesson, require('../routes/lesson.route.js'));
+        this.app.use(this.path.event, require('../routes/event.route.js'));
+        this.app.use(this.path.lesson, require('../routes/lesson.route.js'));
         this.app.use(this.path.user, require('../routes/user.route.js'));
-        this.app.use(this.path.notification, require('../routes/notification.route.js'));
-        this.app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
+        this.app.use(
+            this.path.notification,
+            require('../routes/notification.route.js')
+        );
+        this.app.use('*', (req, res) =>
+            res.status(404).json({ error: 'not found' })
+        );
     }
 
     listen() {
         this.app.listen(this.port, () => {
             console.log('Server on port', this.port);
-        })
+        });
     }
 }
 

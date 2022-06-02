@@ -62,12 +62,7 @@ const Materias = () => {
     return (
         <div >
             <h1>Mis materias</h1>
-
-
-
-
-            <div className="row row-cols-1 row-cols-md-3 g-3">
-
+             <div className="row row-cols-1 row-cols-md-3 g-3">
                 {
                     materias.map((item, index) => (
                         <div onClick={() => navigate(`/materias/${item.materia}`)} key={index} className="materia col-sm-6 col-md-4 col-6 " >
