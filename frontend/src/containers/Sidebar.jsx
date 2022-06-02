@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink, Router } from 'react-router-dom';
+import { useState } from 'react';
+// import { NavLink, Router } from 'react-router-dom';
 import exit from '@img/exit.png'
 import home from '@img/home.png'
 import materias from '@img/materias.png'
@@ -10,7 +10,7 @@ import logo from '@img/logo.png'
 import menu from '@img/menu.png'
 
 
-const Sidebar = ({ children }) => {
+const Sidebar = ({children}) => {
     const [isOpen, setIsOpen] = useState(true);
     const toggle = () => setIsOpen(!isOpen);
     const toggleMain = () => setIsOpen(false);
@@ -52,7 +52,7 @@ const Sidebar = ({ children }) => {
 
     return (
 
-        <div >
+        <div>
 
             <div style={{ display: "flex" }}>
 
@@ -60,7 +60,6 @@ const Sidebar = ({ children }) => {
                     <div className="top_section">
                         <a href="/"> <img style={{ display: isOpen ? "block" : "none" }} className="logo" src={logo} alt="logo" /></a>
                         <div style={{ display: isOpen ? "none" : "block", marginLeft: isOpen ? "0" : "5px" }} className="btn_toggle">
-
                             <img onClick={toggle} src={menu} alt="menu" />
                         </div>
                     </div>
@@ -71,7 +70,6 @@ const Sidebar = ({ children }) => {
                                 <div className="icon"><img src={item.icon} alt={item.name} /></div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">{item.name}</div>
                             </NavLink>
-
                         ))
                     }
                     <div style={{ marginTop: '60px' }} >
