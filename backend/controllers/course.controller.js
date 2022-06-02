@@ -7,11 +7,11 @@ const coursesGet = async (req, res) => {
     const [total, courses] = await Promise.all([
         await Course.countDocuments(),
         await Course.find()
-        .skip(Number(from))
-        .limit(Number(limit))
-        .populate({ path: 'lessons', select: 'lectures' })
-        .populate({ path: 'grades', select: 'studentGrades' })
-        .exec(),
+            .skip(Number(from))
+            .limit(Number(limit))
+            .populate({ path: 'lessons', select: 'lectures' })
+            .populate({ path: 'grades', select: 'studentGrades' })
+            .exec(),
     ]);
 
     res.json({
@@ -22,29 +22,28 @@ const coursesGet = async (req, res) => {
 
 const coursePost = async (req, res) => {
     let { courseName, image, description, teacher, students } = req.body;
+    teacher = Types.ObjectId(teacher);
+    const course = new Course({
+        courseName,
+        image,
+        description,
+        teacher,
+        students,
+    });
 
     try {
         const userTeacher = await User.findById(teacher);
-        userTeacher.courses = userTeacher.courses.push(teacher);
+        userTeacher.courses.push(course._id);
         await userTeacher.save();
 
-        students = [...new Set(students)];
-
         if (students) {
+            students = [...new Set(students)];
             students.map(async (student) => {
                 const userStudent = await User.findById(student);
-                userStudent.courses = userStudent.courses.push(student);
+                userStudent.courses = userStudent.courses.push(course._id);
                 await userStudent.save();
             });
         }
-
-        const course = new Course({
-            courseName,
-            image,
-            description,
-            teacher,
-            students,
-        });
 
         const lesson = new Lesson({
             course_id: course._id,
@@ -58,7 +57,7 @@ const coursePost = async (req, res) => {
 
         course.lessons = lesson._id;
         course.grades = grade._id;
-
+        course.students = students;
         await lesson.save();
         await grade.save();
         await course.save();
@@ -86,7 +85,7 @@ const courseUpdate = async (req, res) => {
     if (image) newCourse.image = image;
     if (description) newCourse.description = description;
 
-    teacher = Types.ObjectId(teacher);
+    if (teacher) teacher = Types.ObjectId(teacher);
 
     if (teacher && !teacher.equals(oldCourse.teacher)) {
         const newTeacher = await User.findById(teacher);
@@ -120,7 +119,7 @@ const courseUpdate = async (req, res) => {
 
     if (
         newStudents &&
-            JSON.stringify(students) !== JSON.stringify(exit_students)
+        JSON.stringify(students) !== JSON.stringify(exit_students)
     ) {
         exit_students.map(async (student) => {
             const oldStudent = await User.findById(student);
@@ -158,7 +157,7 @@ const courseDelete = async (req, res) => {
     try {
         courseDel.students.map(async (student) => {
             const userStudent = await User.findById(student);
-            if(userStudent){
+            if (userStudent) {
                 userStudent.courses = userStudent.courses.filter(
                     (course) => !course.equals(courseDel._id)
                 );
@@ -167,7 +166,7 @@ const courseDelete = async (req, res) => {
         });
 
         const userTeacher = await User.findById(courseDel.teacher);
-        if(userTeacher){
+        if (userTeacher) {
             userTeacher.courses = userTeacher.courses.filter(
                 (course) => !course.equals(courseDel._id)
             );

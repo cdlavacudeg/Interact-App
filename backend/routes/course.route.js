@@ -1,6 +1,11 @@
 const { Router } = require('express');
 const { check, body } = require('express-validator');
-const { validateField, isTeacherRole,isAdminRole,validateJWT } = require('../middlewares');
+const {
+    validateField,
+    isTeacherRole,
+    isAdminRole,
+    validateJWT,
+} = require('../middlewares');
 
 const {
     coursesGet,
@@ -59,6 +64,16 @@ router.put(
             .custom((courseName) =>
                 existModelDB(Course, 'courseName', courseName)
             ),
+        body('teacher')
+            .if(body('teacher').exists())
+            .custom((teacher, { req }) => {
+                if (req.user.role != 'admin') {
+                    throw new Error(
+                        'Only admin can update the teacher of the course'
+                    );
+                }
+                return true;
+            }),
         body('teacher')
             .if(body('teacher').exists())
             .custom((teacher) =>
