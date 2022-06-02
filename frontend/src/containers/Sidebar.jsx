@@ -83,8 +83,8 @@ const Sidebar = ({children}) => {
 
                 <div className='container-fluid'>
                     <div className="row">
-                        <div className="col-sm-12 col-md-9  col-12"> <main onClick={() => toggleMain()}>{children}</main></div>
-                        <div  className="col-sm-12 col-md-3 col-12"><div className='calendar_section'>
+                        <div className="col-12 col-md-9"> <main onClick={() => toggleMain()}>{children}</main></div>
+                        <div  className="col-12 col-xl-3"><div className='calendar_section'>
 
                             <p>Calendario Aqui</p>
 

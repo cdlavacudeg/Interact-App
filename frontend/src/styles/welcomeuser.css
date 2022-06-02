@@ -1,11 +1,10 @@
 
-
 .welcome {
-    margin: 2rem;
+    margin: .2rem 0;
     display:flex;
     justify-content: space-between;
     align-items: center;
-    width: 600px;
+    width: 800px;
     background-color: var(--cuarto-color);
     border-radius: 30px;
     position: relative;
@@ -17,18 +16,24 @@
 }
 
 .welcome-title {
-
+font-size: 32px;
+padding-bottom: 0;
+padding-left: 1.5rem;
 }
 
 .welcome-body {
-
+font-size: 16px;
+padding-left: 1.5rem;
 }
 
 .welcome-img {
-    width:45%;
+    width:25%;
     position: absolute;
-    top: -60px;
-    right: -40px;
+    top: -15px;
+    right: -15px;
 
+}
 
-} 
+@media screen and (max-width: 760px){
+
+}
