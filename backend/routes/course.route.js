@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { check, body } = require('express-validator');
-const { validateField, isTeacherRole, validateJWT } = require('../middlewares');
+const { validateField, isTeacherRole,isAdminRole,validateJWT } = require('../middlewares');
 
 const {
     coursesGet,
@@ -26,7 +26,7 @@ router.post(
     '/',
     [
         validateJWT,
-        isTeacherRole,
+        isAdminRole,
         body('courseName', 'Course name is required').not().isEmpty(),
         body('courseName', 'Course name must be unique').custom((courseName) =>
             existModelDB(Course, 'courseName', courseName)
@@ -85,7 +85,7 @@ router.delete(
     '/:id',
     [
         validateJWT,
-        isTeacherRole,
+        isAdminRole,
         check('id', 'id is not mongoId').isMongoId(),
         check('id').custom((id) => existModelById(Course, id)),
         validateField,

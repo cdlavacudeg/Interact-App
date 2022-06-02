@@ -7,11 +7,11 @@ const coursesGet = async (req, res) => {
     const [total, courses] = await Promise.all([
         await Course.countDocuments(),
         await Course.find()
-            .skip(Number(from))
-            .limit(Number(limit))
-            .populate({ path: 'lessons', select: 'lectures' })
-            .populate({ path: 'grades', select: 'studentGrades' })
-            .exec(),
+        .skip(Number(from))
+        .limit(Number(limit))
+        .populate({ path: 'lessons', select: 'lectures' })
+        .populate({ path: 'grades', select: 'studentGrades' })
+        .exec(),
     ]);
 
     res.json({
@@ -92,15 +92,18 @@ const courseUpdate = async (req, res) => {
         const newTeacher = await User.findById(teacher);
         const oldTeacher = await User.findById(oldCourse.teacher);
 
-        oldTeacher.courses = oldTeacher.courses.filter(
-            (course) => !course.equals(oldCourse._id)
-        );
+        if (oldTeacher) {
+            oldTeacher.courses = oldTeacher.courses.filter(
+                (course) => !course.equals(oldCourse._id)
+            );
+            await oldTeacher.save();
+        }
+
         newTeacher.courses.push(oldCourse._id);
         newTeacher.courses = newTeacher.courses.map((e) => e.toString());
         newTeacher.courses = [...new Set(newTeacher.courses)];
 
         await newTeacher.save();
-        await oldTeacher.save();
 
         newCourse.teacher = teacher;
     }
@@ -117,14 +120,16 @@ const courseUpdate = async (req, res) => {
 
     if (
         newStudents &&
-        JSON.stringify(students) !== JSON.stringify(exit_students)
+            JSON.stringify(students) !== JSON.stringify(exit_students)
     ) {
         exit_students.map(async (student) => {
             const oldStudent = await User.findById(student);
-            oldStudent.courses = oldStudent.courses.filter(
-                (course) => !course.equals(oldCourse._id)
-            );
-            await oldStudent.save();
+            if (oldStudent) {
+                oldStudent.courses = oldStudent.courses.filter(
+                    (course) => !course.equals(oldCourse._id)
+                );
+                await oldStudent.save();
+            }
         });
 
         newStudents.map(async (student) => {
@@ -148,11 +153,39 @@ const courseUpdate = async (req, res) => {
 const courseDelete = async (req, res) => {
     const { id } = req.params;
 
-    const courseDel = await Course.findByIdAndDelete(id);
-    res.json({
-        msg: 'delete API - Course deleted',
-        courseDel,
-    });
+    const courseDel = await Course.findById(id);
+
+    try {
+        courseDel.students.map(async (student) => {
+            const userStudent = await User.findById(student);
+            if(userStudent){
+                userStudent.courses = userStudent.courses.filter(
+                    (course) => !course.equals(courseDel._id)
+                );
+                await userStudent.save();
+            }
+        });
+
+        const userTeacher = await User.findById(courseDel.teacher);
+        if(userTeacher){
+            userTeacher.courses = userTeacher.courses.filter(
+                (course) => !course.equals(courseDel._id)
+            );
+            await userTeacher.save();
+        }
+
+        const deleted = await Course.findByIdAndDelete(id);
+
+        res.json({
+            msg: 'delete API - Course deleted',
+            courseDel: deleted,
+        });
+    } catch (error) {
+        console.error(`Error en courseDelete:${error}`);
+        res.json({
+            msg: error.message,
+        });
+    }
 };
 
 //

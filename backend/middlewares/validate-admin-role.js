@@ -16,7 +16,7 @@ const isTeacherRole = (req, res, next) => {
 
     if (role !== 'teacher') {
         return res.status(401).json({
-            msg: `Access denied. ${fullName} is not admin`,
+            msg: `Access denied. ${fullName} is not teacher`,
         });
     }
     next();
