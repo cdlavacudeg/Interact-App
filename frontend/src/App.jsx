@@ -36,7 +36,6 @@ const App = () => {
   const main = () => (
 
     <BrowserRouter>
-    
       <Sidebar>
         <Routes>
           <Route path="/" element={<Home/>} />
@@ -60,7 +59,6 @@ const App = () => {
 
   return (
     <div>
-
       {user === null ?
         <Login/> :
         main()
