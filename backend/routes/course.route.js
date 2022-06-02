@@ -42,10 +42,6 @@ router.post(
         body('students.*').custom((student) =>
             existModelByIdAndField(User, student, 'role', 'student')
         ),
-        // body('lessons').if(body('lessons').exists()).isMongoId(), create this models on post
-        // body('events').if(body('events').exists()).isMongoId(),
-        // body('grades').if(body('grades').exists()).isMongoId(),
-        // body('forum').if(body('forum').exists()).isMongoId(),
         validateField,
     ],
     coursePost

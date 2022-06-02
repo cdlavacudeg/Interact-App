@@ -1,5 +1,5 @@
 const { Course, Lesson, Grade, User } = require('../models');
-
+const {Types}= require('mongoose');
 const coursesGet = async (req, res) => {
     const { limit, from } = req.query;
 
@@ -75,9 +75,65 @@ const coursePost = async (req, res) => {
 
 const courseUpdate = async (req, res) => {
     const { id } = req.params;
-    const { ...rest } = req.body;
+    let { courseName, image, description , teacher, students } = req.body;
+    const oldCourse = await Course.findById(id)
 
-    const course = await Course.findByIdAndUpdate(id, rest, { new: true });
+    let newCourse={}
+
+    if(courseName) newCourse.courseName=courseName;
+    if(image) newCourse.image=image;
+    if(description) newCourse.description=description;
+
+    teacher=Types.ObjectId(teacher)
+
+    if(teacher && !teacher.equals(oldCourse.teacher)){
+        const newTeacher = await User.findById(teacher)
+        const oldTeacher = await User.findById(oldCourse.teacher)
+
+        oldTeacher.courses=oldTeacher.courses.filter(course=> !course.equals(oldCourse._id))
+        newTeacher.courses.push(oldCourse._id)
+        newTeacher.courses=newTeacher.courses.map(e=>e.toString())
+        newTeacher.courses=[...new Set(newTeacher.courses)]
+
+        await newTeacher.save();
+        await oldTeacher.save();
+
+        newCourse.teacher=teacher;
+    }
+
+    students=[...new Set(students)]
+    // The new students array that are not include in the old one.
+    students= students.map(e=>Types.ObjectId(e))
+    let newStudents= students.filter(student=> !oldCourse.students.includes(student))
+    let exit_students=oldCourse.students.filter(student => !students.includes(student))
+
+    console.log(newStudents)
+    console.log("----------------")
+    console.log(exit_students)
+    console.log('--------------')
+    console.log(students && JSON.stringify(students)!== JSON.stringify(exit_students))
+
+    if(newStudents && JSON.stringify(students)!== JSON.stringify(exit_students)){
+        exit_students.map(async (student)=>{
+            const oldStudent= await User.findById(student)
+            oldStudent.courses=oldStudent.courses.filter(course => !course.equals(oldCourse._id))
+            await oldStudent.save()
+        })
+
+        newStudents.map(async (student)=>{
+            const newStudent = await User.findById(student)
+            newStudent.courses.push(oldCourse._id)
+            newStudent.courses=newStudent.courses.map(e=>e.toString())
+            newStudent.courses =[...new Set(newStudent.courses)]
+            await newStudent.save()
+        })
+
+        newCourse.students=students
+    }
+
+
+
+    const course = await Course.findByIdAndUpdate(id,newCourse, { new: true });
     res.json({
         msg: 'put API - Course updated',
         course,
@@ -98,7 +154,11 @@ const courseDelete = async (req, res) => {
 
 const courseGetById = async (req, res) => {
     const { id } = req.params;
-    const course = await Course.findById(id);
+    const course = await Course.findById(id)
+            .populate({ path: 'lessons', select: 'lectures' })
+            .populate({ path: 'grades', select: 'studentGrades' })
+            .exec();
+
     res.json({
         course,
     });
