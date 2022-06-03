@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import { useState} from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import loginService from '@services/login.js'
 import toast, { Toaster } from 'react-hot-toast';
+import Logo from "@components/Logo";
 import "@styles/Login.css";
+import { getUser } from '../Redux/actions';
 
 
 const Login = () => {
+    const dispatch = useDispatch()
+      useEffect(() => {
+        dispatch(getUser());
+      }, [dispatch]);
 
     const [email, setemail] = useState('')
     const [password, setPassword] = useState('')
@@ -41,33 +48,32 @@ const Login = () => {
     }
 
     return (
-        <div style={{ padding: "2rem", textAlign: "center" , marginTop: "2rem"}}>
-            <div><Toaster
-            position="top-right"
-            reverseOrder={false}
-            /></div>
-            <form onSubmit={handleLogin}>
-                <div>
-                    Usuario
-                    <input
-                        type="text"
-                        value={email}
-                        name="email"
-                        onChange={({ target }) => setemail(target.value)}
-                    />
-                </div>
-                <div>
-                    Contraseña
-                    <input
-                        type="password"
-                        value={password}
-                        name="Password"
-                        onChange={({ target }) => setPassword(target.value)}
-                    />
-                </div>
-                <button type="submit">entrar</button>
-            </form>
+      <div className="container_input">
+        <div>
+          <Toaster position='top-right' reverseOrder={false} />
         </div>
+            <div className="container_logo">
+            <img src={Logo} alt="" clsss="logo" />
+        </div>
+        <div className="container_titulo">
+            <h1>
+                El conocimiento te traer&aacute la oportuniddad de hacer la diferencia 
+            </h1> 
+        </div>
+        <form onSubmit={handleLogin} className='container_login'>
+          <div className='container_datos'>
+            Usuario
+            <input type='text' value={email} name='email' onChange={({ target }) => setemail(target.value)} />
+          </div>
+          <div className='container_datos'>
+            Contraseña
+            <input type='password' value={password} name='Password' onChange={({ target }) => setPassword(target.value)} />
+          </div>
+          <button className='buttons' type='submit'>
+            entrar
+          </button>
+        </form>
+      </div>
     );
 };
 

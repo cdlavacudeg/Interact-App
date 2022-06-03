@@ -8,8 +8,6 @@ import perfil from '@img/perfil.png'
 import contacto from '@img/contacto.png'
 import logo from '@img/logo.png'
 import menu from '@img/menu.png'
-import '@styles/sidebar.css'
-
 
 const Sidebar = ({children}) => {
     const [isOpen, setIsOpen] = useState(true);
