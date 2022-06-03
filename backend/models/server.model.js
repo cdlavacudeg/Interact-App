@@ -29,10 +29,10 @@ class Server {
     }
 
     async connectDB() {
-        try{
+        try {
             await dbConection();
-        }catch(err){
-            console.log(err.message)
+        } catch (err) {
+            console.log(err.message);
         }
     }
 
@@ -59,7 +59,7 @@ class Server {
             require('../routes/notification.route.js')
         );
         this.app.use('*', (req, res) =>
-            response.error(req,res,'Page not found',404)
+            response.error(req, res, 'Page not found', 404)
         );
     }
 
