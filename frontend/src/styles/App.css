@@ -53,8 +53,7 @@ main{
 
 .calendar_section{
     height: 100vh;
-  padding: 10px;
-  
+  padding: 20px;
     transition: var(--transition);
     color:var(--black-color);
     background:var(--white-color);
