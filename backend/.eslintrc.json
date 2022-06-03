@@ -9,7 +9,7 @@
     "parserOptions": {
         "ecmaVersion": "latest"
     },
-    "ignorePatterns":["__test__"],
+    "ignorePatterns": ["__test__"],
     "rules": {
         "no-unused-vars": "off"
     }
