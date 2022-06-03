@@ -3,12 +3,13 @@ const Course = require('../models/course.model.js');
 const bcryptjs = require('bcryptjs');
 const mongodb = require('mongodb');
 const ObjectId = mongodb.ObjectId;
+const response = require('../helpers/response.js');
 
 const usersGet = async (req, res) => {
     const { limit, from } = req.query;
     const query = { status: true };
 
-    const [total, user] = await Promise.all([
+    const [total, users] = await Promise.all([
         await User.countDocuments(query),
         await User.find(query)
             .skip(Number(from))
@@ -28,10 +29,7 @@ const usersGet = async (req, res) => {
             .exec(),
     ]);
 
-    res.json({
-        total,
-        user,
-    });
+    response.success(req, res, 'get API - list of users', { total, users });
 };
 
 const userPost = async (req, res) => {
@@ -68,10 +66,7 @@ const userPost = async (req, res) => {
 
     //Save user in DB
     await user.save();
-    res.json({
-        msg: `post API - User created`,
-        user,
-    });
+    response.success(req, res, 'post API - User created', { user });
 };
 
 const userPut = async (req, res) => {
@@ -126,10 +121,7 @@ const userPut = async (req, res) => {
         { new: true }
     );
 
-    res.json({
-        msg: `put API - User updated`,
-        user,
-    });
+    response.success(req, res, 'put API - User updated', { user });
 };
 
 const userDelete = async (req, res) => {
@@ -138,12 +130,12 @@ const userDelete = async (req, res) => {
     const user = await User.findByIdAndUpdate(id, { status: false });
     const userAuthenticated = req.user;
 
-    res.json({
-        msg: `delete API - User deleted`,
+    response.success(req, res, 'delete API - User deleted', {
         user,
         userAuthenticated,
     });
 };
+
 const userGetById = async (req, res) => {
     const { id } = req.params;
 
@@ -162,10 +154,7 @@ const userGetById = async (req, res) => {
         ])
         .exec();
 
-    res.json({
-        msg: `get API - User`,
-        user,
-    });
+    response.success(req, res, 'get API - User by id', { user });
 };
 
 module.exports = {

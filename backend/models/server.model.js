@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 const { dbConection } = require('../database/config.db');
+const response = require('../helpers/response.js');
 
 class Server {
     constructor() {
@@ -28,7 +29,11 @@ class Server {
     }
 
     async connectDB() {
-        await dbConection();
+        try {
+            await dbConection();
+        } catch (err) {
+            console.log(err.message);
+        }
     }
 
     middleware() {
@@ -46,17 +51,15 @@ class Server {
         this.app.use(this.path.auth, require('../routes/auth.route.js'));
         this.app.use(this.path.course, require('../routes/course.route.js'));
         this.app.use(this.path.grade, require('../routes/grade.route.js'));
-        this.app.use(this.path.course, require('../routes/course.route.js'));
         this.app.use(this.path.lesson, require('../routes/lesson.route.js'));
         this.app.use(this.path.event, require('../routes/event.route.js'));
-        this.app.use(this.path.lesson, require('../routes/lesson.route.js'));
         this.app.use(this.path.user, require('../routes/user.route.js'));
         this.app.use(
             this.path.notification,
             require('../routes/notification.route.js')
         );
         this.app.use('*', (req, res) =>
-            res.status(404).json({ error: 'not found' })
+            response.error(req, res, 'Page not found', 404)
         );
     }
 
