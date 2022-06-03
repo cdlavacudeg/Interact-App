@@ -1,47 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive table</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <style>
-        @media only screen and (max-width: 800px){
-            #no-more-tables tbody, #no-more-tables tr, #no-more-tables td {
-                display:block;
-            }
-            #no-more-tables thead tr {
-                position:absolute;
-                top: -99999px;
-                left: -9999px;
-            }
+import * as React from "react";
+import "@styles/gradestable.css";
 
-            #no-more-tables td {
-                position:relative;
-                padding-left: 50%;
-                border: none;
-                border-bottom: 1px solid #eee;
-            }
-            #no-more-tables td:before{
-                content:attr(data-title);
-                position: absolute;
-                left: 6px;
-                font-weight: bold;
-            }
-
-            #no-more-tables tr {
-                border-bottom: 1px solid #ccc;
-            }
-        }
-    </style>
-</head>
-<body>
-    <section class="bg-light p-5">
-        <div class="table-responsive" id="no-more-tables">
-            <table class="table">
+function GradesTable () {
+    return (
+        <section className="bg-light p-5">
+        <div className="table-responsive" id="no-more-tables">
+            <table className="table">
                 <thead>
-                    <tr>
+                    <tr className="bg-color-honey">
                         <th>Materia</th>
                         <th>Fecha</th>
                         <th>Tipo de evaluacion</th>
@@ -83,12 +49,14 @@
                         <td data-title="Materia">Fisico-quimica</td>
                         <td data-title="Fecha">27/05/2022</td>
                         <td data-title="Tipo de evaluacion">Examen escrito</td>
-                        <td>8</td>
+                        <td data-title="Calificación">8</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </section>
-    
-</body>
-</html>
+
+    )
+}
+
+export default GradesTable;

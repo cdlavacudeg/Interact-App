@@ -1,11 +1,11 @@
 import React from 'react';
+import GradesTable from '../components/GradesTable';
 
-const Calificaciones = () => {
+export default function Calificaciones () {
     return (
-        <div>
-            <h1>Calificaciones</h1>
-        </div>
-    );
-};
-
-export default Calificaciones;
+        <> <h1> Mis Calificaciones</h1>
+        <GradesTable />
+        
+        </>
+    )
+}
