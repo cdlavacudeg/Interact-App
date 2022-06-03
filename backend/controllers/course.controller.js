@@ -1,5 +1,6 @@
 const { Course, Lesson, Grade, User } = require('../models');
 const { Types } = require('mongoose');
+const response = require('../helpers/response.js');
 
 const coursesGet = async (req, res) => {
     const { limit, from } = req.query;
@@ -14,10 +15,7 @@ const coursesGet = async (req, res) => {
             .exec(),
     ]);
 
-    res.json({
-        total,
-        courses,
-    });
+    response.success(req, res, 'get API - list of courses', { total, courses });
 };
 
 const coursePost = async (req, res) => {
@@ -62,15 +60,10 @@ const coursePost = async (req, res) => {
         await grade.save();
         await course.save();
 
-        res.json({
-            msg: 'post API - Course created',
-            course,
-        });
+        response.success(req, res, 'post API - Course created', { course });
     } catch (error) {
         console.error(`Error en coursePost:${error}`);
-        res.json({
-            msg: error.message,
-        });
+        response.error(req, res, 'Error creating user');
     }
 };
 
@@ -143,10 +136,8 @@ const courseUpdate = async (req, res) => {
     }
 
     const course = await Course.findByIdAndUpdate(id, newCourse, { new: true });
-    res.json({
-        msg: 'put API - Course updated',
-        course,
-    });
+
+    response.success(req, res, 'put API - Course Updated', { course });
 };
 
 const courseDelete = async (req, res) => {
@@ -174,16 +165,12 @@ const courseDelete = async (req, res) => {
         }
 
         const deleted = await Course.findByIdAndDelete(id);
-
-        res.json({
-            msg: 'delete API - Course deleted',
-            courseDel: deleted,
+        response.success(req, res, 'delete API - Course deleted', {
+            course: deleted,
         });
     } catch (error) {
         console.error(`Error en courseDelete:${error}`);
-        res.json({
-            msg: error.message,
-        });
+        response.error(req, res, 'Error deleting course');
     }
 };
 
@@ -196,9 +183,7 @@ const courseGetById = async (req, res) => {
         .populate({ path: 'grades', select: 'studentGrades' })
         .exec();
 
-    res.json({
-        course,
-    });
+    response.success(req, res, 'get API - Course by id', { course });
 };
 
 // Get fullName of the students in the course
@@ -207,7 +192,7 @@ const courseGetStudents = async (req, res) => {
     const course = await Course.findById(id)
         .populate('students', 'fullName')
         .exec();
-    res.json({
+    response.success(req, res, 'get API - Students of the course', {
         students: course.students,
     });
 };

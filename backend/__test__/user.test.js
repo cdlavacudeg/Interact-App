@@ -12,6 +12,7 @@ const server = new Server();
 const app = server.app;
 beforeAll(async () => await dbConnect());
 afterAll(async () => await dbDisconnect());
+
 const userStudent1 = {
     fullName: 'camilo',
     email: 'student1@test.com',
@@ -53,9 +54,9 @@ let userTest = userTeacher;
 describe('GET users', () => {
     it('Should respond with all users', async () => {
         const response = await request(app).get('/api/v1/user');
-        expect(response.body.total).toBe(await User.countDocuments());
-        expect(response.body.user[0]).toHaveProperty('fullName');
-        expect(response.body.user[0]).toHaveProperty('email');
+        expect(response.body.data.total).toBe(await User.countDocuments());
+        expect(response.body.data.user[0]).toHaveProperty('fullName');
+        expect(response.body.data.user[0]).toHaveProperty('email');
         expect(response.statusCode).toBe(200);
     });
 });
