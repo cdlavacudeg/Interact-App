@@ -1,12 +1,10 @@
 const { validationResult } = require('express-validator');
-
+const response = require('../helpers/response.js')
 //Validate all fields in request
 const validateField = (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({
-            errors: errors.array(),
-        });
+        return response.error(req,res,errors.array().map(e=>e.msg),400)
     }
     next();
 };
