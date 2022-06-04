@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '@containers/Header';
-// import Sidebar from '@containers/Sidebar.jsx'
+ import Sidebar from '@containers/Sidebar.jsx'
 import Home from '@pages/Home.jsx';
 import Materias from '@pages/Materias.jsx';
 import Calificaciones from '@pages/Calificaciones.jsx';
@@ -23,20 +23,20 @@ import '@styles/App.css'
 
 const App = () => {
 
-  // const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null)
 
-  // useEffect(() => {
-  //   const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
-  //   if (loggedUserJSON) {
-  //     const userLog = JSON.parse(loggedUserJSON)
-  //     setUser(userLog)
-  //   }
-  // }, [])
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
+    if (loggedUserJSON) {
+      const userLog = JSON.parse(loggedUserJSON)
+      setUser(userLog)
+    }
+  }, [])
 
 
-  // const main = () => (
+  const main = () => (
 
-  return (
+  (
 
     <BrowserRouter>
       <Header>
@@ -60,18 +60,18 @@ const App = () => {
   )
 
 
-  // )
+  )
 
-  // return (
-  //   <div>
+  return (
+    <div>
 
-  //     {user === null ?
-  //       <Login/> :
-  //       main()
-  //     }
+      {user === null ?
+        <Login/> :
+        main()
+      }
 
-  //   </div>
-  // );
+    </div>
+  );
 
 }
 
