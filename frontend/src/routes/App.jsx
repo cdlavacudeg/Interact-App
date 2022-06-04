@@ -9,7 +9,7 @@ import Materias from '@pages/Materias.jsx';
 import Calificaciones from '@pages/Calificaciones.jsx';
 import Perfil from '@pages/Perfil.jsx';
 import Contacto from '@pages/Contacto.jsx';
- import Login from '@components/Login';
+import Login from '@components/Login';
 import Biologia from '@pages/Materias/Biologia';
 import Historia from '@pages/Materias/Historia';
 import Geografia from '@pages/Materias/Geografia';

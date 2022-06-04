@@ -8,8 +8,11 @@ import perfil from '@img/perfil.png'
 import contacto from '@img/contacto.png'
 import logo from '@img/logo.png'
 import menu from '@img/menu.png'
+import Calendar from '../components/Calendar';
+//import '@styles/sidebar.css'
 
-const Sidebar = ({children}) => {
+
+const Sidebar = ({ children }) => {
     const [isOpen, setIsOpen] = useState(true);
     const toggle = () => setIsOpen(!isOpen);
     const toggleMain = () => setIsOpen(false);
@@ -83,13 +86,11 @@ const Sidebar = ({children}) => {
                 <div className='container-fluid'>
                     <div className="row">
                         <div className="col-12 col-md-9"> <main onClick={() => toggleMain()}>{children}</main></div>
-                        <div  className="col-12 col-xl-3"><div className='calendar_section'>
-
-                            <p>Calendario Aqui</p>
-
-
-                        </div></div>
+                        <div className="col-12 col-xl-3">
+                         <Calendar></Calendar>
+                        </div>
                     </div>
+
 
                 </div>
 
