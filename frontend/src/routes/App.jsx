@@ -1,9 +1,9 @@
-import '@styles/App.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import Sidebar from '@containers/Sidebar.jsx'
+// import { useState, useEffect } from 'react';
+import Header from '@containers/Header';
+// import Sidebar from '@containers/Sidebar.jsx'
 import Home from '@pages/Home.jsx';
 import Materias from '@pages/Materias.jsx';
 import Calificaciones from '@pages/Calificaciones.jsx';
@@ -18,6 +18,7 @@ import Matematicas from '@pages/Materias/Matematicas';
 import FisicoQuimica from '@pages/Materias/FisicoQuimica';
 import Ingles from '@pages/Materias/Ingles';
 import Literatura from '@pages/Materias/Literatura';
+import '@styles/App.css'
 
 
 const App = () => {
@@ -38,7 +39,7 @@ const App = () => {
   return (
 
     <BrowserRouter>
-      <Sidebar>
+      <Header>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/materias" element={<Materias />} />
@@ -54,7 +55,7 @@ const App = () => {
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/contacto" element={<Contacto />} />
         </Routes>
-      </Sidebar>
+      </Header>
     </BrowserRouter>
   )
 

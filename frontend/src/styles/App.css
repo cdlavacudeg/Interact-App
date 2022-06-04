@@ -1,55 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap');
 
-:root{
+:root {
 
-    --primer-color:  #122b57;
-    --segundo-color: #12676f;
-    --tercer-color: #1aaf99;
-    --cuarto-color: #efb365;
-    --quinto-color: #efcd6a;
+    --primer-color    : #122b57;
+    --segundo-color   : #12676f;
+    --tercer-color    : #1aaf99;
+    --cuarto-color    : #efb365;
+    --quinto-color    : #efcd6a;
     --whiteSmoke-color: #f4f4f4;
-    --black-color:  #0a0a09;
---white-color: #fff;
-    --body-font: 'Lato', sans-serif;
+    --black-color     : #0a0a09;
+    --white-color     : #fff;
+    --body-font       : 'Lato', sans-serif;
 
     --transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+    /* Fonts and sizes */
+    /*   320   |  1440   */
+    --fz-2: clamp(0.87rem, calc(0.88rem + -0.02vw), 0.88rem);
+    /* 14.05px - 13.89px */
+    --fz-1: clamp(0.94rem, calc(0.90rem + 0.20vw), 1.04rem);
+    /*  15px   - 16.67px */
+    --fz0 : clamp(1.00rem, calc(0.90rem + 0.49vw), 1.25rem);
+    /*  16px   -  20px   */
+    --fz1 : clamp(1.07rem, calc(0.90rem + 0.85vw), 1.50rem);
+    /*  17px   -  24px   */
+    --fz2 : clamp(1.14rem, calc(0.88rem + 1.29vw), 1.80rem);
+    /* 18.22px - 28.80px */
+    --fz3 : clamp(1.22rem, calc(0.85rem + 1.84vw), 2.16rem);
+    /* 19.44px - 34.56px */
+    --fz4 : clamp(1.30rem, calc(0.79rem + 2.53vw), 2.59rem);
+    /* 20.74px - 41.47px */
+    --fz5 : clamp(1.38rem, calc(0.71rem + 3.37vw), 3.11rem);
+    /* 22.13px - 49.77px */
 }
 
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
+* {
+    margin         : 0;
+    padding        : 0;
+    box-sizing     : border-box;
     text-decoration: none !important;
-    font-family: var(--body-font);
-    
+    font-family    : var(--body-font);
+
 }
 
-main{
-    width: 100%;
+main {
+    width  : 100%;
     padding: 20px;
 }
-.sidebar{
-    background:var(--white-color);
-    color:var(--black-color);
-    height: 100vh;
-    width: 200px;
-    transition: var(--transition);
-    overflow: hidden;
-    overflow-y: scroll;
-}
-/*Ocultar scroll para chrome, safari y opera*/
-.sidebar::-webkit-scrollbar{
-    display: none;
-}
-/*Ocultar scroll para IE, Edge y Firefox*/
-.sidebar{
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
 
-
-
+img {
+    width: 100%;
+}
 
 .calendar_section{
     height: 100vh;
@@ -87,20 +89,19 @@ main{
     background:var(--segundo-color);
     color: var(--white-color);
     transition:  var(--transition);
-
-    
 }
+
 .link:hover .icon{
     filter: invert(1);
 }
 .icon{
-    width: 20px;
-    
+    width: 20px;    
 }
+
 .link_text{
-    cursor: pointer;
-    
+    cursor: pointer;    
 }
+
 .active{
     background: var(--segundo-color);
     color:var(--white-color);
@@ -109,71 +110,30 @@ main{
     filter: invert(1);
 }
 
-.btn_toggle{
-    font-size: 20px;
+a {
+    text-decoration: none;
+    color          : #000;
+    display        : block;
+}
+
+input,
+textarea {
+    -webkit-appearance: none;
+    appearance        : none;
+    outline           : none;
+}
+
+li {
+    list-style: none;
+}
+
+button {
     cursor: pointer;
 }
 
-h1{
-    padding: 1rem ;
-    color: var(--primer-color);
+.app {
+    width        : 100%;
+    max-width    : 1440px;
+    margin-inline: auto;
+    margin       : 0 auto;
 }
-
-.btn_primary{
-border: none;
-  border-radius: 5px;
-  background-color: var(--cuarto-color);
-  color: var(--black-color);
-  width: 100%;
-  cursor: pointer;
-  padding: 0.5em 3em;
-  
-}
-
-
-.btn_primary:hover {
-    background-color: var(--quinto-color);
-    
-  }
-  .btn_second{
-    border: none;
-      border-radius: 5px;
-      background-color: var(--tercer-color);
-      color: var(--black-color);
-      width: 100px;
-      cursor: pointer;
-      padding: 0.5em 1em;
-      
-    }
-    
-    
-    .btn_second:hover {
-        background-color: var(--segundo-color);
-        color: var(--whiteSmoke-color);
-      }
-
-      .cardMaterias{
-        border-radius: 15px !important;
-        border: 1px solid var(--primer-color) !important;
-        background-color: var(--whiteSmoke-color) !important;
-        margin-top: 1rem;
-        
-    }
-    .materia:hover{
-        transform: translateX(5px);
-    }
-    .materia{
-        cursor: pointer;
-    }
-   
-    
-
-      @media screen and (max-width: 760px){
-        .sidebar{
-            display: none;
-        }
-        .cardMaterias{
-            margin: 0.1rem;
-        }
-       
-    }

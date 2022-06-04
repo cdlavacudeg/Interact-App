@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, Router } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import exit from '@img/exit.png'
 import home from '@img/home.png'
 import materias from '@img/materias.png'
@@ -9,6 +9,7 @@ import contacto from '@img/contacto.png'
 import logo from '@img/logo.png'
 import menu from '@img/menu.png'
 import Calendar from '../components/Calendar';
+import '@styles/sidebar.css'
 
 
 const Sidebar = ({ children }) => {
