@@ -9,7 +9,7 @@ import contacto from '@img/contacto.png'
 import logo from '@img/logo.png'
 import menu from '@img/menu.png'
 import Calendar from '../components/Calendar';
-import '@styles/sidebar.css'
+//import '@styles/sidebar.css'
 
 
 const Sidebar = ({ children }) => {
