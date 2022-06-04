@@ -23,7 +23,7 @@ import '@styles/App.css'
 
 const App = () => {
 
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(true)
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
@@ -39,7 +39,7 @@ const App = () => {
   (
 
     <BrowserRouter>
-      <Header>
+      <Sidebar>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/materias" element={<Materias />} />
@@ -55,7 +55,7 @@ const App = () => {
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/contacto" element={<Contacto />} />
         </Routes>
-      </Header>
+      </Sidebar>
     </BrowserRouter>
   )
 
