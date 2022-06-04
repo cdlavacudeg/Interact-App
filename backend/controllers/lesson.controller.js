@@ -9,7 +9,7 @@ const lessonsGet = async (req, res) => {
         await Lesson.find().skip(Number(from)).limit(Number(limit)),
     ]);
 
-    response.success(req,res,'get API - list of lessons',{total,lessons})
+    response.success(req, res, 'get API - list of lessons', { total, lessons });
 };
 
 const lessonPost = async (req, res) => {
@@ -21,11 +21,10 @@ const lessonPost = async (req, res) => {
         });
         await lesson.save();
 
-        response.success(req,res,'Post API - Lesson created',{lesson});
-
+        response.success(req, res, 'Post API - Lesson created', { lesson });
     } catch (error) {
         console.error(`Error en lessonPost:${error}`);
-        response.error(req,res,'Error creating a Lesson')
+        response.error(req, res, 'Error creating a Lesson');
     }
 };
 
@@ -35,14 +34,14 @@ const lessonUpdate = async (req, res) => {
 
     const lesson = await Lesson.findByIdAndUpdate(id, rest, { new: true });
 
-    response.success(req,res,'put API - Lesson updated',{lesson});
+    response.success(req, res, 'put API - Lesson updated', { lesson });
 };
 
 const lessonDelete = async (req, res) => {
     const { id } = req.params;
 
     const lesson = await Lesson.findByIdAndDelete(id);
-    response.succes(req,res,'delete API - Lesson deleted',{lesson})
+    response.succes(req, res, 'delete API - Lesson deleted', { lesson });
 };
 
 module.exports = {
