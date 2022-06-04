@@ -2,14 +2,14 @@ const { Notification } = require('../models');
 const response = require('../helpers/response.js');
 
 const notificationGet = async (req, res) => {
-    const [total, notifications] = await Promise.all([
+    const [total, notification] = await Promise.all([
         await Notification.countDocuments(),
         await Notification.find(),
     ]);
 
     response.success(req, res, 'get API - notification list', {
         total,
-        notifications,
+        notification,
     });
 };
 

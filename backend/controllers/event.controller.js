@@ -3,7 +3,7 @@ const response = require('../helpers/response.js');
 
 const eventGet = async (req, res) => {
     const event = await Event.find();
-    response.succes(req, res, 'get API - list of events', { events: event });
+    response.succes(req, res, 'get API - list of events', { event });
 };
 
 const eventPost = async (req, res) => {

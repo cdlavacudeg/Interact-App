@@ -5,7 +5,7 @@ const response = require('../helpers/response.js');
 
 const gradesGet = async (req, res) => {
     const grade = await grades.find();
-    response.success(req, res, 'get API - list of grades', { grades: grade });
+    response.success(req, res, 'get API - list of grades', { grade });
 };
 
 const gradesPost = async (req, res) => {

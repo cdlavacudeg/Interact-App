@@ -5,7 +5,7 @@ const response = require('../helpers/response.js');
 const coursesGet = async (req, res) => {
     const { limit, from } = req.query;
 
-    const [total, courses] = await Promise.all([
+    const [total, course] = await Promise.all([
         await Course.countDocuments(),
         await Course.find()
             .skip(Number(from))
@@ -15,7 +15,7 @@ const coursesGet = async (req, res) => {
             .exec(),
     ]);
 
-    response.success(req, res, 'get API - list of courses', { total, courses });
+    response.success(req, res, 'get API - list of courses', { total, course });
 };
 
 const coursePost = async (req, res) => {
