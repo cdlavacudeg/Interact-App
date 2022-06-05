@@ -41,7 +41,7 @@ router.post(
         body('courses.*').custom((course_id) =>
             existModelById(Course, course_id)
         ),
-        check('role', 'inavalid role').isIn(['admin', 'teacher', 'student']),
+        check('role', 'invalid role').isIn(['admin', 'teacher', 'student']),
         validateField,
     ],
     userPost

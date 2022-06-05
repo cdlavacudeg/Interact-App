@@ -1,4 +1,5 @@
 const Lesson = require('../models/lesson.model.js');
+const response = require('../helpers/response.js');
 
 const lessonsGet = async (req, res) => {
     const { limit, from } = req.query;
@@ -8,10 +9,7 @@ const lessonsGet = async (req, res) => {
         await Lesson.find().skip(Number(from)).limit(Number(limit)),
     ]);
 
-    res.json({
-        total,
-        lessons,
-    });
+    response.success(req,res,'get API - list of lessons',{total,lessons})
 };
 
 const lessonPost = async (req, res) => {
@@ -23,15 +21,11 @@ const lessonPost = async (req, res) => {
         });
         await lesson.save();
 
-        res.json({
-            msg: 'Post API - Lesson created',
-            lesson,
-        });
+        response.success(req,res,'Post API - Lesson created',{lesson});
+
     } catch (error) {
         console.error(`Error en lessonPost:${error}`);
-        res.json({
-            msg: error.message,
-        });
+        response.error(req,res,'Error creating a Lesson')
     }
 };
 
@@ -41,20 +35,14 @@ const lessonUpdate = async (req, res) => {
 
     const lesson = await Lesson.findByIdAndUpdate(id, rest, { new: true });
 
-    res.json({
-        msg: 'put API - Lesson updated',
-        lesson,
-    });
+    response.success(req,res,'put API - Lesson updated',{lesson});
 };
 
 const lessonDelete = async (req, res) => {
     const { id } = req.params;
 
-    const courseDel = await Lesson.findByIdAndDelete(id);
-    res.json({
-        msg: 'delete API - Lesson deleted',
-        courseDel,
-    });
+    const lesson = await Lesson.findByIdAndDelete(id);
+    response.succes(req,res,'delete API - Lesson deleted',{lesson})
 };
 
 module.exports = {

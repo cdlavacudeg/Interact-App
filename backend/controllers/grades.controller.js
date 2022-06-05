@@ -1,10 +1,11 @@
 const grades = require('../models/grade.model');
 const mongodb = require('mongodb');
 const ObjectId = mongodb.ObjectId;
+const response = require('../helpers/response.js')
 
 const gradesGet = async (req, res) => {
     const grade = await grades.find();
-    res.json(grade);
+    response.success(req,res,'get API - list of grades',{grades:grade})
 };
 
 const gradesPost = async (req, res) => {
@@ -16,12 +17,11 @@ const gradesPost = async (req, res) => {
             grade,
         });
         await gradesUser.save();
-        res.json({ gradesUser });
+
+        response.success(req,res,'post API - Grade created',{ grade:gradesUser });
     } catch (error) {
         console.error(`Error en userPost:${error}`);
-        res.json({
-            messague: error.message,
-        });
+        response.error(req,res,'Error creating a grade')
     }
 };
 
@@ -29,10 +29,7 @@ const gradesDelete = async (req, res) => {
     const { id } = req.params;
 
     const gradesDelete = await grades.findByIdAndDelete(id);
-    res.json({
-        msg: 'delete API - Grades deleted',
-        gradesDelete,
-    });
+    response.success(req,res,'delete API - Grade deleted',{grade: gradesDelete})
 };
 
 const gradesUpdate = async (req, res) => {
@@ -40,17 +37,12 @@ const gradesUpdate = async (req, res) => {
     const { ...rest } = req.body;
 
     const gradeUpdate = await grades.findByIdAndUpdate(id, rest, { new: true });
-    res.json({
-        msg: 'put API - grades updated',
-        gradeUpdate,
-    });
+    response.success(req,res,'put API - Grade updated',{gradeUpdate})
 };
 const gradesGetById = async (req, res) => {
     const { id } = req.params;
     const grade = await grades.findById(id);
-    res.json({
-        grade,
-    });
+    response.success(req,res,'get API - Grade by id',{grade})
 };
 
 module.exports = {

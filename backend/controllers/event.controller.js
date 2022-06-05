@@ -1,8 +1,9 @@
 const { Event } = require('../models/index.js');
+const response = require('../helpers/response.js')
 
 const eventGet = async (req, res) => {
     const event = await Event.find();
-    res.json(event);
+    response.succes(req,res,'get API - list of events',{events:event});
 };
 
 const eventPost = async (req, res) => {
@@ -12,12 +13,10 @@ const eventPost = async (req, res) => {
             ...rest,
         });
         await eventCalendar.save();
-        res.json({ eventCalendar });
+        response.succes(req,res,'post API - Event created',{event:eventCalendar});
     } catch (error) {
         console.error(`Error en EventPost:${error}`);
-        res.json({
-            messague: error.message,
-        });
+        response.error(req,res,'Error creating Event')
     }
 };
 
@@ -25,10 +24,7 @@ const eventDelete = async (req, res) => {
     const { id } = req.params;
 
     const eventDelete = await Event.findByIdAndDelete(id);
-    res.json({
-        msg: 'delete API - Eventdeleted',
-        eventDelete,
-    });
+    response.succes(req,res,'delete API - Event deleted',{event:eventDelete})
 };
 
 const eventUpdate = async (req, res) => {
@@ -36,10 +32,7 @@ const eventUpdate = async (req, res) => {
     const { ...rest } = req.body;
 
     const EventUpdate = await Event.findByIdAndUpdate(id, rest, { new: true });
-    res.json({
-        msg: 'put API - Event updated',
-        EventUpdate,
-    });
+    response.succes(req,res,'put API - Event updated',{event:eventUpdate})
 };
 
 module.exports = {

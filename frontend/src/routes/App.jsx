@@ -1,15 +1,15 @@
-import '@styles/App.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import { useState, useEffect } from 'react';
-import Sidebar from '@containers/Sidebar.jsx'
+import { useState, useEffect } from 'react';
+import Header from '@containers/Header';
+ import Sidebar from '@containers/Sidebar.jsx'
 import Home from '@pages/Home.jsx';
 import Materias from '@pages/Materias.jsx';
 import Calificaciones from '@pages/Calificaciones.jsx';
 import Perfil from '@pages/Perfil.jsx';
 import Contacto from '@pages/Contacto.jsx';
-// import Login from '@components/Login';
+import Login from '@components/Login';
 import Biologia from '@pages/Materias/Biologia';
 import Historia from '@pages/Materias/Historia';
 import Geografia from '@pages/Materias/Geografia';
@@ -18,27 +18,28 @@ import Matematicas from '@pages/Materias/Matematicas';
 import FisicoQuimica from '@pages/Materias/FisicoQuimica';
 import Ingles from '@pages/Materias/Ingles';
 import Literatura from '@pages/Materias/Literatura';
+import '@styles/App.css'
 
 
 const App = () => {
 
-  // const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null)
 
-  // useEffect(() => {
-  //   const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
-  //   if (loggedUserJSON) {
-  //     const userLog = JSON.parse(loggedUserJSON)
-  //     setUser(userLog)
-  //   }
-  // }, [])
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
+    if (loggedUserJSON) {
+      const userLog = JSON.parse(loggedUserJSON)
+      setUser(userLog)
+    }
+  }, [])
 
 
-  // const main = () => (
+  const main = () => (
 
-  return (
+  (
 
     <BrowserRouter>
-      <Sidebar>
+      <Header>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/materias" element={<Materias />} />
@@ -54,23 +55,23 @@ const App = () => {
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/contacto" element={<Contacto />} />
         </Routes>
-      </Sidebar>
+      </Header>
     </BrowserRouter>
   )
 
 
-  // )
+  )
 
-  // return (
-  //   <div>
+  return (
+    <div>
 
-  //     {user === null ?
-  //       <Login/> :
-  //       main()
-  //     }
+      {user === null ?
+        <Login/> :
+        main()
+      }
 
-  //   </div>
-  // );
+    </div>
+  );
 
 }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { useState} from 'react';
 import loginService from '@services/login.js'
 import toast, { Toaster } from 'react-hot-toast';
+import "@styles/Login.css";
 
 
 const Login = () => {
