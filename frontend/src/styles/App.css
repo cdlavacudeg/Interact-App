@@ -127,7 +127,7 @@ border: none;
   width: 100%;
   cursor: pointer;
   padding: 0.5em 3em;
-  
+  font-weight: 600;
 }
 
 
@@ -140,10 +140,10 @@ border: none;
       border-radius: 5px;
       background-color: var(--tercer-color);
       color: var(--black-color);
-      width: 100px;
+      width: 110px;
       cursor: pointer;
       padding: 0.5em 1em;
-      
+    font-weight: 600;
     }
     
     

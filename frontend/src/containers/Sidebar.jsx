@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, Router } from 'react-router-dom';
+import { NavLink, Router, Link } from 'react-router-dom';
 import exit from '@img/exit.png'
 import home from '@img/home.png'
 import materias from '@img/materias.png'
@@ -59,7 +59,7 @@ const Sidebar = ({ children }) => {
 
                 <div style={{ width: isOpen ? "300px" : "70px" }} className="sidebar">
                     <div className="top_section">
-                        <a href="/"> <img style={{ display: isOpen ? "block" : "none" }} className="logo" src={logo} alt="logo" /></a>
+                    <Link to='/'><img style={{ display: isOpen ? "block" : "none" }} className="logo" src={logo} alt="logo" /></Link>    
                         <div style={{ display: isOpen ? "none" : "block", marginLeft: isOpen ? "0" : "5px" }} className="btn_toggle">
                             <img onClick={toggle} src={menu} alt="menu" />
                         </div>

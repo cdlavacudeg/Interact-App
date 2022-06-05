@@ -24,9 +24,12 @@ const Calendar = () => {
 
             {
                 alertTest.map((item, index) => (
-                    <Alert key={index} message={item.alert}></Alert>
+                    <Alert key={index} tipo={"info"} message={item.alert}></Alert>
                 ))
             }
+            
+            <Alert tipo={"error"} message={'error 404'}></Alert>
+            <Alert tipo={"success"} message={'guardado'}></Alert>
         </div>
     );
 };
