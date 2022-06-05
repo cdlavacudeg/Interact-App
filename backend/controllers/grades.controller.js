@@ -1,25 +1,52 @@
-const grades = require('../models/grade.model');
-const mongodb = require('mongodb');
-const ObjectId = mongodb.ObjectId;
+const { Grade } = require('../models');
+const { Types } = require('mongoose');
 const response = require('../helpers/response.js');
 
 const gradesGet = async (req, res) => {
-    const grade = await grades.find();
+    const grade = await Grade.find();
     response.success(req, res, 'get API - list of grades', { grade });
 };
 
 const gradesPost = async (req, res) => {
-    const { grade, obs, ...rest } = req.body;
+    const { student_id, grade: grade_b, date, obs } = req.body;
+    const { course_id: id } = req.params;
     try {
-        const gradesUser = new grades({
-            ...rest,
-            obs,
-            grade,
-        });
-        await gradesUser.save();
+        const grade = await Grade.findOne({ course_id: id });
 
+        console.log(grade);
+
+        let student_grades = grade.studentGrades.filter((e) =>
+            Types.ObjectId(student_id).equals(e.student_id)
+        );
+
+        if (student_grades.length == 0) {
+            console.log('push');
+            grade.studentGrades.push({
+                student_id,
+                grades: [
+                    {
+                        grade: parseInt(grade_b),
+                        date,
+                        obs,
+                    },
+                ],
+            });
+        } else {
+            grade.studentGrades = grade.studentGrades.map((e) => {
+                if (e.student_id == student_id) {
+                    e.grades.push({
+                        grade: parseInt(grade_b),
+                        date,
+                        obs,
+                    });
+                }
+                return e;
+            });
+        }
+
+        const postgrade = await grade.save();
         response.success(req, res, 'post API - Grade created', {
-            grade: gradesUser,
+            grade: postgrade,
         });
     } catch (error) {
         console.error(`Error en userPost:${error}`);
@@ -30,7 +57,7 @@ const gradesPost = async (req, res) => {
 const gradesDelete = async (req, res) => {
     const { id } = req.params;
 
-    const gradesDelete = await grades.findByIdAndDelete(id);
+    const gradesDelete = await Grade.findByIdAndDelete(id);
     response.success(req, res, 'delete API - Grade deleted', {
         grade: gradesDelete,
     });
@@ -40,12 +67,12 @@ const gradesUpdate = async (req, res) => {
     const { id } = req.params;
     const { ...rest } = req.body;
 
-    const gradeUpdate = await grades.findByIdAndUpdate(id, rest, { new: true });
+    const gradeUpdate = await Grade.findByIdAndUpdate(id, rest, { new: true });
     response.success(req, res, 'put API - Grade updated', { gradeUpdate });
 };
 const gradesGetById = async (req, res) => {
     const { id } = req.params;
-    const grade = await grades.findById(id);
+    const grade = await Grade.findById(id);
     response.success(req, res, 'get API - Grade by id', { grade });
 };
 
