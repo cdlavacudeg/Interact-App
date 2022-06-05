@@ -3,7 +3,6 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Layout from '@containers/Layout';
-import Sidebar from '@containers/Sidebar.jsx'
 import Home from '@pages/Home.jsx';
 import Materias from '@pages/Materias.jsx';
 import Calificaciones from '@pages/Calificaciones.jsx';
@@ -23,7 +22,7 @@ import '@styles/App.css'
 
 const App = () => {
 
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(true)
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
@@ -63,14 +62,14 @@ const App = () => {
   )
 
   return (
-    <div>
+    <>
 
       {user === null ?
         <Login/> :
         main()
       }
 
-    </div>
+    </>
   );
 
 }

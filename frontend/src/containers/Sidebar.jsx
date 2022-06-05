@@ -8,8 +8,8 @@ import perfil from '@img/perfil.png'
 import contacto from '@img/contacto.png'
 import logo from '@img/logo.png'
 import menu from '@img/menu.png'
-import Calendar from '../components/Calendar';
-import '@styles/sidebar.css'
+import CustomCalendar from '../components/Calendar';
+//import '@styles/sidebar.css'
 
 
 const Sidebar = ({ children }) => {
@@ -87,7 +87,7 @@ const Sidebar = ({ children }) => {
                     <div className="row">
                         <div className="col-12 col-md-9"> <main onClick={() => toggleMain()}>{children}</main></div>
                         <div className="col-12 col-xl-3">
-                         <Calendar></Calendar>
+                         <CustomCalendar />
                         </div>
                     </div>
 
