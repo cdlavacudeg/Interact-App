@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import Alert from './Alert';
 import Calendar from 'react-calendar';
-
 import style from '../styles/components/CustomCalendarStyle.module.css'
 // import 'react-calendar/dist/Calendar.css';
 

@@ -8,7 +8,7 @@ import perfil from '@img/perfil.png'
 import contacto from '@img/contacto.png'
 import logo from '@img/logo.png'
 import menu from '@img/menu.png'
-import Calendar from '../components/Calendar';
+import CustomCalendar from '../components/CustomCalendar';
 import '@styles/siderbar.css'
 
 
@@ -93,9 +93,6 @@ const Sidebar = ({ children }) => {
 
 
                 </div>
-
-
-
 
 
                 <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
