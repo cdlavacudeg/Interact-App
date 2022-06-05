@@ -87,7 +87,7 @@ const Sidebar = ({ children }) => {
                     <div className="row">
                         <div className="col-12 col-md-9"> <main onClick={() => toggleMain()}>{children}</main></div>
                         <div className="col-12 col-xl-3">
-                         <Calendar></Calendar>
+                         <CustomCalendar />
                         </div>
                     </div>
 
