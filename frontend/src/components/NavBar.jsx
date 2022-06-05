@@ -45,7 +45,7 @@ const NavBar = ({show, change}) => {
             icon: contactoSVG
         },
         {
-            path: "/",
+            path: "/logout",
             name: "Cerrar Sesión",
             icon: logoutSVG
         },
@@ -61,7 +61,7 @@ const NavBar = ({show, change}) => {
         <ul className="header-nav-list">
             {menuItem.map(item => (
                 <li className="header-nav-item" key={item.name}>
-                    <NavLink className='header-nav-link' activeclassname="active" to={item.path}>
+                    <NavLink className='header-nav-link'  to={item.path}>
                         <div className="header-nav-img">
                         <img  src={item.icon} alt={item.name} />
                         </div>
