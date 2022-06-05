@@ -9,7 +9,7 @@ import Materias from '@pages/Materias.jsx';
 import Calificaciones from '@pages/Calificaciones.jsx';
 import Perfil from '@pages/Perfil.jsx';
 import Contacto from '@pages/Contacto.jsx';
-// import Login from '@components/Login';
+import Login from '@components/Login';
 import Biologia from '@pages/Materias/Biologia';
 import Historia from '@pages/Materias/Historia';
 import Geografia from '@pages/Materias/Geografia';
@@ -23,20 +23,20 @@ import '@styles/App.css'
 
 const App = () => {
 
-  // const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null)
 
-  // useEffect(() => {
-  //   const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
-  //   if (loggedUserJSON) {
-  //     const userLog = JSON.parse(loggedUserJSON)
-  //     setUser(userLog)
-  //   }
-  // }, [])
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
+    if (loggedUserJSON) {
+      const userLog = JSON.parse(loggedUserJSON)
+      setUser(userLog)
+    }
+  }, [])
 
 
-  // const main = () => (
+  const main = () => (
 
-  return (
+  (
 
     <BrowserRouter>
         <Routes>
@@ -60,18 +60,18 @@ const App = () => {
   )
 
 
-  // )
+  )
 
-  // return (
-  //   <div>
+  return (
+    <div>
 
-  //     {user === null ?
-  //       <Login/> :
-  //       main()
-  //     }
+      {user === null ?
+        <Login/> :
+        main()
+      }
 
-  //   </div>
-  // );
+    </div>
+  );
 
 }
 

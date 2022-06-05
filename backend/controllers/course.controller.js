@@ -1,5 +1,6 @@
 const { Course, Lesson, Grade, User } = require('../models');
 const { Types } = require('mongoose');
+const response = require('../helpers/response.js');
 
 const coursesGet = async (req, res) => {
     const { limit, from } = req.query;
@@ -14,37 +15,33 @@ const coursesGet = async (req, res) => {
             .exec(),
     ]);
 
-    res.json({
-        total,
-        courses,
-    });
+    response.success(req, res, 'get API - list of courses', { total, courses });
 };
 
 const coursePost = async (req, res) => {
     let { courseName, image, description, teacher, students } = req.body;
+    teacher = Types.ObjectId(teacher);
+    const course = new Course({
+        courseName,
+        image,
+        description,
+        teacher,
+        students,
+    });
 
     try {
         const userTeacher = await User.findById(teacher);
-        userTeacher.courses = userTeacher.courses.push(teacher);
+        userTeacher.courses.push(course._id);
         await userTeacher.save();
 
-        students = [...new Set(students)];
-
         if (students) {
+            students = [...new Set(students)];
             students.map(async (student) => {
                 const userStudent = await User.findById(student);
-                userStudent.courses = userStudent.courses.push(student);
+                userStudent.courses = userStudent.courses.push(course._id);
                 await userStudent.save();
             });
         }
-
-        const course = new Course({
-            courseName,
-            image,
-            description,
-            teacher,
-            students,
-        });
 
         const lesson = new Lesson({
             course_id: course._id,
@@ -58,20 +55,15 @@ const coursePost = async (req, res) => {
 
         course.lessons = lesson._id;
         course.grades = grade._id;
-
+        course.students = students;
         await lesson.save();
         await grade.save();
         await course.save();
 
-        res.json({
-            msg: 'post API - Course created',
-            course,
-        });
+        response.success(req, res, 'post API - Course created', { course });
     } catch (error) {
         console.error(`Error en coursePost:${error}`);
-        res.json({
-            msg: error.message,
-        });
+        response.error(req, res, 'Error creating user');
     }
 };
 
@@ -86,21 +78,24 @@ const courseUpdate = async (req, res) => {
     if (image) newCourse.image = image;
     if (description) newCourse.description = description;
 
-    teacher = Types.ObjectId(teacher);
+    if (teacher) teacher = Types.ObjectId(teacher);
 
     if (teacher && !teacher.equals(oldCourse.teacher)) {
         const newTeacher = await User.findById(teacher);
         const oldTeacher = await User.findById(oldCourse.teacher);
 
-        oldTeacher.courses = oldTeacher.courses.filter(
-            (course) => !course.equals(oldCourse._id)
-        );
+        if (oldTeacher) {
+            oldTeacher.courses = oldTeacher.courses.filter(
+                (course) => !course.equals(oldCourse._id)
+            );
+            await oldTeacher.save();
+        }
+
         newTeacher.courses.push(oldCourse._id);
         newTeacher.courses = newTeacher.courses.map((e) => e.toString());
         newTeacher.courses = [...new Set(newTeacher.courses)];
 
         await newTeacher.save();
-        await oldTeacher.save();
 
         newCourse.teacher = teacher;
     }
@@ -121,10 +116,12 @@ const courseUpdate = async (req, res) => {
     ) {
         exit_students.map(async (student) => {
             const oldStudent = await User.findById(student);
-            oldStudent.courses = oldStudent.courses.filter(
-                (course) => !course.equals(oldCourse._id)
-            );
-            await oldStudent.save();
+            if (oldStudent) {
+                oldStudent.courses = oldStudent.courses.filter(
+                    (course) => !course.equals(oldCourse._id)
+                );
+                await oldStudent.save();
+            }
         });
 
         newStudents.map(async (student) => {
@@ -139,20 +136,42 @@ const courseUpdate = async (req, res) => {
     }
 
     const course = await Course.findByIdAndUpdate(id, newCourse, { new: true });
-    res.json({
-        msg: 'put API - Course updated',
-        course,
-    });
+
+    response.success(req, res, 'put API - Course Updated', { course });
 };
 
 const courseDelete = async (req, res) => {
     const { id } = req.params;
 
-    const courseDel = await Course.findByIdAndDelete(id);
-    res.json({
-        msg: 'delete API - Course deleted',
-        courseDel,
-    });
+    const courseDel = await Course.findById(id);
+
+    try {
+        courseDel.students.map(async (student) => {
+            const userStudent = await User.findById(student);
+            if (userStudent) {
+                userStudent.courses = userStudent.courses.filter(
+                    (course) => !course.equals(courseDel._id)
+                );
+                await userStudent.save();
+            }
+        });
+
+        const userTeacher = await User.findById(courseDel.teacher);
+        if (userTeacher) {
+            userTeacher.courses = userTeacher.courses.filter(
+                (course) => !course.equals(courseDel._id)
+            );
+            await userTeacher.save();
+        }
+
+        const deleted = await Course.findByIdAndDelete(id);
+        response.success(req, res, 'delete API - Course deleted', {
+            course: deleted,
+        });
+    } catch (error) {
+        console.error(`Error en courseDelete:${error}`);
+        response.error(req, res, 'Error deleting course');
+    }
 };
 
 //
@@ -164,9 +183,7 @@ const courseGetById = async (req, res) => {
         .populate({ path: 'grades', select: 'studentGrades' })
         .exec();
 
-    res.json({
-        course,
-    });
+    response.success(req, res, 'get API - Course by id', { course });
 };
 
 // Get fullName of the students in the course
@@ -175,7 +192,7 @@ const courseGetStudents = async (req, res) => {
     const course = await Course.findById(id)
         .populate('students', 'fullName')
         .exec();
-    res.json({
+    response.success(req, res, 'get API - Students of the course', {
         students: course.students,
     });
 };
