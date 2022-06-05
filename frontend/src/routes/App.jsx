@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Layout from '@containers/Layout';
-// import Sidebar from '@containers/Sidebar.jsx'
+import Sidebar from '@containers/Sidebar.jsx'
 import Home from '@pages/Home.jsx';
 import Materias from '@pages/Materias.jsx';
 import Calificaciones from '@pages/Calificaciones.jsx';
