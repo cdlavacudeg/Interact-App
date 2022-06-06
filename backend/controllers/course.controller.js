@@ -164,6 +164,8 @@ const courseDelete = async (req, res) => {
             await userTeacher.save();
         }
 
+        await Grade.findOneAndDelete({course_id:courseDel._id})
+        await Lesson.findOneAndDelete({course_id:courseDel._id})
         const deleted = await Course.findByIdAndDelete(id);
         response.success(req, res, 'delete API - Course deleted', {
             course: deleted,
