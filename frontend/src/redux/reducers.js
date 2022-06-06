@@ -1,6 +1,7 @@
 
 const initialState = { 
     user : [],
+    login: [],
 }
 
 function rootReducer (state = initialState, action) {
@@ -9,7 +10,12 @@ function rootReducer (state = initialState, action) {
             return { 
                 ...state,
                 user: action.payload
-            }   
+            }
+            case 'POST_LOGIN':
+                return {
+                    ...state,
+                    login: action.payload 
+                }
         default:    
             return state;
                     
