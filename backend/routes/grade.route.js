@@ -48,11 +48,12 @@ router.post(
     gradesPost
 );
 router.delete(
-    '/:id',
+    '/student/:course_id',
     [
         validateJWT,
         isTeacherRole,
-        check('id', 'id is required').not().isEmpty(),
+        check('course_id', 'course_id is not mongoId').isMongoId(),
+        body('student_id', 'student_id is required').not().isEmpty(),
         validateField,
     ],
     gradesDelete

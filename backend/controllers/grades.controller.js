@@ -52,11 +52,21 @@ const gradesPost = async (req, res) => {
 };
 
 const gradesDelete = async (req, res) => {
-    const { id } = req.params;
-    const gradesDelete = await Grade.findByIdAndDelete(id);
-    response.success(req, res, 'delete API - Grade deleted', {
-        grade: gradesDelete,
-    });
+    const { course_id: id } = req.params;
+    const { student_id } = req.body;
+    try {
+        const grade = await Grade.findOne({ course_id: id });
+        grade.studentGrades = grade.studentGrades.filter(
+            (e) => !Types.ObjectId(student_id).equals(e.student_id)
+        );
+        const gradeDelete = await grade.save();
+        response.success(req, res, 'delete API - Grades of student deleted', {
+            grade: gradeDelete,
+        });
+    } catch (error) {
+        console.log(`Error en userDelet:${error}`);
+        response.error(req, res, 'Error deleting a grade');
+    }
 };
 
 const gradesUpdate = async (req, res) => {
@@ -68,8 +78,10 @@ const gradesUpdate = async (req, res) => {
         const studentGrades = gradeUpdate.studentGrades.filter((e) =>
             Types.ObjectId(student_id).equals(e.student_id)
         );
-        if (!studentGrades)
+        if (studentGrades.length == 0) {
             throw new Error("The student does'nt have grades registered");
+        }
+
         let newGrade = {
             grade: studentGrades[0].grades[index].grade,
             date: studentGrades[0].grades[index].date,
@@ -93,7 +105,7 @@ const gradesUpdate = async (req, res) => {
         });
     } catch (error) {
         console.log(`Error un userPut:${error}`);
-        response.error(req, res, 'Error updating a grade, check the values');
+        response.error(req, res, `Error updating a grade: ${error.message}`);
     }
 };
 
