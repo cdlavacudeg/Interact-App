@@ -2,8 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Header from '@containers/Header';
- import Sidebar from '@containers/Sidebar.jsx'
+import Layout from '@containers/Layout';
 import Home from '@pages/Home.jsx';
 import Materias from '@pages/Materias.jsx';
 import Calificaciones from '@pages/Calificaciones.jsx';
@@ -39,9 +38,9 @@ const App = () => {
   (
 
     <BrowserRouter>
-      <Sidebar>
         <Routes>
-          <Route path="/" element={<Home/>} />
+          <Route path="/" element={<Layout />}>
+          <Route index element={<Home/>} />
           <Route path="/materias" element={<Materias />} />
           <Route path="/materias/Biologia" element={<Biologia/>} />
           <Route path="/materias/Historia" element={<Historia/>} />
@@ -54,8 +53,8 @@ const App = () => {
           <Route path="/calificaciones" element={<Calificaciones />} />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/contacto" element={<Contacto />} />
+          </Route>
         </Routes>
-      </Sidebar>
     </BrowserRouter>
   )
 
@@ -63,14 +62,14 @@ const App = () => {
   )
 
   return (
-    <div>
+    <>
 
       {user === null ?
         <Login/> :
         main()
       }
 
-    </div>
+    </>
   );
 
 }

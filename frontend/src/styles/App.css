@@ -53,62 +53,6 @@ img {
     width: 100%;
 }
 
-.calendar_section{
-    height: 100vh;
-  padding: 20px;
-    transition: var(--transition);
-    color:var(--black-color);
-    background:var(--white-color);
-}
-.top_section{
-    display: flex;
-    align-items:center;
-    padding:20px 15px;
-}
-.logo{
-    font-size: 30px;
-   width: 95%;
-   
-}
-.bars{
-    display: flex;
-    font-size: 25px;
-    margin-left: 50px;
-}
-.link{
-    display: flex;
-    color: var(--black-color);
-    padding: 20px 22px;
-    gap: 15px;
-    transition:  var(--transition);
-    font-weight: 400;
-    align-items: center;
-   
-}
-.link:hover{
-    background:var(--segundo-color);
-    color: var(--white-color);
-    transition:  var(--transition);
-}
-
-.link:hover .icon{
-    filter: invert(1);
-}
-.icon{
-    width: 20px;    
-}
-
-.link_text{
-    cursor: pointer;    
-}
-
-.active{
-    background: var(--segundo-color);
-    color:var(--white-color);
-}
-.active .icon{
-    filter: invert(1);
-}
 
 a {
     text-decoration: none;

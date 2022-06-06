@@ -66,7 +66,6 @@ const Materias = () => {
                 {
                     materias.map((item, index) => (
                         <div onClick={() => navigate(`/materias/${item.materia}`)} key={index} className="materia col-sm-6 col-md-4 col-6 " >
-
                             <div className="card cardMaterias">
                                 <img src={item.img} className="card-img-top" style={{ borderTopLeftRadius: '15px', borderTopRightRadius: '15px' }} alt="..." />
                                 <div className="card-body">
