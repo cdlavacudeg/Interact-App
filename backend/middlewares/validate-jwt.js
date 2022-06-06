@@ -35,9 +35,9 @@ const validateJWT = async (req, res, next) => {
         req.user = user;
 
         next();
-    } catch (error) {
-        console.log(error);
-        response.error(res, req, 'Invalid token', 401);
+    } catch (err) {
+        console.log(err.message);
+        return response.error(req, res, `${err.message}`, 401);
     }
 };
 
