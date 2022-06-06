@@ -1,14 +1,9 @@
 const mongoose = require('mongoose');
 const { User } = require('../models');
 const bcryptjs = require('bcryptjs');
-exports.dbConnect = async () => {
-    const userAdmin = {
-        fullName: 'admin',
-        email: 'admin@test.com',
-        password: '123456',
-        courses: [],
-        role: 'admin',
-    };
+const { userAdmin } = require('./user.data.js');
+
+const dbConnect = async () => {
     const user = new User(userAdmin);
     //Encrypt password
     const salt = bcryptjs.genSaltSync(10);
@@ -17,7 +12,7 @@ exports.dbConnect = async () => {
     console.log(user);
 };
 
-exports.dbDisconnect = async () => {
+const dbDisconnect = async () => {
     const names = [
         'users',
         'courses',
@@ -33,4 +28,9 @@ exports.dbDisconnect = async () => {
             return true;
         })
     ).then(async () => await mongoose.disconnect());
+};
+
+module.exports = {
+    dbConnect,
+    dbDisconnect,
 };

@@ -1,13 +1,16 @@
 const { Notification } = require('../models');
-const response = require('../helpers/response.js')
+const response = require('../helpers/response.js');
 
 const notificationGet = async (req, res) => {
-    const [total, notifications] = await Promise.all([
+    const [total, notification] = await Promise.all([
         await Notification.countDocuments(),
         await Notification.find(),
     ]);
 
-    response.success(req,res,'get API - notification list',{ total,notifications})
+    response.success(req, res, 'get API - notification list', {
+        total,
+        notification,
+    });
 };
 
 const notificationPost = async (req, res) => {
@@ -21,7 +24,9 @@ const notificationPost = async (req, res) => {
 
     await notification.save();
 
-    response.success(req,res,'post API - Notification created',{notification});
+    response.success(req, res, 'post API - Notification created', {
+        notification,
+    });
 };
 
 const notificationPut = async (req, res) => {
@@ -40,7 +45,9 @@ const notificationPut = async (req, res) => {
 
     await notification.save();
 
-    response.success(req,res,'put API - Notification updated',{notification});
+    response.success(req, res, 'put API - Notification updated', {
+        notification,
+    });
 };
 
 const notificationDelete = async (req, res) => {
@@ -48,7 +55,9 @@ const notificationDelete = async (req, res) => {
 
     const notification = await Notification.findByIdAndDelete(id);
 
-    response.success(req,res,'delete API - Notification deleted',{notification})
+    response.success(req, res, 'delete API - Notification deleted', {
+        notification,
+    });
 };
 
 module.exports = {
