@@ -1,34 +1,41 @@
 import React from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
+import '@styles/alert.css';
 
-const Alert = ({ message }) => {
 
-    const notify = () => toast.success(`${message}`, {
+const Alert = ({ message, tipo }) => {
+
+    const notifyInfo = () => toast.success(`${message}`, {
         duration: 5000,
-        style: {
-            border: 'none',
-            borderRadius: '5px',
-            backgroundColor: '#efb365',
-            padding: '0.5em 3em',
-            color: 'black',
-            width:'100%',
-            
-        },
+        className: 'info',
         icon: '✍'
+    });
+    const notifyError = () => toast.error(`${message}`, {
+        duration: 5000,
+        className: 'error',
+    });
+    const notifySuccess = () => toast.success(`${message}`, {
+        duration: 5000,
+        className: 'success',
     });
 
     useEffect(() => {
-
-        notify()
-
+        if (tipo === 'error') {
+            notifyError()
+        } else if (tipo === 'info') {
+            notifyInfo()
+        } else {
+            notifySuccess()
+        }
     }, [])
 
     return (
-        <div><Toaster
-            position="top-right"
-            reverseOrder={true}
-        /></div>
+        <div>
+            <Toaster
+                position="top-right"
+                reverseOrder={true}
+            /></div>
     )
 }
 
