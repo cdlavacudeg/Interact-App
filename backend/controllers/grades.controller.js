@@ -56,7 +56,6 @@ const gradesPost = async (req, res) => {
 
 const gradesDelete = async (req, res) => {
     const { id } = req.params;
-
     const gradesDelete = await Grade.findByIdAndDelete(id);
     response.success(req, res, 'delete API - Grade deleted', {
         grade: gradesDelete,
@@ -64,12 +63,45 @@ const gradesDelete = async (req, res) => {
 };
 
 const gradesUpdate = async (req, res) => {
-    const { id } = req.params;
-    const { ...rest } = req.body;
+    const { course_id:id } = req.params;
+    let {student_id, grade, date, obs,index}=req.body
+    index = parseInt(index)
+    try{
 
-    const gradeUpdate = await Grade.findByIdAndUpdate(id, rest, { new: true });
-    response.success(req, res, 'put API - Grade updated', { gradeUpdate });
+        const gradeUpdate = await Grade.findOne({ course_id: id});
+        const studentGrades = gradeUpdate.studentGrades.filter((e)=>
+            Types.ObjectId(student_id).equals(e.student_id)
+        );
+        console.log(gradeUpdate)
+        if(!studentGrades) throw new Error("The student does'nt have grades registered")
+        console.log(studentGrades)
+        let newGrade = {
+            grade:studentGrades[0].grades[index].grade,
+            date:studentGrades[0].grades[index].date,
+            obs:studentGrades[0].grades[index].obs
+        }
+        if(grade) newGrade.grade = grade
+        if(date) newGrade.date = date
+        if(obs) newGrade.obs = obs
+
+        gradeUpdate.studentGrades = gradeUpdate.studentGrades.map((e)=>{
+            if(e.student_id == student_id){
+                e.grades[index]=newGrade
+            }
+            return e
+        })
+
+        const result = await gradeUpdate.save()
+
+        response.success(req, res, 'put API - Grade updated', { grade:result });
+    }catch(error){
+        console.log(`Error un userPut:${error}`)
+        response.error(req,res,'Error updating a grade, check the values')
+    }
 };
+
+
+
 const gradesGetById = async (req, res) => {
     const { id } = req.params;
     const grade = await Grade.findById(id);
