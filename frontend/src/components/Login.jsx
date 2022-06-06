@@ -4,8 +4,12 @@ import { useDispatch} from "react-redux";
 import { postLogin} from '../redux/actions'
 import {validation} from '../validation/validation-Login.jsx'
 import toast, { Toaster } from 'react-hot-toast';
+<<<<<<< HEAD
 import Logo from "@components/Logo";
 import loginService from "@services/login.js";
+=======
+// import "@styles/Login.css"; 
+>>>>>>> b1880d812c0ed91f22e3e5620ae7591a7e601e8e
 
 
 const Login = () => {

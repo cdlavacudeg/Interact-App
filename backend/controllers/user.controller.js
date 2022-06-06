@@ -9,7 +9,7 @@ const usersGet = async (req, res) => {
     const { limit, from } = req.query;
     const query = { status: true };
 
-    const [total, users] = await Promise.all([
+    const [total, user] = await Promise.all([
         await User.countDocuments(query),
         await User.find(query)
             .skip(Number(from))
@@ -29,7 +29,7 @@ const usersGet = async (req, res) => {
             .exec(),
     ]);
 
-    response.success(req, res, 'get API - list of users', { total, users });
+    response.success(req, res, 'get API - list of users', { total, user });
 };
 
 const userPost = async (req, res) => {

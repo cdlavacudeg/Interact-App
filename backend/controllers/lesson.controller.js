@@ -4,28 +4,31 @@ const response = require('../helpers/response.js');
 const lessonsGet = async (req, res) => {
     const { limit, from } = req.query;
 
-    const [total, lessons] = await Promise.all([
+    const [total, lesson] = await Promise.all([
         await Lesson.countDocuments(),
         await Lesson.find().skip(Number(from)).limit(Number(limit)),
     ]);
 
-    response.success(req,res,'get API - list of lessons',{total,lessons})
+    response.success(req, res, 'get API - list of lessons', { total, lesson });
 };
 
 const lessonPost = async (req, res) => {
-    const { ...rest } = req.body;
+    const { course_id: id} = req.params
+    const { title, link } = req.body;
 
     try {
-        const lesson = new Lesson({
-            ...rest,
+        const lesson = await Lesson.findOne({course_id:id})
+        lesson.lectures.push({
+            title,
+            link
         });
+
         await lesson.save();
 
-        response.success(req,res,'Post API - Lesson created',{lesson});
-
+        response.success(req, res, 'Post API - Lesson created', { lesson });
     } catch (error) {
         console.error(`Error en lessonPost:${error}`);
-        response.error(req,res,'Error creating a Lesson')
+        response.error(req, res, 'Error creating a Lesson');
     }
 };
 
@@ -35,14 +38,14 @@ const lessonUpdate = async (req, res) => {
 
     const lesson = await Lesson.findByIdAndUpdate(id, rest, { new: true });
 
-    response.success(req,res,'put API - Lesson updated',{lesson});
+    response.success(req, res, 'put API - Lesson updated', { lesson });
 };
 
 const lessonDelete = async (req, res) => {
     const { id } = req.params;
 
     const lesson = await Lesson.findByIdAndDelete(id);
-    response.succes(req,res,'delete API - Lesson deleted',{lesson})
+    response.succes(req, res, 'delete API - Lesson deleted', { lesson });
 };
 
 module.exports = {
