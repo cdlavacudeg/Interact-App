@@ -15,7 +15,7 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const userData = dispatch(login({email, password}))
+      dispatch(login({email, password}))
       .then((data) => {    
         setUser(data.payload.data);
         setemail("");
