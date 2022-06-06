@@ -27,6 +27,7 @@ const isTeacherRole = (req, res, next) => {
             401
         );
     }
+    req.user = req.body;
     next();
 };
 

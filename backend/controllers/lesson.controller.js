@@ -13,12 +13,16 @@ const lessonsGet = async (req, res) => {
 };
 
 const lessonPost = async (req, res) => {
-    const { ...rest } = req.body;
+    const { course_id: id} = req.params
+    const { title, link } = req.body;
 
     try {
-        const lesson = new Lesson({
-            ...rest,
+        const lesson = await Lesson.findOne({course_id:id})
+        lesson.lectures.push({
+            title,
+            link
         });
+
         await lesson.save();
 
         response.success(req, res, 'Post API - Lesson created', { lesson });

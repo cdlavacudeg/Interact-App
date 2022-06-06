@@ -28,7 +28,6 @@ const coursePost = async (req, res) => {
         teacher,
         students,
     });
-
     try {
         const userTeacher = await User.findById(teacher);
         userTeacher.courses.push(course._id);
@@ -38,7 +37,7 @@ const coursePost = async (req, res) => {
             students = [...new Set(students)];
             students.map(async (student) => {
                 const userStudent = await User.findById(student);
-                userStudent.courses = userStudent.courses.push(course._id);
+                userStudent.courses.push(course._id);
                 await userStudent.save();
             });
         }
