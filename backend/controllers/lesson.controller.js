@@ -13,14 +13,14 @@ const lessonsGet = async (req, res) => {
 };
 
 const lessonPost = async (req, res) => {
-    const { course_id: id} = req.params
+    const { course_id: id } = req.params;
     const { title, link } = req.body;
 
     try {
-        const lesson = await Lesson.findOne({course_id:id})
+        const lesson = await Lesson.findOne({ course_id: id });
         lesson.lectures.push({
             title,
-            link
+            link,
         });
 
         await lesson.save();
@@ -33,19 +33,45 @@ const lessonPost = async (req, res) => {
 };
 
 const lessonUpdate = async (req, res) => {
-    const { id } = req.params;
-    const { course_id, ...rest } = req.body;
+    try {
+        const { course_id } = req.params;
+        let { index, title, link } = req.body;
+        index = parseInt(index);
+        const lesson = await Lesson.findOne({ course_id });
+        if (title) lesson.lectures[index].title = title;
+        if (link) lesson.lectures[index].link = link;
+        const updateLesson = await lesson.save();
 
-    const lesson = await Lesson.findByIdAndUpdate(id, rest, { new: true });
-
-    response.success(req, res, 'put API - Lesson updated', { lesson });
+        response.success(req, res, 'put API - Lesson updated', {
+            lesson: updateLesson,
+        });
+    } catch (error) {
+        console.error(`Error en lessonUpdate:${error}`);
+        response.error(req, res, 'Error updating a Lesson');
+    }
 };
 
 const lessonDelete = async (req, res) => {
-    const { id } = req.params;
+    const { course_id } = req.params;
+    let { index } = req.body;
+    index = parseInt(index);
+    try {
+        const lesson = await Lesson.findOne({ course_id });
+        let newlesson;
+        if (lesson.lectures[index]) {
+            lesson.lectures.splice(index, 1);
+            newlesson = await lesson.save();
+        } else {
+            throw new Error('Wrong index');
+        }
 
-    const lesson = await Lesson.findByIdAndDelete(id);
-    response.succes(req, res, 'delete API - Lesson deleted', { lesson });
+        response.success(req, res, 'delete API - Lesson deleted', {
+            lesson: newlesson,
+        });
+    } catch (error) {
+        console.error(`Error en lessonDelete:${error}`);
+        response.error(req, res, `Error deleting a Lesson:${error.message}`);
+    }
 };
 
 module.exports = {

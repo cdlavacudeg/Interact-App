@@ -17,6 +17,7 @@ import Matematicas from '@pages/Materias/Matematicas';
 import FisicoQuimica from '@pages/Materias/FisicoQuimica';
 import Ingles from '@pages/Materias/Ingles';
 import Literatura from '@pages/Materias/Literatura';
+import LoginPage from '@pages/LoginPage'
 import '@styles/App.css'
 
 
@@ -65,8 +66,8 @@ const App = () => {
     <>
 
       {user === null ?
-        <Login/> :
-        main()
+        main() :
+        <LoginPage/> 
       }
 
     </>
