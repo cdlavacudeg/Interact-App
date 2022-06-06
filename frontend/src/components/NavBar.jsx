@@ -16,7 +16,7 @@ const NavBar = ({show, change}) => {
     const isSelected = (navData) => navData.isActive ? "selected" : ""
      console.log(isSelected)
 
-    const isActive = show ? 'active' : 'inactive'
+    const isActive = show ? 'show' : ' '
 
     const menuItem = [
         {
