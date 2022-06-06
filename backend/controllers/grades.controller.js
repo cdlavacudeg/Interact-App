@@ -13,14 +13,11 @@ const gradesPost = async (req, res) => {
     try {
         const grade = await Grade.findOne({ course_id: id });
 
-        console.log(grade);
-
         let student_grades = grade.studentGrades.filter((e) =>
             Types.ObjectId(student_id).equals(e.student_id)
         );
 
         if (student_grades.length == 0) {
-            console.log('push');
             grade.studentGrades.push({
                 student_id,
                 grades: [
@@ -63,44 +60,42 @@ const gradesDelete = async (req, res) => {
 };
 
 const gradesUpdate = async (req, res) => {
-    const { course_id:id } = req.params;
-    let {student_id, grade, date, obs,index}=req.body
-    index = parseInt(index)
-    try{
-
-        const gradeUpdate = await Grade.findOne({ course_id: id});
-        const studentGrades = gradeUpdate.studentGrades.filter((e)=>
+    const { course_id: id } = req.params;
+    let { student_id, grade, date, obs, index } = req.body;
+    index = parseInt(index);
+    try {
+        const gradeUpdate = await Grade.findOne({ course_id: id });
+        const studentGrades = gradeUpdate.studentGrades.filter((e) =>
             Types.ObjectId(student_id).equals(e.student_id)
         );
-        console.log(gradeUpdate)
-        if(!studentGrades) throw new Error("The student does'nt have grades registered")
-        console.log(studentGrades)
+        if (!studentGrades)
+            throw new Error("The student does'nt have grades registered");
         let newGrade = {
-            grade:studentGrades[0].grades[index].grade,
-            date:studentGrades[0].grades[index].date,
-            obs:studentGrades[0].grades[index].obs
-        }
-        if(grade) newGrade.grade = grade
-        if(date) newGrade.date = date
-        if(obs) newGrade.obs = obs
+            grade: studentGrades[0].grades[index].grade,
+            date: studentGrades[0].grades[index].date,
+            obs: studentGrades[0].grades[index].obs,
+        };
+        if (grade) newGrade.grade = grade;
+        if (date) newGrade.date = date;
+        if (obs) newGrade.obs = obs;
 
-        gradeUpdate.studentGrades = gradeUpdate.studentGrades.map((e)=>{
-            if(e.student_id == student_id){
-                e.grades[index]=newGrade
+        gradeUpdate.studentGrades = gradeUpdate.studentGrades.map((e) => {
+            if (e.student_id == student_id) {
+                e.grades[index] = newGrade;
             }
-            return e
-        })
+            return e;
+        });
 
-        const result = await gradeUpdate.save()
+        const result = await gradeUpdate.save();
 
-        response.success(req, res, 'put API - Grade updated', { grade:result });
-    }catch(error){
-        console.log(`Error un userPut:${error}`)
-        response.error(req,res,'Error updating a grade, check the values')
+        response.success(req, res, 'put API - Grade updated', {
+            grade: result,
+        });
+    } catch (error) {
+        console.log(`Error un userPut:${error}`);
+        response.error(req, res, 'Error updating a grade, check the values');
     }
 };
-
-
 
 const gradesGetById = async (req, res) => {
     const { id } = req.params;

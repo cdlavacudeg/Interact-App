@@ -59,20 +59,20 @@ router.delete(
 );
 
 router.put(
-    '/:course_id',
+    '/student/:course_id',
     [
         validateJWT,
         isTeacherRole,
         check('course_id', 'course id is required').not().isEmpty(),
         check('course_id', 'course id is not mongoId').isMongoId(),
         body('student_id', 'student id is required').not().isEmpty(),
-        body('grade','grade min 0 max 10 Int')
+        body('grade', 'grade min 0 max 10 Int')
             .if(body('grade').exists())
-            .isInt({min:0,max:10}),
-        body('date','date must be in format DD/MM/YYYY')
+            .isInt({ min: 0, max: 10 }),
+        body('date', 'date must be in format DD/MM/YYYY')
             .if(body('date').exists())
-            .isDate({format:'DD/MM/YYYY'}),
-        body('index','index is required').not().isEmpty(),
+            .isDate({ format: 'DD/MM/YYYY' }),
+        body('index', 'index is required').not().isEmpty(),
 
         validateField,
     ],
