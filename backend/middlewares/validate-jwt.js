@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const response = require('../helpers/response.js')
+const response = require('../helpers/response.js');
 const User = require('../models/user.model');
 
 //Validate JWT
@@ -7,7 +7,12 @@ const validateJWT = async (req, res, next) => {
     const token = req.header('xtoken');
 
     if (!token) {
-        return response.error(req,res,'Access denied. No token provided',401)
+        return response.error(
+            req,
+            res,
+            'Access denied. No token provided',
+            401
+        );
     }
 
     try {
@@ -19,12 +24,12 @@ const validateJWT = async (req, res, next) => {
 
         //Check if user exist
         if (!user) {
-            return response.error(req,res,'User not found',404)
+            return response.error(req, res, 'User not found', 404);
         }
 
         //Verufy if user status is true
         if (!user.status) {
-            return response.error(req,res,'Access denied. User deleted',401)
+            return response.error(req, res, 'Access denied. User deleted', 401);
         }
 
         req.user = user;
@@ -32,7 +37,7 @@ const validateJWT = async (req, res, next) => {
         next();
     } catch (error) {
         console.log(error);
-        response.error(res,req,'Invalid token',401)
+        response.error(res, req, 'Invalid token', 401);
     }
 };
 
