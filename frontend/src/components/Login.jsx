@@ -1,35 +1,31 @@
-import React, { useEffect } from "react";
-import { useState} from 'react';
-import { useDispatch} from "react-redux";
-import { postLogin} from '../redux/actions'
-import {validation} from '../validation/validation-Login.jsx'
-import toast, { Toaster } from 'react-hot-toast';
-<<<<<<< HEAD
-import Logo from "@components/Logo";
-import loginService from "@services/login.js";
-=======
-// import "@styles/Login.css"; 
->>>>>>> b1880d812c0ed91f22e3e5620ae7591a7e601e8e
-
+import React from "react";
+import { useState } from "react";
+import { login } from "../redux/actions";
+import toast, { Toaster } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+// import "@styles/Login.css";
 
 const Login = () => {
+  const dispatch = useDispatch()
   const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null);
+  const [User, setUser] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const users = postLogin({
-        email,
-        password,
-      });
-      setUser(users);
-      window.localStorage.setItem("loggedAppUser", JSON.stringify(user));
-
-      setemail("");
-      setPassword("");
+      const userData = dispatch(login({email, password}))
+      .then((data) => {    
+        setUser(data.payload.data);
+        setemail("");
+        setPassword("");
+        return User
+      })
+      .then((user) => {
+        window.localStorage.setItem("loggedAppUser", JSON.stringify(user));
+        window.location.reload();
+      })
     } catch (exception) {
       toast.error("This didn't work.", {
         style: {
@@ -43,6 +39,7 @@ const Login = () => {
         },
       });
     }
+   
   };
 
   return (
@@ -64,4 +61,5 @@ const Login = () => {
     </div>
   );
 };
+
 export default Login;

@@ -11,18 +11,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <React.StrictMode>
-      <App />
+      <div className='app'>
+        <App />
+      </div>
     </React.StrictMode>
   </Provider>
 );
-
-<<<<<<< HEAD
-=======
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <div className="app">
-      <App />
-    </div>
-  </React.StrictMode>
-)
->>>>>>> b1880d812c0ed91f22e3e5620ae7591a7e601e8e
