@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { check, body } = require('express-validator');
-const {Lesson, Course} = require('../models');
+const { Lesson, Course } = require('../models');
 const { validateField, isTeacherRole, validateJWT } = require('../middlewares');
 
 const {
@@ -9,7 +9,10 @@ const {
     lessonUpdate,
     lessonDelete,
 } = require('../controllers/lesson.controller.js');
-const { existModelById,existModelByIdAndField } = require('../helpers/db-validator.js');
+const {
+    existModelById,
+    existModelByIdAndField,
+} = require('../helpers/db-validator.js');
 
 const router = Router();
 
@@ -21,7 +24,7 @@ router.post(
         validateJWT,
         isTeacherRole,
         check('course_id', 'course id is not mongoId').isMongoId(),
-        body('title','title is required').not().isEmpty(),
+        body('title', 'title is required').not().isEmpty(),
         body('link', 'link is required').not().isEmpty(),
         validateField,
     ],
@@ -35,7 +38,7 @@ router.put(
         isTeacherRole,
         check('course_id', 'course_id is not mongoId').isMongoId(),
         check('course_id').custom((id) => existModelById(Course, id)),
-        body('index','index is required').not().isEmpty(),
+        body('index', 'index is required').not().isEmpty(),
         validateField,
     ],
     lessonUpdate
@@ -47,8 +50,8 @@ router.delete(
         validateJWT,
         isTeacherRole,
         check('course_id', 'id is not mongoId').isMongoId(),
-        check('course_id').custom((id)=>existModelById(Course,id)),
-        check('index','index is required').not().isEmpty(),
+        check('course_id').custom((id) => existModelById(Course, id)),
+        check('index', 'index is required').not().isEmpty(),
         validateField,
     ],
     lessonDelete
