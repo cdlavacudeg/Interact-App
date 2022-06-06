@@ -67,7 +67,7 @@ const App = () => {
 
       {user === null ?
         main() :
-        <LoginPage/> 
+        <Login/> 
       }
 
     </>
