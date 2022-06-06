@@ -33,12 +33,20 @@ const lessonPost = async (req, res) => {
 };
 
 const lessonUpdate = async (req, res) => {
-    const { id } = req.params;
-    const { course_id, ...rest } = req.body;
+    try{
+        const { course_id } = req.params;
+    let { index, title, link } = req.body;
+    index = parseInt(index)
+    const lesson = await Lesson.findOne({ course_id });
+    if(title) lesson.lectures[index].title = title;
+    if(link) lesson.lectures[index].link = link;
+    const updateLesson = await lesson.save()
 
-    const lesson = await Lesson.findByIdAndUpdate(id, rest, { new: true });
-
-    response.success(req, res, 'put API - Lesson updated', { lesson });
+    response.success(req, res, 'put API - Lesson updated', { lesson:updateLesson });
+    }catch(error){
+        console.error(`Error en lessonUpdate:${error}`)
+        response.error(req,res,'Error updating a Lesson')
+    }
 };
 
 const lessonDelete = async (req, res) => {
