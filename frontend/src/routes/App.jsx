@@ -21,6 +21,7 @@ import LoginPage from '@pages/LoginPage'
 import '@styles/App.css'
 
 
+
 const App = () => {
 
   const [user, setUser] = useState(true)
@@ -40,7 +41,7 @@ const App = () => {
 
     <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />}>
+          <Route path="/" element={<Home/>}>
           <Route index element={<Home/>} />
           <Route path="/materias" element={<Materias />} />
           <Route path="/materias/Biologia" element={<Biologia/>} />
@@ -67,7 +68,7 @@ const App = () => {
 
       {user === null ?
         main() :
-        <LoginPage/> 
+   <Home></Home>
       }
 
     </>

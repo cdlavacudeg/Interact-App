@@ -1,7 +1,7 @@
 import React from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
-import '@styles/alert.css';
+import '@styles/Alert.css';
 
 
 const Alert = ({ message, tipo }) => {

@@ -58,15 +58,15 @@ const materias = [
 
 function Recentactivities() {
     return (
-        <section className="recent-activities pt-5 pb-4">
-            <h2 className="recent-activities-h2 ">Actividad Reciente</h2>
-            <div className="recent-activities-container">
+        <section className="recent_activities pt-5 pb-4">
+            <h2 className="recent_activities_h2 ">Actividad Reciente</h2>
+            <div className="recent_activities_container">
                 <div className="row">
                 {
                     materias.map((item, index) => index < 3 && (
                     <div key={index} className="col-6 col-lg-4">
-                        <article className="recent-activities-item mb-3">
-                            <div className="activities-notification">1</div>
+                        <article className="recent_activities_item mb-3">
+                            <div className="activities_notification">1</div>
                             <img src={item.img} alt={item.materia} />
                             <div className="p-2">
                                 <h1>{item.materia}</h1>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import avisosimg from "@img/img-avisos.png";
-import "@styles/avisos.css";
+import style from "@styles/avisosStyle.module.css";
 
 function Avisos() {
 
@@ -52,20 +52,20 @@ function Avisos() {
     }
 
     return (
-        <section className="sectionAvisos">
-            <h2 className="h2-avisos"> Avisos</h2>
-            <ul className="ul-avisos">
+        <section className={style.sectionAvisos}>
+            <h2 className={style.h2_avisos}> Avisos</h2>
+            <ul className={style.ul_avisos}>
 
                 {
                     avisosAll.map((item, index) => index < avisos && (
-                        <li key={index} className="avisos-li">
+                        <li key={index} className={style.avisos_li}>
 
-                            <img className="avisosimg" src={avisosimg} alt="avisos img" />
+                            <img className={style.avisosimg} src={avisosimg} alt="avisos img" />
                             <article>
-                                <ul className="ul-avisos">
-                                    <li className="institucion-aviso">{item.institucion}</li>
-                                    <li className="fecha-aviso">{item.fecha}</li>
-                                    <li className="descripcion-aviso">{item.aviso}</li>
+                                <ul className={style.ul_avisos}>
+                                    <li className={style.institucion_aviso}>{item.institucion}</li>
+                                    <li className={style.fecha_aviso}>{item.fecha}</li>
+                                    <li className={style.descripcion_aviso}>{item.aviso}</li>
                                 </ul>
                             </article>
 
