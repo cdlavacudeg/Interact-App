@@ -1,11 +1,12 @@
 import React from 'react';
+import Profile from '../containers/Profile';
 
-const Perfil = () => {
+export default function Perfil () {
     return (
-        <div>
-            <h1>Perfil</h1>
-        </div>
-    );
-};
-
-export default Perfil;
+        <> 
+            
+                <Profile />
+            
+        </>
+    )
+}

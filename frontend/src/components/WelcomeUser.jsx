@@ -8,7 +8,7 @@ function WelcomeUser () {
             <h1 className="welcome-title">¡Bienvenida, Gabriela!</h1>
             <p className="welcome-body"> ¿Lista para seguir aprendiendo hoy?</p>
             </div>
-            <img className="welcome-img" src={welcomeimg} alt="" />
+            <img className="welcome-img" src={welcomeimg} alt="welcomeimg" />
         </section>
     )
 }

@@ -2,10 +2,20 @@
     background-color: #efb365;;
 }
 
+.container-width-gradestables{
+    width: 800px;
+}
+
+
+
 
 @media only screen and (max-width: 800px){
     #no-more-tables tbody, #no-more-tables tr, #no-more-tables td {
         display:block;
+    }
+
+    .container-width-gradestables{
+        width: 100%;
     }
     #no-more-tables thead tr {
         position:absolute;
@@ -29,3 +39,4 @@
     #no-more-tables tr {
         border-bottom: 1px solid #ccc;
     }
+}
