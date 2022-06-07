@@ -1,7 +1,7 @@
 
 const initialState = { 
     users : [],
-    user: window.localStorage.getItem('user') ? JSON.parse(window.localStorage.getItem('user')) : [],
+    user: window.localStorage.getItem('user') ? JSON.parse(window.localStorage.getItem('user')) : {},
     events: [],
     event: [],
 }

@@ -25,10 +25,15 @@ import '@styles/App.css'
 const App = () => {
 
 const user = useSelector(state => state.user);
-console.log(user.token)
+const dispatch=useDispatch()
+
+  
+
+
 if (!user.token) {
   return <Login />
-}else {
+}
+  window.localStorage.setItem("loggedAppUser", JSON.stringify(user));
   return (
     <BrowserRouter>
       <Routes>
@@ -55,6 +60,6 @@ if (!user.token) {
 
   
   
-}
+
 
 export default App

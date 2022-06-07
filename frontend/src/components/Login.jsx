@@ -17,11 +17,8 @@ const Login = () => {
 
   useEffect(() => {
     console.log(user);
-    if (user.userData && user.userData.token) {
-      window.location.href = "/";
-       window.localStorage.setItem("loggedAppUser", JSON.stringify(user));
-    }
-   
+    window.localStorage.setItem("loggedAppUser", JSON.stringify(user));
+    console.log(user)
   }, [dispatch]);
 
   const handleLogin = async (event) => {
@@ -55,7 +52,7 @@ const Login = () => {
           <input type='text' value={email} name='email' onChange={({ target }) => setemail(target.value)} />
         </div>
         <div>
-          ContraseÃ±a
+          Contraseña
           <input type='password' value={password} name='Password' onChange={({ target }) => setPassword(target.value)} />
         </div>
         <button type='submit'>entrar</button>

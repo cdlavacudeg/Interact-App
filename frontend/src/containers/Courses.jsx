@@ -1,4 +1,4 @@
-import CoursesCard from "../components/coursesCard"
+import CoursesCard from "../components/CoursesCard"
 import '@styles/courses.css'
 
 const Courses = () => {
