@@ -1,7 +1,7 @@
 
 const initialState = { 
     users : [],
-    user: window.localStorage.getItem('user') ? JSON.parse(window.localStorage.getItem('user')) : {},
+    user: window.localStorage.getItem('loggedAppUser') ? JSON.parse(window.localStorage.getItem('loggedAppUser')) : {},
     events: [],
     event: [],
 }
@@ -37,7 +37,7 @@ function rootReducer (state = initialState, action) {
              case 'LOGOUT': 
                 return {    
                     ...state,
-                    user: []
+                    user: {}
                 }
               case 'LOGIN':
                 return { 

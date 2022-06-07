@@ -59,11 +59,11 @@ export function postUser(id, data) {
 
 export function logout() {
     return async function (dispatch) {
-        var json = await axios.get("http://localhost:5000/api/v1/logout");
-        console.log(json.data)
+        //var json = await axios.get("http://localhost:5000/api/v1/logout");
+        //console.log(json.data)
         return dispatch({
             type: "LOGOUT",
-            payload: json.data,
+            payload: {},
         });
     };
 }
