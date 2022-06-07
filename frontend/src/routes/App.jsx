@@ -3,7 +3,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Header from '@containers/Header';
- import Sidebar from '@containers/Sidebar.jsx'
+ import Sidebar from '@containers/Sidebar.jsx';
 import Home from '@pages/Home.jsx';
 import Materias from '@pages/Materias.jsx';
 import Calificaciones from '@pages/Calificaciones.jsx';
@@ -25,21 +25,21 @@ const App = () => {
 
   const [user, setUser] = useState(null)
 
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
-    if (loggedUserJSON) {
-      const userLog = JSON.parse(loggedUserJSON)
-      setUser(userLog)
-    }
-  }, [])
+  // useEffect(() => {
+  //   const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
+  //   if (loggedUserJSON) {
+  //     const userLog = JSON.parse(loggedUserJSON)
+  //     setUser(userLog)
+  //   }
+  // }, [])
 
 
-  const main = () => (
+  // const main = () => (
 
-  (
-
-    <BrowserRouter>
-      <Header>
+  // (
+return (
+  <BrowserRouter>
+      <Sidebar>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/materias" element={<Materias />} />
@@ -55,23 +55,25 @@ const App = () => {
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/contacto" element={<Contacto />} />
         </Routes>
-      </Header>
+      </Sidebar>
     </BrowserRouter>
-  )
+)
+    
+  //)
 
 
-  )
+  // )
 
-  return (
-    <div>
+  // return (
+  //   <div>
 
-      {user === null ?
-        <Login/> :
-        main()
-      }
+  //     {user === null ?
+  //       <Login/> :
+  //       main()
+  //     }
 
-    </div>
-  );
+  //   </div>
+  // );
 
 }
 
