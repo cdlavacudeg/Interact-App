@@ -59,11 +59,9 @@ export function postUser(id, data) {
 
 export function logout() {
     return async function (dispatch) {
-        var json = await axios.get("http://localhost:5000/api/v1/logout");
-        console.log(json.data)
         return dispatch({
             type: "LOGOUT",
-            payload: json.data,
+            payload: {},
         });
     };
 }
@@ -75,6 +73,17 @@ export function login(data) {
         return dispatch({
             type: "LOGIN",
             payload: json.data.data,
+        });
+    };
+}
+
+export function getGrade (id) {
+    return async function (dispatch) {
+        var json = await axios.get("http://localhost:5000/api/v1/grade" + id);
+        console.log(json.data)
+        return dispatch({
+            type: "GET_GRADE",
+            payload: json.data,
         });
     };
 }

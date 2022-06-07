@@ -21,10 +21,10 @@
 }
 /* Display flex para el container */
 
-.recent-activities-container {
-    /* display: flex;
-    justify-content: space-between; */
-}
+/* .recent-activities-container {
+    display: flex;
+    justify-content: space-between; 
+} */
 
 .recent-activities-item {
     border: thin solid black;
