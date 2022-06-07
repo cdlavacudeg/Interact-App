@@ -1,4 +1,4 @@
-const { Course, Lesson, Grade, User } = require('../models');
+const { Course, Lesson, Grade, User, Event } = require('../models');
 const { Types } = require('mongoose');
 const response = require('../helpers/response.js');
 
@@ -12,6 +12,7 @@ const coursesGet = async (req, res) => {
             .limit(Number(limit))
             .populate({ path: 'lessons', select: 'lectures' })
             .populate({ path: 'grades', select: 'studentGrades' })
+            .populate({ path: 'events', select:'events'})
             .exec(),
     ]);
 
@@ -52,11 +53,18 @@ const coursePost = async (req, res) => {
             studentGrades: [],
         });
 
+        const event = new Event({
+            course_id: course._id,
+            events:[]
+        })
+
         course.lessons = lesson._id;
         course.grades = grade._id;
+        course.events = event._id;
         course.students = students;
         await lesson.save();
         await grade.save();
+        await event.save()
         await course.save();
 
         response.success(req, res, 'post API - Course created', { course });
@@ -165,6 +173,7 @@ const courseDelete = async (req, res) => {
 
         await Grade.findOneAndDelete({ course_id: courseDel._id });
         await Lesson.findOneAndDelete({ course_id: courseDel._id });
+        await Event.findOneAndDelete({course_id:courseDel._id})
         const deleted = await Course.findByIdAndDelete(id);
         response.success(req, res, 'delete API - Course deleted', {
             course: deleted,
