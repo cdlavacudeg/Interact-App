@@ -5,8 +5,10 @@ import style from '../styles/LoginPageStyle.module.css'
 
 import bgLoginPage from '../assets/images/bgLoginPage.png'
 import logo from '../assets/images/logo.png'
-
+import toast, { Toaster } from "react-hot-toast";
 import { FaArrowLeft } from 'react-icons/fa'
+import { useDispatch } from 'react-redux'
+import { login } from '../redux/actions'
 
 // Render Login page-
 const LoginPage = () => {
@@ -14,6 +16,7 @@ const LoginPage = () => {
     const [forms, setForms] = useState(false) // SHow form or button to select user.
     const [customForm, setCustomForm] = useState(false) // Use to select what form render.
 
+    const dispatch = useDispatch();
 
     // User click in "soy estudiante".
     const handleStudent = () => {
@@ -41,7 +44,7 @@ const LoginPage = () => {
     const FormLogin = () => {
 
 
-        // Initial values form Teacher
+        // Initial values form Students
         const formikStudent = useFormik({
             initialValues: {
                 email: "",
@@ -50,12 +53,28 @@ const LoginPage = () => {
             validationSchema:
                 Yup.object({
                     email: Yup.string()
-                        .required("Necessary Email"),
+                        .required("Email required"),
                     password: Yup.string()
-                        .required("Necessary Password"),
+                        .required("Password required"),
                 }),
             onSubmit: values => {
                 console.log("FORM STUDENTS:", values)
+                
+                dispatch(login(values))
+                .catch (error => {
+                    let message = error.message !== 'Network Error' ? error.response.data.error : 'en Servidor'
+                    toast.error(`Error ${message} `, {
+                      style: {
+                        border: "1px solid tomato",
+                        padding: "16px",
+                        color: "black",
+                      },
+                      iconTheme: {
+                        primary: "tomato",
+                        secondary: "#FFFAEE",
+                      },
+                    });
+                  })
             }
         })
 
@@ -68,19 +87,37 @@ const LoginPage = () => {
             validationSchema:
                 Yup.object({
                     email: Yup.string().email()
-                        .required("Necessary Email"),
+                        .required("Email required"),
                     password: Yup.string()
-                        .required("Necessary Password"),
+                        .required("Password required"),
                 }),
             onSubmit: values => {
                 console.log("FORM TEACHER:", values)
-            }
-        })
+                dispatch(login(values))
+                .catch (error =>{
+                    let message = error.message !== 'Network Error' ? error.response.data.error : 'en Servidor'
+                    toast.error(`Error ${message} `, {
+                      style: {
+                        border: "1px solid tomato",
+                        padding: "16px",
+                        color: "black",
+                      },
+                      iconTheme: {
+                        primary: "tomato",
+                        secondary: "#FFFAEE",
+                        }
+                    });
+                })
+          }
+      })
 
         // custom form is true, render teacher form.
         if (customForm) {
             return (
                 <div className={style.boxForm}>
+                    <div>
+                        <Toaster position='top-right' reverseOrder={false} />
+                    </div>
                     <form className={style.formContent} onSubmit={formikTeacher.handleSubmit}>
                         <div className={style.contentInput}>
                             <input
@@ -123,6 +160,9 @@ const LoginPage = () => {
         // custom form is false, render student form
         return (
             <div className={style.boxForm}>
+                <div>
+                    <Toaster position='top-right' reverseOrder={false} />
+                </div>
                 <form className={style.formContent} onSubmit={formikStudent.handleSubmit}>
                     <div className={style.contentInput}>
                         <input
