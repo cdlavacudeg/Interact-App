@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Layout from '@containers/Layout';
 import Home from '@pages/Home.jsx';
 import Materias from '@pages/Materias.jsx';
@@ -23,24 +24,17 @@ import '@styles/App.css'
 
 const App = () => {
 
-  const [user, setUser] = useState(true)
+const user = useSelector(state => state.user);
+console.log(user.token)
+if (!user.token) {
+  return <Login />
+}
 
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
-    if (loggedUserJSON) {
-      const userLog = JSON.parse(loggedUserJSON)
-      setUser(userLog)
-    }
-  }, [])
-
-
-  const main = () => (
-
-  (
+  return (
 
     <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />}>
+          <Route path="/" element={<Home />}>
           <Route index element={<Home/>} />
           <Route path="/materias" element={<Materias />} />
           <Route path="/materias/Biologia" element={<Biologia/>} />
@@ -60,19 +54,7 @@ const App = () => {
   )
 
 
-  )
-
-  return (
-    <>
-
-      {user === null ?
-        main() :
-        <Login/> 
-      }
-
-    </>
-  );
-
+  
 }
 
 export default App

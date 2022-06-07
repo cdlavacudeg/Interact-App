@@ -74,7 +74,7 @@ export function login(data) {
         console.log(json.data)
         return dispatch({
             type: "LOGIN",
-            payload: json.data,
+            payload: json.data.data,
         });
     };
 }

@@ -1,31 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { login } from "../redux/actions";
 import toast, { Toaster } from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 // import "@styles/Login.css";
 
 const Login = () => {
-  const dispatch = useDispatch()
+
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
-  const [User, setUser] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
+
+
+  useEffect(() => {
+    console.log(user);
+    window.localStorage.setItem("loggedAppUser", JSON.stringify(user));
+  }, [dispatch]);
 
   const handleLogin = async (event) => {
     event.preventDefault();
+    console.log(user);
     try {
-      dispatch(login({email, password}))
-      .then((data) => {    
-        setUser(data.payload.data);
-        setemail("");
-        setPassword("");
-        return User
-      })
-      .then((user) => {
-        window.localStorage.setItem("loggedAppUser", JSON.stringify(user));
-        window.location.reload();
-      })
+      dispatch(login({ email, password }));
     } catch (exception) {
       toast.error("This didn't work.", {
         style: {
@@ -39,7 +38,6 @@ const Login = () => {
         },
       });
     }
-   
   };
 
   return (
@@ -53,7 +51,7 @@ const Login = () => {
           <input type='text' value={email} name='email' onChange={({ target }) => setemail(target.value)} />
         </div>
         <div>
-          Contraseña
+          ContraseÃ±a
           <input type='password' value={password} name='Password' onChange={({ target }) => setPassword(target.value)} />
         </div>
         <button type='submit'>entrar</button>
