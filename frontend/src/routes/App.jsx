@@ -25,11 +25,15 @@ import '@styles/App.css'
 const App = () => {
 
 const user = useSelector(state => state.user);
-console.log(user.token)
+const dispatch=useDispatch()
+
+  
+
+
 if (!user.token) {
   return <Login />
 }
-
+  window.localStorage.setItem("loggedAppUser", JSON.stringify(user));
   return (
 
     <BrowserRouter>
