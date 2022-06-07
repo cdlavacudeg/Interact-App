@@ -17,7 +17,11 @@ const Login = () => {
 
   useEffect(() => {
     console.log(user);
-    window.localStorage.setItem("loggedAppUser", JSON.stringify(user));
+    if (user.userData && user.userData.token) {
+      window.location.href = "/";
+       window.localStorage.setItem("loggedAppUser", JSON.stringify(user));
+    }
+   
   }, [dispatch]);
 
   const handleLogin = async (event) => {
