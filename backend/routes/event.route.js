@@ -1,8 +1,8 @@
-const { check,body } = require('express-validator');
+const { check, body } = require('express-validator');
 const { Router } = require('express');
 const { validateField, isTeacherRole, validateJWT } = require('../middlewares');
-const {Course} = require('../models/')
-const {existModelById} = require('../helpers/db-validator.js')
+const { Course } = require('../models/');
+const { existModelById } = require('../helpers/db-validator.js');
 const {
     eventGet,
     eventPost,
@@ -14,21 +14,25 @@ const router = Router();
 
 router.get('/', eventGet);
 
-router.post('/:course_id',
+router.post(
+    '/:course_id',
     [
         validateJWT,
         isTeacherRole,
-        check('course_id','course id is not mongoId').isMongoId(),
+        check('course_id', 'course id is not mongoId').isMongoId(),
         check('course_id').custom((id) => existModelById(Course, id)),
-        body('date','date is required').not().isEmpty(),
-        body('date', 'date must be in format DD/MM/YYYY').isDate({ format: 'DD/MM/YYYY' }),
-        body('description','description is required').not().isEmpty(),
-        validateField
+        body('date', 'date is required').not().isEmpty(),
+        body('date', 'date must be in format DD/MM/YYYY').isDate({
+            format: 'DD/MM/YYYY',
+        }),
+        body('description', 'description is required').not().isEmpty(),
+        validateField,
     ],
     eventPost
 );
 
-router.delete('/:course_id',
+router.delete(
+    '/:course_id',
     [
         validateJWT,
         isTeacherRole,
@@ -39,7 +43,8 @@ router.delete('/:course_id',
     ],
     eventDelete
 );
-router.put('/:course_id',
+router.put(
+    '/:course_id',
     [
         validateJWT,
         isTeacherRole,
