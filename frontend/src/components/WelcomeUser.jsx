@@ -14,7 +14,9 @@ function WelcomeUser () {
             <h1 className="welcome-title">¡{gender === 'female' ? 'Bienvenida' : 'Bienvenido'}, {name}</h1>
             <p className="welcome-body"> ¿{gender === 'female' ? 'Lista' : 'Listo'} para seguir aprendiendo hoy?</p>
             </div>
-            <img className="welcome-img" src={welcomeimg} alt="" />
+            <div className="welcome-img">
+            <img  src={welcomeimg} alt="" />
+            </div>
         </section>
     )
 }
