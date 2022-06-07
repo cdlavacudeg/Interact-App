@@ -15,9 +15,6 @@ import "@styles/navBar.css"
 
 const NavBar = ({show, change}) => {
 
-    const isSelected = (navData) => navData.isActive ? "selected" : ""
-     console.log(isSelected)
-
     const isActive = show ? 'show' : ' '
     const dispatch = useDispatch();
     const menuItem = [
