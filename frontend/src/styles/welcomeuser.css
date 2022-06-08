@@ -1,39 +1,64 @@
-
 .welcome {
-    margin: .2rem 0;
-    display:flex;
+    margin: 0.2rem 0;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 800px;
+    width: 100%;
     background-color: var(--cuarto-color);
     border-radius: 30px;
     position: relative;
-    
 }
 
 .welcome-user {
-
+    width: 100%;
 }
 
 .welcome-title {
-font-size: 32px;
-padding-bottom: 0;
-padding-left: 1.5rem;
+    font-size: var(--fz3);
+    padding-bottom: 0;
+    padding-left: 1.5rem;
 }
 
 .welcome-body {
-font-size: 16px;
-padding-left: 1.5rem;
+    font-size: var(--fz0);
+    padding-left: 1.5rem;
 }
 
 .welcome-img {
-    width:25%;
-    position: absolute;
-    top: -15px;
-    right: -15px;
-
+    width: 100%;
+    position: relative;
 }
 
-@media screen and (max-width: 760px){
+.welcome-img img {
+    width: 14rem;
+    position: absolute;
+    top: -70px;
+    right: 0;
+}
 
+@media screen and (max-width: 760px) {
+    .welcome-img {
+        width: 20%;
+        position: relative;
+    }
+
+    .welcome-img img {
+        position: absolute;
+        width: 10rem;
+        top: -50px;
+        right: 0;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .welcome-user {
+        width: 90%;
+    }
+
+    .welcome-img img {
+        position: absolute;
+        width: 7rem;
+        top: -37px;
+        right: -10px;
+    }
 }

@@ -2,14 +2,22 @@ const Lesson = require('../models/lesson.model.js');
 const response = require('../helpers/response.js');
 
 const lessonsGet = async (req, res) => {
-    const { limit, from } = req.query;
+    try {
+        const { limit, from } = req.query;
 
-    const [total, lesson] = await Promise.all([
-        await Lesson.countDocuments(),
-        await Lesson.find().skip(Number(from)).limit(Number(limit)),
-    ]);
+        const [total, lesson] = await Promise.all([
+            await Lesson.countDocuments(),
+            await Lesson.find().skip(Number(from)).limit(Number(limit)),
+        ]);
 
-    response.success(req, res, 'get API - list of lessons', { total, lesson });
+        response.success(req, res, 'get API - list of lessons', {
+            total,
+            lesson,
+        });
+    } catch (error) {
+        console.error(`Error in lessonGet:${error}`);
+        response.error(req, res, 'Error getting list of lessons');
+    }
 };
 
 const lessonPost = async (req, res) => {
@@ -27,7 +35,7 @@ const lessonPost = async (req, res) => {
 
         response.success(req, res, 'Post API - Lesson created', { lesson });
     } catch (error) {
-        console.error(`Error en lessonPost:${error}`);
+        console.error(`Error in lessonPost:${error}`);
         response.error(req, res, 'Error creating a Lesson');
     }
 };
@@ -46,7 +54,7 @@ const lessonUpdate = async (req, res) => {
             lesson: updateLesson,
         });
     } catch (error) {
-        console.error(`Error en lessonUpdate:${error}`);
+        console.error(`Error in lessonUpdate:${error}`);
         response.error(req, res, 'Error updating a Lesson');
     }
 };
@@ -69,7 +77,7 @@ const lessonDelete = async (req, res) => {
             lesson: newlesson,
         });
     } catch (error) {
-        console.error(`Error en lessonDelete:${error}`);
+        console.error(`Error in lessonDelete:${error}`);
         response.error(req, res, `Error deleting a Lesson:${error.message}`);
     }
 };
