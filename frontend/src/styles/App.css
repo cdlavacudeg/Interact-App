@@ -119,15 +119,12 @@ h1 {
     cursor: pointer;
 }
 
-
-
 @media screen and (max-width: 760px) {
     .sidebar {
         display: none;
     }
 
     .cardMaterias {
-        margin: .5rem;
+        margin: 0.5rem;
     }
-
 }

@@ -65,29 +65,27 @@
 }
 
 #logout {
-    display         : flex;
-    align-content   : center;
+    display: flex;
+    align-content: center;
     background-color: var(--white-color);
-    color           : var(--black-color);
-    border          : none;
-    border-radius   : 25px;
-    font-size       : var(--fz0);
-    padding         : .8rem 2rem;
-    transition      : var(--transition);
+    color: var(--black-color);
+    border: none;
+    border-radius: 25px;
+    font-size: var(--fz0);
+    padding: 0.8rem 2rem;
+    transition: var(--transition);
 }
 
 #logout:hover {
     background-color: #ff0033;
 }
 
-
-
 @media screen and (min-width: 900px) {
     .header-nav {
-        width    : 100%;
+        width: 100%;
         max-width: 500px;
-        position : static;
-        z-index  : 0;
+        position: static;
+        z-index: 0;
     }
 
     .header-nav-item:last-child {
@@ -101,9 +99,8 @@
     }
 
     .header-nav-list {
-        width  : 50%;
-        width  : 250px;
+        width: 50%;
+        width: 250px;
         padding: 0;
     }
-
 }
