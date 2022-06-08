@@ -7,6 +7,8 @@ const initialState = {
     event: [],
     grade: [],
     grades: [],
+    course: [],
+    courses: [],
 }
 
 function rootReducer(state = initialState, action) {
@@ -107,6 +109,33 @@ function rootReducer(state = initialState, action) {
                     ...state,
                     grades: [...state.grades, action.payload]
                         }
+                //COURSES
+                case 'GET_COURSES':
+                    return {
+                        ...state,
+                        courses: action.payload
+                    }
+                case 'GET_COURSE':
+                    return {
+                    ...state,
+                    course: action.payload
+                        }
+                case 'DELETE_COURSE':
+                    return {
+                    ...state,
+                    courses: state.courses.filter(course => course.id !== action.payload.id)
+                        }
+                case 'UPDATE_COURSE':
+                    return {
+                    ...state,
+                    courses: state.courses.map(course => course.id === action.payload.id ? action.payload : course)
+                        }
+                case 'POST_COURSE':
+                    return {
+                    ...state,
+                    courses: [...state.courses, action.payload]
+                        }
+
 
 
         default:
