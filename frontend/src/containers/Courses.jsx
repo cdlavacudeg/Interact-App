@@ -60,11 +60,12 @@ const Courses = () => {
     return (
         <div className="courses">
             <h1 className="courses-title">Mis Materias</h1>
-            {
+            {/* {
                 materias.map(item => {
                     <CoursesCard name={item.materia} image={item.img} nameProf={item.nameProf} key={item.materia}/>
                 })
-            }
+            } */}
+             <CoursesCard name={"Biolofia"} image={biologia} nameProf={"Porf.Luis"} />
         </div>
     )
 }
