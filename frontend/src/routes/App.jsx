@@ -25,7 +25,7 @@ const App = () => {
 
 const user = useSelector(state => state.user);
 
-  if (user.token) {
+  if (!user.token) {
     return <LoginPage />
   }
   window.localStorage.setItem("loggedAppUser", JSON.stringify(user));

@@ -72,12 +72,12 @@ const NavBar = ({show, change}) => {
                 </li>
             ))}
             <li className="header-nav-item" >
-                    <NavLink id='logout' className='header-nav-link' onClick={handleLogout} to={"/"}>
+                    <button id='logout' className='header-nav-link' onClick={handleLogout} to={"/"}>
                         <div className="header-nav-img">
                         <img  src={logoutSVG} alt="Cerrar Sesión" />
                         </div>
                         Cerrar Sesión
-                    </NavLink>
+                    </button>
             </li>   
         </ul>
     </nav>
