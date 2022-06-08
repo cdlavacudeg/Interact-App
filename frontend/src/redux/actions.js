@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-const baseURL = import.meta.VITE_APP_BACKEND || 'http://localhost:5000'
+axios.defaults.baseURL = import.meta.env.VITE_APP_API || 'http://localhost:5000/api/v1'
+
 export function getUsers() {
     return async function (dispatch) {
-        var json = await axios.get(`${baseURL}/api/v1/user`);
+        var json = await axios.get('/user');
         console.log(json.data);
         return dispatch({
             type: 'GET_USERS',
@@ -14,7 +15,7 @@ export function getUsers() {
 
 export function getUser(id) {
     return async function (dispatch) {
-        var json = await axios.get(`${baseURL}/api/v1/user/${id}`);
+        var json = await axios.get(`/user/${id}`);
         console.log(json.data);
         return dispatch({
             type: 'GET_USER',
@@ -25,7 +26,7 @@ export function getUser(id) {
 
 export function deleteUser(id) {
     return async function (dispatch) {
-        var json = await axios.delete('http://localhost:5000/api/v1/user' + id);
+        var json = await axios.delete(`/user/${id}`);
         console.log(json.data);
         return dispatch({
             type: 'DELETE_USER',
@@ -37,7 +38,7 @@ export function deleteUser(id) {
 export function updateUser(id, data) {
     return async function (dispatch) {
         var json = await axios.put(
-            'http://localhost:5000/api/v1/user' + id,
+            `/user/${id}`,
             data
         );
         console.log(json.data);
@@ -51,7 +52,7 @@ export function updateUser(id, data) {
 export function postUser(id, data) {
     return async function (dispatch) {
         var json = await axios.post(
-            'http://localhost:5000/api/v1/user' + id,
+            `/user/${id}`,
             data
         );
         console.log(json.data);
@@ -74,7 +75,7 @@ export function logout() {
 export function login(data) {
     return async function (dispatch) {
         var json = await axios.post(
-            `${baseURL}/api/v1/auth/login`,
+            `/auth/login`,
             data
         );
         console.log(json.data);
@@ -87,7 +88,7 @@ export function login(data) {
 
 export function getGrade (id) {
     return async function (dispatch) {
-        var json = await axios.get("http://localhost:5000/api/v1/grade" + id);
+        var json = await axios.get(`/grade/${id}`);
         console.log(json.data)
         return dispatch({
             type: "GET_GRADE",
