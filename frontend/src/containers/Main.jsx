@@ -4,7 +4,7 @@ import Avisos from "@components/Avisos";
 
 const Main = () => {
     return (
-        <main>
+        <main className="main-home">
             <WelcomeUser />
             <Recentactivities />
             <Avisos />

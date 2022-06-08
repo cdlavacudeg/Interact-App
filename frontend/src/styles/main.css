@@ -11,8 +11,9 @@
 }
 
 @media screen and (min-width: 900px) {
-    .app {
-        width: 100%;
-        flex-direction: row;
-    }
+  .app {
+    width                : 100%;
+    display              : grid;
+    grid-template-columns: 1fr 2fr 1fr;
+  }
 }
