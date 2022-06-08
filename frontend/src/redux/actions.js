@@ -3,11 +3,9 @@ import axios from 'axios';
 axios.defaults.baseURL =
     import.meta.env.VITE_APP_API || 'http://localhost:5000/api/v1';
 
-
-
-  //=============================
-  //           USER
-  //=============================
+//=============================
+//           USER
+//=============================
 export function getUsers() {
     return async function (dispatch) {
         var json = await axios.get('/user');
@@ -63,9 +61,9 @@ export function postUser(id, data) {
     };
 }
 
- //=============================
-  //         LOGIN
-  //============================
+//=============================
+//         LOGIN
+//============================
 
 export function logout() {
     return async function (dispatch) {
@@ -116,9 +114,12 @@ export function getGrade(id) {
 export function getCourses(id) {
     return async function (dispatch) {
         var json = await axios.get(`/user/${id}`);
-        console.log("action: ")
+        console.log('action: ');
         console.log(json.data.data);
-        window.localStorage.setItem("courses", JSON.stringify(json.data.data.user.courses));
+        window.localStorage.setItem(
+            'courses',
+            JSON.stringify(json.data.data.user.courses)
+        );
         return dispatch({
             type: 'GET_USER_COURSES',
             payload: json.data.data.user.courses,

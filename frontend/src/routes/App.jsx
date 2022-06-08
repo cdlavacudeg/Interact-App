@@ -22,9 +22,7 @@ import LoginPage from "@pages/LoginPage";
 import "@styles/App.css";
 
 const App = () => {
-
     const user = useSelector((state) => state.user);
-
 
     if (!user.token) {
         return <LoginPage />;

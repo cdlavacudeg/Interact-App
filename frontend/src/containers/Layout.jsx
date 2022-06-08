@@ -6,7 +6,6 @@ import Header from "@containers/Header";
 import CustomCalendar from "@components/CustomCalendar";
 
 const Layout = () => {
-
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
 

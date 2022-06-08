@@ -1,10 +1,10 @@
 const localStorage = window.localStorage.getItem('loggedAppUser')
-                   ? JSON.parse(window.localStorage.getItem('loggedAppUser'))
-                   : undefined;
+    ? JSON.parse(window.localStorage.getItem('loggedAppUser'))
+    : undefined;
 
 const localCourses = window.localStorage.getItem('courses')
-? JSON.parse(window.localStorage.getItem('courses'))
-: undefined;
+    ? JSON.parse(window.localStorage.getItem('courses'))
+    : undefined;
 
 const initialState = {
     users: [],
@@ -16,7 +16,6 @@ const initialState = {
     courses: localCourses ? localCourses : [],
     notifications: [],
 };
-
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {

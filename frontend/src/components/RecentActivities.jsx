@@ -16,8 +16,6 @@ import { getCourses } from "../redux/actions";
 function Recentactivities() {
     const materias = useSelector((state) => state.courses);
 
-
-
     return (
         <section className="recent-activities pt-5 pb-4">
             <h2 className="recent-activities-h2 ">Actividad Reciente</h2>
