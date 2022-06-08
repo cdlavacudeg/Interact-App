@@ -1,6 +1,6 @@
 
 .container_principal {
-    width: 200%;
+    width: 100%;
     
     display: flex;
     flex-direction: column;
@@ -25,10 +25,11 @@
 
 }
 .container_button {
-    width: 80%;
+    width: 100%;
     display: flex;
     justify-content:flex-end ;
     margin-right: auto;
+    background-color: aqua;
     
 }
 button {

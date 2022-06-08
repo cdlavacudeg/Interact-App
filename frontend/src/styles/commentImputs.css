@@ -4,6 +4,7 @@
     font-weight: 400;
     line-height: 24px;
     margin-left: 50px;
+    background-color: red;
     
 }
 textarea {
@@ -15,5 +16,6 @@ textarea {
     margin-left: 50px;
     border-radius: 6px;
     border-color: #b9b9b9;
+    
    
 }
