@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { logout } from '../redux/actions'
 import homeSVG from '@icons/home.svg'
 import materiasSVG from '@icons/courses.svg'
 import calificacionesSVG from '@icons/clasification.svg'
@@ -16,8 +18,8 @@ const NavBar = ({show, change}) => {
     const isSelected = (navData) => navData.isActive ? "selected" : ""
      console.log(isSelected)
 
-    const isActive = show ? 'active' : 'inactive'
-
+    const isActive = show ? 'show' : ' '
+    const dispatch = useDispatch();
     const menuItem = [
         {
             path: "/",
@@ -44,15 +46,18 @@ const NavBar = ({show, change}) => {
             name: "Contacto",
             icon: contactoSVG
         },
-        {
-            path: "/logout",
-            name: "Cerrar Sesión",
-            icon: logoutSVG
-        },
+        // {
+        //     path: "/logout",
+        //     name: "Cerrar Sesión",
+        //     icon: logoutSVG
+        // },
 
 
     ]
- 
+    const handleLogout=()=>{
+        dispatch(logout());
+        window.localStorage.setItem("loggedAppUser", JSON.stringify({}));
+    }
   return (
     <nav className={`header-nav ${isActive}`} >
         <button onClick={change}  className="header-backarrow">
@@ -68,7 +73,15 @@ const NavBar = ({show, change}) => {
                         {item.name}
                     </NavLink>
                 </li>
-            ))}       
+            ))}
+            <li className="header-nav-item" >
+                    <NavLink id='logout' className='header-nav-link' onClick={handleLogout} to={"/"}>
+                        <div className="header-nav-img">
+                        <img  src={logoutSVG} alt="Cerrar Sesión" />
+                        </div>
+                        Cerrar Sesión
+                    </NavLink>
+            </li>   
         </ul>
     </nav>
   )

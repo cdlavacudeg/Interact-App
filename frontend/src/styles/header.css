@@ -30,6 +30,7 @@
         max-height      : 800px;
         position        : static;
         background-color: #fff;
+        margin          : 1rem;
         display         : flex;
         flex-direction  : column;
         cursor          : pointer;

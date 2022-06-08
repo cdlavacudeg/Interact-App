@@ -4,10 +4,12 @@ import GradesTables from '../containers/Calificaciones';
 
 export default function Calificaciones () {
     return (
-        <> 
-            
-                <GradesTables />
-            
-        </>
+
+        <main>
+        
+         <h1> Mis Calificaciones</h1>
+        <GradesTables />
+        
+        </main>
     )
 }

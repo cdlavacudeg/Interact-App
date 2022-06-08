@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { check, body } = require('express-validator');
-const Lesson = require('../models/lesson.model.js');
+const { Lesson, Course } = require('../models');
 const { validateField, isTeacherRole, validateJWT } = require('../middlewares');
 
 const {
@@ -9,95 +9,49 @@ const {
     lessonUpdate,
     lessonDelete,
 } = require('../controllers/lesson.controller.js');
-const { existModelById } = require('../helpers/db-validator.js');
+const {
+    existModelById,
+    existModelByIdAndField,
+} = require('../helpers/db-validator.js');
 
 const router = Router();
 
 router.get('/', lessonsGet);
 
 router.post(
-    '/',
+    '/:course_id',
     [
         validateJWT,
         isTeacherRole,
-        check('course_id', 'course id is required').not().isEmpty(),
         check('course_id', 'course id is not mongoId').isMongoId(),
-        check('course_id').custom((course) => {
-            const lessonS = Lesson.find({ course_id: course });
-            if (lessonS) {
-                throw new Error('Course_id must be unique');
-            }
-            return false;
-        }),
-        body('lectures', 'lectures is not an array')
-            .if(body('lectures').exists())
-            .isArray(),
-        body('lectures.*', 'lecture in array is not an Object')
-            .if(body('lectures').exists())
-            .isObject(),
-        body('lectures.*')
-            .if(body('lectures').exists())
-            .custom((lecture) => {
-                const title = Object.prototype.hasOwnProperty.call(
-                    lecture,
-                    'title'
-                );
-                const link = Object.prototype.hasOwnProperty.call(
-                    lecture,
-                    'link'
-                );
-                if (!title) {
-                    throw new Error('Title required');
-                } else if (!link) {
-                    throw new Error('Link required');
-                }
-                return true;
-            }),
+        body('title', 'title is required').not().isEmpty(),
+        body('link', 'link is required').not().isEmpty(),
         validateField,
     ],
     lessonPost
 );
 
 router.put(
-    '/:id',
+    '/:course_id',
     [
         validateJWT,
         isTeacherRole,
-        check('id', 'id is not mongoId').isMongoId(),
-        check('id').custom((id) => existModelById(Lesson, id)),
-        body('lectures', 'lectures is not an array')
-            .if(body('lectures').exists())
-            .isArray(),
-        body('lectures.*', 'lecture in array is not an Object')
-            .if(body('lectures').exists())
-            .isObject(),
-        body('lectures.*')
-            .if(body('lectures').exists())
-            .custom((lecture) => {
-                const title = Object.prototype.hasOwnProperty.call(
-                    lecture,
-                    'title'
-                );
-                const link = Object.hasOwnProperty.call(lecture, 'link');
-                if (!title) {
-                    throw new Error('Title required');
-                } else if (!link) {
-                    throw new Error('Link required');
-                }
-                return true;
-            }),
+        check('course_id', 'course_id is not mongoId').isMongoId(),
+        check('course_id').custom((id) => existModelById(Course, id)),
+        body('index', 'index is required').not().isEmpty(),
         validateField,
     ],
     lessonUpdate
 );
 
 router.delete(
-    '/:id',
+    '/:course_id',
     [
         validateJWT,
         isTeacherRole,
-        check('id', 'id is not mongoId').isMongoId(),
-        check('id').custom((id) => existModelById(Lesson, id)),
+        check('course_id', 'id is not mongoId').isMongoId(),
+        check('course_id').custom((id) => existModelById(Course, id)),
+        check('index', 'index is required').not().isEmpty(),
         validateField,
     ],
     lessonDelete

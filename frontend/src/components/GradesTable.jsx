@@ -4,8 +4,7 @@ import "@styles/gradestable.css";
 function GradesTable () {
     return (
         
-        <section className="bg-light p-5 container-width-gradestables">
-            <h1> Mis Calificaciones</h1>
+        <section className="bg-light p-5 container-width-gradestables">            
             <div className="table-responsive" id="no-more-tables">
                 <table className="table">
                     <thead>

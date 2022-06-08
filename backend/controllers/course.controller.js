@@ -5,7 +5,7 @@ const response = require('../helpers/response.js');
 const coursesGet = async (req, res) => {
     const { limit, from } = req.query;
 
-    const [total, courses] = await Promise.all([
+    const [total, course] = await Promise.all([
         await Course.countDocuments(),
         await Course.find()
             .skip(Number(from))
@@ -15,7 +15,7 @@ const coursesGet = async (req, res) => {
             .exec(),
     ]);
 
-    response.success(req, res, 'get API - list of courses', { total, courses });
+    response.success(req, res, 'get API - list of courses', { total, course });
 };
 
 const coursePost = async (req, res) => {
@@ -28,7 +28,6 @@ const coursePost = async (req, res) => {
         teacher,
         students,
     });
-
     try {
         const userTeacher = await User.findById(teacher);
         userTeacher.courses.push(course._id);
@@ -38,7 +37,7 @@ const coursePost = async (req, res) => {
             students = [...new Set(students)];
             students.map(async (student) => {
                 const userStudent = await User.findById(student);
-                userStudent.courses = userStudent.courses.push(course._id);
+                userStudent.courses.push(course._id);
                 await userStudent.save();
             });
         }
@@ -164,6 +163,8 @@ const courseDelete = async (req, res) => {
             await userTeacher.save();
         }
 
+        await Grade.findOneAndDelete({ course_id: courseDel._id });
+        await Lesson.findOneAndDelete({ course_id: courseDel._id });
         const deleted = await Course.findByIdAndDelete(id);
         response.success(req, res, 'delete API - Course deleted', {
             course: deleted,
