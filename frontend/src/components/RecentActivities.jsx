@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect } from "react";
 import biologia from "@img/biologia.png";
 import Geografia from "@img/Geografia.png";
 import Historia from "@img/Historia.png";
@@ -9,58 +10,35 @@ import Matematicas from "@img/Matematicas.png";
 import FisicoQuimica from "@img/Fisico-Quimica.png";
 import "@styles/recentactivities.css";
 import CoursesCard from "./CoursesCard";
+import { useSelector, useDispatch } from "react-redux";
+import { getCourses } from "../redux/actions"
 
-const materias = [
-    {
-        materia: "Biologia",
-        nameProf: "Prof. Laura Valenzuela",
-        img: biologia,
-    },
-    {
-        materia: "FisicoQuimica",
-        nameProf: "Prof. Mariela Hernandez",
-        img: FisicoQuimica,
-    },
-    {
-        materia: "Geografia",
-        nameProf: "Prof. Adriana Marquez",
-        img: Geografia,
-    },
-    {
-        materia: "Historia",
-        nameProf: "Prof. Pablo Mariani",
-        img: Historia,
-    },
-    {
-        materia: "Informatica",
-        nameProf: "Prof. Fernanda Sosa",
-        img: Informatica,
-    },
-
-    {
-        materia: "Ingles",
-        nameProf: "Prof. Montes de Oca",
-        img: Ingles,
-    },
-    {
-        materia: "Literatura",
-        nameProf: "Prof. Ramiro Flores",
-        img: Literatura,
-    },
-    {
-        materia: "Matematicas",
-        nameProf: "Prof. Jorge Perez",
-        img: Matematicas,
-    },
-];
-
+// const materias = [
+//     {
+//         materia: "Biologia",
+//         nameProf: "Prof. Laura Valenzuela",
+//         img: biologia,
+//     },
+// ];
 function Recentactivities() {
+    const materias = useSelector((state)=>state.courses);
+    const user = useSelector((state)=> state.user.user)
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(getCourses(user.uid))
+            .catch(error=>{
+                console.log(error)
+            })
+    },[])
+
     return (
         <section className="recent-activities pt-5 pb-4">
             <h2 className="recent-activities-h2 ">Actividad Reciente</h2>
             <div className="recent-activities-container">
                 <div className="row">
-                    {materias.map(
+                    {materias?
+                       ( materias.map(
                         (item, index) =>
                             index < 3 && (
                                 <div key={index} className="col-6 col-lg-4">
@@ -79,7 +57,12 @@ function Recentactivities() {
                                     </article>
                                 </div>
                             )
-                    )}
+                        )):(
+                            <div>
+                            <p> No tienes materias registradas</p>
+                            </div>)
+                    }
+
                 </div>
             </div>
         </section>

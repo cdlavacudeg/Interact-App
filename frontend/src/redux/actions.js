@@ -95,3 +95,14 @@ export function getGrade(id) {
         });
     };
 }
+
+export function getCourses(id){
+    return async function(dispatch){
+        var json = await axios.get(`/user/${id}`);
+        console.log(json.data.data);
+        return dispatch({
+            type:'GET_USER_COURSES',
+            payload: json.data.data.user.courses
+        });
+    }
+}
