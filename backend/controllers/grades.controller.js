@@ -3,8 +3,19 @@ const { Types } = require('mongoose');
 const response = require('../helpers/response.js');
 
 const gradesGet = async (req, res) => {
-    const grade = await Grade.find();
-    response.success(req, res, 'get API - list of grades', { grade });
+    try {
+        const [total, grade] = await Promise.all([
+            await Grade.countDocuments(),
+            await Grade.find(),
+        ]);
+        response.success(req, res, 'get API - list of grades', {
+            total,
+            grade,
+        });
+    } catch (error) {
+        console.error(`Error in gradesGet:${error}`);
+        response.error(req, res, 'Error getting list of grades');
+    }
 };
 
 const gradesPost = async (req, res) => {
@@ -46,7 +57,7 @@ const gradesPost = async (req, res) => {
             grade: postgrade,
         });
     } catch (error) {
-        console.error(`Error en userPost:${error}`);
+        console.error(`Error in userPost:${error}`);
         response.error(req, res, 'Error creating a grade');
     }
 };
@@ -64,7 +75,7 @@ const gradesDelete = async (req, res) => {
             grade: gradeDelete,
         });
     } catch (error) {
-        console.log(`Error en userDelet:${error}`);
+        console.error(`Error in userDelete:${error}`);
         response.error(req, res, 'Error deleting a grade');
     }
 };
@@ -104,15 +115,20 @@ const gradesUpdate = async (req, res) => {
             grade: result,
         });
     } catch (error) {
-        console.log(`Error un userPut:${error}`);
+        console.error(`Error in userPut:${error}`);
         response.error(req, res, `Error updating a grade: ${error.message}`);
     }
 };
 
 const gradesGetById = async (req, res) => {
-    const { id } = req.params;
-    const grade = await Grade.findById(id);
-    response.success(req, res, 'get API - Grade by id', { grade });
+    try {
+        const { id } = req.params;
+        const grade = await Grade.findById(id);
+        response.success(req, res, 'get API - Grade by id', { grade });
+    } catch (error) {
+        console.error(`Error in gradesGetById:${error} `);
+        response.error(req, res, 'Error getting grade');
+    }
 };
 
 module.exports = {

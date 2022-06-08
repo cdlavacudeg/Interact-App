@@ -7,9 +7,9 @@ const Materias = () => {
 
     return (
         <>
-          <Courses/>
+            <Courses />
         </>
-    )
+    );
 };
 
 export default Materias;

@@ -55,11 +55,11 @@
 
 
 @media screen and (max-width: 430px) {
-                
+
         .welcome-user {
         width: 90%;
         }
-    
+
         .welcome-img img {
             position: absolute;
             width: 7rem;
