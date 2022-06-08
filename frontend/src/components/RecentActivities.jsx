@@ -8,6 +8,7 @@ import Literatura from "@img/Literatura.png";
 import Matematicas from "@img/Matematicas.png";
 import FisicoQuimica from "@img/Fisico-Quimica.png";
 import "@styles/recentactivities.css";
+import CoursesCard from "./CoursesCard";
 
 const materias = [
     {
