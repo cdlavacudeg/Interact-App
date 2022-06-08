@@ -15,14 +15,8 @@ import { getCourses } from "../redux/actions";
 
 function Recentactivities() {
     const materias = useSelector((state) => state.courses);
-    const user = useSelector((state) => state.user.user);
-    const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getCourses(user.uid)).catch((error) => {
-            console.log(error);
-        });
-    }, []);
+
 
     return (
         <section className="recent-activities pt-5 pb-4">

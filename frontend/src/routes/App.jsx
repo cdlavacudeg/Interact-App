@@ -1,8 +1,9 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getCourses } from "../redux/actions";
 import Layout from "@containers/Layout";
 import Home from "@pages/Home.jsx";
 import Materias from "@pages/Materias.jsx";
@@ -21,9 +22,11 @@ import LoginPage from "@pages/LoginPage";
 import "@styles/App.css";
 
 const App = () => {
+
     const user = useSelector((state) => state.user);
 
-    if (user.token) {
+
+    if (!user.token) {
         return <LoginPage />;
     }
     window.localStorage.setItem("loggedAppUser", JSON.stringify(user));

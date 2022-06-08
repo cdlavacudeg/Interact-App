@@ -7,62 +7,24 @@ import Ingles from "@img/Ingles.png";
 import Literatura from "@img/Literatura.png";
 import Matematicas from "@img/Matematicas.png";
 import FisicoQuimica from "@img/Fisico-Quimica.png";
+import { useSelector, useDispatch } from "react-redux";
 import "@styles/courses.css";
 
 const Courses = () => {
-    const materias = [
-        {
-            materia: "Biologia",
-            nameProf: "Prof. Laura Valenzuela",
-            img: biologia,
-        },
-        {
-            materia: "FisicoQuimica",
-            nameProf: "Prof. Mariela Hernandez",
-            img: FisicoQuimica,
-        },
-        {
-            materia: "Geografia",
-            nameProf: "Prof. Adriana Marquez",
-            img: Geografia,
-        },
-        {
-            materia: "Historia",
-            nameProf: "Prof. Pablo Mariani",
-            img: Historia,
-        },
-        {
-            materia: "Informatica",
-            nameProf: "Prof. Fernanda Sosa",
-            img: Informatica,
-        },
+    const materias = useSelector((state) => state.courses);
 
-        {
-            materia: "Ingles",
-            nameProf: "Prof. Montes de Oca",
-            img: Ingles,
-        },
-        {
-            materia: "Literatura",
-            nameProf: "Prof. Ramiro Flores",
-            img: Literatura,
-        },
-        {
-            materia: "Matematicas",
-            nameProf: "Prof. Jorge Perez",
-            img: Matematicas,
-        },
-    ];
+    console.log(materias[0].courseName)
+
 
     return (
         <div className="courses">
             <h1 className="courses-title">Mis Materias</h1>
             {materias.map((item) => {
                 <CoursesCard
-                    name={item.materia}
-                    image={item.img}
-                    nameProf={item.nameProf}
-                    key={item.materia}
+                    name={item.courseName}
+                    image={item.image}
+                    nameProf={item.teacher.fullName}
+                    key={item._id}
                 />;
             })}
         </div>
