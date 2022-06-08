@@ -8,6 +8,7 @@ import Literatura from '@img/Literatura.png'
 import Matematicas from '@img/Matematicas.png'
 import FisicoQuimica from '@img/Fisico-Quimica.png'
 import "@styles/recentactivities.css";
+import CoursesCard from "./CoursesCard";
 
 
 const materias = [
@@ -63,17 +64,8 @@ function Recentactivities() {
             <div className="recent-activities-container">
                 <div className="row">
                 {
-                    materias.map((item, index) => index < 3 && (
-                    <div key={index} className="col-6 col-lg-4">
-                        <article className="recent-activities-item mb-3">
-                            <div className="activities-notification">1</div>
-                            <img src={item.img} alt={item.materia} />
-                            <div className="p-2">
-                                <h1>{item.materia}</h1>
-                                <h2>{item.nameProf}</h2>
-                            </div>
-                        </article>
-                    </div>
+                    materias.slice(1, 4).map((item) => ( 
+                   <CoursesCard  items={item} key={materias.materia}/>
                         ))
                     }
                 </div>

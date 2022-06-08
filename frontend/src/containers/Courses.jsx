@@ -11,58 +11,62 @@ import '@styles/courses.css'
 
 const Courses = () => {
 
-  const materias = [
-    {
-        materia: "Biologia",
-        nameProf: "Prof. Laura Valenzuela",
-        img: biologia
-    },
-    {
-        materia: "FisicoQuimica",
-        nameProf: "Prof. Mariela Hernandez",
-        img: FisicoQuimica
-    },
-    {
-        materia: "Geografia",
-        nameProf: "Prof. Adriana Marquez",
-        img: Geografia
-    },
-    {
-        materia: "Historia",
-        nameProf: "Prof. Pablo Mariani",
-        img: Historia
-    },
-    {
-        materia: "Informatica",
-        nameProf: "Prof. Fernanda Sosa",
-        img: Informatica
-    },
+    const materias = [
+        {
+            materia: "Biologia",
+            nameProf: "Prof. Laura Valenzuela",
+            img: biologia
+        },
+        {
+            materia: "FisicoQuimica",
+            nameProf: "Prof. Mariela Hernandez",
+            img: FisicoQuimica
+        },
+        {
+            materia: "Geografia",
+            nameProf: "Prof. Adriana Marquez",
+            img: Geografia
+        },
+        {
+            materia: "Historia",
+            nameProf: "Prof. Pablo Mariani",
+            img: Historia
+        },
+        {
+            materia: "Informatica",
+            nameProf: "Prof. Fernanda Sosa",
+            img: Informatica
+        },
 
-    {
-        materia: "Ingles",
-        nameProf: "Prof. Montes de Oca",
-        img: Ingles
-    },
-    {
-        materia: "Literatura",
-        nameProf: "Prof. Ramiro Flores",
-        img: Literatura
-    },
-    {
-        materia: "Matematicas",
-        nameProf: "Prof. Jorge Perez",
-        img: Matematicas
-    },
+        {
+            materia: "Ingles",
+            nameProf: "Prof. Montes de Oca",
+            img: Ingles
+        },
+        {
+            materia: "Literatura",
+            nameProf: "Prof. Ramiro Flores",
+            img: Literatura
+        },
+        {
+            materia: "Matematicas",
+            nameProf: "Prof. Jorge Perez",
+            img: Matematicas
+        },
 
 
-]
+    ]
 
-  return (
-    <div className="courses">
-        <h1 className="courses-title">Mis Materias</h1>
-       <CoursesCard  items={materias}/>
-    </div>
-  )
+    return (
+        <div className="courses">
+            <h1 className="courses-title">Mis Materias</h1>
+            {
+                materias.map(item => {
+                    <CoursesCard name={item.materia} image={item.img} nameProf={item.nameProf} key={item.materia}/>
+                })
+            }
+        </div>
+    )
 }
 
 export default Courses
