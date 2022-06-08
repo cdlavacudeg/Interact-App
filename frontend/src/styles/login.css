@@ -1,30 +1,30 @@
-*{
+* {
     margin: 0;
-    padding:0;
+    padding: 0;
 }
-:root{
-    font-family: 'Lato', sans-serif;
-    --font-color: #122B57;
+:root {
+    font-family: "Lato", sans-serif;
+    --font-color: #122b57;
 }
 h1 {
-    font-family: 'Lato', sans-serif;
+    font-family: "Lato", sans-serif;
     font-size: 2.5rem;
     line-height: 6rem;
     font-weight: bold;
-    color: #122B57;
+    color: #122b57;
 }
 h2 {
     font-size: 3rem;
     font-weight: bold;
     color: var(--font-color);
 }
-    body {
+body {
     width: 100%;
     height: 100vh;
     display: grid;
     grid-template-columns: 50% 50%;
 }
-.container_imagen{
+.container_imagen {
     width: 100%;
     height: 100%;
     background-image: url(assest/img/nick-morrison-FHnnjk1Yj7Y-unsplash\ 1.svg);
@@ -32,9 +32,9 @@ h2 {
     background-size: 100%;
     background-position: center;
 }
-.container_input{
+.container_input {
     width: 100%;
-    height: 100vh; 
+    height: 100vh;
     display: grid;
 }
 .container_logo {
@@ -44,7 +44,7 @@ h2 {
     justify-content: flex-end;
     align-items: center;
 }
-img{
+img {
     width: 30%;
     height: 90%;
 }
@@ -55,7 +55,6 @@ img{
     align-items: center;
     justify-content: center;
     margin: auto;
-
 }
 .container_autor {
     width: 65%;
@@ -68,7 +67,7 @@ img{
     height: 35%;
     display: flex;
     flex-direction: column;
-    border: 2px solid #12676F;
+    border: 2px solid #12676f;
     border-radius: 6px;
     margin: 0 auto;
 }
@@ -85,27 +84,25 @@ input {
     margin: 30px 0 0 20px;
     top: 90px;
     padding: 5px;
-    border: 1.5px solid #B9B9B9;
+    border: 1.5px solid #b9b9b9;
     border-radius: 6px;
     font-size: 20px;
-}   
+}
 .label_contraseña {
     width: 25;
     height: 20%;
-    font-family: 'Lato', sans-serif;
+    font-family: "Lato", sans-serif;
     font-size: 1.5rem;
     text-decoration: underline;
     font-weight: bold;
     margin-left: 5%;
-    
 }
 .buttons {
     width: 100%;
     height: 30%;
-    
+
     display: flex;
     justify-content: center;
-    
 }
 button {
     width: 60%;
@@ -113,11 +110,7 @@ button {
     border-radius: 6px;
     border: none;
     background-color: darkgoldenrod;
-    font-family: 'Lato', sans-serif;
-    background-color: #EFB365; 
+    font-family: "Lato", sans-serif;
+    background-color: #efb365;
     font-size: 2rem;
 }
-
-    
-
-

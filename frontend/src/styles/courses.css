@@ -1,10 +1,10 @@
 .courses {
-    outline  : solid;
-    width    : 800px;
+    outline: solid;
+    width: 800px;
     max-width: 800px;
 }
 
 .courses-title {
-    font-size : var(--fz0);
+    font-size: var(--fz0);
     margin-top: 1rem;
 }

@@ -1,13 +1,14 @@
-import '@styles/coursesCard.css'
+import "@styles/coursesCard.css";
 
 const CoursesCard = () => {
-  return (
-    <div className="courses-card">
-        <div ><img src="" alt="" /></div>
-        <h4>Materia 1</h4>
+    return (
+        <div className="courses-card">
+            <div>
+                <img src="" alt="" />
+            </div>
+            <h4>Materia 1</h4>
+        </div>
+    );
+};
 
-    </div>
-  )
-}
-
-export default CoursesCard
+export default CoursesCard;
