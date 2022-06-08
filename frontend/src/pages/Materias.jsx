@@ -1,6 +1,5 @@
-import React from 'react';
-import Courses from '@containers/Courses';
-
+import React from "react";
+import Courses from "@containers/Courses";
 
 const Materias = () => {
     // const navigate = useNavigate()

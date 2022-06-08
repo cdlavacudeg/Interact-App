@@ -11,9 +11,6 @@ import backArrowSVG from "@icons/back-arrow.svg";
 import "@styles/navBar.css";
 
 const NavBar = ({ show, change }) => {
-    const isSelected = (navData) => (navData.isActive ? "selected" : "");
-    console.log(isSelected);
-
     const isActive = show ? "show" : " ";
     const dispatch = useDispatch();
     const menuItem = [
@@ -68,17 +65,22 @@ const NavBar = ({ show, change }) => {
                         </NavLink>
                     </li>
                 ))}
-            <li className="header-nav-item" >
-                    <button id='logout' onClick={handleLogout} to={"/"}>
+                <li className="header-nav-item">
+                    <button
+                        id="logout"
+                        className="header-nav-link"
+                        onClick={handleLogout}
+                        to={"/"}
+                    >
                         <div className="header-nav-img">
-                        <img  src={logoutSVG} alt="Cerrar Sesión" />
+                            <img src={logoutSVG} alt="Cerrar Sesión" />
                         </div>
-                        <div>Cerrar Sesión</div>
+                        Cerrar Sesión
                     </button>
-            </li>
-        </ul>
-    </nav>
-  )
-}
+                </li>
+            </ul>
+        </nav>
+    );
+};
 
 export default NavBar;

@@ -1,8 +1,11 @@
 import axios from 'axios';
 
+axios.defaults.baseURL =
+    import.meta.env.VITE_APP_API || 'http://localhost:5000/api/v1';
+
 export function getUsers() {
     return async function (dispatch) {
-        var json = await axios.get('http://localhost:5000/api/v1/user');
+        var json = await axios.get('/user');
         console.log(json.data);
         return dispatch({
             type: 'GET_USERS',
@@ -13,7 +16,7 @@ export function getUsers() {
 
 export function getUser(id) {
     return async function (dispatch) {
-        var json = await axios.get('http://localhost:5000/api/v1/user' + id);
+        var json = await axios.get(`/user/${id}`);
         console.log(json.data);
         return dispatch({
             type: 'GET_USER',
@@ -24,7 +27,7 @@ export function getUser(id) {
 
 export function deleteUser(id) {
     return async function (dispatch) {
-        var json = await axios.delete('http://localhost:5000/api/v1/user' + id);
+        var json = await axios.delete(`/user/${id}`);
         console.log(json.data);
         return dispatch({
             type: 'DELETE_USER',
@@ -35,10 +38,7 @@ export function deleteUser(id) {
 
 export function updateUser(id, data) {
     return async function (dispatch) {
-        var json = await axios.put(
-            'http://localhost:5000/api/v1/user' + id,
-            data
-        );
+        var json = await axios.put(`/user/${id}`, data);
         console.log(json.data);
         return dispatch({
             type: 'UPDATE_USER',
@@ -49,10 +49,7 @@ export function updateUser(id, data) {
 
 export function postUser(id, data) {
     return async function (dispatch) {
-        var json = await axios.post(
-            'http://localhost:5000/api/v1/user' + id,
-            data
-        );
+        var json = await axios.post(`/user/${id}`, data);
         console.log(json.data);
         return dispatch({
             type: 'POST_USER',
@@ -63,8 +60,6 @@ export function postUser(id, data) {
 
 export function logout() {
     return async function (dispatch) {
-        //var json = await axios.get("http://localhost:5000/api/v1/logout");
-        //console.log(json.data)
         return dispatch({
             type: 'LOGOUT',
             payload: {},
@@ -72,16 +67,53 @@ export function logout() {
     };
 }
 
-export function login(data) {
+export function login({ email, password, role }) {
+    console.log(email);
+    let data = { email, password };
     return async function (dispatch) {
-        var json = await axios.post(
-            'http://localhost:5000/api/v1/auth/login',
-            data
-        );
-        console.log(json.data);
+        var json = await axios.post(`/auth/login`, data);
+        const resRole = json.data.data.user.role;
+        if (resRole != role) {
+            if (resRole != 'admin') {
+                throw new Error('Incorrect role');
+            }
+        }
         return dispatch({
             type: 'LOGIN',
             payload: json.data.data,
+        });
+    };
+}
+
+export function getGrade(id) {
+    return async function (dispatch) {
+        var json = await axios.get(`/grade/${id}`);
+        console.log(json.data);
+        return dispatch({
+            type: 'GET_GRADE',
+            payload: json.data,
+        });
+    };
+}
+
+export function getCourses(id) {
+    return async function (dispatch) {
+        var json = await axios.get(`/user/${id}`);
+        console.log(json.data.data);
+        return dispatch({
+            type: 'GET_USER_COURSES',
+            payload: json.data.data.user.courses,
+        });
+    };
+}
+
+export function getNotifications() {
+    return async function (dispatch) {
+        var json = await axios.get('/notification');
+        console.log(json.data.data);
+        return dispatch({
+            type: 'GET_NOTIFICATIONS',
+            payload: json.data.data.notification,
         });
     };
 }

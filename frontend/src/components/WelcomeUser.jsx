@@ -18,7 +18,9 @@ function WelcomeUser() {
                     aprendiendo hoy?
                 </p>
             </div>
-            <img className="welcome-img" src={welcomeimg} alt="" />
+            <div className="welcome-img">
+                <img src={welcomeimg} alt="" />
+            </div>
         </section>
     );
 }

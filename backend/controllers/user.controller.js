@@ -19,7 +19,7 @@ const usersGet = async (req, res) => {
                     {
                         path: 'courses',
                         model: 'Course',
-                        select: 'courseName teacher',
+                        select: 'courseName teacher image',
                         populate: {
                             path: 'teacher',
                             model: 'User',
@@ -165,7 +165,7 @@ const userGetById = async (req, res) => {
                 {
                     path: 'courses',
                     model: 'Course',
-                    select: 'courseName teacher',
+                    select: 'courseName teacher image',
                     populate: {
                         path: 'teacher',
                         model: 'User',
