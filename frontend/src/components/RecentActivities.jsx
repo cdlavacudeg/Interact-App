@@ -13,13 +13,6 @@ import CoursesCard from "./CoursesCard";
 import { useSelector, useDispatch } from "react-redux";
 import { getCourses } from "../redux/actions";
 
-// const materias = [
-//     {
-//         materia: "Biologia",
-//         nameProf: "Prof. Laura Valenzuela",
-//         img: biologia,
-//     },
-// ];
 function Recentactivities() {
     const materias = useSelector((state) => state.courses);
     const user = useSelector((state) => state.user.user);

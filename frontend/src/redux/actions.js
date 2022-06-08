@@ -106,3 +106,14 @@ export function getCourses(id) {
         });
     };
 }
+
+export function getNotifications() {
+    return async function (dispatch) {
+        var json = await axios.get('/notification');
+        console.log(json.data.data);
+        return dispatch({
+            type: 'GET_NOTIFICATIONS',
+            payload: json.data.data.notification,
+        });
+    };
+}

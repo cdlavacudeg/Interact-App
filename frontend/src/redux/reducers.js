@@ -8,6 +8,7 @@ const initialState = {
     grade: [],
     grades: [],
     courses: [],
+    notifications: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -117,6 +118,13 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 courses: action.payload,
+            };
+
+        //Notifications
+        case 'GET_NOTIFICATIONS':
+            return {
+                ...state,
+                notifications: action.payload,
             };
 
         default:
