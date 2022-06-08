@@ -1,13 +1,13 @@
 * {
-  margin         : 0;
-  padding        : 0;
-  box-sizing     : border-box;
-  text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
 }
 
 .app {
-  display       : flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 @media screen and (min-width: 900px) {

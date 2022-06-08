@@ -24,6 +24,7 @@ router.post(
         validateJWT,
         isTeacherRole,
         check('course_id', 'course id is not mongoId').isMongoId(),
+        check('course_id').custom((id) => existModelById(Course, id)),
         body('title', 'title is required').not().isEmpty(),
         body('link', 'link is required').not().isEmpty(),
         validateField,

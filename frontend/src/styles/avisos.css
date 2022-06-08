@@ -1,9 +1,11 @@
 /* Reset */
 :root {
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
-*, *::after, *::before {
+*,
+*::after,
+*::before {
     box-sizing: inherit;
 }
 
@@ -12,33 +14,29 @@
     margin: 0;
 }
 
-
 .h2-avisos {
-    
     font-size: 24px;
     padding: 0rem 1rem 1rem 1rem;
 }
 
 .ul-avisos {
     list-style: none;
-    padding:0;
+    padding: 0;
 }
 
 .ul-avisos li {
     padding: 0;
 }
 .avisos-li {
-    display:flex;
+    display: flex;
     width: 800px;
     border: thin solid black;
     border-radius: 12px;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
 }
 
 /* Tamaño de la imagen */
 .avisosimg {
     width: 8%;
-    padding: .5rem;
+    padding: 0.5rem;
 }
-
-
