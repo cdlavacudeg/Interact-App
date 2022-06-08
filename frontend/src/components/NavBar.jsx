@@ -1,17 +1,25 @@
-import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { logout } from '../redux/actions'
 import homeSVG from '@icons/home.svg'
 import materiasSVG from '@icons/courses.svg'
 import calificacionesSVG from '@icons/clasification.svg'
 import perfilSVG from '@icons/profile.svg'
 import contactoSVG from '@icons/contact.svg'
 import logoutSVG from '@icons/logout.svg'
+import backArrowSVG from "@icons/back-arrow.svg"
 import "@styles/navBar.css"
 
 
 
 
-const NavBar = () => {
+const NavBar = ({show, change}) => {
 
+    const isSelected = (navData) => navData.isActive ? "selected" : ""
+     console.log(isSelected)
+
+    const isActive = show ? 'show' : ' '
+    const dispatch = useDispatch();
     const menuItem = [
         {
             path: "/",
@@ -20,17 +28,17 @@ const NavBar = () => {
         },
         {
             path: "/materias",
-            name: "Materias",
+            name: "Mis Materias",
             icon: materiasSVG
         },
         {
             path: "/calificaciones",
-            name: "Calificaciones",
+            name: "Mis Calificaciones",
             icon: calificacionesSVG
         },
         {
             path: "/perfil",
-            name: "Perfil",
+            name: "Mi Perfil",
             icon: perfilSVG
         },
         {
@@ -38,28 +46,42 @@ const NavBar = () => {
             name: "Contacto",
             icon: contactoSVG
         },
-        {
-            path: "/",
-            name: "Cerrar Sesión",
-            icon: logoutSVG
-        },
+        // {
+        //     path: "/logout",
+        //     name: "Cerrar Sesión",
+        //     icon: logoutSVG
+        // },
 
 
     ]
-
+    const handleLogout=()=>{
+        dispatch(logout());
+        window.localStorage.setItem("loggedAppUser", JSON.stringify({}));
+    }
   return (
-    <nav className="header-nav">
+    <nav className={`header-nav ${isActive}`} >
+        <button onClick={change}  className="header-backarrow">
+                <img src={backArrowSVG} alt="back arrow" />
+        </button>
         <ul className="header-nav-list">
             {menuItem.map(item => (
                 <li className="header-nav-item" key={item.name}>
-                    <a className="header-nav-link" href={item.path}>
+                    <NavLink className='header-nav-link'  to={item.path}>
                         <div className="header-nav-img">
                         <img  src={item.icon} alt={item.name} />
                         </div>
                         {item.name}
-                    </a>
+                    </NavLink>
                 </li>
-            ))}       
+            ))}
+            <li className="header-nav-item" >
+                    <NavLink id='logout' className='header-nav-link' onClick={handleLogout} to={"/"}>
+                        <div className="header-nav-img">
+                        <img  src={logoutSVG} alt="Cerrar Sesión" />
+                        </div>
+                        Cerrar Sesión
+                    </NavLink>
+            </li>   
         </ul>
     </nav>
   )

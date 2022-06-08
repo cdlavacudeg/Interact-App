@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Router, Link } from 'react-router-dom';
 import exit from '@img/exit.png'
 import home from '@img/home.png'
 import materias from '@img/materias.png'
@@ -8,8 +8,8 @@ import perfil from '@img/perfil.png'
 import contacto from '@img/contacto.png'
 import logo from '@img/logo.png'
 import menu from '@img/menu.png'
-import Calendar from '../components/Calendar';
-//import '@styles/sidebar.css'
+import CustomCalendar from '../components/CustomCalendar';
+import '@styles/siderbar.css'
 
 
 const Sidebar = ({ children }) => {
@@ -60,7 +60,7 @@ const Sidebar = ({ children }) => {
 
                 <div style={{ width: isOpen ? "300px" : "70px" }} className="sidebar">
                     <div className="top_section">
-                        <a href="/"> <img style={{ display: isOpen ? "block" : "none" }} className="logo" src={logo} alt="logo" /></a>
+                    <Link to='/'><img style={{ display: isOpen ? "block" : "none" }} className="logo" src={logo} alt="logo" /></Link>    
                         <div style={{ display: isOpen ? "none" : "block", marginLeft: isOpen ? "0" : "5px" }} className="btn_toggle">
                             <img onClick={toggle} src={menu} alt="menu" />
                         </div>
@@ -87,15 +87,12 @@ const Sidebar = ({ children }) => {
                     <div className="row">
                         <div className="col-12 col-md-9"> <main onClick={() => toggleMain()}>{children}</main></div>
                         <div className="col-12 col-xl-3">
-                         <Calendar></Calendar>
+                         <CustomCalendar />
                         </div>
                     </div>
 
 
                 </div>
-
-
-
 
 
                 <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

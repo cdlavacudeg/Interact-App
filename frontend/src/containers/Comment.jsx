@@ -12,7 +12,10 @@ function Comment () {
             <p className="parrafo">
                 Lorem ipsum dolor sit amet 
             </p>
+            <div className="container_commentImput">
             <CommentImput />
+            </div>
+            
             <div className="container_button">
             <button type="submit">
                 ENVIAR
