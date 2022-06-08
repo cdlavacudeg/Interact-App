@@ -7,7 +7,7 @@ const initialState = {
     event: [],
     grade: [],
     grades: [],
-    courses:[]
+    courses: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -116,8 +116,8 @@ function rootReducer(state = initialState, action) {
         case 'GET_USER_COURSES':
             return {
                 ...state,
-                courses: action.payload
-            }
+                courses: action.payload,
+            };
 
         default:
             return state;
