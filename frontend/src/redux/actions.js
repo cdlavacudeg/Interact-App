@@ -72,13 +72,20 @@ export function logout() {
     };
 }
 
-export function login(data) {
+export function login({email,password,role}) {
+    console.log(email)
+    let data = {email,password}
     return async function (dispatch) {
         var json = await axios.post(
             `/auth/login`,
             data
         );
-        console.log(json.data);
+        const resRole = json.data.data.user.role
+        if(resRole != role){
+            if(resRole != 'admin'){
+                throw new Error('Incorrect role')
+            }
+        }
         return dispatch({
             type: 'LOGIN',
             payload: json.data.data,

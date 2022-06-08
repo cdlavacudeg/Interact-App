@@ -52,13 +52,12 @@ const LoginPage = () => {
                 password: Yup.string().required("Password required"),
             }),
             onSubmit: (values) => {
-                console.log("FORM STUDENTS:", values);
-
-                dispatch(login(values)).catch((error) => {
+                const {email,password}=values
+                dispatch(login({email,password,role:'student'})).catch((error) => {
                     let message =
-                        error.message !== "Network Error"
-                            ? error.response.data.error
-                            : "en Servidor";
+                        error.message == "Network Error" || error.message == "Incorrect role"
+                            ? error.message
+                            : error.response.data.error;
                     toast.error(`Error ${message} `, {
                         style: {
                             border: "1px solid tomato",
@@ -85,12 +84,12 @@ const LoginPage = () => {
                 password: Yup.string().required("Password required"),
             }),
             onSubmit: (values) => {
-                console.log("FORM TEACHER:", values);
-                dispatch(login(values)).catch((error) => {
+                const {email,password}=values
+                dispatch(login({email,password,role:'teacher'})).catch((error) => {
                     let message =
-                        error.message !== "Network Error"
-                            ? error.response.data.error
-                            : "en Servidor";
+                        error.message == "Network Error" || error.message == "Incorrect role"
+                            ? error.message
+                            : error.response.data.error;
                     toast.error(`Error ${message} `, {
                         style: {
                             border: "1px solid tomato",
