@@ -1,8 +1,9 @@
 import axios from 'axios';
 
+const baseURL = import.meta.VITE_APP_BACKEND || 'http://localhost:5000'
 export function getUsers() {
     return async function (dispatch) {
-        var json = await axios.get('http://localhost:5000/api/v1/user');
+        var json = await axios.get(`${baseURL}/api/v1/user`);
         console.log(json.data);
         return dispatch({
             type: 'GET_USERS',
@@ -13,7 +14,7 @@ export function getUsers() {
 
 export function getUser(id) {
     return async function (dispatch) {
-        var json = await axios.get('http://localhost:5000/api/v1/user' + id);
+        var json = await axios.get(`${baseURL}/api/v1/user/${id}`);
         console.log(json.data);
         return dispatch({
             type: 'GET_USER',
@@ -73,7 +74,7 @@ export function logout() {
 export function login(data) {
     return async function (dispatch) {
         var json = await axios.post(
-            'http://localhost:5000/api/v1/auth/login',
+            `${baseURL}/api/v1/auth/login`,
             data
         );
         console.log(json.data);
