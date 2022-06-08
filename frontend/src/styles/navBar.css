@@ -66,21 +66,29 @@
 }
 
 #logout {
-    background-color: #000;
-    color           : #f5f5f6;
+    display         : flex;
+    align-content   : center;
+    background-color: var(--white-color);
+    color           : var(--black-color);
+    border          : none;
+    border-radius   : 25px;
+    font-size       : var(--fz0);
+    padding         : .8rem 2rem;
+    transition      : var(--transition);
 }
 
 #logout:hover {
-    background-color: #00e0b3;
+    background-color: #ff0033;
 }
+
 
 
 @media screen and (min-width: 900px) {
     .header-nav {
-        width       : 100%;
-        /* max-width: 500px; */
-        position    : static;
-        z-index     : 0;
+        width    : 100%;
+        max-width: 500px;
+        position : static;
+        z-index  : 0;
     }
 
     .header-nav-item:last-child {
