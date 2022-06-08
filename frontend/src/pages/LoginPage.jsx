@@ -52,24 +52,27 @@ const LoginPage = () => {
                 password: Yup.string().required("Password required"),
             }),
             onSubmit: (values) => {
-                const {email,password}=values
-                dispatch(login({email,password,role:'student'})).catch((error) => {
-                    let message =
-                        error.message == "Network Error" || error.message == "Incorrect role"
-                            ? error.message
-                            : error.response.data.error;
-                    toast.error(`Error ${message} `, {
-                        style: {
-                            border: "1px solid tomato",
-                            padding: "16px",
-                            color: "black",
-                        },
-                        iconTheme: {
-                            primary: "tomato",
-                            secondary: "#FFFAEE",
-                        },
-                    });
-                });
+                const { email, password } = values;
+                dispatch(login({ email, password, role: "student" })).catch(
+                    (error) => {
+                        let message =
+                            error.message == "Network Error" ||
+                            error.message == "Incorrect role"
+                                ? error.message
+                                : error.response.data.error;
+                        toast.error(`Error ${message} `, {
+                            style: {
+                                border: "1px solid tomato",
+                                padding: "16px",
+                                color: "black",
+                            },
+                            iconTheme: {
+                                primary: "tomato",
+                                secondary: "#FFFAEE",
+                            },
+                        });
+                    }
+                );
             },
         });
 
@@ -84,24 +87,27 @@ const LoginPage = () => {
                 password: Yup.string().required("Password required"),
             }),
             onSubmit: (values) => {
-                const {email,password}=values
-                dispatch(login({email,password,role:'teacher'})).catch((error) => {
-                    let message =
-                        error.message == "Network Error" || error.message == "Incorrect role"
-                            ? error.message
-                            : error.response.data.error;
-                    toast.error(`Error ${message} `, {
-                        style: {
-                            border: "1px solid tomato",
-                            padding: "16px",
-                            color: "black",
-                        },
-                        iconTheme: {
-                            primary: "tomato",
-                            secondary: "#FFFAEE",
-                        },
-                    });
-                });
+                const { email, password } = values;
+                dispatch(login({ email, password, role: "teacher" })).catch(
+                    (error) => {
+                        let message =
+                            error.message == "Network Error" ||
+                            error.message == "Incorrect role"
+                                ? error.message
+                                : error.response.data.error;
+                        toast.error(`Error ${message} `, {
+                            style: {
+                                border: "1px solid tomato",
+                                padding: "16px",
+                                color: "black",
+                            },
+                            iconTheme: {
+                                primary: "tomato",
+                                secondary: "#FFFAEE",
+                            },
+                        });
+                    }
+                );
             },
         });
 

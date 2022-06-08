@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = import.meta.env.VITE_APP_API || 'http://localhost:5000/api/v1'
+axios.defaults.baseURL =
+    import.meta.env.VITE_APP_API || 'http://localhost:5000/api/v1';
 
 export function getUsers() {
     return async function (dispatch) {
@@ -37,10 +38,7 @@ export function deleteUser(id) {
 
 export function updateUser(id, data) {
     return async function (dispatch) {
-        var json = await axios.put(
-            `/user/${id}`,
-            data
-        );
+        var json = await axios.put(`/user/${id}`, data);
         console.log(json.data);
         return dispatch({
             type: 'UPDATE_USER',
@@ -51,10 +49,7 @@ export function updateUser(id, data) {
 
 export function postUser(id, data) {
     return async function (dispatch) {
-        var json = await axios.post(
-            `/user/${id}`,
-            data
-        );
+        var json = await axios.post(`/user/${id}`, data);
         console.log(json.data);
         return dispatch({
             type: 'POST_USER',
@@ -72,18 +67,15 @@ export function logout() {
     };
 }
 
-export function login({email,password,role}) {
-    console.log(email)
-    let data = {email,password}
+export function login({ email, password, role }) {
+    console.log(email);
+    let data = { email, password };
     return async function (dispatch) {
-        var json = await axios.post(
-            `/auth/login`,
-            data
-        );
-        const resRole = json.data.data.user.role
-        if(resRole != role){
-            if(resRole != 'admin'){
-                throw new Error('Incorrect role')
+        var json = await axios.post(`/auth/login`, data);
+        const resRole = json.data.data.user.role;
+        if (resRole != role) {
+            if (resRole != 'admin') {
+                throw new Error('Incorrect role');
             }
         }
         return dispatch({
@@ -93,14 +85,13 @@ export function login({email,password,role}) {
     };
 }
 
-export function getGrade (id) {
+export function getGrade(id) {
     return async function (dispatch) {
         var json = await axios.get(`/grade/${id}`);
-        console.log(json.data)
+        console.log(json.data);
         return dispatch({
-            type: "GET_GRADE",
+            type: 'GET_GRADE',
             payload: json.data,
         });
     };
 }
-

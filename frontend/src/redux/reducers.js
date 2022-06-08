@@ -7,7 +7,7 @@ const initialState = {
     event: [],
     grade: [],
     grades: [],
-}
+};
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {
@@ -81,33 +81,36 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 events: [...state.events, action.payload],
             };
-                //GRADES
-                case 'GET_GRADES':
-                    return {
-                        ...state,
-                        grades: action.payload
-                    }
-                case 'GET_GRADE':
-                    return {
-                    ...state,
-                    grade: action.payload
-                        }
-                case 'DELETE_GRADE':
-                    return {
-                    ...state,
-                    grades: state.grades.filter(grade => grade.id !== action.payload.id)
-                        }
-                case 'UPDATE_GRADE':
-                    return {
-                    ...state,
-                    grades: state.grades.map(grade => grade.id === action.payload.id ? action.payload : grade)
-                        }
-                case 'POST_GRADE':
-                    return {
-                    ...state,
-                    grades: [...state.grades, action.payload]
-                        }
-
+        //GRADES
+        case 'GET_GRADES':
+            return {
+                ...state,
+                grades: action.payload,
+            };
+        case 'GET_GRADE':
+            return {
+                ...state,
+                grade: action.payload,
+            };
+        case 'DELETE_GRADE':
+            return {
+                ...state,
+                grades: state.grades.filter(
+                    (grade) => grade.id !== action.payload.id
+                ),
+            };
+        case 'UPDATE_GRADE':
+            return {
+                ...state,
+                grades: state.grades.map((grade) =>
+                    grade.id === action.payload.id ? action.payload : grade
+                ),
+            };
+        case 'POST_GRADE':
+            return {
+                ...state,
+                grades: [...state.grades, action.payload],
+            };
 
         default:
             return state;

@@ -1,13 +1,12 @@
 .welcome {
-    margin          : .2rem 0;
-    display         : flex;
-    justify-content : space-between;
-    align-items     : center;
-    width           : 100%;
+    margin: 0.2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     background-color: var(--cuarto-color);
-    border-radius   : 30px;
-    position        : relative;
-
+    border-radius: 30px;
+    position: relative;
 }
 
 .welcome-user {
@@ -15,55 +14,51 @@
 }
 
 .welcome-title {
-    font-size     : var(--fz3);
+    font-size: var(--fz3);
     padding-bottom: 0;
-    padding-left  : 1.5rem;
+    padding-left: 1.5rem;
 }
 
 .welcome-body {
-    font-size   : var(--fz0);
+    font-size: var(--fz0);
     padding-left: 1.5rem;
 }
 
 .welcome-img {
-    width   : 100%;
+    width: 100%;
     position: relative;
 }
 
 .welcome-img img {
-    width   : 14rem;
+    width: 14rem;
     position: absolute;
-    top     : -70px;
-    right   : 0;
+    top: -70px;
+    right: 0;
 }
 
 @media screen and (max-width: 760px) {
-
-
     .welcome-img {
-        width   : 20%;
+        width: 20%;
         position: relative;
     }
 
     .welcome-img img {
         position: absolute;
-        width   : 10rem;
-        top     : -50px;
-        right   : 0;
+        width: 10rem;
+        top: -50px;
+        right: 0;
     }
 }
 
-
 @media screen and (max-width: 430px) {
-
-        .welcome-user {
+    .welcome-user {
         width: 90%;
-        }
+    }
 
-        .welcome-img img {
-            position: absolute;
-            width: 7rem;
-            top: -37px;
-            right: -10px;
-        }
+    .welcome-img img {
+        position: absolute;
+        width: 7rem;
+        top: -37px;
+        right: -10px;
+    }
 }

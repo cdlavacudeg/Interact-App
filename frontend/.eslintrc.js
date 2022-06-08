@@ -22,9 +22,9 @@ module.exports = {
         'no-unused-vars': 'off',
         'react/prop-types': 'off',
     },
-    settings:{
-        react:{
-            "version": "detect"
-        }
-    }
+    settings: {
+        react: {
+            version: 'detect',
+        },
+    },
 };
