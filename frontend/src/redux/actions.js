@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = import.meta.VITE_APP_BACKEND || 'http://localhost:5000'
+const baseURL = import.meta.VITE_APP_BACKEND || '${baseURL}'
 export function getUsers() {
     return async function (dispatch) {
         var json = await axios.get(`${baseURL}/api/v1/user`);
@@ -25,7 +25,7 @@ export function getUser(id) {
 
 export function deleteUser(id) {
     return async function (dispatch) {
-        var json = await axios.delete('http://localhost:5000/api/v1/user' + id);
+        var json = await axios.delete('${baseURL}/api/v1/user' + id);
         console.log(json.data);
         return dispatch({
             type: 'DELETE_USER',
@@ -37,7 +37,7 @@ export function deleteUser(id) {
 export function updateUser(id, data) {
     return async function (dispatch) {
         var json = await axios.put(
-            'http://localhost:5000/api/v1/user' + id,
+            '${baseURL}/api/v1/user' + id,
             data
         );
         console.log(json.data);
@@ -51,7 +51,7 @@ export function updateUser(id, data) {
 export function postUser(id, data) {
     return async function (dispatch) {
         var json = await axios.post(
-            'http://localhost:5000/api/v1/user' + id,
+            '${baseURL}/api/v1/user' + id,
             data
         );
         console.log(json.data);
@@ -87,7 +87,7 @@ export function login(data) {
 
 export function getGrade (id) {
     return async function (dispatch) {
-        var json = await axios.get("http://localhost:5000/api/v1/grade" + id);
+        var json = await axios.get("${baseURL}/api/v1/grade" + id);
         console.log(json.data)
         return dispatch({
             type: "GET_GRADE",
