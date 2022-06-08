@@ -75,7 +75,6 @@ export function logout() {
 }
 
 export function login({ email, password, role }) {
-    console.log(email);
     let data = { email, password };
     return async function (dispatch) {
         var json = await axios.post(`/auth/login`, data);
@@ -114,8 +113,6 @@ export function getGrade(id) {
 export function getCourses(id) {
     return async function (dispatch) {
         var json = await axios.get(`/user/${id}`);
-        console.log('action: ');
-        console.log(json.data.data);
         window.localStorage.setItem(
             'courses',
             JSON.stringify(json.data.data.user.courses)
@@ -134,7 +131,6 @@ export function getCourses(id) {
 export function getNotifications() {
     return async function (dispatch) {
         var json = await axios.get('/notification');
-        console.log(json.data.data);
         return dispatch({
             type: 'GET_NOTIFICATIONS',
             payload: json.data.data.notification,

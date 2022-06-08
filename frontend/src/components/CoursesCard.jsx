@@ -1,16 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import "@styles/coursesCard.css";
 
-const CoursesCard = (props) => {
+const CoursesCard = ({ name, image, nameProf,id }) => {
     const navigate = useNavigate();
-
-    const { name, image, nameProf } = props;
-    console.log(props);
 
     return (
         <div className="row row-cols-1 row-cols-md-3 g-3">
             <div
-                // onClick={() => navigate(`/materias/${name}`)}
+                onClick={() => navigate(`/materias/${id}`)}
                 className="materia col-sm-6 col-md-4 col-6 "
             >
                 <div className="card cardMaterias">

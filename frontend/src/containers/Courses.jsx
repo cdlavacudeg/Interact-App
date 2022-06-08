@@ -5,8 +5,6 @@ import "@styles/courses.css";
 const Courses = () => {
     const materias = useSelector((state) => state.courses);
 
-    console.log(materias[0].courseName);
-
     return (
         <div className="courses">
             <h1 className="courses-title">Mis Materias</h1>
@@ -19,6 +17,7 @@ const Courses = () => {
                             image={item.image}
                             nameProf={item.teacher.fullName}
                             key={item._id}
+                            id={item._id}
                         />
                     );
                 })
