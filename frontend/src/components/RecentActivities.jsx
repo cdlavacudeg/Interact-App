@@ -14,8 +14,8 @@ function Recentactivities() {
                             (item, index) =>
                                 index < 3 && (
                                     <div key={index} className="col-6 col-lg-4">
-                                        <article className="recent-activities-item mb-3">
-                                            <div className="activities-notification">
+                                        <article className="recent_activities_item mb-3">
+                                            <div className="activities_notification">
                                                 1
                                             </div>
                                             <img

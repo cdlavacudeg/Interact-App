@@ -25,6 +25,7 @@ import "@styles/App.css";
 const App = () => {
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
+
     if (!user.token) {
         return <LoginPage />;
     }

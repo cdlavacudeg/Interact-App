@@ -1,6 +1,6 @@
 import CoursesCard from "../components/CoursesCard";
 import { useSelector, useDispatch } from "react-redux";
-import inglesSVG from '@img/ingles.png'
+import inglesSVG from '@img/Ingles.png'
 import "@styles/courses.css";
 
 const Courses = () => {

@@ -267,7 +267,7 @@ const LoginPage = () => {
                     <section className={style.choiceLoginButtons}>
                         <button
                             onClick={handleStudent}
-                            className="bnt_primary"
+                            className="btn_primary mt-4"
                         >
                             Soy estudiante
                         </button>

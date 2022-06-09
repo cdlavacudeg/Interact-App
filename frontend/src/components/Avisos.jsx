@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getNotifications } from "../redux/actions";
-import style from "@styles/avisosStyle.module.css";
+import style from "@styles/AvisosStyle.module.css";
 import avisosimg from "@img/img-avisos.png";
 
 function Avisos() {
