@@ -97,24 +97,31 @@ const LoginPage = () => {
                         </div>
                         <div className={style.contentInput}>
                             <input
+                            style={{marginTop: '5px'}}
                                 className={style.customInput}
                                 type="password"
-                                placeholder='password'
+                                placeholder='Password'
                                 id='password'
                                 name='password'
                                 onChange={formikTeacher.handleChange}
                                 value={formikTeacher.values.password}
                             />
+                             
                             {
                                 formikTeacher.errors.password ? <div className={style.formikError}> {formikTeacher.errors.password} </div> : null 
                             }
                         </div>
-                        <p onClick={handleResetPassword} className={style.resetPassword}>¿Olvidaste tu Contraseña?</p>
-                        <input
-                            className={style.buttonSubmit}
+                      <div className='container'>
+                      <p onClick={handleResetPassword} className={style.resetPassword}>¿Olvidaste tu Contraseña?</p>
+                          <div></div>
+                      </div>
+                      <input
+                            className={style.choiceFormButton}
                             type="submit"
                             value="Iniciar sessión"
                         />
+                      
+                      
                     </form>
                 </div>
             )
@@ -137,8 +144,8 @@ const LoginPage = () => {
                             formikStudent.errors.email ? <div className={style.formikError}> {formikStudent.errors.email} </div> : null 
                         }
                     </div>
-                    <div className={style.contentInput}>
-                        <input
+                    <div  className={style.contentInput}>
+                        <input style={{marginTop: '5px'}}
                             className={style.customInput}
                             type="password"
                             placeholder='password'
@@ -151,9 +158,20 @@ const LoginPage = () => {
                             formikStudent.errors.password ? <div className={style.formikError}> {formikStudent.errors.password} </div> : null 
                         }
                     </div>
-                    <p onClick={handleResetPassword} className={style.resetPassword}>¿Olvidaste tu Contraseña?</p>
+                   
+                      
+                       
+                     
+                     
+                       <div className='container'>
+                       <p onClick={handleResetPassword} className={style.resetPassword}>¿Olvidaste tu Contraseña?</p>
+<div></div>
+                       </div>
+                  
+                      
+                   
                     <input
-                        className={style.buttonSubmit}
+                        className={style.choiceFormButton}
                         type="submit"
                         value="Iniciar sessión"
                     />
@@ -180,14 +198,14 @@ const LoginPage = () => {
                     <img className={style.logo} src={logo} alt="logo"/>
                 </section>
                 <section className={style.motivatingPhraseContent}>
-                    <h3>EL conocimiento te traerá la oportunidad de hacer la diferencia.</h3>
-                    <p><i>Claire Fagin</i></p>
+                    <h3>El conocimiento te <br></br>traerá la <br></br>oportunidad de<br></br> hacer la diferencia.</h3>
+                    <p>Claire Fagin</p>
                 </section>
                 {
                     forms ? <FormLogin /> :
                     <section className={style.choiceLoginButtons}>
-                        <button onClick={handleStudent} className={style.choiceFormButton}>Soy estudiante</button>
-                        <button onClick={handleTeacher} className={style.choiceFormButton}>Soy docente</button>
+                        <button onClick={handleStudent} className="btn_primary">Soy estudiante</button>
+                        <button onClick={handleTeacher} className="btn_primary mt-4">Soy docente</button>
                     </section>
                 }
             </article>

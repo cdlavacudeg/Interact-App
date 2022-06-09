@@ -37,28 +37,28 @@ const App = () => {
 
   const main = () => (
 
-  (
+    (
 
-    <BrowserRouter>
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home/>}>
-          <Route index element={<Home/>} />
-          <Route path="/materias" element={<Materias />} />
-          <Route path="/materias/Biologia" element={<Biologia/>} />
-          <Route path="/materias/Historia" element={<Historia/>} />
-          <Route path="/materias/Matematicas" element={<Matematicas/>} />
-          <Route path="/materias/Informatica" element={<Informatica/>} />
-          <Route path="/materias/Ingles" element={<Ingles/>} />
-          <Route path="/materias/FisicoQuimica" element={<FisicoQuimica/>} />
-          <Route path="/materias/Literatura" element={<Literatura/>} />
-          <Route path="/materias/Geografia" element={<Geografia/>} />
-          <Route path="/calificaciones" element={<Calificaciones />} />
-          <Route path="/perfil" element={<Perfil />} />
-          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/" element={<Home />}>
+            <Route index element={<Home />} />
+            <Route path="/materias" element={<Materias />} />
+            <Route path="/materias/Biologia" element={<Biologia />} />
+            <Route path="/materias/Historia" element={<Historia />} />
+            <Route path="/materias/Matematicas" element={<Matematicas />} />
+            <Route path="/materias/Informatica" element={<Informatica />} />
+            <Route path="/materias/Ingles" element={<Ingles />} />
+            <Route path="/materias/FisicoQuimica" element={<FisicoQuimica />} />
+            <Route path="/materias/Literatura" element={<Literatura />} />
+            <Route path="/materias/Geografia" element={<Geografia />} />
+            <Route path="/calificaciones" element={<Calificaciones />} />
+            <Route path="/perfil" element={<Perfil />} />
+            <Route path="/contacto" element={<Contacto />} />
           </Route>
         </Routes>
-    </BrowserRouter>
-  )
+      </BrowserRouter>
+    )
 
 
   )
@@ -68,7 +68,7 @@ const App = () => {
 
       {user === null ?
         main() :
-   <Home></Home>
+        <LoginPage></LoginPage>
       }
 
     </>
