@@ -1,7 +1,6 @@
 
 .container_principal {
     width: 100%;
-    
     display: flex;
     flex-direction: column;
 }
@@ -11,26 +10,38 @@
     font-weight: 400;
 }
 .parrafo {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     letter-spacing: 2%;
+    line-height: 24px;
 }
 .container_commentImput {
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: blue;
-    
-
-
 }
 .container_button {
-    width: 100%;
+    width: 82%;
     display: flex;
-    justify-content:flex-end ;
-    margin-right: auto;
-    background-color: aqua;
-    
+    justify-content: flex-end;
+}
+@media screen and (max-width: 1024px) {
+    .container_button{
+      width: 85%;
+    }
+}
+@media screen and (max-width: 740px) {
+    .container_button{
+      width: 100%;
+    }
+}
+@media screen and (max-width: 667px) {
+    .container_button{
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-left: 50px;
+    }
 }
 button {
     width: 94px;
@@ -38,9 +49,10 @@ button {
     left: 791px;
     top: 402px;
     font-size: 16px;
-    background: var(--tercer-color);
+    font-weight: 500;
+    background: rgb(26, 193, 168);
     border-radius: 6px;
     margin-top: 10px;
     margin-right: 50px;
-   
+    border: none;
 }

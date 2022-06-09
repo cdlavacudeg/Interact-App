@@ -1,5 +1,5 @@
 .componentContent {
-    display: flex;
+    display       : flex;
     flex-direction: column;
     align-items: flex-start;
     height: 100%;
@@ -10,56 +10,57 @@
 /* .titlesAside {
 } */
 .titlesAside h1 {
-    color: #331ab3;
+    color    : #331Ab3;
     font-size: 1.5rem;
 }
 
 .calendarNotificationContent {
-    display: flex;
+    display       : flex;
     flex-direction: column;
-    gap: 10px;
-    width: 100%;
+    gap           : 10px;
+    width         : 100%;
 }
 
 /* Custom notification  *************************+*/
 .notificationContent {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    display        : flex;
+    flex-direction : row;
+    align-items    : center;
     justify-content: center;
-    gap: 10px;
+    gap            : 10px;
 }
 
 .boxDate {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background-color: #90ee90;
-    padding: 10px;
-    border-radius: 50%;
-    color: #fff;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    text-align      : center;
+    background-color: #90EE90;
+    padding         : 10px;
+    border-radius   : 50%;
+    color           : #fff;
 }
 
 .descriptionNotificationContent {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    display        : flex;
+    flex-direction : column;
+    align-items    : flex-start;
     justify-content: center;
-    width: 90%;
-    padding-top: 15px;
+    width          : 90%;
+    padding-top    : 15px;
 }
 
 .descriptionNotificationContent h3 {
     letter-spacing: 2px;
-    font-size: 1rem;
+    font-size     : 1rem;
 }
 
 .descriptionNotificationContent p {
-    font-size: 0.7rem;
-    margin-top: -10px;
+    font-size     : .7rem;
+    margin-top    : -10px;
     letter-spacing: 1px;
 }
+
 
 /* Calendar  ******************************/
 .reactCalendar {
@@ -76,9 +77,10 @@
 
 .reactCalendar button {
     background-color: transparent;
-    border: none;
-    padding: 10px;
+    border          : none;
+    padding         : 10px;
 }
+
 
 /* Responsive ******************************/
 @media only screen and (max-width: 900px) {

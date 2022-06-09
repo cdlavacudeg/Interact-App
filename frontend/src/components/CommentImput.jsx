@@ -10,7 +10,7 @@ import "@styles/commentImputs.css"
                     </h3>
                 </div>
                 <div className="" id="">
-                    <textarea name="" id="" cols="50" rows="8" placeholder="Escriba un mensaje"></textarea>
+                    <textarea name="" id="" cols="50" rows="7" placeholder="Escriba un mensaje"></textarea>
                 </div>
             </div>
         )
