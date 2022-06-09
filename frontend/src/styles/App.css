@@ -117,7 +117,12 @@ border: none;
 .materia {
     cursor: pointer;
 }
-
+.highlight{
+    color:var(--white-color);
+    background-color: var(--segundo-color)!important;
+    border-radius: 50%;
+    text-align: center;
+}
 @media screen and (max-width: 760px) {
     .sidebar {
         display: none;
