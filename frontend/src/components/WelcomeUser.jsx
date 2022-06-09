@@ -4,7 +4,6 @@ import style from "@styles/WelcomeUserStyle.module.css"
 import { useSelector } from "react-redux";
 
 function WelcomeUser() {
-    // const user = JSON.parse(window.localStorage.getItem('loggedAppUser')) || "";
     const user = useSelector((state)=>state.user) || "";
     const name = user.user.fullName
     const gender = user.user.gender
