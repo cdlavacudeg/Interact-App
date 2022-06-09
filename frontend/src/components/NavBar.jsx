@@ -39,12 +39,8 @@ const NavBar = ({ show, change }) => {
             name: "Contacto",
             icon: contactoSVG,
         },
-        // {
-        //     path: "/logout",
-        //     name: "Cerrar Sesión",
-        //     icon: logoutSVG
-        // },
     ];
+
     const handleLogout = () => {
         dispatch(logout());
         window.localStorage.setItem("loggedAppUser", JSON.stringify({}));

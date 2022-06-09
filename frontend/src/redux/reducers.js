@@ -1,15 +1,21 @@
+const localStorage = window.localStorage.getItem('loggedAppUser')
+    ? JSON.parse(window.localStorage.getItem('loggedAppUser'))
+    : undefined;
+
+const localCourses = window.localStorage.getItem('courses')
+    ? JSON.parse(window.localStorage.getItem('courses'))
+    : undefined;
+
 const initialState = {
     users: [],
-    user: window.localStorage.getItem('loggedAppUser')
-        ? JSON.parse(window.localStorage.getItem('loggedAppUser'))
-        : {},
+    user: localStorage ? localStorage : {},
     events: [],
     event: [],
     grade: [],
     grades: [],
-    course: [],
-    courses: [],
-}
+    courses: localCourses ? localCourses : [],
+    notifications: [],
+};
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {
@@ -83,60 +89,49 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 events: [...state.events, action.payload],
             };
-                //GRADES
-                case 'GET_GRADES':
-                    return {
-                        ...state,
-                        grades: action.payload
-                    }
-                case 'GET_GRADE':
-                    return {
-                    ...state,
-                    grade: action.payload
-                        }
-                case 'DELETE_GRADE':
-                    return {
-                    ...state,
-                    grades: state.grades.filter(grade => grade.id !== action.payload.id)
-                        }
-                case 'UPDATE_GRADE':
-                    return {
-                    ...state,
-                    grades: state.grades.map(grade => grade.id === action.payload.id ? action.payload : grade)
-                        }
-                case 'POST_GRADE':
-                    return {
-                    ...state,
-                    grades: [...state.grades, action.payload]
-                        }
-                //COURSES
-                case 'GET_COURSES':
-                    return {
-                        ...state,
-                        courses: action.payload
-                    }
-                case 'GET_COURSE':
-                    return {
-                    ...state,
-                    course: action.payload
-                        }
-                case 'DELETE_COURSE':
-                    return {
-                    ...state,
-                    courses: state.courses.filter(course => course.id !== action.payload.id)
-                        }
-                case 'UPDATE_COURSE':
-                    return {
-                    ...state,
-                    courses: state.courses.map(course => course.id === action.payload.id ? action.payload : course)
-                        }
-                case 'POST_COURSE':
-                    return {
-                    ...state,
-                    courses: [...state.courses, action.payload]
-                        }
+        //GRADES
+        case 'GET_GRADES':
+            return {
+                ...state,
+                grades: action.payload,
+            };
+        case 'GET_GRADE':
+            return {
+                ...state,
+                grade: action.payload,
+            };
+        case 'DELETE_GRADE':
+            return {
+                ...state,
+                grades: state.grades.filter(
+                    (grade) => grade.id !== action.payload.id
+                ),
+            };
+        case 'UPDATE_GRADE':
+            return {
+                ...state,
+                grades: state.grades.map((grade) =>
+                    grade.id === action.payload.id ? action.payload : grade
+                ),
+            };
+        case 'POST_GRADE':
+            return {
+                ...state,
+                grades: [...state.grades, action.payload],
+            };
+        //Courses
+        case 'GET_USER_COURSES':
+            return {
+                ...state,
+                courses: action.payload,
+            };
 
-
+        //Notifications
+        case 'GET_NOTIFICATIONS':
+            return {
+                ...state,
+                notifications: action.payload,
+            };
 
         default:
             return state;

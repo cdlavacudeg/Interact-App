@@ -3,12 +3,15 @@ import welcomeimg from "@img/welcome-img.svg";
 import "@styles/welcomeuser.css";
 
 
-function WelcomeUser({name, gender}) {
+function WelcomeUser() {
+    const user = JSON.parse(window.localStorage.getItem('loggedAppUser')) || "";
+    const name = user.user.fullName
+    const gender = user.user.gender
     return (
         <section className="welcome">
             <div className="welcome-user">
                 <h1 className="welcome-title">
-                    ¡{gender === "female" ? "Bienvenida" : "Bienvenido"}, {name}
+                    ¡{gender === "female" ? "Bienvenida" : "Bienvenido"}, {name}!
                 </h1>
                 <p className="welcome-body">
                     {" "}

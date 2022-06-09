@@ -209,6 +209,7 @@ const courseGetById = async (req, res) => {
         const course = await Course.findById(id)
             .populate({ path: 'lessons', select: 'lectures' })
             .populate({ path: 'grades', select: 'studentGrades' })
+            .populate({ path: 'events', select: 'events' })
             .exec();
 
         response.success(req, res, 'get API - Course by id', { course });

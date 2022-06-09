@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-const baseURL = import.meta.VITE_APP_BACKEND || '${baseURL}'
+axios.defaults.baseURL =
+    import.meta.env.VITE_APP_API || 'http://localhost:5000/api/v1';
+
+//=============================
+//           USER
+//=============================
 export function getUsers() {
     return async function (dispatch) {
         var json = await axios.get('/user');
@@ -62,6 +67,10 @@ export function postUser(id, data) {
     };
 }
 
+//=============================
+//         LOGIN
+//============================
+
 export function logout() {
     return async function (dispatch) {
         return dispatch({
@@ -72,7 +81,6 @@ export function logout() {
 }
 
 export function login({ email, password, role }) {
-    console.log(email);
     let data = { email, password };
     return async function (dispatch) {
         var json = await axios.post(`/auth/login`, data);
@@ -89,6 +97,10 @@ export function login({ email, password, role }) {
     };
 }
 
+//============================
+//         GRADES
+//============================
+
 export function getGrade(id) {
     return async function (dispatch) {
         var json = await axios.get("/grade" + id);
@@ -100,108 +112,34 @@ export function getGrade(id) {
     };
 }
 
-export function getGrades () {
+//============================
+//         COURSES
+//============================
+
+export function getCourses(id) {
     return async function (dispatch) {
-        var json = await axios.get("/grade");
-        console.log(json.data)
+        var json = await axios.get(`/user/${id}`);
+        window.localStorage.setItem(
+            'courses',
+            JSON.stringify(json.data.data.user.courses)
+        );
         return dispatch({
-            type: "GET_GRADES",
-            payload: json.data,
+            type: 'GET_USER_COURSES',
+            payload: json.data.data.user.courses,
         });
     };
 }
 
-export function deleteGrade (id) {
+//============================
+//       NOTIFICATIONS
+//============================
+
+export function getNotifications() {
     return async function (dispatch) {
-        var json = await axios.delete("/grade" + id);
-        console.log(json.data)
+        var json = await axios.get('/notification');
         return dispatch({
-            type: "DELETE_GRADE",
-            payload: json.data,
-        });
-    }
-}
-
-export function updateGrade (id, data) {
-    return async function (dispatch) {
-        var json = await axios.put("/grade" + id, data);
-        console.log(json.data)
-        return dispatch({
-            type: "UPDATE_GRADE",
-            payload: json.data,
-        });
-    }
-}
-export function postGrade (data) {
-    return async function (dispatch) {
-        var json = await axios.post("/grade", data);
-        console.log(json.data)
-        return dispatch({
-            type: "POST_GRADE",
-            payload: json.data,
-        });
-    }
-}
-
-
-
-
-
-export function getCourses ( ) {
-    return async function (dispatch) {
-        var json = await axios.get("/course");
-        console.log(json.data)
-        return dispatch({
-            type: "GET_COURSES",
-            payload: json.data,
+            type: 'GET_NOTIFICATIONS',
+            payload: json.data.data.notification,
         });
     };
 }
-
-
-export function getCourse (id) {
-    return async function (dispatch) {
-        var json = await axios.get("/course" + id);
-        console.log(json.data)
-        return dispatch({
-            type: "GET_COURSE",
-            payload: json.data,
-        });
-    };
-}
-
-export function deleteCourse (id) {
-    return async function (dispatch) {
-        var json = await axios.delete("/course" + id);
-        console.log(json.data)
-        return dispatch({
-            type: "DELETE_COURSE",
-            payload: json.data,
-        });
-    };
-}
-
-export function updateCourse (id, data) {
-    return async function (dispatch) {
-        var json = await axios.put("/course" + id, data);
-        console.log(json.data)
-        return dispatch({
-            type: "UPDATE_COURSE",
-            payload: json.data,
-        });
-    };
-}
-
-export function postCourse  (data) {
-    return async function (dispatch) {
-        var json = await axios.post("/course", data);
-        console.log(json.data)
-        return dispatch({
-            type: "POST_COURSE",
-            payload: json.data,
-        });
-    };
-}
-
-
-
