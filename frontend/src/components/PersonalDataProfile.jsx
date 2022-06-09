@@ -4,9 +4,9 @@ import "@styles/personaldataprofile.css";
 function PersonalDataProfile () {
     return ( 
         <section className="bg-light p-2">            
-            <div className="table-responsive" id="no-more-tables">
+            <div className="table-responsive table-personaldataprofile" id="no-more-tables">
                 <table className="table">
-                <thead className="thead-dataname">
+                <thead className="thead">
                         <tr>
                             <th className="clamp-responsive">Institucion</th>
                             <th className="clamp-responsive">Curso</th>

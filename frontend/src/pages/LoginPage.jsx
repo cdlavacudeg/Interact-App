@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import style from "../styles/LoginPageStyle.module.css";
-
 import bgLoginPage from "../assets/images/bgLoginPage.png";
 import logo from "../assets/images/logo.png";
 import toast, { Toaster } from "react-hot-toast";
@@ -140,6 +139,7 @@ const LoginPage = () => {
                         </div>
                         <div className={style.contentInput}>
                             <input
+                            style={{marginTop: '5px'}}
                                 className={style.customInput}
                                 type="password"
                                 placeholder="password"
@@ -162,10 +162,12 @@ const LoginPage = () => {
                             ¿Olvidaste tu Contraseña?
                         </p>
                         <input
-                            className={style.buttonSubmit}
+                            className={style.choiceFormButton}
                             type="submit"
                             value="Iniciar sessión"
                         />
+
+
                     </form>
                 </div>
             );
@@ -197,8 +199,8 @@ const LoginPage = () => {
                             </div>
                         ) : null}
                     </div>
-                    <div className={style.contentInput}>
-                        <input
+                    <div  className={style.contentInput}>
+                        <input style={{marginTop: '5px'}}
                             className={style.customInput}
                             type="password"
                             placeholder="password"
@@ -221,7 +223,7 @@ const LoginPage = () => {
                         ¿Olvidaste tu Contraseña?
                     </p>
                     <input
-                        className={style.buttonSubmit}
+                        className={style.choiceFormButton}
                         type="submit"
                         value="Iniciar sessión"
                     />
@@ -265,13 +267,13 @@ const LoginPage = () => {
                     <section className={style.choiceLoginButtons}>
                         <button
                             onClick={handleStudent}
-                            className={style.choiceFormButton}
+                            className="btn_primary mt-4"
                         >
                             Soy estudiante
                         </button>
                         <button
                             onClick={handleTeacher}
-                            className={style.choiceFormButton}
+                            className="btn_primary mt-4"
                         >
                             Soy docente
                         </button>
