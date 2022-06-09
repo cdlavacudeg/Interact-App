@@ -1,5 +1,6 @@
 import CoursesCard from "../components/CoursesCard";
 import { useSelector, useDispatch } from "react-redux";
+import inglesSVG from '@img/Ingles.png'
 import "@styles/courses.css";
 
 const Courses = () => {
@@ -8,6 +9,7 @@ const Courses = () => {
     return (
         <div className="courses">
             <h1 className="courses-title">Mis Materias</h1>
+            <section className="courses-container">
 
             {materias ? (
                 materias.map((item) => {
@@ -22,8 +24,27 @@ const Courses = () => {
                     );
                 })
             ) : (
-                <div></div>
+                <div>No hay materias</div>
             )}
+            <CoursesCard
+            name={"Porn"}
+            image={inglesSVG}
+            nameProf={'pelado de brazzer'}
+            id={'fj8u4nc4rv4'}
+            />
+            <CoursesCard
+            name={"Porn"}
+            image={inglesSVG}
+            nameProf={'pelado de brazzer'}
+            id={'fj8u4nc4rv4'}
+            />
+            <CoursesCard
+            name={"Porn"}
+            image={inglesSVG}
+            nameProf={'pelado de brazzer'}
+            id={'fj8u4nc4rv4'}
+            />
+            </section>
         </div>
     );
 };

@@ -30,7 +30,7 @@ export function getUser(id) {
 
 export function deleteUser(id) {
     return async function (dispatch) {
-        var json = await axios.delete(`/user/${id}`);
+        var json = await axios.delete('/user' + id);
         console.log(json.data);
         return dispatch({
             type: 'DELETE_USER',
@@ -41,7 +41,10 @@ export function deleteUser(id) {
 
 export function updateUser(id, data) {
     return async function (dispatch) {
-        var json = await axios.put(`/user/${id}`, data);
+        var json = await axios.put(
+            '/user' + id,
+            data
+        );
         console.log(json.data);
         return dispatch({
             type: 'UPDATE_USER',
@@ -52,7 +55,10 @@ export function updateUser(id, data) {
 
 export function postUser(id, data) {
     return async function (dispatch) {
-        var json = await axios.post(`/user/${id}`, data);
+        var json = await axios.post(
+            '/user' + id,
+            data
+        );
         console.log(json.data);
         return dispatch({
             type: 'POST_USER',
@@ -61,7 +67,7 @@ export function postUser(id, data) {
     };
 }
 
-//=============================
+//============================
 //         LOGIN
 //============================
 
@@ -97,8 +103,8 @@ export function login({ email, password, role }) {
 
 export function getGrade(id) {
     return async function (dispatch) {
-        var json = await axios.get(`/grade/${id}`);
-        console.log(json.data);
+        var json = await axios.get("/grade" + id);
+        console.log(json.data)
         return dispatch({
             type: 'GET_GRADE',
             payload: json.data,

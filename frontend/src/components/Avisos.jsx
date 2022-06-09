@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import avisosimg from "@img/img-avisos.png";
-import "@styles/avisos.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getNotifications } from "../redux/actions";
+import style from "@styles/AvisosStyle.module.css";
+import avisosimg from "@img/img-avisos.png";
 
 function Avisos() {
     const [avisos, setAvisos] = useState(3);
@@ -30,28 +30,27 @@ function Avisos() {
     };
 
     return (
-        <section className="sectionAvisos">
-            <h2 className="h2-avisos"> Avisos</h2>
-            <ul className="ul-avisos">
+        <section className={style.sectionAvisos}>
+            <h2 className={style.h2_avisos}> Avisos</h2>
                 {avisosAll ? (
                     avisosAll.map(
                         (item, index) =>
                             index < avisos && (
-                                <li key={index} className="avisos-li">
+                                <li key={index} className={style.avisos_li}>
                                     <img
-                                        className="avisosimg"
+                                        className={style.avisosimg}
                                         src={avisosimg}
                                         alt="avisos img"
                                     />
                                     <article>
-                                        <ul className="ul-avisos">
-                                            <li className="institucion-aviso">
+                                        <ul className={style.ul_avisos}>
+                                            <li className={style.institucion_aviso}>
                                                 {item.title}
                                             </li>
-                                            <li className="fecha-aviso">
+                                            <li className={style.fecha_aviso}>
                                                 {item.date}
                                             </li>
-                                            <li className="descripcion-aviso">
+                                            <li className={style.descripcion_aviso}>
                                                 {item.content}
                                             </li>
                                         </ul>
@@ -68,8 +67,7 @@ function Avisos() {
                 <button onClick={() => verMas()} className="btn_second">
                     {btn === 1 ? "Ver mas" : "Ver menos"}
                 </button>
-            </ul>
-        </section>
+    </section>
     );
 }
 

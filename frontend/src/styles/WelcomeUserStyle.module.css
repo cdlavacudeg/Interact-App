@@ -31,6 +31,23 @@
 
 .welcome-img img {
     width: 14rem;
+    position: relative;
+
+}
+
+.welcome_title {
+font-size: 32px;
+padding-bottom: 0;
+padding-left: 1.5rem;
+}
+
+.welcome_body {
+font-size: 16px;
+padding-left: 1.5rem;
+}
+
+.welcome_img {
+    width:25%;
     position: absolute;
     top: -70px;
     right: 0;
@@ -60,5 +77,8 @@
         width: 7rem;
         top: -37px;
         right: -10px;
+    }
+    .welcome-body {
+            padding-left: 0.8rem;
     }
 }
