@@ -5,12 +5,11 @@
     color        : var(--primer-color);
 }
 
-.bg-color-honey {
+.bg_color_honey {
     background-color: #efb365;
 }
 
 @media only screen and (max-width: 800px) {
-
 
     .calificaciones {
         margin-bottom: 2rem;

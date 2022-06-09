@@ -22,7 +22,7 @@ function GradesTable() {
 
     return (
         <section className="bg-light p-5">
-            <div className='table-responsive' id="no-more-tables">
+            <div className={style.table_responsive} id="no-more-tables">
                 <table className="table">
                     <thead>
                         <tr className={style.bg_color_honey}>
