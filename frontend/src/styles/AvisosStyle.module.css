@@ -19,12 +19,12 @@
     padding: 0rem 1rem 1rem 1rem;
 }
 
-.ul-avisos {
+.ul_avisos {
     list-style: none;
     padding: 0;
 }
 
-.ul-avisos li {
+.ul_avisos li {
     padding: 0;
 }
 .avisos-li {

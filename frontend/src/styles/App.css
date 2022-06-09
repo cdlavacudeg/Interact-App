@@ -76,15 +76,15 @@ h1 {
     color: var(--primer-color);
 }
 
-.btn_primary {
-    border: none;
-    border-radius: 5px;
-    background-color: var(--cuarto-color);
-    color: var(--black-color);
-    width: 100%;
-    cursor: pointer;
-    padding: 0.5em 3em;
-    font-weight: 600;
+.btn_primary{
+border: none;
+  border-radius: 6px;
+  background-color: var(--cuarto-color);
+  color: var(--black-color);
+  width: 100%;
+  cursor: pointer;
+  padding: 0.5em 3em;
+  font-weight: 500;
 }
 
 .btn_primary:hover {
@@ -92,12 +92,12 @@ h1 {
 }
 .btn_second {
     border: none;
-    border-radius: 5px;
-    background-color: var(--tercer-color);
-    color: var(--black-color);
-    width: 110px;
-    cursor: pointer;
-    padding: 0.5em 1em;
+      border-radius: 6px;
+      background-color: var(--tercer-color);
+      color: var(--black-color);
+      width: 110px;
+      cursor: pointer;
+      padding: 0.5em 1em;
     font-weight: 600;
 }
 
