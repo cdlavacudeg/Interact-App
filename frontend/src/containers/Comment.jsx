@@ -10,7 +10,7 @@ function Comment () {
                 Contacto
             </h1>
             <p className="parrafo">
-                Lorem ipsum dolor sit amet 
+                Si tienes alguna duda o necesitas mas informaci&oacute;n no dudes en contactarnos!
             </p>
             <div className="container_commentImput">
             <CommentImput />
@@ -18,7 +18,7 @@ function Comment () {
             
             <div className="container_button">
             <button type="submit">
-                ENVIAR
+                Enviar
             </button>
             </div>
           
