@@ -71,27 +71,8 @@ button {
     cursor: pointer;
 }
 
-<<<<<<< HEAD
-.app {
-    width        : 100%;
-    max-width    : 1440px;
-    margin-inline: auto;
-    margin       : 0 auto;
-}
-
-.profile-section {
-    margin-top: 1.5rem;
-}
-
-.profile-section > h1 {
-    color: var(--primer-color);
-}
-h1{
-    padding: 1rem ;
-=======
 h1 {
     padding: 1rem;
->>>>>>> e4b44990902175085a759b5b863e91feb48e6efb
     color: var(--primer-color);
 }
 
@@ -108,57 +89,15 @@ h1 {
 
 .btn_primary:hover {
     background-color: var(--quinto-color);
-<<<<<<< HEAD
-    
-  }
-.btn_second{
-border: none;
-=======
 }
 .btn_second {
     border: none;
->>>>>>> e4b44990902175085a759b5b863e91feb48e6efb
     border-radius: 5px;
     background-color: var(--tercer-color);
     color: var(--black-color);
     width: 110px;
     cursor: pointer;
     padding: 0.5em 1em;
-<<<<<<< HEAD
-font-weight: 600;
-}
-
-
-.btn_second:hover {
-    background-color: var(--segundo-color);
-    color: var(--whiteSmoke-color);
-    }
-
-    .cardMaterias{
-    border-radius: 15px !important;
-    border: 1px solid var(--primer-color) !important;
-    background-color: var(--whiteSmoke-color) !important;
-    margin-top: 1rem;
-    
-}
-.materia:hover{
-    transform: translateX(5px);
-}
-.materia{
-    cursor: pointer;
-}
-
-
-
-    @media screen and (max-width: 760px){
-    .sidebar{
-        display: none;
-    }
-    .cardMaterias{
-        margin: 0.1rem;
-    }
-    
-=======
     font-weight: 600;
 }
 
@@ -188,5 +127,4 @@ font-weight: 600;
     .cardMaterias {
         margin: 0.5rem;
     }
->>>>>>> e4b44990902175085a759b5b863e91feb48e6efb
 }

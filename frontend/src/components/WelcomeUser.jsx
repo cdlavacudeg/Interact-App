@@ -1,27 +1,5 @@
 import * as React from "react";
 import welcomeimg from "@img/welcome-img.svg";
-<<<<<<< HEAD
-import "@styles/welcomeuser.css"
-
-
-const name = 'Juan';
-const gender = 'male';
-
-
-function WelcomeUser () {
-    return (
-        <section className="welcome">
-            <div className="welcome-user">
-            <h1 className="welcome-title">¡{gender === 'female' ? 'Bienvenida' : 'Bienvenido'}, {name}</h1>
-            <p className="welcome-body"> ¿{gender === 'female' ? 'Lista' : 'Listo'} para seguir aprendiendo hoy?</p>
-            </div>
-            <img className="welcome-img" src={welcomeimg} alt="" />
-        </section>
-    )
-}
-
-export default WelcomeUser;
-=======
 import "@styles/welcomeuser.css";
 
 const name = "Juan";
@@ -48,4 +26,3 @@ function WelcomeUser() {
 }
 
 export default WelcomeUser;
->>>>>>> e4b44990902175085a759b5b863e91feb48e6efb

@@ -1,7 +1,7 @@
 
 .section-img-name-perfil {
     display:flex;
-    width: 600px;
+    width: 100%;
     margin-top: 2.5rem;
 }
 
@@ -13,4 +13,8 @@
 
 .h1-name-perfil {
     margin-top: 2rem;
+}
+
+.clamp-responsive {
+    font-size: --var(--fz-2);
 }
