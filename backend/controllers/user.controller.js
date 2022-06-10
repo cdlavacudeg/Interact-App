@@ -1,8 +1,7 @@
 const User = require('../models/user.model');
 const Course = require('../models/course.model.js');
 const bcryptjs = require('bcryptjs');
-const mongodb = require('mongodb');
-const ObjectId = mongodb.ObjectId;
+const { Types } = require('mongoose');
 const response = require('../helpers/response.js');
 
 const usersGet = async (req, res) => {
@@ -98,37 +97,35 @@ const userPut = async (req, res) => {
         }
 
         if (courses) {
-            user_past.courses.map(async (course) => {
-                const courseObj = await Course.findById(course);
+            await Promise.all(
+                user_past.courses.map(async (course) => {
+                    const courseObj = await Course.findById(course);
+                    if (user_past.role == 'teacher') {
+                        courseObj.teacher = Types.ObjectId(0);
+                    } else if (user_past.role == 'student') {
+                        courseObj.students = courseObj.students.filter(
+                            (student) => !student.equals(user_past._id)
+                        );
+                    }
+                    await courseObj.save();
+                })
+            ).then(() => {
+                courses.map(async (course) => {
+                    const courseObj = await Course.findById(course);
+                    if (user_past.role == 'teacher') {
+                        courseObj.teacher = user_past._id;
+                    } else if (user_past.role == 'student') {
+                        courseObj.students.push(user_past._id);
+                    }
 
-                if (user_past.role == 'teacher') {
-                    courseObj.teacher = ObjectId(0);
-                } else if (user_past.role == 'student') {
-                    let students = courseObj.students.filter(
-                        (student) => student != id
-                    );
-                    courseObj.students = students;
-                }
-
-                await courseObj.save();
-            });
-
-            courses.map(async (course) => {
-                const courseObj = await Course.findById(course);
-
-                if (user_past.role == 'teacher') {
-                    courseObj.teacher = ObjectId(id);
-                } else if (user_past.role == 'student') {
-                    courseObj.students.push(ObjectId(id));
-                }
-
-                await courseObj.save();
+                    await courseObj.save();
+                });
             });
         }
 
         const user = await User.findByIdAndUpdate(
             id,
-            { courses, rest },
+            Object.assign({courses}, rest),
             { new: true }
         );
 
@@ -143,12 +140,31 @@ const userDelete = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const user = await User.findByIdAndUpdate(id, { status: false });
-        const userAuthenticated = req.user;
+        const user_past = await User.findById(id);
+        let user;
+        if (user_past.courses) {
+            await Promise.all(
+                user_past.courses.map(async (course) => {
+                    const courseObj = await Course.findById(course);
+
+                    if (user_past.role == 'teacher') {
+                        courseObj.teacher = Types.ObjectId(0);
+                    } else if (user_past.role == 'student') {
+                        let students = courseObj.students.filter(
+                            (student) => !student.equals(user_past._id)
+                        );
+                        courseObj.students = students;
+                    }
+
+                    await courseObj.save();
+                })
+            ).then((user = await User.findByIdAndDelete(user_past._id)));
+        } else {
+            user = await User.findByIdAndDelete(user_past._id);
+        }
 
         response.success(req, res, 'delete API - User deleted', {
             user,
-            userAuthenticated,
         });
     } catch (error) {
         console.error(`Error in userDelete:${error}`);
