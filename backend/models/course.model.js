@@ -21,7 +21,7 @@ const courseSchema = new Schema({
     teacher: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref:'User'
+        ref: 'User',
     },
     events: {
         type: Schema.Types.ObjectId,
@@ -35,6 +35,7 @@ const courseSchema = new Schema({
     ],
     grades: {
         type: Schema.Types.ObjectId,
+        default: 'male',
         ref: 'Grade',
     },
     forum: {

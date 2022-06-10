@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { check, body } = require('express-validator');
 const {
     validateField,
-    isTeacherRole,
+    isTeacherOrAdminRole,
     isAdminRole,
     validateJWT,
 } = require('../middlewares');
@@ -56,7 +56,7 @@ router.put(
     '/:id',
     [
         validateJWT,
-        isTeacherRole,
+        isTeacherOrAdminRole,
         check('id', 'id is not mongoId').isMongoId(),
         check('id').custom((id) => existModelById(Course, id)),
         body('courseName', 'Course name must be unique')
@@ -67,6 +67,7 @@ router.put(
         body('teacher')
             .if(body('teacher').exists())
             .custom((teacher, { req }) => {
+                console.log(req.user);
                 if (req.user.role != 'admin') {
                     throw new Error(
                         'Only admin can update the teacher of the course'
