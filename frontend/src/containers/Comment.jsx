@@ -14,16 +14,12 @@ function Comment () {
             </p>
             <div className="container_commentImput">
             <CommentImput />
-            </div>
-            
-            <div className="container_button">
-            <button type="submit">
+            <button className="container_button" type="submit">
                 Enviar
             </button>
             </div>
-          
         </div>
-        
+
     )
 }
 

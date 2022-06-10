@@ -4,11 +4,9 @@ import "@styles/commentImputs.css"
     function CommentImputs() {
         return (
             <div className="contenedor_mensaje">
-                <div className="contep">
-                    <h3>
+                     <h3 className="contep">
                      Mensaje
                     </h3>
-                </div>
                 <div className="" id="">
                     <textarea name="" id="" cols="50" rows="7" placeholder="Escriba un mensaje"></textarea>
                 </div>
@@ -17,4 +15,3 @@ import "@styles/commentImputs.css"
     }
 
 export default CommentImputs
-    
