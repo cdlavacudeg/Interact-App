@@ -41,7 +41,10 @@ export function deleteUser(id) {
 
 export function updateUser(id, data) {
     return async function (dispatch) {
-        var json = await axios.put('/user' + id, data);
+        var json = await axios.put(
+            '/user' + id,
+            data
+        );
         console.log(json.data);
         return dispatch({
             type: 'UPDATE_USER',
@@ -52,50 +55,16 @@ export function updateUser(id, data) {
 
 export function postUser(id, data) {
     return async function (dispatch) {
-        var json = await axios.post('/user' + id, data);
+        var json = await axios.post(
+            '/user' + id,
+            data
+        );
         console.log(json.data);
         return dispatch({
             type: 'POST_USER',
             payload: json.data,
         });
     };
-}
-
-export function getProfile(user_id){
-    return async function(dispatch){
-        let user = await axios.get(`/user/${user_id}`);
-        let courses_array = user.data.data.user.courses;
-
-        const profile=[]
-        await Promise.all(courses_array.map(async (course)=>{
-            await axios.get(`/course/${course._id}`)
-            .then((course_data)=>{
-                let auxObjt={
-                    classmates:course_data.data.data.course.students.filter(e=>e._id != user_id),
-                    teacher: course_data.data.data.course.teacher
-                }
-                auxObjt.teacher.course = course_data.data.data.course.courseName
-                profile.push(auxObjt);
-            })
-        }))
-        let listStudents=[]
-        let listTeachers=[]
-        profile.map(obj=>{
-            obj.classmates.map(e=>{
-                if(!listStudents.includes(e.fullName)){
-                    listStudents.push(e.fullName)
-                }
-            })
-            if(!listTeachers.some(teacher=>teacher.fullName==obj.teacher.fullName)){
-                listTeachers.push(obj.teacher)
-            }
-        })
-
-        return dispatch({
-            type:'GET_PROFILE',
-            payload: {listStudents,listTeachers}
-        })
-    }
 }
 
 //============================
@@ -118,7 +87,7 @@ export function login({ email, password, role }) {
         const resRole = json.data.data.user.role;
         if (resRole != role) {
             if (resRole != 'admin') {
-                throw new Error('Rol incorrecto');
+                throw new Error('Incorrect role');
             }
         }
         return dispatch({
@@ -132,19 +101,15 @@ export function login({ email, password, role }) {
 //         GRADES
 //============================
 
-export function getGrade(id) {
-    try {
-        return async function (dispatch) {
-            var json = await axios.get('/grade/' + id);
-            console.log(json.data);
-            return dispatch({
-                type: 'GET_GRADE',
-                payload: json.data.data.grade,
-            });
-        };
-    } catch (error) {
-        console.log(error);
-    }
+export function getGrade() {
+    return async function (dispatch) {
+        var json = await axios.get(`/grade` );
+        console.log(json.data.data.grade);
+        return dispatch({
+            type: 'GET_GRADE',
+            payload: json.data.data.grade,
+        });
+    };
 }
 
 //============================

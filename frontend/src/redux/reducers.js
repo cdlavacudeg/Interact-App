@@ -138,11 +138,11 @@ function rootReducer(state = initialState, action) {
             };
 
         // Profile
-        case 'GET_PROFILE':
-            return{
-                ...state,
-                profile: action.payload,
-            }
+        // case 'GET_PROFILE':
+        //     return{
+        //         ...state,
+        //         profile: action.payload,
+        //     }
 
         default:
             return state;
