@@ -9,10 +9,9 @@ axios.defaults.baseURL =
 export function getUsers() {
     return async function (dispatch) {
         var json = await axios.get('/user');
-        console.log(json.data);
         return dispatch({
             type: 'GET_USERS',
-            payload: json.data,
+            payload: json.data.data.user,
         });
     };
 }
@@ -61,41 +60,50 @@ export function postUser(id, data) {
     };
 }
 
-export function getProfile(user_id){
-    return async function(dispatch){
+export function getProfile(user_id) {
+    return async function (dispatch) {
         let user = await axios.get(`/user/${user_id}`);
         let courses_array = user.data.data.user.courses;
 
-        const profile=[]
-        await Promise.all(courses_array.map(async (course)=>{
-            await axios.get(`/course/${course._id}`)
-            .then((course_data)=>{
-                let auxObjt={
-                    classmates:course_data.data.data.course.students.filter(e=>e._id != user_id),
-                    teacher: course_data.data.data.course.teacher
-                }
-                auxObjt.teacher.course = course_data.data.data.course.courseName
-                profile.push(auxObjt);
+        const profile = [];
+        await Promise.all(
+            courses_array.map(async (course) => {
+                await axios.get(`/course/${course._id}`).then((course_data) => {
+                    let auxObjt = {
+                        classmates:
+                            course_data.data.data.course.students.filter(
+                                (e) => e._id != user_id
+                            ),
+                        teacher: course_data.data.data.course.teacher,
+                    };
+                    auxObjt.teacher.course =
+                        course_data.data.data.course.courseName;
+                    profile.push(auxObjt);
+                });
             })
-        }))
-        let listStudents=[]
-        let listTeachers=[]
-        profile.map(obj=>{
-            obj.classmates.map(e=>{
-                if(!listStudents.includes(e.fullName)){
-                    listStudents.push(e.fullName)
+        );
+        let listStudents = [];
+        let listTeachers = [];
+        profile.map((obj) => {
+            obj.classmates.map((e) => {
+                if (!listStudents.includes(e.fullName)) {
+                    listStudents.push(e.fullName);
                 }
-            })
-            if(!listTeachers.some(teacher=>teacher.fullName==obj.teacher.fullName)){
-                listTeachers.push(obj.teacher)
+            });
+            if (
+                !listTeachers.some(
+                    (teacher) => teacher.fullName == obj.teacher.fullName
+                )
+            ) {
+                listTeachers.push(obj.teacher);
             }
-        })
+        });
 
         return dispatch({
-            type:'GET_PROFILE',
-            payload: {listStudents,listTeachers}
-        })
-    }
+            type: 'GET_PROFILE',
+            payload: { listStudents, listTeachers },
+        });
+    };
 }
 
 //============================
@@ -132,13 +140,36 @@ export function login({ email, password, role }) {
 //         GRADES
 //============================
 
-export function getGrade(id) {
+export function getGrade(courses_id, student_id) {
     return async function (dispatch) {
-        var json = await axios.get('/grade' + id);
-        console.log(json.data);
+        let grades = await axios.get('/grade');
+        grades = grades.data.data.grade;
+        let studentGrades = [];
+        courses_id.map((id) => {
+            let gradesCourse = grades.filter(
+                (grade) => grade.course_id._id == id
+            )[0];
+
+            if (gradesCourse.studentGrades) {
+                let gradesList = gradesCourse.studentGrades.filter(
+                    (objGrade) => objGrade.student_id === student_id
+                )[0];
+
+                if (gradesList) {
+                    gradesList.grades.map((e) =>
+                        studentGrades.push(
+                            Object.assign(e, {
+                                course: gradesCourse.course_id.courseName,
+                            })
+                        )
+                    );
+                }
+            }
+        });
+
         return dispatch({
             type: 'GET_GRADE',
-            payload: json.data,
+            payload: studentGrades,
         });
     };
 }

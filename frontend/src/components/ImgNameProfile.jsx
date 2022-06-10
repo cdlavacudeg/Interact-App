@@ -4,7 +4,7 @@ import imagProfile from "@img/imgprofile.png";
 import { useSelector } from "react-redux";
 
 function ImgNameProfile() {
-    const user =useSelector(state=>state.user)
+    const user = useSelector((state) => state.user);
     return (
         <section>
             <h1 className="h1-miperfil"> Mi Perfil</h1>

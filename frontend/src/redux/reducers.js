@@ -15,7 +15,7 @@ const initialState = {
     grades: [],
     courses: localCourses ? localCourses : [],
     notifications: [],
-    profile:{},
+    profile: {},
 };
 
 function rootReducer(state = initialState, action) {
@@ -99,7 +99,7 @@ function rootReducer(state = initialState, action) {
         case 'GET_GRADE':
             return {
                 ...state,
-                grade: action.payload,
+                grades: action.payload,
             };
         case 'DELETE_GRADE':
             return {
@@ -136,10 +136,10 @@ function rootReducer(state = initialState, action) {
 
         // Profile
         case 'GET_PROFILE':
-            return{
+            return {
                 ...state,
                 profile: action.payload,
-            }
+            };
 
         default:
             return state;
