@@ -1,3 +1,8 @@
+.table-section-width {
+    width:88%;
+
+}
+
 .table-personaldataprofile tbody,
 .table-personaldataprofile tr,
 .table-personaldataprofile td {
@@ -23,6 +28,15 @@
     position: absolute;
     left: 6px;
     font-weight: bold;
+}
+.tbody-dataname {
+    border-top: none !important;
+}
+@media only screen and (max-width: 800px) {
+    .table-section-width {
+        width:100%;
+    
+    }
 }
 
 
