@@ -3,6 +3,7 @@ import "@styles/personaldataprofile.css";
 
 function PersonalDataProfile () {
     return ( 
+        
         <section className="bg-light p-2">            
             <div className="table-responsive table-personaldataprofile" id="no-more-tables">
                 <table className="table">

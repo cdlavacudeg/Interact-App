@@ -11,7 +11,7 @@ function WelcomeUser() {
         <section className={style.welcome}>
             <div className={style.welcome_user}>
                 <h1 className={style.welcome_title}>
-                    ¡{gender === "female" ? "Bienvenida" : "Bienvenido"}, {name}!
+                    ¡{gender === "female" ? "Bienvenida" : "Bienvenido"}, {name.split(' ')[0]}!
                 </h1>
                 <p className={style.welcome_body}>
                     {" "}

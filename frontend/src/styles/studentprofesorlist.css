@@ -1,0 +1,38 @@
+.profileProfesorStudentList {
+    padding: 0;
+    margin-top: 1rem;
+    display:flex;
+    justify-content: space-between;
+}
+
+.ulprofesor {
+    padding: 0;
+    background-color: var(--whiteSmoke-color);
+}
+
+
+.imagenprofile {
+    width:20px;
+    border-radius:50%;
+}
+.liprofesor {
+    padding: 0.4rem 6rem 0rem 0.4rem;
+}
+
+.listudent {
+    border-bottom: thin black solid;
+    padding: 0.4rem 6rem 0.4rem 0.4rem;
+    
+}
+
+.courseprofesor {
+    font-size: var(--fz-2);
+    padding-left: 2rem;
+    padding-bottom: .3rem;
+    border-bottom: thin black solid;
+}
+
+.h2-profile {
+    font-size: var(--fz0);
+}
+
