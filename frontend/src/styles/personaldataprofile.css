@@ -1,0 +1,56 @@
+.table-section-width {
+    width:88%;
+
+}
+
+.table-personaldataprofile tbody,
+.table-personaldataprofile tr,
+.table-personaldataprofile td {
+    display: block;
+
+
+}
+
+.table-personaldataprofile thead tr {
+    position: absolute;
+    top: -99999px;
+    left: -9999px;
+}
+
+.table-personaldataprofile td {
+    position: relative;
+    padding-left: 50%;
+    border: none;
+    border-bottom: 1px solid #eee;
+}
+.table-personaldataprofile td:before {
+    content: attr(data-title);
+    position: absolute;
+    left: 6px;
+    font-weight: bold;
+}
+.tbody-dataname {
+    border-top: none !important;
+}
+@media only screen and (max-width: 800px) {
+    .table-section-width {
+        width:100%;
+    
+    }
+}
+
+
+/* .clamp-responsive {
+    font-size: --var(--fz-2);
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;  
+
+}
+
+.clamp-responsive::-webkit-scrollbar {
+    display: none;
+  }
+   */
+
+

@@ -21,7 +21,7 @@ function GradesTable() {
 
 
     return (
-        <section className="bg-light p-5">
+        <section className="bg-light p-2">
             <div className={style.table_responsive} id="no-more-tables">
                 <table className="table">
                     <thead>
