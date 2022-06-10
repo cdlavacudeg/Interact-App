@@ -35,7 +35,6 @@ const courseSchema = new Schema({
     ],
     grades: {
         type: Schema.Types.ObjectId,
-        default: 'male',
         ref: 'Grade',
     },
     forum: {

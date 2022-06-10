@@ -67,7 +67,6 @@ router.put(
         body('teacher')
             .if(body('teacher').exists())
             .custom((teacher, { req }) => {
-                console.log(req.user);
                 if (req.user.role != 'admin') {
                     throw new Error(
                         'Only admin can update the teacher of the course'

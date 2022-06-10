@@ -100,16 +100,13 @@ const userPut = async (req, res) => {
             await Promise.all(
                 user_past.courses.map(async (course) => {
                     const courseObj = await Course.findById(course);
-
                     if (user_past.role == 'teacher') {
                         courseObj.teacher = Types.ObjectId(0);
                     } else if (user_past.role == 'student') {
-                        let students = courseObj.students.filter(
+                        courseObj.students = courseObj.students.filter(
                             (student) => !student.equals(user_past._id)
                         );
-                        courseObj.students = students;
                     }
-
                     await courseObj.save();
                 })
             ).then(() => {
@@ -128,7 +125,7 @@ const userPut = async (req, res) => {
 
         const user = await User.findByIdAndUpdate(
             id,
-            { courses, ...rest },
+            Object.assign({courses}, rest),
             { new: true }
         );
 
