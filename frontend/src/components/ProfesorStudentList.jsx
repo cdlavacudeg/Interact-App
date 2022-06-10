@@ -3,7 +3,7 @@ import "@styles/studentprofesorlist.css";
 import imgprofile from "@img/imgprofile.png";
 
 function ProfesorStudentList({list}) {
-    console.log(list)
+
     const {listStudents,listTeachers} = list
     return (
         <section className="profileProfesorStudentList">

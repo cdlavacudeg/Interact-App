@@ -1,7 +1,9 @@
 import * as React from "react";
 import "@styles/personaldataprofile.css";
+import { useSelector } from "react-redux";
 
 function PersonalDataProfile() {
+    const user = useSelector(state=>state.user)
     return (
         <section className="bg-light p-2 table-section-width">
             <div
@@ -24,16 +26,16 @@ function PersonalDataProfile() {
                                 data-title="Institucion"
                                 className="clamp-responsive"
                             >
-                                Institucion
+                                Interact
                             </td>
                             <td data-title="Curso" className="clamp-responsive">
-                                4to A
+                                Cohorte 5
                             </td>
                             <td
                                 data-title="Correo electronico"
                                 className="clamp-responsive"
                             >
-                                poncho@interact.com
+                                {user.user.email}
                             </td>
                         </tr>
                     </tbody>
