@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
+import Profile from "../containers/Profile";
 
 const Perfil = () => {
     return (
         <div>
-            <h1>Perfil</h1>
+            <Profile />
         </div>
     );
 };

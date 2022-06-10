@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
+import Comment from "../containers/Comment";
 
 const Contacto = () => {
     return (
-        <div>
-            <h1>Contacto</h1>
-        </div>
+        <>
+            <Comment />
+        </>
     );
 };
 

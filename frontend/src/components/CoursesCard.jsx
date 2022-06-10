@@ -1,13 +1,29 @@
-import '@styles/coursesCard.css'
+import { useNavigate } from "react-router-dom";
+import "@styles/coursesCard.css";
 
-const CoursesCard = () => {
-  return (
-    <div className="courses-card">
-        <div ><img src="" alt="" /></div>
-        <h4>Materia 1</h4>
+const CoursesCard = ({ name, image, nameProf, id }) => {
+    const navigate = useNavigate();
 
-    </div>
-  )
-}
+    return (
+        <div
+            onClick={() => navigate(`/materias/${id}`)}
+            className="courses-card"
+        >
+            <img
+                src={image}
+                className="card-img-top"
+                style={{
+                    borderTopLeftRadius: "15px",
+                    borderTopRightRadius: "15px",
+                }}
+                alt="..."
+            />
+            <div className="card-body">
+                <h2 className="card-title">{name}</h2>
+                <p className="card-text">{nameProf}</p>
+            </div>
+        </div>
+    );
+};
 
-export default CoursesCard
+export default CoursesCard;

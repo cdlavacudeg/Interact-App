@@ -1,10 +1,14 @@
 import * as React from "react";
-import GradesTable from '../components/GradesTable';
+import GradesTable from "../components/GradesTable";
+// import '@styles/gradestable.css';
 
-function GradesTables () {
+function GradesTables() {
     return (
-        <GradesTable />
-    )
+        <div>
+            <h1 className="calificaciones"> Mis Calificaciones</h1>
+            <GradesTable />
+        </div>
+    );
 }
 
 export default GradesTables;
