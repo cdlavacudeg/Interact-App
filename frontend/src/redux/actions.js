@@ -78,9 +78,22 @@ export function getProfile(user_id){
                 profile.push(auxObjt);
             })
         }))
+        let listStudents=[]
+        let listTeachers=[]
+        profile.map(obj=>{
+            obj.classmates.map(e=>{
+                if(!listStudents.includes(e.fullName)){
+                    listStudents.push(e.fullName)
+                }
+            })
+            if(!listTeachers.some(teacher=>teacher.fullName==obj.teacher.fullName)){
+                listTeachers.push(obj.teacher)
+            }
+        })
+
         return dispatch({
             type:'GET_PROFILE',
-            payload: profile
+            payload: {listStudents,listTeachers}
         })
     }
 }

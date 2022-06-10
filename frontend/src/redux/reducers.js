@@ -15,7 +15,7 @@ const initialState = {
     grades: [],
     courses: localCourses ? localCourses : [],
     notifications: [],
-    profile:[],
+    profile:{},
 };
 
 function rootReducer(state = initialState, action) {

@@ -4,23 +4,24 @@ import imgprofile from "@img/imgprofile.png";
 
 function ProfesorStudentList({list}) {
     console.log(list)
+    const {listStudents,listTeachers} = list
     return (
         <section className="profileProfesorStudentList">
             <article>
                 <h2 className="h2-profile">Mis Profesores</h2>
                 <ul className="ulprofesor">
-                    {list ?(
-                        list.map(e=>{
+                    {listTeachers ?(
+                        listTeachers.map((e,index)=>{
                             return(
-                                <li className="liprofesor" key={e.teacher._id}>
+                                <li className="liprofesor" key={index}>
                                     <img
                                         className="imagenprofile"
                                         src={imgprofile}
                                         alt="imgprofile"
                                     />
-                                    {e.teacher.fullName.split(' ').slice(0,2).join(' ')}
+                                    {e.fullName.split(' ').slice(0,2).join(' ')}
                                     <br/>
-                                    <span className="courseprofesor">{e.teacher.course.split(' ').slice(0,2).join(' ')}</span>
+                                    <span className="courseprofesor">{e.course.split(' ').slice(0,2).join(' ')}</span>
                                 </li>
                             )
                         })
@@ -33,19 +34,17 @@ function ProfesorStudentList({list}) {
             <article>
                 <h2 className="h2-profile">Mis Compañeros</h2>
                 <ul className="ulprofesor">
-                    {list ? list.map(e=>{
-                        return e.classmates.map(classmate=>{
+                    {listStudents ? listStudents.map((e,index)=>{
                             return(
-                                <li className="listudent" key={classmate._id}>
+                                <li className="listudent" key={index}>
                                 <img
                                     className="imagenprofile"
                                     src={imgprofile}
                                     alt="imgprofile"
                                 />
-                                {classmate.fullName.split(' ')[0]}
+                                {e.split(' ')[0]}
                             </li>
                             )
-                        })
                     }):(
                         <></>
                     )
