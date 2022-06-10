@@ -20,6 +20,7 @@ import Ingles from "@pages/Materias/Ingles";
 import Literatura from "@pages/Materias/Literatura";
 import LoginPage from "@pages/LoginPage";
 import "@styles/App.css";
+import Admin from "../pages/Admin";
 
 const App = () => {
     const user = useSelector((state) => state.user);
@@ -67,6 +68,7 @@ const App = () => {
                     <Route path="/perfil" element={<Perfil />} />
                     <Route path="/contacto" element={<Contacto />} />
                 </Route>
+                <Route path="/admin" element={<Admin />} />
             </Routes>
         </BrowserRouter>
     );

@@ -1,13 +1,13 @@
-import React from "react";
+import '@styles/calendarNotification.css'
 
 const CalendarNotification = ({ date, title, description }) => {
     return (
-        <section>
-            <div className="boxDate">{date}</div>
-            <div>
-                <h3>{title}</h3>
-                <p>
-                    <i>{description}</i>
+        <section className='calendar-table'>
+            <div className="calendar-table-num">{date}</div>
+            <div className='calendar--table-text'>
+                <h3 className='calendar-table-title'>{title}</h3>
+                <p className='calendar-table-body'>
+                    {description}
                 </p>
             </div>
         </section>
