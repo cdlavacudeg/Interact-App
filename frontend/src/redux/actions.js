@@ -9,10 +9,9 @@ axios.defaults.baseURL =
 export function getUsers() {
     return async function (dispatch) {
         var json = await axios.get('/user');
-        console.log(json.data);
         return dispatch({
             type: 'GET_USERS',
-            payload: json.data,
+            payload: json.data.data.user,
         });
     };
 }
