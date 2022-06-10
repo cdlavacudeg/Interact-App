@@ -21,7 +21,6 @@ import Literatura from "@pages/Materias/Literatura";
 import LoginPage from "@pages/LoginPage";
 import "@styles/App.css";
 
-
 const App = () => {
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
@@ -31,8 +30,8 @@ const App = () => {
     }
 
     dispatch(getCourses(user.user.uid)).catch((error) => {
-            console.log(error);
-        });
+        console.log(error);
+    });
 
     window.localStorage.setItem("loggedAppUser", JSON.stringify(user));
     return (

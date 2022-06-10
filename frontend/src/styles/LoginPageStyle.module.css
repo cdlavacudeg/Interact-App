@@ -43,18 +43,14 @@
     margin-left: 1rem;
 }
 .logo {
-
-width: 200px;
-padding: 1rem;
-
-
+    width: 200px;
+    padding: 1rem;
 }
 .motivatingPhraseContent {
     width: 60%;
-
 }
 .motivatingPhraseContent h3 {
-    color: var(--primer-color );
+    color: var(--primer-color);
     font-weight: 500;
     font-size: 40px;
     line-height: 50px;
@@ -62,10 +58,10 @@ padding: 1rem;
     align-items: center;
 }
 .motivatingPhraseContent p {
-    color: var(--primer-color );
+    color: var(--primer-color);
 
     font-weight: 400;
-    font-size:22px;
+    font-size: 22px;
 }
 .choiceLoginButtons {
     display: flex;
@@ -73,7 +69,6 @@ padding: 1rem;
     width: 60%;
     height: 100%;
     margin-top: 2rem;
-
 }
 .choiceFormButton {
     border: none;
@@ -86,12 +81,9 @@ padding: 1rem;
     font-weight: 500;
 }
 
-
-
 .choiceFormButton:hover {
-        background-color: var(--quinto-color);
-
-      }
+    background-color: var(--quinto-color);
+}
 .choiceFormButton:hover {
     box-shadow: none;
 }
@@ -102,7 +94,7 @@ padding: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #12676F;
+    border: 2px solid #12676f;
     border-radius: 6px;
     flex-direction: column;
     width: 60%;
@@ -118,7 +110,6 @@ padding: 1rem;
     justify-content: space-around;
     padding: 10px;
     height: 100%;
-
 }
 .contentInput {
     width: 100%;
@@ -128,13 +119,12 @@ padding: 1rem;
     justify-content: center;
 }
 .customInput {
-    border: 1.5px solid #B9B9B9;
-border-radius: 6px;
+    border: 1.5px solid #b9b9b9;
+    border-radius: 6px;
 
     background-color: #fff;
     padding: 0.5em;
     width: 100%;
-
 }
 
 .customInput:focus {
@@ -156,12 +146,9 @@ border-radius: 6px;
     color: var(--segundo-color);
     cursor: pointer;
     font-size: small;
-
 }
 .resetPassword:hover {
-    color:var(--primer-color);
-
-
+    color: var(--primer-color);
 }
 /*******************************************/
 
@@ -181,43 +168,36 @@ border-radius: 6px;
     .motivatingPhraseContent {
         width: 50%;
         padding: 10px;
-
     }
     .choiceLoginButtons {
         width: 90%;
     }
     .boxForm {
-       width: 50%;
-       height: 40%;
-    }
-    .choiceLoginButtons {
-
         width: 50%;
         height: 40%;
-
+    }
+    .choiceLoginButtons {
+        width: 50%;
+        height: 40%;
     }
 }
 @media only screen and (max-width: 500px) {
     .logo {
-
         width: 200px;
     }
     .motivatingPhraseContent {
         width: 90%;
         padding: 10px;
-
     }
     .choiceLoginButtons {
         width: 90%;
     }
     .boxForm {
-       width: 90%;
-       height: 35%;
-    }
-    .choiceLoginButtons {
-
         width: 90%;
         height: 35%;
-
+    }
+    .choiceLoginButtons {
+        width: 90%;
+        height: 35%;
     }
 }

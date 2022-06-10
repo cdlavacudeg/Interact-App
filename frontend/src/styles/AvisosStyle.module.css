@@ -29,7 +29,7 @@
 }
 .avisos_li {
     display: flex;
-    width: 800px;
+    width: 100%;
     border: thin solid black;
     border-radius: 12px;
     margin-bottom: 0.5rem;
