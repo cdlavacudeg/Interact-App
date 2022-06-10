@@ -3,7 +3,7 @@ import "@styles/personaldataprofile.css";
 import { useSelector } from "react-redux";
 
 function PersonalDataProfile() {
-    const user = useSelector(state=>state.user)
+    const user = useSelector((state) => state.user);
     return (
         <section className="bg-light p-2 table-section-width">
             <div
