@@ -3,7 +3,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCourses } from "../redux/actions";
+import { getCourses, getGrade } from "../redux/actions";
 import Layout from "@containers/Layout";
 import Home from "@pages/Home.jsx";
 import Materias from "@pages/Materias.jsx";

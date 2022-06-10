@@ -1,7 +1,26 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import "@styles/gradestable.css";
+import { useEffect } from "react";
+import {getGrade} from "../redux/actions";
+import {useDispatch} from "react-redux";
 
 function GradesTable() {
+
+    const dispatch = useDispatch();
+    const grades = useSelector((state) => state.grade) || {};
+    const user = useSelector((state) => state.user);
+
+
+    console.log(grades)
+    useEffect(() => {
+        dispatch(getGrade(user.user.uid)).catch((error) => {
+            console.log(error);
+        });
+    }
+    ,[dispatch, user.user.uid]);
+
     return (
         <section className="bg-light p-5">
             <div className="table-responsive" id="no-more-tables">
@@ -16,50 +35,7 @@ function GradesTable() {
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-title="Materia">Ingles</td>
-                            <td data-title="Fecha">27/05/2022</td>
-                            <td data-title="Tipo de evaluacion">Examen oral</td>
-                            <td data-title="Calificación">8</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Materia">Biologia</td>
-                            <td data-title="Fecha">27/05/2022</td>
-                            <td data-title="Tipo de evaluacion">
-                                Examen escrito
-                            </td>
-                            <td data-title="Calificación">6</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Materia">Historia</td>
-                            <td data-title="Fecha">27/05/2022</td>
-                            <td data-title="Tipo de evaluacion">
-                                Trabajo practico
-                            </td>
-                            <td data-title="Calificación">4</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Materia">Historia</td>
-                            <td data-title="Fecha">27/05/2022</td>
-                            <td data-title="Tipo de evaluacion">
-                                Trabajo practico
-                            </td>
-                            <td data-title="Calificación">7.50</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Materia">Matematica</td>
-                            <td data-title="Fecha">27/05/2022</td>
-                            <td data-title="Tipo de evaluacion">
-                                Examen escrito
-                            </td>
-                            <td data-title="Calificación">9</td>
-                        </tr>
-                        <tr>
-                            <td data-title="Materia">Fisico-quimica</td>
-                            <td data-title="Fecha">27/05/2022</td>
-                            <td data-title="Tipo de evaluacion">
-                                Examen escrito
-                            </td>
-                            <td data-title="Calificación">8</td>
+
                         </tr>
                     </tbody>
                 </table>

@@ -67,7 +67,7 @@ export function postUser(id, data) {
     };
 }
 
-//=============================
+//============================
 //         LOGIN
 //============================
 
@@ -102,14 +102,18 @@ export function login({ email, password, role }) {
 //============================
 
 export function getGrade(id) {
-    return async function (dispatch) {
-        var json = await axios.get("/grade" + id);
-        console.log(json.data)
-        return dispatch({
-            type: 'GET_GRADE',
-            payload: json.data,
-        });
-    };
+    try {
+        return async function (dispatch) {
+            var json = await axios.get('/grade/' + id);
+            console.log(json.data);
+            return dispatch({
+                type: 'GET_GRADE',
+                payload: json.data.data.grade,
+            });
+        };
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 //============================

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 
 function WelcomeUser() {
-    const user = useSelector((state) => state.user);
+    const user = useSelector((state) => state.user) || "";
     const name = user.user.fullName
     const gender = user.user.gender
 
