@@ -3,31 +3,31 @@
 }
 
 .courses-title {
-    font-size    : var(--fz3);
-    margin-top   : 0;
+    font-size: var(--fz3);
+    margin-top: 0;
     margin-bottom: 1rem;
-    color        : var(--primer-color);
+    color: var(--primer-color);
 }
 
 .courses-container {
-    display              : grid;
-    width                : 100%;
+    display: grid;
+    width: 100%;
     grid-template-columns: repeat(2, minmax(150px, 1fr));
-    gap                  : 1rem;
-    margin               : auto;
+    gap: 1rem;
+    margin: auto;
 }
 
 @media screen and (min-width: 900px) {
     .courses-container {
-        display              : grid;
+        display: grid;
         grid-template-columns: repeat(3, minmax(200px, 1fr));
-        gap                  : 2rem;
+        gap: 2rem;
     }
 
     .courses-title {
-        font-size    : var(--fz3);
-        margin-top   : 1rem;
+        font-size: var(--fz3);
+        margin-top: 1rem;
         margin-bottom: 3rem;
-        color        : var(--primer-color);
+        color: var(--primer-color);
     }
 }

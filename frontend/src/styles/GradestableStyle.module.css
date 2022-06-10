@@ -1,9 +1,8 @@
-
 .calificaciones {
-    font-size    : var(--fz3);
-    margin-top   : 1rem;
+    font-size: var(--fz3);
+    margin-top: 1rem;
     margin-bottom: 3.3rem;
-    color        : var(--primer-color);
+    color: var(--primer-color);
 }
 
 .bg_color_honey {
@@ -11,7 +10,6 @@
 }
 
 @media only screen and (max-width: 800px) {
-
     .calificaciones {
         margin-bottom: 2rem;
     }
@@ -22,26 +20,26 @@
         display: block;
     }
 
-    .container-width-gradestables{
+    .container-width-gradestables {
         width: 100%;
     }
     #no-more-tables thead tr {
         position: absolute;
-        top     : -99999px;
-        left    : -9999px;
+        top: -99999px;
+        left: -9999px;
     }
 
     #no-more-tables td {
-        position     : relative;
-        padding-left : 50%;
-        border       : none;
+        position: relative;
+        padding-left: 50%;
+        border: none;
         border-bottom: 1px solid #eee;
     }
 
     #no-more-tables td:before {
-        content    : attr(data-title);
-        position   : absolute;
-        left       : 6px;
+        content: attr(data-title);
+        position: absolute;
+        left: 6px;
         font-weight: bold;
     }
 

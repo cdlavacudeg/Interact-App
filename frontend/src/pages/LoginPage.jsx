@@ -91,7 +91,7 @@ const LoginPage = () => {
                     (error) => {
                         let message =
                             error.message == "Network Error" ||
-                            error.message == "Incorrect role"
+                            error.message == "Rol incorrecto"
                                 ? error.message
                                 : error.response.data.error;
                         toast.error(`Error ${message} `, {
@@ -139,7 +139,7 @@ const LoginPage = () => {
                         </div>
                         <div className={style.contentInput}>
                             <input
-                            style={{marginTop: '5px'}}
+                                style={{ marginTop: "5px" }}
                                 className={style.customInput}
                                 type="password"
                                 placeholder="password"
@@ -166,8 +166,6 @@ const LoginPage = () => {
                             type="submit"
                             value="Iniciar sessión"
                         />
-
-
                     </form>
                 </div>
             );
@@ -199,8 +197,9 @@ const LoginPage = () => {
                             </div>
                         ) : null}
                     </div>
-                    <div  className={style.contentInput}>
-                        <input style={{marginTop: '5px'}}
+                    <div className={style.contentInput}>
+                        <input
+                            style={{ marginTop: "5px" }}
                             className={style.customInput}
                             type="password"
                             placeholder="password"

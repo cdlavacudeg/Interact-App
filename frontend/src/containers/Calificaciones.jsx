@@ -4,11 +4,11 @@ import GradesTable from "../components/GradesTable";
 
 function GradesTables() {
     return (
-   <div>
-      <h1 className="calificaciones"> Mis Calificaciones</h1>
-       <GradesTable />
-   </div>
-    )
+        <div>
+            <h1 className="calificaciones"> Mis Calificaciones</h1>
+            <GradesTable />
+        </div>
+    );
 }
 
 export default GradesTables;

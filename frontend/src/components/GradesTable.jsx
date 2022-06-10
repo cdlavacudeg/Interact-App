@@ -1,24 +1,21 @@
 import * as React from "react";
 import style from "@styles/GradestableStyle.module.css";
 
-
 function GradesTable() {
-
-
     const materiasTest = [
         {
-            materia: 'historia',
-            fecha: '09/07/1995',
-            tipo: 'Evaluacion',
-            calificaciones: '10'
-        }, {
-            materia: 'ingles',
-            fecha: '17/12/1991',
-            tipo: 'Tarea',
-            calificaciones: '8'
+            materia: "historia",
+            fecha: "09/07/1995",
+            tipo: "Evaluacion",
+            calificaciones: "10",
         },
-    ]
-
+        {
+            materia: "ingles",
+            fecha: "17/12/1991",
+            tipo: "Tarea",
+            calificaciones: "8",
+        },
+    ];
 
     return (
         <section className="bg-light p-2">
@@ -33,16 +30,18 @@ function GradesTable() {
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                            materiasTest.map((item, index) => (
-                                <tr key={index}>
-                                    <td data-title="Materia">{item.materia}</td>
-                                    <td data-title="Fecha">{item.fecha}</td>
-                                    <td data-title="Tipo de evaluacion">{item.tipo}</td>
-                                    <td data-title="Calificación">{item.calificaciones}</td>
-                                </tr>
-                            ))
-                        }
+                        {materiasTest.map((item, index) => (
+                            <tr key={index}>
+                                <td data-title="Materia">{item.materia}</td>
+                                <td data-title="Fecha">{item.fecha}</td>
+                                <td data-title="Tipo de evaluacion">
+                                    {item.tipo}
+                                </td>
+                                <td data-title="Calificación">
+                                    {item.calificaciones}
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>

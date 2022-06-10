@@ -1,14 +1,11 @@
 .table-section-width {
-    width:88%;
-
+    width: 88%;
 }
 
 .table-personaldataprofile tbody,
 .table-personaldataprofile tr,
 .table-personaldataprofile td {
     display: block;
-
-
 }
 
 .table-personaldataprofile thead tr {
@@ -34,11 +31,9 @@
 }
 @media only screen and (max-width: 800px) {
     .table-section-width {
-        width:100%;
-    
+        width: 100%;
     }
 }
-
 
 /* .clamp-responsive {
     font-size: --var(--fz-2);
@@ -52,5 +47,3 @@
     display: none;
   }
    */
-
-
