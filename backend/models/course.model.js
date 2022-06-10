@@ -21,6 +21,7 @@ const courseSchema = new Schema({
     teacher: {
         type: Schema.Types.ObjectId,
         required: true,
+        ref:'User'
     },
     events: {
         type: Schema.Types.ObjectId,
