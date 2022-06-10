@@ -1,17 +1,14 @@
 .contep {
-    width: 100%;
-    font-size: 16px;
+    width      : 100%;
+    font-size  : var(--fz-1);
     font-weight: 400;
     line-height: 24px;
-    margin-left: 50px;
-    
-    
 }
+
 textarea {
-    width: 100%;
-    height: 60%;
+    width        : 100%;
     border-radius: 6px;
-    border: 1px solid #b9b9b9;
-    padding: 2%;
-      
+    border       : 1px solid #b9b9b9;
+    padding      : 2%;
+
 }
