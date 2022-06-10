@@ -1,16 +1,15 @@
-import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getCourses } from "../redux/actions";
 import Header from "@containers/Header";
 import CustomCalendar from "@components/CustomCalendar";
+import "@styles/layout.css";
 
 const Layout = () => {
-
     return (
         <>
             <Header />
-            <Outlet />
+            <main className="outlet">
+                <Outlet />
+            </main>
             <CustomCalendar />
         </>
     );

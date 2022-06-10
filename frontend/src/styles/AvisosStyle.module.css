@@ -14,22 +14,22 @@
     margin: 0;
 }
 
-.h2-avisos {
+.h2_avisos {
     font-size: 24px;
     padding: 0rem 1rem 1rem 1rem;
 }
 
-.ul-avisos {
+.ul_avisos {
     list-style: none;
     padding: 0;
 }
 
-.ul-avisos li {
+.ul_avisos li {
     padding: 0;
 }
-.avisos-li {
+.avisos_li {
     display: flex;
-    width: 800px;
+    width: 100%;
     border: thin solid black;
     border-radius: 12px;
     margin-bottom: 0.5rem;
@@ -37,6 +37,6 @@
 
 /* Tamaño de la imagen */
 .avisosimg {
-    width: 8%;
+    width: 10%;
     padding: 0.5rem;
 }

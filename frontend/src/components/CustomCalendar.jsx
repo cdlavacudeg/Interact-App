@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Alert from "./Alert";
 import Calendar from "react-calendar";
 import style from "../styles/CustomCalendarStyle.module.css";
+import moment from "moment";
 // import 'react-calendar/dist/Calendar.css';
 
 const alertTest = [
@@ -25,7 +26,14 @@ const dataForTest = [
 
 const CustomCalendar = () => {
     const [date, setDate] = useState(new Date());
-
+    const mark = [
+        "04/06/2022",
+        "03/06/2022",
+        "05/06/2022",
+        "12/06/2022",
+        "09/06/2022",
+        "25/06/2022",
+    ];
     const handleClickDate = (value) => {
         console.log(value);
     };
@@ -42,7 +50,7 @@ const CustomCalendar = () => {
         //     }
         // </div>
         <aside className={style.componentContent}>
-            <article className={style.titlesAside}>
+            <article>
                 <h1>Actividades pendientes</h1>
             </article>
             <article>
@@ -51,6 +59,18 @@ const CustomCalendar = () => {
                     onChange={setDate}
                     onClickDay={(value) => alert(`CLick en fecha: ${value}`)}
                     value={date}
+                    tileClassName={({ date }) => {
+                        // console.log(mark.find(x=>x===moment(date).format("DD-MM-YYYY")))
+                        if (
+                            mark.find(
+                                (x) => x === moment(date).format("DD/MM/YYYY")
+                            )
+                        ) {
+                            return "highlight";
+                        }
+                    }}
+                    // tileDisabled={({date})=>date.getDay()===0}
+                    minDate={new Date()}
                 />
             </article>
             <article className={style.calendarNotificationContent}>
