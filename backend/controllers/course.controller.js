@@ -14,6 +14,8 @@ const coursesGet = async (req, res) => {
                 .populate({ path: 'lessons', select: 'lectures' })
                 .populate({ path: 'grades', select: 'studentGrades' })
                 .populate({ path: 'events', select: 'events' })
+                .populate({ path:'students', select: 'fullName'})
+                .populate({ path:'teacher', select:'fullName'})
                 .exec(),
         ]);
 
