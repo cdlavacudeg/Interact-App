@@ -61,6 +61,43 @@ export function postUser(id, data) {
     };
 }
 
+export function getProfile(user_id){
+    return async function(dispatch){
+        let user = await axios.get(`/user/${user_id}`);
+        let courses_array = user.data.data.user.courses;
+
+        const profile=[]
+        await Promise.all(courses_array.map(async (course)=>{
+            await axios.get(`/course/${course._id}`)
+            .then((course_data)=>{
+                let auxObjt={
+                    classmates:course_data.data.data.course.students.filter(e=>e._id != user_id),
+                    teacher: course_data.data.data.course.teacher
+                }
+                auxObjt.teacher.course = course_data.data.data.course.courseName
+                profile.push(auxObjt);
+            })
+        }))
+        let listStudents=[]
+        let listTeachers=[]
+        profile.map(obj=>{
+            obj.classmates.map(e=>{
+                if(!listStudents.includes(e.fullName)){
+                    listStudents.push(e.fullName)
+                }
+            })
+            if(!listTeachers.some(teacher=>teacher.fullName==obj.teacher.fullName)){
+                listTeachers.push(obj.teacher)
+            }
+        })
+
+        return dispatch({
+            type:'GET_PROFILE',
+            payload: {listStudents,listTeachers}
+        })
+    }
+}
+
 //============================
 //         LOGIN
 //============================
