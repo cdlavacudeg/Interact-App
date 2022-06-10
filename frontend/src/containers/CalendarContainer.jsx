@@ -24,11 +24,18 @@ const CalendarContainer = () => {
             <div className="calendar-container">
             <h1 className="calendar-title">Actividades pendientes</h1>
             <CalendarComponent mark={markDate} />
-            <CalendarNotification
-                date={24}
-                title={"Matematiica"}
-                description={"Leccion 1"}
-            />
+            {
+                dataForTest.map((item, index) => {
+                    return (
+                        <CalendarNotification
+                            key={index}
+                            date={item.date}
+                            title={item.title}
+                            description={item.description}
+                        />
+                    );
+            }
+            )}
             </div>
         </aside>
     );
