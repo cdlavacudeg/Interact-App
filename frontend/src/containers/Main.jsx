@@ -7,11 +7,11 @@ import "@styles/home.css";
 
 const Main = () => {
     return (
-        <main className="main-home">
+        <div className="main-home">
             <WelcomeUser />
             <Recentactivities />
             <Avisos />
-        </main>
+        </div>
     );
 };
 

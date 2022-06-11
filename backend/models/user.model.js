@@ -16,6 +16,7 @@ const userSchema = new Schema({
     },
     gender: {
         type: String,
+        default:'male',
         enum: ['male', 'female'],
     },
     courses: [

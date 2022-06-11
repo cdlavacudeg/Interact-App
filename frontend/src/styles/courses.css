@@ -21,7 +21,7 @@
     .courses-container {
         display: grid;
         grid-template-columns: repeat(3, minmax(200px, 1fr));
-        gap: 2rem;
+        gap: 1rem;
     }
 
     .courses-title {
