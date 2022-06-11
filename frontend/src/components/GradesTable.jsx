@@ -6,7 +6,7 @@ import { getGrade } from "../redux/actions";
 function GradesTable({ grades }) {
     return (
         <section className="bg-light p-2">
-            <div className={style.table_responsive} id="no-more-tables">
+            <div className={style.table_responsive}  id="no-more-tables">
                 <table className="table">
                     <thead>
                         <tr className={style.bg_color_honey}>

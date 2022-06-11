@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ImageNameProfile from "../components/ImgNameProfile";
 import PersonalDataProfile from "../components/PersonalDataProfile";
 import ProfesorStudentList from "../components/ProfesorStudentList";
+import ProfesorListMobile from "../components/ProfesorListMobile";
 import { getProfile } from "../redux/actions";
 
 function Profile() {
@@ -18,6 +19,7 @@ function Profile() {
             <ImageNameProfile />
             <PersonalDataProfile />
             <ProfesorStudentList list={profile} />
+            <ProfesorListMobile />
         </section>
     );
 }

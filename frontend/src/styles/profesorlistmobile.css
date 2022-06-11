@@ -1,0 +1,10 @@
+.accordion {
+    display:none;
+}
+
+@media only screen and (max-width: 800px) {
+    .accordion {
+        display:flex;
+        border: none;
+    }
+}

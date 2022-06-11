@@ -20,14 +20,12 @@
         display: block;
     }
 
-    .container-width-gradestables {
-        width: 100%;
-    }
     #no-more-tables thead tr {
         position: absolute;
         top: -99999px;
         left: -9999px;
     }
+
 
     #no-more-tables td {
         position: relative;
