@@ -11,7 +11,6 @@ const isAdminRole = (req, res, next) => {
             401
         );
     }
-    req.user = req.body;
 
     next();
 };
@@ -27,11 +26,25 @@ const isTeacherRole = (req, res, next) => {
             401
         );
     }
-    req.user = req.body;
+    next();
+};
+
+const isTeacherOrAdminRole = (req, res, next) => {
+    const { role, fullName } = req.user;
+
+    if (role == 'student') {
+        return response.error(
+            req,
+            res,
+            `Access denied. ${fullName} is not teacher or admin`,
+            401
+        );
+    }
     next();
 };
 
 module.exports = {
     isAdminRole,
     isTeacherRole,
+    isTeacherOrAdminRole,
 };

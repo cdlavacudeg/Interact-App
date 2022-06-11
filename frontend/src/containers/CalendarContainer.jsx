@@ -1,6 +1,7 @@
 import React from "react";
 import CalendarComponent from "../components/CalendarComponent";
 import CalendarNotification from "../components/CalendarNotification";
+import '@styles/calendarContainer.css'
 
 const CalendarContainer = () => {
     const dataForTest = [
@@ -12,22 +13,30 @@ const CalendarContainer = () => {
 
     const markDate = [
         "04/06/2022",
-        "03/06/2022",
-        "05/06/2022",
+        "07/06/2022",
+        "11/06/2022",
         "12/06/2022",
-        "09/06/2022",
         "25/06/2022",
     ];
 
     return (
-        <aside>
-            <h1>Actividades pendientes</h1>
+        <aside className="calendar">
+            <div className="calendar-container">
+            <h1 className="calendar-title">Actividades pendientes</h1>
             <CalendarComponent mark={markDate} />
-            <CalendarNotification
-                date={24}
-                title={"Matematiica"}
-                description={"Leccion 1"}
-            />
+            {
+                dataForTest.map((item, index) => {
+                    return (
+                        <CalendarNotification
+                            key={index}
+                            date={item.date}
+                            title={item.title}
+                            description={item.description}
+                        />
+                    );
+            }
+            )}
+            </div>
         </aside>
     );
 };

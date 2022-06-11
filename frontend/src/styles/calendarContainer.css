@@ -1,0 +1,25 @@
+.calendar {
+    width: 100%;
+}
+
+.calendar-container {
+    width    : 80%;
+    margin   : 0 auto;
+    min-width: 310px;
+    max-width: 320px;
+}
+
+.calendar-title {
+    color        : var(--primer-color);
+    font-size    : var(--fz0);
+    margin-top   : 2rem;
+    margin-bottom: 2rem;
+}
+
+@media screen and (min-width: 900px) {
+    .calendar-container {
+        width    : 70%;
+        margin   : 0 auto;
+        max-width: 310px;
+    }
+}
