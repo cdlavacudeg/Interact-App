@@ -58,7 +58,7 @@
     padding         : .8rem 1rem;
 }
 
-/*  Calendar days  */
+/*  Calendar days - whole months */
 .react-calendar__month-view__days {
     display              : grid !important;
     grid-template-columns: repeat(7, 1fr);
@@ -67,6 +67,7 @@
 
 }
 
+/*  Each day in the months  */
 .react-calendar__month-view__days__day {
     border          : none;
     font-size       : var(--fz-1);
@@ -76,7 +77,14 @@
     color           : #656565;
 }
 
+/*  previous/next moths day OFF  */
+.react-calendar__month-view__days__day--neighboringMonth {
+    opacity: 0;
+}
 
+
+
+/*  days with activities  */
 .highlight {
     background-color: var(--tercer-color);
     color           : var(--white-color);
@@ -148,4 +156,10 @@
         background-color: var(--tercer-color);
         color           : var(--white-color);
     }
+}
+
+
+div.react-calendar__tile—now {
+    outline         : solid !important;
+    background-color: green !important;
 }
