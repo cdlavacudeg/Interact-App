@@ -4,6 +4,8 @@
     position        : relative;
     background-color: var(--segundo-color);
     display         : flex;
+    justify-content : space-between;
+    padding         : 0 1rem;
 }
 
 .header-backarrow {
@@ -16,15 +18,16 @@
 }
 
 .header-button {
-    width           : 2rem;
+    width           : 1.8rem;
     border          : none;
     background-color: var(--segundo-color);
-    margin          : .7rem;
 }
 
-.header-button:hover {
-    background-color: #093337;
+.button-calendar {
+    margin-right: .2rem;
+    width       : 1.5rem;
 }
+
 
 @media screen and (min-width: 900px) {
     .header {
