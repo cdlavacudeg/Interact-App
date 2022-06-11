@@ -10,24 +10,24 @@
 }
 
 /* Margin del section */
-.sectionAvisos {
+.section-avisos {
     margin: 0;
 }
 
-.h2_avisos {
+.h2-avisos {
     font-size: 24px;
     padding: 0rem 1rem 1rem 1rem;
 }
 
-.ul_avisos {
+.ul-avisos {
     list-style: none;
-    padding: 0;
+margin-top: 1rem ;
 }
 
-.ul_avisos li {
+.ul-avisos li {
     padding: 0;
 }
-.avisos_li {
+.avisos-li {
     display: flex;
     width: 100%;
     border: thin solid black;
@@ -37,6 +37,16 @@
 
 /* Tamaño de la imagen */
 .avisosimg {
-    width: 10%;
-    padding: 0.5rem;
+    width: 17%;
+    padding: 20px;
+}
+
+@media only screen and (max-width: 1000px) {
+    
+}
+@media only screen and (max-width: 500px) {
+    .avisosimg {
+        width: 35%;
+        
+    }
 }

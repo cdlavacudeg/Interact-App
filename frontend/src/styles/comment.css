@@ -2,6 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    padding: 2rem;
 }
 
 .titulo {
@@ -23,6 +24,7 @@
     display: flex;
     flex-direction: column;
     margin: 1rem auto;
+    padding: 0.5rem;
 }
 
 .container_button {
@@ -37,7 +39,11 @@
 }
 
 @media screen and (min-width: 768px) {
-    .titulo {
-        margin-top: 1rem;
+
+}
+@media screen and (max-width: 430px) {
+    .container_principal {
+       
+        padding: 1rem;
     }
 }

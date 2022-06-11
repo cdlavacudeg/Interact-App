@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getNotifications } from "../redux/actions";
-import style from "@styles/AvisosStyle.module.css";
+import '@styles/avisos.css';
 import avisosimg from "@img/img-avisos.png";
 
 function Avisos() {
@@ -30,27 +30,27 @@ function Avisos() {
     };
 
     return (
-        <section className={style.sectionAvisos}>
-            <h2 className={style.h2_avisos}> Avisos</h2>
+        <section className='section-avisos'>
+            <h2 className='h2-avisos'> Avisos</h2>
             {avisosAll ? (
                 avisosAll.map(
                     (item, index) =>
                         index < avisos && (
-                            <li key={index} className={style.avisos_li}>
+                            <li key={index} className='avisos-li'>
                                 <img
-                                    className={style.avisosimg}
+                                    className='avisosimg'
                                     src={avisosimg}
                                     alt="avisos img"
                                 />
                                 <article>
-                                    <ul className={style.ul_avisos}>
-                                        <li className={style.institucion_aviso}>
+                                    <ul className='ul-avisos'>
+                                        <li className='institucion-aviso'>
                                             {item.title}
                                         </li>
-                                        <li className={style.fecha_aviso}>
+                                        <li className='fecha-aviso'>
                                             {item.date}
                                         </li>
-                                        <li className={style.descripcion_aviso}>
+                                        <li className='descripcion-aviso'>
                                             {item.content}
                                         </li>
                                     </ul>

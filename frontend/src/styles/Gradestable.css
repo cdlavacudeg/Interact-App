@@ -1,18 +1,18 @@
 .calificaciones {
     font-size: var(--fz3);
-    margin-top: 1rem;
-    margin-bottom: 3.3rem;
+    margin-bottom: 1rem;
     color: var(--primer-color);
 }
 
-.bg_color_honey {
+.bg-color-honey {
     background-color: #efb365;
+}
+.grades-section{
+    padding: 2rem;
 }
 
 @media only screen and (max-width: 800px) {
-    .calificaciones {
-        margin-bottom: 2rem;
-    }
+   
 
     #no-more-tables tbody,
     #no-more-tables tr,
@@ -43,5 +43,12 @@
 
     #no-more-tables tr {
         border-bottom: 1px solid #ccc;
+    }
+}
+
+
+@media screen and (max-width: 430px) {
+    .grades-section{
+        padding: 1rem;
     }
 }
