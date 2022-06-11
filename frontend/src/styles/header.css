@@ -1,42 +1,47 @@
 .header {
-    width: 100%;
-    height: 3.5rem;
-    position: relative;
+    width           : 100%;
+    height          : 3.5rem;
+    position        : relative;
     background-color: var(--segundo-color);
-    display: flex;
+    display         : flex;
+    justify-content : space-between;
+    padding         : 0 1rem;
 }
 
 .header-backarrow {
-    width: 20%;
-    max-width: 2.5rem;
-    margin: 1rem;
-    cursor: pointer;
-    border: none;
+    width           : 20%;
+    max-width       : 2.5rem;
+    margin          : 1rem;
+    cursor          : pointer;
+    border          : none;
     background-color: transparent;
 }
 
 .header-button {
-    width: 2rem;
-    border: none;
+    width           : 1.8rem;
+    border          : none;
     background-color: var(--segundo-color);
-    margin-left: 0.5rem;
 }
+
+.button-calendar {
+    margin-right: .2rem;
+    width       : 1.5rem;
+}
+
 
 @media screen and (min-width: 900px) {
     .header {
-        width: 100%;
-        max-width: 300px;
-        height: 100vh;
-        max-height: 800px;
-        position: static;
+        width           : 100%;
+        min-width       : 242px;
+        height          : 100vh;
+        position        : static;
         background-color: #fff;
-        margin: 0;
-        padding: 0;
-        padding-left: 1rem;
-        padding-right: 0.5rem;
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
+        margin          : 0;
+        padding         : 0;
+        padding-left    : 1rem;
+        padding-right   : 0.8rem;
+        display         : flex;
+        flex-direction  : column;
     }
 
     .header-button,

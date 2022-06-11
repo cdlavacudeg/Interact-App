@@ -1,6 +1,7 @@
 .react-calendar {
-    width : 100%;
-    margin: 0 auto;
+    width        : 100%;
+    margin       : 0 auto;
+    margin-bottom: 1.5rem;
 }
 
 /*  Calendar navigation  */
@@ -19,7 +20,7 @@
     background-color: var(--white-color);
     transform       : scale(3) translateY(-2px);
     font-weight     : 200;
-    z-index: -1;
+
 }
 
 .react-calendar__navigation__next2-button,
@@ -48,11 +49,21 @@
     margin-bottom : 1rem;
 }
 
+/*  Year label  */
+.react-calendar__decade-view__years__year,
+.react-calendar__year-view__months__month,
+.react-calendar__century-view__decades__decade {
+    border          : none;
+    background-color: var(--white-color);
+    padding         : .8rem 1rem;
+}
+
 /*  Calendar days  */
 .react-calendar__month-view__days {
-    display              : grid;
+    display              : grid !important;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows   : repeat(5, 1fr);
+    gap                  : 10px;
 
 }
 
@@ -60,8 +71,7 @@
     border          : none;
     font-size       : var(--fz-1);
     border-radius   : 50%;
-    padding         : 11px;
-    margin-bottom   : 10px;
+    padding         : 10px;
     background-color: #fff;
     color           : #656565;
 }
@@ -92,14 +102,47 @@
 }
 
 @media (min-width: 900px) {
+    .react-calendar {
+        width        : 90%;
+        margin       : 0 auto;
+        margin-bottom: 1.5rem;
+    }
+
+
+    /*  Calendar week label */
+    .react-calendar__month-view__weekdays {
+        display              : grid !important;
+        grid-template-columns: repeat(7, 1fr);
+        gap                  : 3px;
+    }
+
+    /*  Calendar week eache day  */
+    .react-calendar__month-view__weekdays__weekday {
+        text-transform: uppercase;
+        font-size     : var(--fz-2);
+        text-align    : center;
+        margin-bottom : 1rem;
+    }
+
+    /*  Calendar days  */
+    .react-calendar__month-view__days {
+        display              : grid !important;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows   : repeat(5, 1fr);
+        gap                  : 5px;
+
+    }
+
     .react-calendar__month-view__days__day {
         border          : none;
+        font-size       : var(--fz-2);
         border-radius   : 50%;
-        padding         : 10px;
-        margin-bottom   : 10px;
+        padding         : 7px;
+        margin          : 0;
         background-color: #fff;
         color           : #656565;
     }
+
 
     .highlight {
         background-color: var(--tercer-color);
