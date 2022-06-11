@@ -16,11 +16,19 @@
 .calendar-table-text {}
 
 .calendar-table-title {
-    font-size: var(--fz0);
+    font-size: var(--fz-1);
 }
 
 .calendar-table-body {
     font-size : var(--fz-2);
     margin-top: -5px;
     font-style: italic;
+}
+
+
+@media screen and (min-width: 900px) {
+    .calendar-table {
+        margin-left: 1rem;
+
+    }
 }
