@@ -1,5 +1,5 @@
 .welcome {
-    margin: 0.2rem 0;
+    margin: 2rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,7 +10,9 @@
 }
 
 .welcome-user {
+    margin-top: 0.5rem;
     width: 100%;
+    padding: 0.5rem;
 }
 
 .welcome-title {
@@ -27,25 +29,27 @@
 .welcome-img {
     width: 100%;
     position: relative;
+    margin-right: 6.5rem;
+    margin-top: 2rem;
 }
 
 .welcome-img img {
-    width: 14rem;
+    width: 16rem;
     position: relative;
 }
 
-.welcome_title {
+.welcome-title {
     font-size: 32px;
     padding-bottom: 0;
     padding-left: 1.5rem;
 }
 
-.welcome_body {
+.welcome-body {
     font-size: 16px;
     padding-left: 1.5rem;
 }
 
-.welcome_img {
+.welcome-img {
     width: 25%;
     position: absolute;
     top: -70px;
@@ -61,8 +65,8 @@
     .welcome-img img {
         position: absolute;
         width: 10rem;
-        top: -50px;
-        right: 0;
+        top: 0px;
+        right: -100px;
     }
 }
 
@@ -73,9 +77,8 @@
 
     .welcome-img img {
         position: absolute;
-        width: 7rem;
-        top: -37px;
-        right: -10px;
+        width: 10rem;
+        
     }
     .welcome-body {
         padding-left: 0.8rem;

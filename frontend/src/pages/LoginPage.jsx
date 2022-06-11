@@ -253,7 +253,7 @@ const LoginPage = () => {
                 </section>
                 <section className={style.motivatingPhraseContent}>
                     <h3>
-                        EL conocimiento te traerá la oportunidad de hacer la
+                        EL conocimiento te <br/> traerá la<br/>  oportunidad de<br/>  hacer la
                         diferencia.
                     </h3>
                     <p>

@@ -3,7 +3,8 @@
     display: flex;
     height: 100vh;
     padding: 0px;
-    width: 190vh;
+    width: 215.5vh;
+   
 }
 .imgContent {
     width: 50%;
@@ -24,8 +25,7 @@
     align-items: center;
     justify-content: space-around;
     width: 50%;
-    gap: 21px;
-    padding: 30px;
+   
 }
 .logoContent {
     display: flex;
@@ -163,14 +163,14 @@
         display: none;
     }
     .formsContent {
-        width: 100%;
+        width: 70%;
     }
     .motivatingPhraseContent {
         width: 50%;
         padding: 10px;
     }
     .choiceLoginButtons {
-        width: 90%;
+        width: 50%;
     }
     .boxForm {
         width: 50%;
@@ -180,6 +180,14 @@
         width: 50%;
         height: 40%;
     }
+    .loginPageContent {
+        display: flex;
+        height: 100vh;
+        padding: 0px;
+        width: 164.5vh;
+       
+    }
+   
 }
 @media only screen and (max-width: 500px) {
     .logo {
@@ -199,5 +207,10 @@
     .choiceLoginButtons {
         width: 90%;
         height: 35%;
+    }
+    .loginPageContent {
+        height: 100vh;
+        padding: 0px;
+        width: 82vh;
     }
 }
