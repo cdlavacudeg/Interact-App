@@ -2,9 +2,12 @@
     display:none;
 }
 
-@media only screen and (max-width: 800px) {
+.accordion-item{
+    border: 0;
+}
+@media only screen and (max-width: 900px) {
     .accordion {
-        display:flex;
+        display:block;
         border: none;
     }
 }

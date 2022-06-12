@@ -16,6 +16,7 @@ function ProfesorListMobile() {
     <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div className="accordion-body">
         {/* Aca es donde va la lista de profesores */}
+        <h3>ACA VA LA LISTA DE PROFES</h3>
       </div>
     </div>
   </div>
@@ -28,6 +29,7 @@ function ProfesorListMobile() {
     <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
       <div className="accordion-body">
         {/* Aca es donde va la lista de compañeros */}
+        <h3>ACA VA LA LISTA DE COMPAÑEROS</h3>
       </div>
     </div>
   </div>

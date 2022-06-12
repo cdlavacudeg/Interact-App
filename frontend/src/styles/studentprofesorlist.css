@@ -38,3 +38,9 @@
     color: var(--primer-color);
     padding-bottom: 0.5rem;
 }
+
+@media only screen and (max-width: 900px) {
+    .profileProfesorStudentList {
+        display:none;
+    }
+}
