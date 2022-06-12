@@ -1,25 +1,58 @@
 .calendar {
-    width: 100%;
+    width           : 100%;
+    padding         : 1rem;
+    padding-top     : 2rem;
+    padding-bottom  : 20vh;
+    position        : absolute;
+    top             : 0;
+    right           : 110%;
+    background-color: var(--white-color);
+    transform       : all 0.5s ease-in-out;
 }
 
 .calendar-container {
-    width    : 80%;
+    width    : 100%;
+    height   : 100vh;
     margin   : 0 auto;
-    min-width: 310px;
-    max-width: 320px;
+    max-width: 340px;
+    transform: var(--transition);
+}
+
+.calendar-backarrow {
+    background-color: var(--white-color);
+    border          : none;
+    width           : 2rem;
+    position        : absolute;
+    top             : 25px;
+}
+
+.calendar-active {
+    right: 0;
 }
 
 .calendar-title {
     color        : var(--primer-color);
     font-size    : var(--fz0);
-    margin-top   : 2rem;
     margin-bottom: 2rem;
+    text-align   : center;
 }
 
 @media screen and (min-width: 900px) {
-    .calendar-container {
-        width    : 70%;
-        margin   : 0 auto;
-        max-width: 310px;
+
+    .calendar {
+        position: static;
+    }
+
+    .calendar-backarrow {
+        display: none;
+    }
+
+    .calendar-title {
+        color        : var(--primer-color);
+        font-size    : var(--fz0);
+        text-align   : left;
+        margin-bottom: 2rem;
+        margin-left  : 1rem;
+        margin-top   : 1rem;
     }
 }

@@ -1,9 +1,9 @@
-import React from "react";
+import backArrowSVG from "@icons/back-arrow.svg";
 import CalendarComponent from "../components/CalendarComponent";
 import CalendarNotification from "../components/CalendarNotification";
 import '@styles/calendarContainer.css'
 
-const CalendarContainer = () => {
+const CalendarContainer = ({active, setActive}) => {
     const dataForTest = [
         { date: "05", title: "Matematica", description: "clase de matematica" },
         { date: "17", title: "Geometria", description: "clase de Geometria" },
@@ -19,8 +19,14 @@ const CalendarContainer = () => {
         "25/06/2022",
     ];
 
+    const isActive = active ? "calendar-active" : "";
+    console.log(isActive);
+
     return (
-        <aside className="calendar">
+        <aside className={`calendar ${isActive}`}>
+            <button onClick={setActive} className="calendar-backarrow">
+                <img src={backArrowSVG} alt="back arrow" />
+            </button>
             <div className="calendar-container">
             <h1 className="calendar-title">Actividades pendientes</h1>
             <CalendarComponent mark={markDate} />
