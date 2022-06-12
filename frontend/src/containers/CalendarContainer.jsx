@@ -20,7 +20,6 @@ const CalendarContainer = ({active, setActive}) => {
     ];
 
     const isActive = active ? "calendar-active" : "";
-    console.log(isActive);
 
     return (
         <aside className={`calendar ${isActive}`}>
