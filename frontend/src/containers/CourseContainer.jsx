@@ -1,5 +1,7 @@
-import { useParams } from "react-router-dom";
-import biologiaImg from "@img/biologia.png";
+import { useParams, Outlet } from "react-router-dom";
+import CourseTabs from "../components/CourseTabs";
+import biologiaImg from "@img/biologia.jpeg";
+import CourseIdActivity from '@components/CourseIdActivity'
 import '@styles/courseContainer.css'
 
 
@@ -10,7 +12,9 @@ const CourseContainer = () => {
         <div className="courseId-img">
             <img src={biologiaImg} alt="imagen de la materia" />
         </div>
-        <h1 className="courseId-title">Biologia</h1>
+        <h1 className="courseId-title">Biología</h1>
+        <CourseTabs params={materiaId}/>
+            <Outlet/>
     </section>
   )
 }
