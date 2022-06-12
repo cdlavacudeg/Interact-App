@@ -21,13 +21,14 @@ import Literatura from "@pages/Materias/Literatura";
 import LoginPage from "@pages/LoginPage";
 import "@styles/App.css";
 import Admin from "../pages/Admin";
+import NotFound from "../pages/NotFound";
 
 const App = () => {
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
     if (!user.token) {
-        return <LoginPage />;
+        return <NotFound></NotFound>;
     }
 
     dispatch(getCourses(user.user.uid)).catch((error) => {
