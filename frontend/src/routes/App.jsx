@@ -14,6 +14,10 @@ import Admin from "../pages/Admin";
 import Materiaid from "../pages/Materiaid";
 import NotFound from "../pages/NotFound";
 import "@styles/App.css";
+import CourseIdActivity from "../components/courseIdActivity";
+import CourseSrc from "../components/courseSrc";
+import CourseForum from "../components/CourseForum";
+import CourseGrades from "../components/CourseGrades";
 
 const App = () => {
     const user = useSelector((state) => state.user);
@@ -34,7 +38,12 @@ const App = () => {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="/materias" element={<Materias />} />
-                    <Route path='/materias/:materiaId' element={<Materiaid />} />
+                    <Route path='/materias/:materiaId' element={<Materiaid />}>
+                        <Route index element={<CourseIdActivity />} />
+                        <Route path='material' element={<CourseSrc />} />
+                        <Route path='foro' element={<CourseForum />} />
+                        <Route path='calificaciones' element={<CourseGrades />} />
+                    </Route>
                     <Route
                         path="/calificaciones"
                         element={<Calificaciones />}
