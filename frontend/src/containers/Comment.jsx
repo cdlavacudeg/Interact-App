@@ -12,7 +12,7 @@ function Comment() {
             </p>
             <div className="container_commentImput">
                 <CommentImput />
-                <button className="container_button" type="submit">
+                <button className="btn_second" type="submit">
                     Enviar
                 </button>
             </div>

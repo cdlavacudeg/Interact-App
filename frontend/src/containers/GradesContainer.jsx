@@ -16,7 +16,7 @@ function GradesTables() {
     }, []);
 
     return (
-        <div>
+        <div className="grades-section">
             <h1 className="calificaciones"> Mis Calificaciones</h1>
             <GradesTable grades={grades} />
         </div>

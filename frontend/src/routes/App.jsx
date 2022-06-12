@@ -12,6 +12,7 @@ import Contacto from "@pages/Contacto.jsx";
 import LoginPage from "@pages/LoginPage";
 import Admin from "../pages/Admin";
 import Materiaid from "../pages/Materiaid";
+import NotFound from "../pages/NotFound";
 import "@styles/App.css";
 
 const App = () => {
@@ -19,7 +20,7 @@ const App = () => {
     const dispatch = useDispatch();
 
     if (!user.token) {
-        return <LoginPage />;
+        return <LoginPage/>;
     }
 
     dispatch(getCourses(user.user.uid)).catch((error) => {
@@ -42,6 +43,7 @@ const App = () => {
                     <Route path="/contacto" element={<Contacto />} />
                 </Route>
                 <Route path="/admin" element={<Admin />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     );

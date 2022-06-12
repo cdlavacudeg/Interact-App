@@ -22,6 +22,7 @@
     cursor: pointer;
     padding: 0.5em 1em;
     font-weight: 600;
+    align-self: flex-end;
 }
 
 .btn_second:hover {

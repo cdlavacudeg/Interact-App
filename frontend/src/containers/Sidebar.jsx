@@ -124,53 +124,7 @@ const Sidebar = ({ children }) => {
                     </div>
                 </div>
 
-                <div
-                    className="modal fade"
-                    id="exampleModal"
-                    tabIndex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                >
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5
-                                    className="modal-title"
-                                    id="exampleModalLabel"
-                                >
-                                    ¿Cerrar Sesion?
-                                </h5>
-                                <button
-                                    type="button"
-                                    className="btn-close"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
-                                ></button>
-                            </div>
-                            <div className="modal-footer ">
-                                <div className="container">
-                                    <div className="row">
-                                        <button
-                                            type="button"
-                                            className="btn_primary col"
-                                            data-bs-dismiss="modal"
-                                        >
-                                            Cancelar
-                                        </button>
-                                        <button
-                                            style={{ marginLeft: "5px" }}
-                                            type="button"
-                                            className="btn_second col"
-                                            onClick={logout}
-                                        >
-                                            Ok
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+         
             </div>
         </div>
     );

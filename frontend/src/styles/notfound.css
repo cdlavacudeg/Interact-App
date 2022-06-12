@@ -1,0 +1,51 @@
+
+  .main_404{
+    height: 100vh;
+  }
+  .logo_404{
+    width: 30%;
+    margin: 1rem;
+    margin-bottom: 4rem;
+  }
+  .p_404{
+    color: var(--primer-color );
+    text-align: center;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  .content_404{
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+  
+  }
+  .btn_404{
+width: 100%;
+  }
+  
+
+  @media screen and (min-width: 900px) {
+
+    .content_404{
+     
+      width: 35%;
+     
+    
+    }
+    .logo_404{
+      width: 12%;
+      margin-bottom: 1rem;
+    }
+    .btn_404{
+      width: 80%;
+        }
+        
+
+}
+
+
+
+  
