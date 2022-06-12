@@ -1,11 +1,13 @@
-import { useParams } from "react-router-dom";
 
+import CourseContainer from "../containers/CourseContainer";
 
 const Materiaid = () => {
-    const { materiaId } = useParams();
+
 
   return (
-    <div>{materiaId}</div>
+    <>
+      <CourseContainer/>
+    </>
   )
 }
 

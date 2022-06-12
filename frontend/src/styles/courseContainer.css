@@ -1,0 +1,17 @@
+.courseId {
+    width : 90%;
+    margin: auto;
+}
+
+.courseId-img {
+    margin-top: 1rem;
+    outline   : solid;
+}
+
+.courseId-img img {
+    aspect-ratio: 5 / 1;
+}
+
+.courseId-title {
+    font-size: var(--fz3);
+}
