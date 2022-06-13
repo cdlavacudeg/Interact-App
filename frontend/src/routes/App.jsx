@@ -24,7 +24,7 @@ const App = () => {
     const dispatch = useDispatch();
 
     if (!user.token) {
-        return <LoginPage/>;
+        return <LoginPage />;
     }
 
     dispatch(getCourses(user.user.uid)).catch((error) => {
@@ -38,11 +38,14 @@ const App = () => {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="/materias" element={<Materias />} />
-                    <Route path='/materias/:materiaId' element={<Materiaid />}>
+                    <Route path="/materias/:materiaId" element={<Materiaid />}>
                         <Route index element={<CourseIdActivity />} />
-                        <Route path='material' element={<CourseSrc />} />
-                        <Route path='foro' element={<CourseForum />} />
-                        <Route path='calificaciones' element={<CourseGrades />} />
+                        <Route path="material" element={<CourseSrc />} />
+                        <Route path="foro" element={<CourseForum />} />
+                        <Route
+                            path="calificaciones"
+                            element={<CourseGrades />}
+                        />
                     </Route>
                     <Route
                         path="/calificaciones"

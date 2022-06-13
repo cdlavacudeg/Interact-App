@@ -1,15 +1,15 @@
 import { useEffect } from "react";
-import '@styles/Gradestable.css'
+import "@styles/Gradestable.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getGrade } from "../redux/actions";
 
 function GradesTable({ grades }) {
     return (
-        <section  className="bg-light p-2 grades-section">
-            <div className='table-responsive' id="no-more-tables">
+        <section className="bg-light p-2 grades-section">
+            <div className="table-responsive" id="no-more-tables">
                 <table className="table">
                     <thead>
-                        <tr className='bg-color-honey'>
+                        <tr className="bg-color-honey">
                             <th>Materia</th>
                             <th>Fecha</th>
                             <th>Tipo de evaluacion</th>

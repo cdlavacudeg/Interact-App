@@ -28,16 +28,15 @@
     font-size: --var(--fz-2);
 }
 
-.profile-section{
+.profile-section {
     padding: 3rem;
 }
 
 @media screen and (max-width: 760px) {
-   
 }
 
 @media screen and (max-width: 430px) {
-    .profile-section{
+    .profile-section {
         padding: 1rem;
     }
 }

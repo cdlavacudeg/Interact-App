@@ -1,48 +1,44 @@
-.courseId-info {}
+.courseId-info {
+}
 
 .courseId-list {
-    display      : flex;
-    padding      : 0;
-    overflow-x   : scroll;
-    margin       : auto;
+    display: flex;
+    padding: 0;
+    overflow-x: scroll;
+    margin: auto;
     margin-bottom: 1rem;
 }
 
 .courseId-item a {
     font-size: var(--fz-1);
-    padding  : .5rem 1rem;
-    color    : var(--black-color);
+    padding: 0.5rem 1rem;
+    color: var(--black-color);
 }
 
 .courseId-item a.active {
     background-color: var(--cuarto-color);
-    color           : var(--black-color);
-    filter          : invert(0);
+    color: var(--black-color);
+    filter: invert(0);
 }
-
 
 @media screen and (min-width: 425px) {
     .courseId-list {
         overflow-x: visible;
     }
-
-
 }
 
 @media screen and (min-width: 900px) {
-    .courseId-info {}
+    .courseId-info {
+    }
 
     .courseId-list {
-        display              : flex;
+        display: flex;
         /* justify-content   : space-around; */
-        background-color     : var(--whiteSmoke-color);
-
+        background-color: var(--whiteSmoke-color);
     }
 
     .courseId-item {
-        flex      : 1 0 auto;
+        flex: 1 0 auto;
         text-align: center;
     }
-
-
 }

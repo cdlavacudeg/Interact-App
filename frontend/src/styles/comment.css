@@ -39,11 +39,9 @@
 }
 
 @media screen and (min-width: 768px) {
-
 }
 @media screen and (max-width: 430px) {
     .container_principal {
-       
         padding: 1rem;
     }
 }

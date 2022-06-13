@@ -15,11 +15,11 @@ function Profile() {
         dispatch(getProfile(user.user.uid));
     }, []);
     return (
-        <section   className="profile-section">
+        <section className="profile-section">
             <ImageNameProfile />
             <PersonalDataProfile />
             <ProfesorStudentList list={profile} />
-            <ProfesorListMobile list={profile}/>
+            <ProfesorListMobile list={profile} />
         </section>
     );
 }

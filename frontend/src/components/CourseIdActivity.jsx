@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const CourseIdActivity = () => {
-  return (
-    <div>courseIdActivity</div>
-  )
-}
+    return <div>courseIdActivity</div>;
+};
 
-export default CourseIdActivity
+export default CourseIdActivity;

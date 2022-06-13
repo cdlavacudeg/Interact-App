@@ -1,7 +1,6 @@
 .courses {
     width: 100%;
     padding: 3rem;
-    
 }
 
 .courses-title {
@@ -25,11 +24,9 @@
         grid-template-columns: repeat(3, minmax(200px, 1fr));
         gap: 1rem;
     }
-
 }
 @media screen and (max-width: 430px) {
     .courses {
-       
         padding: 1rem;
     }
 }

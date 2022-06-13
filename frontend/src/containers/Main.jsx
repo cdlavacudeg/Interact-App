@@ -5,7 +5,6 @@ import Avisos from "@components/Avisos";
 import "@styles/home.css";
 
 const Main = () => {
-
     return (
         <div className="main-home">
             <WelcomeUser />

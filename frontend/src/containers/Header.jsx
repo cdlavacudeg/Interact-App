@@ -5,7 +5,7 @@ import menuSVG from "@icons/menu.svg";
 import calendarSVG from "@icons/calendar.svg";
 import "@styles/header.css";
 
-const Header = ({showed}) => {
+const Header = ({ showed }) => {
     const [active, setActive] = useState(false);
 
     const handleClick = () => setActive(!active);
