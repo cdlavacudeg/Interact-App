@@ -1,7 +1,4 @@
-import { useEffect } from "react";
 import "@styles/Gradestable.css";
-import { useDispatch, useSelector } from "react-redux";
-import { getGrade } from "../redux/actions";
 
 function GradesTable({ grades }) {
     return (
@@ -26,9 +23,13 @@ function GradesTable({ grades }) {
                                 </td>
                                 <td data-title="Calificación">{item.grade}</td>
                             </tr>
-                        ))}
+                            )
+                        )}
                     </tbody>
                 </table>
+                {
+                    grades.length == 0 ? <h3>Calificaciones no disponibles</h3>:<></>
+                }
             </div>
         </section>
     );
