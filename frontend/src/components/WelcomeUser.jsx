@@ -1,6 +1,6 @@
 import * as React from "react";
 import welcomeimg from "@img/welcome-img.svg";
-import style from "@styles/WelcomeUserStyle.module.css";
+import '@styles/welcomeuser.css';
 import { useSelector } from "react-redux";
 
 function WelcomeUser() {
@@ -8,19 +8,19 @@ function WelcomeUser() {
     const name = user.user.fullName;
     const gender = user.user.gender;
     return (
-        <section className={style.welcome}>
-            <div className={style.welcome_user}>
-                <h1 className={style.welcome_title}>
+        <section className='welcome'>
+            <div className='welcome-user'>
+                <h2 className='welcome-title'>
                     ¡{gender === "female" ? "Bienvenida" : "Bienvenido"},{" "}
                     {name.split(" ")[0]}!
-                </h1>
-                <p className={style.welcome_body}>
+                </h2>
+                <p className='welcome-body'>
                     {" "}
                     ¿{gender === "female" ? "Lista" : "Listo"} para seguir
                     aprendiendo hoy?
                 </p>
             </div>
-            <div className={style.welcome_img}>
+            <div className='welcome-img'>
                 <img src={welcomeimg} alt="" />
             </div>
         </section>

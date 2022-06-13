@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import ImageNameProfile from "../components/ImgNameProfile";
 import PersonalDataProfile from "../components/PersonalDataProfile";
 import ProfesorStudentList from "../components/ProfesorStudentList";
- import { getProfile } from "../redux/actions";
+import ProfesorListMobile from "../components/ProfesorListMobile";
+import { getProfile } from "../redux/actions";
 
 function Profile() {
     const user = useSelector((state) => state.user);
@@ -14,10 +15,11 @@ function Profile() {
         dispatch(getProfile(user.user.uid));
     }, []);
     return (
-        <section className="profile-section">
+        <section   className="profile-section">
             <ImageNameProfile />
             <PersonalDataProfile />
             <ProfesorStudentList list={profile} />
+            <ProfesorListMobile />
         </section>
     );
 }
