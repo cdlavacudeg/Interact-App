@@ -1,9 +1,10 @@
 import * as React from "react";
 import "@styles/profesorlistmobile.css";
-import imagProfile from "@img/imgprofile.png";
+import imgprofile from "@img/imgprofile.png";
 
 
-function ProfesorListMobile() {
+function ProfesorListMobile({list}) {
+    const {listTeachers,listStudents}=list
     return (
         <section>
             <div className="accordion" id="accordionExample">
@@ -16,7 +17,34 @@ function ProfesorListMobile() {
     <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div className="accordion-body">
         {/* Aca es donde va la lista de profesores */}
-        <h3>ACA VA LA LISTA DE PROFES</h3>
+        <ul className="ulprofesor">
+                    {listTeachers ? (
+                        listTeachers.map((e, index) => {
+                            return (
+                                <li className="liprofesor" key={index}>
+                                    <img
+                                        className="imagenprofile border-bottom-black"
+                                        src={imgprofile}
+                                        alt="imgprofile"
+                                    />
+                                    {e.fullName
+                                        .split(" ")
+                                        .slice(0, 2)
+                                        .join(" ")}
+                                    <br />
+                                    <span className="courseprofesor">
+                                        {e.course
+                                            .split(" ")
+                                            .slice(0, 2)
+                                            .join(" ")}
+                                    </span>
+                                </li>
+                            );
+                        })
+                    ) : (
+                        <></>
+                    )}
+                </ul>
       </div>
     </div>
   </div>
@@ -29,7 +57,24 @@ function ProfesorListMobile() {
     <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
       <div className="accordion-body">
         {/* Aca es donde va la lista de compañeros */}
-        <h3>ACA VA LA LISTA DE COMPAÑEROS</h3>
+        <ul className="ulprofesor">
+                    {listStudents ? (
+                        listStudents.map((e, index) => {
+                            return (
+                                <li className="listudent" key={index}>
+                                    <img
+                                        className="imagenprofile"
+                                        src={imgprofile}
+                                        alt="imgprofile"
+                                    />
+                                    {e.split(" ")[0]}
+                                </li>
+                            );
+                        })
+                    ) : (
+                        <></>
+                    )}
+                </ul>
       </div>
     </div>
   </div>
