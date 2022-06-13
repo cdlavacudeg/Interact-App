@@ -2,22 +2,48 @@ import backArrowSVG from "@icons/back-arrow.svg";
 import CalendarComponent from "../components/CalendarComponent";
 import CalendarNotification from "../components/CalendarNotification";
 import '@styles/calendarContainer.css'
+import {useDispatch, useSelector} from 'react-redux'
+import { useEffect } from "react";
+import { getEvents } from "../redux/actions";
+import moment from "moment";
 
 const CalendarContainer = ({active, setActive}) => {
-    const dataForTest = [
-        { date: "05", title: "Matematica", description: "clase de matematica" },
-        { date: "17", title: "Geometria", description: "clase de Geometria" },
-        { date: "23", title: "Lengua", description: "clase de Lengua" },
-        { date: "29", title: "Ingles", description: "clase de Ingles" },
-    ];
+    const user = useSelector(state=>state.user)
+    const events = useSelector(state=> state.events)
+    const dispatch = useDispatch()
 
-    const markDate = [
-        "04/06/2022",
-        "07/06/2022",
-        "11/06/2022",
-        "12/06/2022",
-        "25/06/2022",
-    ];
+    useEffect(()=>{
+        dispatch(getEvents(user.user.courses)).catch(error=>console.log(error))
+    },[])
+
+
+    let markDate = []
+    let notification = []
+    if(events){
+        events.map(event=>{
+            event.events.map(eventObj=>{
+                markDate.push(eventObj.date)
+                notification.push(Object.assign(eventObj,{course:event.course_id.courseName}))
+            })
+        })
+    }
+
+    markDate=[...new Set(markDate)]
+    notification = notification.filter(notification=>{
+        let date=notification.date.split('/')
+        date= new Date(date[2],parseInt(date[1])-1,date[0])
+        return date > new Date()
+    })
+    notification=notification.sort((a,b)=>{
+        let aDate=a.date.split('/')
+        let bDate=b.date.split('/')
+
+        aDate= new Date(aDate[2],parseInt(aDate[1])-1,aDate[0])
+        bDate= new Date(bDate[2],parseInt(bDate[1])-1,bDate[0])
+
+        return  aDate - bDate
+    })
+
 
     const isActive = active ? "calendar-active" : "";
 
@@ -30,12 +56,12 @@ const CalendarContainer = ({active, setActive}) => {
             <h1 className="calendar-title">Actividades pendientes</h1>
             <CalendarComponent mark={markDate} />
             {
-                dataForTest.map((item, index) => {
+                notification.map((item, index) => {
                     return (
                         <CalendarNotification
                             key={index}
-                            date={item.date}
-                            title={item.title}
+                            date={item.date.slice(0,2)}
+                            title={item.course}
                             description={item.description}
                         />
                     );
