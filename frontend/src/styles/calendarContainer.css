@@ -1,29 +1,29 @@
 .calendar {
-    width: 100%;
-    padding: 1rem;
-    padding-top: 2rem;
-    padding-bottom: 20vh;
-    position: absolute;
-    top: 0;
-    right: 110%;
+    width           : 100%;
+    padding         : 1rem;
+    padding-top     : 2rem;
+    padding-bottom  : 20vh;
+    position        : absolute;
+    top             : 0;
+    right           : 110%;
     background-color: var(--white-color);
-    transform: all 0.5s ease-in-out;
+    transition      : all 0.5s ease-in-out;
 }
 
 .calendar-container {
-    width: 100%;
-    height: 100vh;
-    margin: 0 auto;
+    width    : 100%;
+    height   : 100vh;
+    margin   : 0 auto;
     max-width: 340px;
     transform: var(--transition);
 }
 
 .calendar-backarrow {
     background-color: var(--white-color);
-    border: none;
-    width: 2rem;
-    position: absolute;
-    top: 25px;
+    border          : none;
+    width           : 2rem;
+    position        : absolute;
+    top             : 25px;
 }
 
 .calendar-active {
@@ -31,15 +31,16 @@
 }
 
 .calendar-title {
-    color: var(--primer-color);
-    font-size: var(--fz0);
+    color        : var(--primer-color);
+    font-size    : var(--fz0);
     margin-bottom: 2rem;
-    text-align: center;
+    text-align   : center;
 }
 
 @media screen and (min-width: 900px) {
     .calendar {
-        position: static;
+        position : static;
+        min-width: 300px;
     }
 
     .calendar-backarrow {
@@ -47,11 +48,11 @@
     }
 
     .calendar-title {
-        color: var(--primer-color);
-        font-size: var(--fz0);
-        text-align: left;
+        color        : var(--primer-color);
+        font-size    : var(--fz0);
+        text-align   : left;
         margin-bottom: 2rem;
-        margin-left: 1rem;
-        margin-top: 0;
+        margin-left  : 1rem;
+        margin-top   : 0;
     }
 }
