@@ -1,8 +1,11 @@
 import React from 'react'
+import CardActivity from './CardActivity'
 
 const CourseIdActivity = () => {
   return (
-    <div>courseIdActivity</div>
+    <div>
+        <CardActivity/>
+    </div>
   )
 }
 
