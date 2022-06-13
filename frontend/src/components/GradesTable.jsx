@@ -28,7 +28,7 @@ function GradesTable({ grades }) {
                     </tbody>
                 </table>
                 {
-                    grades.length == 0 ? <h3>Calificaciones no disponibles</h3>:<></>
+                    grades.length == 0 ? <h4>Calificaciones no disponibles</h4>:<></>
                 }
             </div>
         </section>
