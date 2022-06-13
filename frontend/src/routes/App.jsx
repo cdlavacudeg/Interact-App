@@ -14,8 +14,8 @@ import Admin from "../pages/Admin";
 import Materiaid from "../pages/Materiaid";
 import NotFound from "../pages/NotFound";
 import "@styles/App.css";
-import CourseIdActivity from "../components/courseIdActivity";
-import CourseSrc from "../components/courseSrc";
+import CourseIdActivity from "../components/CourseIdActivity";
+import CourseSrc from "../components/CourseSrc";
 import CourseForum from "../components/CourseForum";
 import CourseGrades from "../components/CourseGrades";
 
