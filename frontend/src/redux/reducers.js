@@ -18,7 +18,7 @@ const initialState = {
     grade: [],
     grades: [],
     courses: localCourses ? localCourses : [],
-    course: localCourse ? localCourse : [],
+    course: localCourse ? localCourse : {},
     notifications: [],
     profile: {},
 };
