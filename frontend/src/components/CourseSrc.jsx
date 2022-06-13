@@ -4,9 +4,9 @@ import CardLesson from "./CardLesson";
 const CourseSrc = () => {
     return (
         <>
-            <CardLesson/>
+            <CardLesson />
         </>
-    )
+    );
 };
 
 export default CourseSrc;

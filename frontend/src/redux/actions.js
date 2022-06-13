@@ -192,16 +192,16 @@ export function getCourses(id) {
     };
 }
 
-export function getCourseById(id){
-    return async function(dispacht){
-        let course = await axios.get(`/course/${id}`)
-        course =course.data.data.course
+export function getCourseById(id) {
+    return async function (dispacht) {
+        let course = await axios.get(`/course/${id}`);
+        course = course.data.data.course;
 
         return dispacht({
-            type:'GET_COURSE_ID',
-            payload:course
-        })
-    }
+            type: 'GET_COURSE_ID',
+            payload: course,
+        });
+    };
 }
 //============================
 //       NOTIFICATIONS

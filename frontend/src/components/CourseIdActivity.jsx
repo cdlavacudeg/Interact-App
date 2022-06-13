@@ -1,12 +1,12 @@
-import React from 'react'
-import CardActivity from './CardActivity'
+import React from "react";
+import CardActivity from "./CardActivity";
 
 const CourseIdActivity = () => {
-  return (
-    <>
-        <CardActivity/>
-    </>
-  )
-}
+    return (
+        <>
+            <CardActivity />
+        </>
+    );
+};
 
 export default CourseIdActivity;

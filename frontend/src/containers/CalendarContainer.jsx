@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getEvents } from "../redux/actions";
 
-
 const CalendarContainer = ({ active, setActive }) => {
     const user = useSelector((state) => state.user);
     const events = useSelector((state) => state.events);

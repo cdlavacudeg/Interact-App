@@ -23,13 +23,14 @@ function GradesTable({ grades }) {
                                 </td>
                                 <td data-title="Calificación">{item.grade}</td>
                             </tr>
-                            )
-                        )}
+                        ))}
                     </tbody>
                 </table>
-                {
-                    grades.length == 0 ? <h4>Calificaciones no disponibles</h4>:<></>
-                }
+                {grades.length == 0 ? (
+                    <h4>Calificaciones no disponibles</h4>
+                ) : (
+                    <></>
+                )}
             </div>
         </section>
     );

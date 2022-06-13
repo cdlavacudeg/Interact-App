@@ -8,27 +8,29 @@ import { useEffect, useState } from "react";
 import { getCourseById } from "../redux/actions";
 
 const CourseContainer = () => {
-    const [loading,setLoading]=useState(true)
+    const [loading, setLoading] = useState(true);
     const { materiaId } = useParams();
-    const course = useSelector(state=>state.course)
-    const dispacht=useDispatch()
+    const course = useSelector((state) => state.course);
+    const dispacht = useDispatch();
 
-    useEffect(()=>{
-        setLoading(true)
+    useEffect(() => {
+        setLoading(true);
         dispacht(getCourseById(materiaId))
-        .then(()=>{
-            setLoading(false)
-        })
-        .catch(error=>console.log(error))
-    },[])
+            .then(() => {
+                setLoading(false);
+            })
+            .catch((error) => console.log(error));
+    }, []);
 
-    window.localStorage.setItem('course',JSON.stringify(course))
+    window.localStorage.setItem("course", JSON.stringify(course));
     return (
         <section className="courseId">
             <div className="courseId-img">
                 <img src={course.image} alt="imagen de la materia" />
             </div>
-            <h1 className="courseId-title">{loading?"":course.courseName}</h1>
+            <h1 className="courseId-title">
+                {loading ? "" : course.courseName}
+            </h1>
             <CourseTabs params={materiaId} />
             <Outlet />
         </section>
