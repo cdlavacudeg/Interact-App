@@ -2,7 +2,7 @@
     background-color: var(--whiteSmoke-color);
     border          : 2px solid var(--black-color);
     border-radius   : 12px;
-    padding         : .5rem;
+    padding         : .8rem;
     padding-bottom  : 0;
     display         : flex;
     justify-content : space-between;
@@ -12,11 +12,10 @@
 
 .cardActivity-status {
     color       : #656565;
-    margin-right: .5rem;
+    margin-right: 1rem;
 }
 
 .cardActivity-text {
     line-height: 1;
+    margin-left: 1rem;
 }
-
-.cardActivity-body span {}
