@@ -40,7 +40,10 @@ export function deleteUser(id) {
 
 export function updateUser(id, data) {
     return async function (dispatch) {
-        var json = await axios.put('/user' + id, data);
+        var json = await axios.put(
+            '/user' + id,
+            data
+        );
         console.log(json.data);
         return dispatch({
             type: 'UPDATE_USER',
@@ -51,7 +54,10 @@ export function updateUser(id, data) {
 
 export function postUser(id, data) {
     return async function (dispatch) {
-        var json = await axios.post('/user' + id, data);
+        var json = await axios.post(
+            '/user' + id,
+            data
+        );
         console.log(json.data);
         return dispatch({
             type: 'POST_USER',
@@ -126,7 +132,7 @@ export function login({ email, password, role }) {
         const resRole = json.data.data.user.role;
         if (resRole != role) {
             if (resRole != 'admin') {
-                throw new Error('Rol incorrecto');
+                throw new Error('Incorrect role');
             }
         }
         return dispatch({

@@ -21,7 +21,6 @@ const CourseContainer = () => {
             })
             .catch((error) => console.log(error));
     }, []);
-    console.log(course)
 
     window.localStorage.setItem("course", JSON.stringify(course));
     return (

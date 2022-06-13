@@ -5,6 +5,9 @@ const localStorage = window.localStorage.getItem('loggedAppUser')
 const localCourses = window.localStorage.getItem('courses')
     ? JSON.parse(window.localStorage.getItem('courses'))
     : undefined;
+const localGrades = window.localStorage.getItem('grades')
+    ? JSON.parse(window.localStorage.getItem('grades'))
+    : undefined;
 
 const localCourse = window.localStorage.getItem('course')
     ? JSON.parse(window.localStorage.getItem('course'))
@@ -15,7 +18,7 @@ const initialState = {
     user: localStorage ? localStorage : {},
     events: [],
     event: [],
-    grade: [],
+    grade: localGrades ? localGrades : [],
     grades: [],
     courses: localCourses ? localCourses : [],
     course: localCourse ? localCourse : {},

@@ -8,7 +8,7 @@ const CardLesson = () => {
 
     const handleVideo = () => setVideo(!video);
     let lectures = useSelector((state) => state.course.lessons.lectures);
-
+    console.log(lectures)
     return (
         <>
             <div className="accordion" id="accordionExample">
