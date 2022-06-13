@@ -22,10 +22,28 @@
 }
 /* Display flex para el container */
 
-/* .recent-activities-container {
-    display: flex;
-    justify-content: space-between;
-} */
+.recent_activities_container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    gap: 0.5rem;
+    margin: auto;
+    margin-top: 1.5rem;
+}
+@media screen and (min-width: 900px) {
+    .recent_activities_container {
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media screen and (min-width:1200px){
+    .recent_activities_container{
+        grid-template-columns: repeat(3,minmax(200px,1fr));
+        gap:2rem;
+    }
+}
+
 
 .recent_activities_item {
     border: thin solid black;
