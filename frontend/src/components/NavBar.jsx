@@ -39,6 +39,11 @@ const NavBar = ({ show, change }) => {
             name: "Contacto",
             icon: contactoSVG,
         },
+        {
+            path: "/admin",
+            name: "Admin",
+            icon: perfilSVG,
+        }
     ];
 
     const handleLogout = () => {

@@ -18,6 +18,8 @@ import CourseIdActivity from "../components/CourseIdActivity";
 import CourseSrc from "../components/CourseSrc";
 import CourseForum from "../components/CourseForum";
 import CourseGrades from "../components/CourseGrades";
+import TeacherAdminTable from "../components/TeacherAdmintable";
+import StudentAdminTable from "../components/StudentAdminTable";
 
 const App = () => {
     const user = useSelector((state) => state.user);
@@ -38,11 +40,14 @@ const App = () => {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="/materias" element={<Materias />} />
-                    <Route path='/materias/:materiaId' element={<Materiaid />}>
+                    <Route path="/materias/:materiaId" element={<Materiaid />}>
                         <Route index element={<CourseIdActivity />} />
-                        <Route path='material' element={<CourseSrc />} />
-                        <Route path='foro' element={<CourseForum />} />
-                        <Route path='calificaciones' element={<CourseGrades />} />
+                        <Route path="material" element={<CourseSrc />} />
+                        <Route path="foro" element={<CourseForum />} />
+                        <Route
+                            path="calificaciones"
+                            element={<CourseGrades />}
+                        />
                     </Route>
                     <Route
                         path="/calificaciones"
@@ -50,8 +55,11 @@ const App = () => {
                     />
                     <Route path="/perfil" element={<Perfil />} />
                     <Route path="/contacto" element={<Contacto />} />
+                    <Route path="/admin" element={<Admin />} />
+                    <Route path="/admin/Teacher" element={<TeacherAdminTable />} />
+                    <Route path="/admin/Student" element={<StudentAdminTable />} />
                 </Route>
-                <Route path="/admin" element={<Admin />} />
+
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>

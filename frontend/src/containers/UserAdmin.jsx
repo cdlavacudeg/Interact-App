@@ -1,35 +1,15 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../redux/actions";
+
+import  UserAdminTable from "../components/AdminTabs"
+import "@styles/useradmintable.css";
 
 const UserAdmin = () => {
-    const dispatch = useDispatch();
-    const listUsers = useSelector((state) => state.users);
-
-    useEffect(() => {
-        dispatch(getUsers()).catch((error) => console.log(error));
-    }, []);
-    console.log(listUsers);
     return (
-        <>
-            <ul>
-                {listUsers.map((user) => {
-                    let { fullName, gender, email, courses, role } = user;
-                    return (
-                        <li key={user.uid}>
-                            {fullName}--{gender}--{email}--{role}
-                            <br />
-                            {courses.map((course) => (
-                                <span key={course._id}>
-                                    {" "}
-                                    {course.courseName}
-                                </span>
-                            ))}
-                        </li>
-                    );
-                })}
-            </ul>
-        </>
+        <div className="user-section">
+            <h1 className="listUser_title">Panel de Administracion </h1>
+            <section>
+                <UserAdminTable />
+            </section>
+        </div>
     );
 };
 
