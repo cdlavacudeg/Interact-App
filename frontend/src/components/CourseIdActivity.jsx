@@ -3,9 +3,9 @@ import CardActivity from './CardActivity'
 
 const CourseIdActivity = () => {
   return (
-    <div>
+    <>
         <CardActivity/>
-    </div>
+    </>
   )
 }
 
