@@ -1,0 +1,41 @@
+.courseId {
+    width : 95%;
+    margin: auto;
+}
+
+.courseId-img {
+    margin-top: 1rem;
+}
+
+.courseId-img img {
+    aspect-ratio: 5 / 1;
+    object-fit  : cover;
+}
+
+.courseId-title {
+    font-size: var(--fz3);
+    color    : var(--primer-color);
+    margin   : 1rem 0;
+}
+
+@media screen and (min-width: 900px) {
+    .courseId {
+        width       : 95%;
+        margin-right: 1rem;
+    }
+
+    .courseId-img {
+        margin-top: 1rem;
+    }
+
+    .courseId-img img {
+        aspect-ratio: 5 / 1;
+        object-fit  : cover;
+    }
+
+    .courseId-title {
+        font-size: var(--fz3);
+        color    : var(--primer-color);
+        margin   : 1rem 0;
+    }
+}

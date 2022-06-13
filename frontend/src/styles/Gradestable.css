@@ -1,6 +1,6 @@
 .calificaciones {
     font-size: var(--fz3);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: var(--primer-color);
 }
 
@@ -8,7 +8,7 @@
     background-color: #efb365;
 }
 .grades-section{
-    padding: 2rem;
+    padding: 3rem;
 }
 
 @media only screen and (max-width: 800px) {

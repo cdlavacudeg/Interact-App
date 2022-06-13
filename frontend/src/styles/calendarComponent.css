@@ -157,9 +157,3 @@
         color           : var(--white-color);
     }
 }
-
-
-div.react-calendar__tile—now {
-    outline         : solid !important;
-    background-color: green !important;
-}
