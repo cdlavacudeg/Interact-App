@@ -19,7 +19,7 @@ function Profile() {
             <ImageNameProfile />
             <PersonalDataProfile />
             <ProfesorStudentList list={profile} />
-            <ProfesorListMobile />
+            <ProfesorListMobile list={profile}/>
         </section>
     );
 }
