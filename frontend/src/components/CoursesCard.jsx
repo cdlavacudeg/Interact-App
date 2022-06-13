@@ -6,7 +6,7 @@ const CoursesCard = ({ name, image, nameProf, id }) => {
 
     return (
         <div
-            onClick={() => navigate(`/materias/${id}`)}
+            onClick={() => navigate(`/materias/${id}/`)}
             className="courses-card"
         >
             <img
