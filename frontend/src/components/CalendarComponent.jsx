@@ -10,7 +10,6 @@ const CalendarComponent = ({ mark }) => {
         <article>
             <Calendar
                 onChange={setDate}
-                onClickDay={(value) => alert(`CLick en fecha: ${value}`)}
                 value={date}
                 tileClassName={({ date }) => {
                     // console.log(mark.find(x=>x===moment(date).format("DD-MM-YYYY")))

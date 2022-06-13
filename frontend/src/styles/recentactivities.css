@@ -37,13 +37,12 @@
     }
 }
 
-@media screen and (min-width:1200px){
-    .recent_activities_container{
-        grid-template-columns: repeat(3,minmax(200px,1fr));
-        gap:2rem;
+@media screen and (min-width: 1200px) {
+    .recent_activities_container {
+        grid-template-columns: repeat(3, minmax(200px, 1fr));
+        gap: 2rem;
     }
 }
-
 
 .recent_activities_item {
     border: thin solid black;
