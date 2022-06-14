@@ -10,9 +10,10 @@ import logoutSVG from "@icons/logout.svg";
 import backArrowSVG from "@icons/back-arrow.svg";
 import "@styles/navBar.css";
 
-const NavBar = ({ show, change }) => {
+const NavBar = ({ show ,close}) => {
     const user = useSelector((state) => state.user);
     const isActive = show ? "show" : " ";
+
     const dispatch = useDispatch();
     let menuItem = [
         {
@@ -97,14 +98,14 @@ const NavBar = ({ show, change }) => {
     };
     return (
         <nav className={`header-nav ${isActive}`}>
-            <button onClick={change} className="header-backarrow">
+            <button onClick={close} className="header-backarrow">
                 <img src={backArrowSVG} alt="back arrow" />
             </button>
             <ul className="header-nav-list">
                 {menuItem.map((item) => (
                     <li className="header-nav-item" key={item.name}>
                         <NavLink
-                            onClick={change}
+                            onClick={close}
                             className="header-nav-link"
                             to={item.path}
                         >

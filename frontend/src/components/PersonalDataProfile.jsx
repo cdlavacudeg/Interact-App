@@ -16,7 +16,7 @@ function PersonalDataProfile() {
                             <th className="clamp-responsive">Institucion</th>
                             <th className="clamp-responsive">Curso</th>
                             <th className="clamp-responsive">
-                                Correo electronico
+                                Correo
                             </th>
                         </tr>
                     </thead>
