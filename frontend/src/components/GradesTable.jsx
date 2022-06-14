@@ -2,7 +2,7 @@ import "@styles/Gradestable.css";
 
 function GradesTable({ grades }) {
     return (
-        <section className="bg-light p-2 grades-section">
+        <section className="bg-light table-container">
             <div className="table-responsive" id="no-more-tables">
                 <table className="table">
                     <thead>
@@ -21,7 +21,7 @@ function GradesTable({ grades }) {
                                 <td data-title="Tipo de evaluacion">
                                     {item.obs}
                                 </td>
-                                <td data-title="Calificación">{item.grade}</td>
+                                <td className="grade" data-title="Calificación">{item.grade}</td>
                             </tr>
                         ))}
                     </tbody>

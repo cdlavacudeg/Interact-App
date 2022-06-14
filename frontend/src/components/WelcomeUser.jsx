@@ -23,7 +23,7 @@ function WelcomeUser() {
                 </p>
             </div>
             <div className="welcome-img">
-                <img src={welcomeimg} alt="" />
+                <img src={welcomeimg} alt=" generic user illustration" />
             </div>
         </section>
     );

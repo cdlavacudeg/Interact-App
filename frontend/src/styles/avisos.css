@@ -1,79 +1,101 @@
-/* Reset */
-:root {
-    box-sizing: border-box;
-}
-
-*,
-*::after,
-*::before {
-    box-sizing: inherit;
-}
-
 /* Margin del section */
 .section-avisos {
     margin: 0;
 }
 
 .h2-avisos {
-    font-size: 24px;
-    padding: 0rem 1rem 1rem 1rem;
+    font-size: var(--fz1);
+    padding  : 0rem 1rem 1rem 1rem;
 }
 
 .content-aviso {
-    margin-top: 11px;
-    margin-bottom: 11px;
-    width: 50%;
-    margin-right: auto;
+    font-size  : var(--fz-1);
+    line-height: 1.4;
 }
-.content-aviso.user{
-    width: 60%;
+
+.titulo-aviso,
+.fecha-aviso,
+.descripcion-aviso {
+    margin: 0;
 }
+
+.content-aviso.user {
+    /* width: 3rem; */
+}
+
 .container-avisos {
     padding: 0;
 }
+
 .avisos-li {
-    display: flex;
-    width: 100%;
-    border: thin solid black;
-    border-radius: 12px;
-    margin-bottom: 0.5rem;
-    justify-content: space-between;
-    align-items: center;
-}
-.avisos-li .trash-icon{
-    display: flex;
-    width: 30%;
+    width          : 100%;
+    display        : flex;
+    justify-content: flex-start;
+    align-items    : center;
+    border         : thin solid black;
+    padding        : .5rem 1rem;
+    border-radius  : 12px;
+    margin-bottom  : 0.5rem;
 }
 
-.avisos-li .trash-icon img{
-    max-width: 44px;
+.avisos-li .trash-icon {
+    display    : flex;
+    width      : 30%;
     margin-left: auto;
-    margin-right: 15px;
-    border-radius: 50%;
-    padding: 10px;
+    cursor     : pointer;
 }
-.avisos-li .trash-icon img:hover{
+
+.avisos-li .trash-icon img {
+    max-width    : 44px;
+    margin-left  : auto;
+    margin-right : 15px;
+    border-radius: 50%;
+    padding      : 10px;
+    transition   : var(--transition);
+}
+
+.avisos-li .trash-icon img:hover {
     background-color: red;
 }
+
 /* Tamaño de la imagen */
 .avisosimg {
-    display: flex;
-    width: 20%;
-    height: 100%;
-}
-.avisosimg.user{
-    width: 15%;
-}
-.avisosimg img{
-    width: 100%;
-    max-width: 84px;
-    margin:auto;
+    margin-right: 1.5rem;
 }
 
-@media only screen and (max-width: 1000px) {
+.avisosimg img {
+    width    : 100%;
+    max-width: 84px;
 }
+
+
+
+@media only screen and (max-width: 1000px) {}
+
 @media only screen and (max-width: 500px) {
     .avisosimg {
-        width: 35%;
+        margin: 0;
+    }
+
+    .content-aviso {
+        margin-left: 1rem;
+    }
+
+    .avisos-li .trash-icon {
+        width      : 4rem;
+        margin-left: auto;
+        text-align : left;
+    }
+
+    .avisos-li .trash-icon img {
+        width        : 40%;
+        margin       : 0;
+        border-radius: 50%;
+        padding      : 0;
+        margin-left  : auto;
+    }
+
+    .avisos-li .trash-icon img:hover {
+        background-color: red;
     }
 }

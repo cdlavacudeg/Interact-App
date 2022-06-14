@@ -46,7 +46,7 @@ function Avisos() {
                     (item, index) =>
                         index < avisos && (
 
-                            <li key={index} className="avisos-li">
+                            <div key={index} className="avisos-li">
                                 <div className={`avisosimg ${user.user.role !=='admin'?'user':' '}`}>
                                     <img
                                         src={avisosimg}
@@ -58,20 +58,19 @@ function Avisos() {
                                     <h6 className="titulo-aviso">
                                         {item.title}
                                     </h6>
-                                    <span className="fecha-aviso">
+                                    <p className="fecha-aviso">
                                         {item.date}
-                                    </span>
-                                    <br/>
-                                    <span className="descripcion-aviso">
+                                    </p>
+                                    <p className="descripcion-aviso">
                                         {item.content}
-                                    </span>
+                                    </p>
                                 </span>
                                 {user.user.role == 'admin' &&
                                 (<div className="trash-icon" onClick={()=>handleDelete(item.uid,user.token)}>
                                     <img src={trashimg} alt='trash icon' />
                                 </div>)}
 
-                            </li>
+                            </div>
                         )
                 )
             ) : (
