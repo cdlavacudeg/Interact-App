@@ -28,8 +28,6 @@
 }
 
 @media screen and (min-width: 900px) {
-    .courseId-info {
-    }
 
     .courseId-list {
         display: flex;
