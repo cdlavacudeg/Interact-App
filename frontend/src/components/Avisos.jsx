@@ -9,14 +9,21 @@ import avisosimg from "@img/img-avisos.png";
 function Avisos() {
     const [avisos, setAvisos] = useState(3);
     const [btn, setbtn] = useState(1);
+    const user = useSelector((state) => state.user);
 
     const avisosAll = useSelector((state) => state.notifications);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getNotifications()).catch((error) => {
-            console.log(error);
-        });
+        dispatch(getNotifications())
+            .catch((error) => {
+                console.log(error);
+            })
+            .then(() => {
+                if (user.user.role == "admin") {
+                    setAvisos(avisosAll.length);
+                }
+            });
     }, []);
 
     const verMas = () => {
@@ -64,9 +71,11 @@ function Avisos() {
                 </div>
             )}
 
-            <button onClick={() => verMas()} className="btn_second">
-                {btn === 1 ? "Ver mas" : "Ver menos"}
-            </button>
+            {user.user.role !== "admin" && (
+                <button onClick={() => verMas()} className="btn_second">
+                    {btn === 1 ? "Ver mas" : "Ver menos"}
+                </button>
+            )}
         </section>
     );
 }

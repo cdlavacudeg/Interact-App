@@ -11,7 +11,7 @@ import backArrowSVG from "@icons/back-arrow.svg";
 import "@styles/navBar.css";
 
 const NavBar = ({ show, change }) => {
-    const user = useSelector(state=>state.user)
+    const user = useSelector((state) => state.user);
     const isActive = show ? "show" : " ";
     const dispatch = useDispatch();
     let menuItem = [
@@ -39,10 +39,10 @@ const NavBar = ({ show, change }) => {
             path: "/contacto",
             name: "Contacto",
             icon: contactoSVG,
-        }
+        },
     ];
 
-    if(user.user.role == 'teacher'){
+    if (user.user.role == "teacher") {
         menuItem = [
             {
                 path: "/",
@@ -63,11 +63,11 @@ const NavBar = ({ show, change }) => {
                 path: "/contacto",
                 name: "Contacto",
                 icon: contactoSVG,
-            }
-        ]
+            },
+        ];
     }
 
-    if(user.user.role == 'admin'){
+    if (user.user.role == "admin") {
         menuItem = [
             {
                 path: "/",
@@ -88,8 +88,8 @@ const NavBar = ({ show, change }) => {
                 path: "/contacto",
                 name: "Mensajes",
                 icon: contactoSVG,
-            }
-        ]
+            },
+        ];
     }
     const handleLogout = () => {
         dispatch(logout());

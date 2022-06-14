@@ -123,7 +123,11 @@ const LoginPage = () => {
                     >
                         <div className={style.contentInput}>
                             <input
-                            style={{  borderLeft: formikTeacher.errors.email ? '3px solid tomato' : '1.5px solid #b9b9b9' }}
+                                style={{
+                                    borderLeft: formikTeacher.errors.email
+                                        ? "3px solid tomato"
+                                        : "1.5px solid #b9b9b9",
+                                }}
                                 className={style.customInput}
                                 type="email"
                                 placeholder="Correo electronico"
@@ -140,7 +144,12 @@ const LoginPage = () => {
                         </div>
                         <div className={style.contentInput}>
                             <input
-                                style={{ marginTop: "5px", borderLeft: formikTeacher.errors.password ? '3px solid tomato' : '1.5px solid #b9b9b9' }}
+                                style={{
+                                    marginTop: "5px",
+                                    borderLeft: formikTeacher.errors.password
+                                        ? "3px solid tomato"
+                                        : "1.5px solid #b9b9b9",
+                                }}
                                 className={style.customInput}
                                 type="password"
                                 placeholder="password"
@@ -184,7 +193,11 @@ const LoginPage = () => {
                 >
                     <div className={style.contentInput}>
                         <input
-                        style={{ borderLeft: formikStudent.errors.email ? '3px solid tomato' : '1.5px solid #b9b9b9'}}
+                            style={{
+                                borderLeft: formikStudent.errors.email
+                                    ? "3px solid tomato"
+                                    : "1.5px solid #b9b9b9",
+                            }}
                             className={style.customInput}
                             type="email"
                             placeholder="Correo electronico"
@@ -201,8 +214,12 @@ const LoginPage = () => {
                     </div>
                     <div className={style.contentInput}>
                         <input
-
-                            style={{ marginTop: "5px" , borderLeft: formikStudent.errors.password ? '3px solid tomato' : '1.5px solid #b9b9b9' }}
+                            style={{
+                                marginTop: "5px",
+                                borderLeft: formikStudent.errors.password
+                                    ? "3px solid tomato"
+                                    : "1.5px solid #b9b9b9",
+                            }}
                             className={style.customInput}
                             type="password"
                             placeholder="password"
@@ -215,7 +232,7 @@ const LoginPage = () => {
                             <div className={style.formikError}>
                                 {" "}
                                 {formikStudent.errors.password}{" "}
-                            </div> 
+                            </div>
                         ) : null}
                     </div>
                     <p

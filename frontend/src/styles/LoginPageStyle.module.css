@@ -5,7 +5,6 @@
     padding: 0px;
     grid-column-start: 1;
     grid-column-end: -1;
-    
 }
 .imgContent {
     width: 50%;
@@ -116,9 +115,8 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-  
+
     justify-content: center;
-   
 }
 .customInput {
     border: 1.5px solid #b9b9b9;
@@ -135,7 +133,6 @@
 .formikError {
     color: tomato;
     font-size: small;
-
 }
 
 .buttonSubmit {
@@ -168,7 +165,7 @@
     .formsContent {
         width: 100%;
     }
-    
+
     .choiceLoginButtons {
         width: 45%;
     }
@@ -177,7 +174,6 @@
         height: 40%;
     }
     .choiceLoginButtons {
-       
         height: 40%;
     }
     .loginPageContent {
@@ -188,7 +184,7 @@
     }
     .motivatingPhraseContent h3 {
         font-size: 35px;
-       }
+    }
 }
 @media only screen and (max-width: 500px) {
     .logo {
@@ -196,11 +192,9 @@
     }
     .motivatingPhraseContent {
         padding: 0px;
-        
-        
-      }
+    }
     .motivatingPhraseContent h3 {
-     font-size: 30px;
+        font-size: 30px;
     }
 
     .choiceLoginButtons {
@@ -217,7 +211,6 @@
     .loginPageContent {
         height: 100vh;
         padding: 0px;
-       
     }
     .formsContent {
         width: 90%;

@@ -1,26 +1,27 @@
 .calendar-table {
-    display    : flex;
+    display: flex;
     align-items: center;
 }
 
 .calendar-table-num {
-    margin-right    : 1rem;
-    margin-top      : -15px;
-    font-size       : var(--fz-1);
+    margin-right: 1rem;
+    margin-top: -15px;
+    font-size: var(--fz-1);
     background-color: var(--tercer-color);
-    color           : var(--white-color);
-    padding         : 6px;
-    border-radius   : 50%;
+    color: var(--white-color);
+    padding: 6px;
+    border-radius: 50%;
 }
 
-.calendar-table-text {}
+.calendar-table-text {
+}
 
 .calendar-table-title {
     font-size: var(--fz-1);
 }
 
 .calendar-table-body {
-    font-size : var(--fz-2);
+    font-size: var(--fz-2);
     margin-top: -5px;
     font-style: italic;
 }
