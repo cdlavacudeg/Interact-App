@@ -1,6 +1,6 @@
 
 import "@styles/useradmintable.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../redux/actions";
 import logoPlus from "@icons/PlusButton.svg";
@@ -8,6 +8,9 @@ import logoPlus from "@icons/PlusButton.svg";
 function StudentAdminTable() {
      const dispatch = useDispatch();
      const listUsers = useSelector((state) => state.users);
+       const [activeModal, setActiveModal] = useState({
+           active: false,
+       });
 
         useEffect(() => {
             dispatch(getUsers()).catch((error) => console.log(error));
