@@ -7,13 +7,11 @@
 .bg-color-honey {
     background-color: #efb365;
 }
-.grades-section{
+.grades-section {
     padding: 3rem;
 }
 
 @media only screen and (max-width: 800px) {
-
-
     #no-more-tables tbody,
     #no-more-tables tr,
     #no-more-tables td {
@@ -25,7 +23,6 @@
         top: -99999px;
         left: -9999px;
     }
-
 
     #no-more-tables td {
         position: relative;
@@ -46,9 +43,8 @@
     }
 }
 
-
 @media screen and (max-width: 430px) {
-    .grades-section{
+    .grades-section {
         padding: 1rem;
     }
 }

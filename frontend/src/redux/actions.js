@@ -198,6 +198,17 @@ export function getCourses(id) {
     };
 }
 
+export function getCourseById(id) {
+    return async function (dispacht) {
+        let course = await axios.get(`/course/${id}`);
+        course = course.data.data.course;
+
+        return dispacht({
+            type: 'GET_COURSE_ID',
+            payload: course,
+        });
+    };
+}
 //============================
 //       NOTIFICATIONS
 //============================
@@ -208,6 +219,27 @@ export function getNotifications() {
         return dispatch({
             type: 'GET_NOTIFICATIONS',
             payload: json.data.data.notification,
+        });
+    };
+}
+
+//============================
+//       EVENTS
+//============================
+
+export function getEvents(courses_id) {
+    return async function (dispatch) {
+        let events = await axios.get('/event');
+        events = events.data.data.event;
+        events = events.filter(
+            (event) =>
+                courses_id.indexOf(event.course_id._id) != -1 &&
+                event.events.length != 0
+        );
+
+        return dispatch({
+            type: 'GET_EVENTS',
+            payload: events,
         });
     };
 }

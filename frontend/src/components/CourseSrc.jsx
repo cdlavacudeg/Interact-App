@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import CardLesson from "./CardLesson";
 
 const CourseSrc = () => {
-  return (
-    <div>courseSrc</div>
-  )
-}
+    return (
+        <>
+            <CardLesson />
+        </>
+    );
+};
 
-export default CourseSrc
+export default CourseSrc;

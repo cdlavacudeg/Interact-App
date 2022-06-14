@@ -3,7 +3,7 @@ import Profile from "../containers/Profile";
 
 const Perfil = () => {
     return (
-        <div >
+        <div>
             <Profile />
         </div>
     );

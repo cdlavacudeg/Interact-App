@@ -9,6 +9,10 @@ const localGrades = window.localStorage.getItem('grades')
     ? JSON.parse(window.localStorage.getItem('grades'))
     : undefined;
 
+const localCourse = window.localStorage.getItem('course')
+    ? JSON.parse(window.localStorage.getItem('course'))
+    : undefined;
+
 const initialState = {
     users: [],
     user: localStorage ? localStorage : {},
@@ -17,6 +21,7 @@ const initialState = {
     grade: localGrades ? localGrades : [],
     grades: [],
     courses: localCourses ? localCourses : [],
+    course: localCourse ? localCourse : {},
     notifications: [],
     profile: {},
 };
@@ -128,6 +133,12 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 courses: action.payload,
+            };
+
+        case 'GET_COURSE_ID':
+            return {
+                ...state,
+                course: action.payload,
             };
 
         //Notifications

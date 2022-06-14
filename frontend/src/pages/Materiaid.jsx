@@ -1,14 +1,11 @@
-
 import CourseContainer from "../containers/CourseContainer";
 
 const Materiaid = () => {
+    return (
+        <>
+            <CourseContainer />
+        </>
+    );
+};
 
-
-  return (
-    <>
-      <CourseContainer/>
-    </>
-  )
-}
-
-export default Materiaid
+export default Materiaid;

@@ -21,7 +21,7 @@
 
 .ul-avisos {
     list-style: none;
-margin-top: 1rem ;
+    margin-top: 1rem;
 }
 
 .ul-avisos li {
@@ -42,11 +42,9 @@ margin-top: 1rem ;
 }
 
 @media only screen and (max-width: 1000px) {
-    
 }
 @media only screen and (max-width: 500px) {
     .avisosimg {
         width: 35%;
-        
     }
 }

@@ -18,7 +18,7 @@ import CourseIdActivity from "../components/CourseIdActivity";
 import CourseSrc from "../components/CourseSrc";
 import CourseForum from "../components/CourseForum";
 import CourseGrades from "../components/CourseGrades";
-import TeacherAdminTable from "../components/TeacherAdmintable";
+import TeacherAdminTable from "../components/TeacherAdminTable";
 import StudentAdminTable from "../components/StudentAdminTable";
 
 const App = () => {
@@ -26,7 +26,7 @@ const App = () => {
     const dispatch = useDispatch();
 
     if (!user.token) {
-        return <LoginPage/>;
+        return <LoginPage />;
     }
 
     dispatch(getCourses(user.user.uid)).catch((error) => {
