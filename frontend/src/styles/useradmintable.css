@@ -14,8 +14,13 @@
     font-size: var(--fz-1);
     color: var(--primer-color);
     cursor: pointer;
+    width: 100%;
+    display:flex;
+    justify-content:flex-end;
 }
 .plusUser__imgPlusLogo {
+    width:50px;
+    padding-top: 1rem;
 
 }
 
