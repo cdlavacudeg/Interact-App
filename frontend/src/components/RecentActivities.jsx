@@ -5,7 +5,7 @@ function Recentactivities() {
     const materias = useSelector((state) => state.courses);
 
     return (
-        <section className="recent_activities pt-5 pb-4">
+        <section className="recent_activities mb-4">
             <h2 className="recent_activities_h2 ">Actividad Reciente</h2>
             <div className="recent_activities_container">
                 {materias ? (

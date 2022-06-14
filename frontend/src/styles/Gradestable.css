@@ -1,17 +1,52 @@
+.grades-section {
+    width     : 100%;
+    padding   : 0 !important;
+    margin-top: 3rem;
+    padding   : 1rem;
+}
+
 .calificaciones {
-    font-size: var(--fz3);
-    margin-bottom: 1.5rem;
-    color: var(--primer-color);
+    font-size  : var(--fz3);
+    color      : var(--primer-color);
+    margin-left: 1.5rem;
+}
+
+.courses {
+    width     : 100%;
+    margin-top: 2rem;
+    padding   : 1rem;
+}
+
+.courses-title {
+    font-size    : var(--fz3);
+    margin-bottom: 1rem;
+    margin-left  : 1%;
+    color        : var(--primer-color);
 }
 
 .bg-color-honey {
     background-color: #efb365;
 }
-.grades-section {
-    padding: 3rem;
+
+.table-responsive {
+    width : 100%;
+    margin: auto;
 }
 
+.table-container {
+    width         : 90%;
+    margin        : auto;
+    padding-bottom: 0;
+}
+
+.grade {
+    text-align: right;
+    transform : translateX(-1rem);
+}
+
+
 @media only screen and (max-width: 800px) {
+
     #no-more-tables tbody,
     #no-more-tables tr,
     #no-more-tables td {
@@ -20,21 +55,21 @@
 
     #no-more-tables thead tr {
         position: absolute;
-        top: -99999px;
-        left: -9999px;
+        top     : -99999px;
+        left    : -9999px;
     }
 
     #no-more-tables td {
-        position: relative;
-        padding-left: 50%;
-        border: none;
+        position     : relative;
+        padding-left : 50%;
+        border       : none;
         border-bottom: 1px solid #eee;
     }
 
     #no-more-tables td:before {
-        content: attr(data-title);
-        position: absolute;
-        left: 6px;
+        content    : attr(data-title);
+        position   : absolute;
+        left       : 6px;
         font-weight: bold;
     }
 
