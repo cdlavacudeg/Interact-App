@@ -9,6 +9,7 @@ const AdminTabs = () => {
   return (
       <div className="Admin">
           <ul className="AdminId-list">
+
               <li className="AdminId-item">
                   <button className="button_listAdmin">
                   <NavLink to={"/admin/Teacher"}>
@@ -17,7 +18,7 @@ const AdminTabs = () => {
                           src={logoicon}
                           alt=""
                       />
-                     Profesores
+                   Editar Profesores
                      </NavLink>
                   </button>
               </li>
@@ -30,7 +31,7 @@ const AdminTabs = () => {
                           alt=""
                           width="400px"
                       />
-                     Alumnos
+                   Editar Alumnos
                      </NavLink>
                   </button>
               </li>
