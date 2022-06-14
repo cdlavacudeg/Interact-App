@@ -1,16 +1,15 @@
 import "@styles/useradmintable.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../redux/actions";
 import logoPlus from "@icons/PlusButton.svg";
 
 function StudentAdminTable() {
-    const dispatch = useDispatch();
-    const listUsers = useSelector((state) => state.users);
-
-    useEffect(() => {
-        dispatch(getUsers()).catch((error) => console.log(error));
-    }, []);
+     const dispatch = useDispatch();
+     const listUsers = useSelector((state) => state.users);
+       const [activeModal, setActiveModal] = useState({
+           active: false,
+       });
 
     return (
         <div className="user-section">
