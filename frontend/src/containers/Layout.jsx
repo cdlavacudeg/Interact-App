@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
 import Header from "@containers/Header";
-import CustomCalendar from "@components/CustomCalendar";
-import CalendarContainer from "./CalendarContainer";
+
+import CalendarContainer from "@containers/CalendarContainer";
 import "@styles/layout.css";
 
 const Layout = () => {
