@@ -10,6 +10,14 @@
 .user-section{
     padding: 3rem;
 }
+.plusUser {
+    font-size: var(--fz-1);
+    color: var(--primer-color);
+    cursor: pointer;
+}
+.plusUser__imgPlusLogo {
+
+}
 
 @media only screen and (max-width: 800px) {
 

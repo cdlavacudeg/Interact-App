@@ -1,16 +1,21 @@
 import { NavLink } from 'react-router-dom'
-import '@styles/courseTabs.css'
+import '@styles/AdmiTabs.css'
 
 
 const AdminTabs = () => {
   return (
-      <div className="courseId-info">
-          <ul className="courseId-list">
-              <li className="courseId-item">
-                 <button> <NavLink to={"/admin/Teacher"}>Profesores</NavLink></button>
+      <div className="AdminId-info">
+          <ul className="AdminId-list">
+              <li className="AdminId-item">
+                  <button className="button_listAdmin">
+                      {" "}
+                      <NavLink to={"/admin/Teacher"}>Profesores</NavLink>
+                  </button>
               </li>
-              <li className="courseId-item">
-                <button><NavLink to={"/admin/Student"}>Alumnos</NavLink></button>
+              <li className="AdminId-item">
+                  <button className="button_listAdmin">
+                      <NavLink to={"/admin/Student"}>Alumnos</NavLink>
+                  </button>
               </li>
           </ul>
       </div>
