@@ -6,7 +6,7 @@ function ProfesorListMobile({ list }) {
     const { listTeachers, listStudents } = list;
     return (
         <section>
-            <div className="accordion" id="accordionExample">
+            <div className="accordion-mobile" id="accordionExample">
                 <div className="accordion-item">
                     <h2 className="accordion-header" id="headingTwo">
                         <button
@@ -26,7 +26,7 @@ function ProfesorListMobile({ list }) {
                         aria-labelledby="headingTwo"
                         data-bs-parent="#accordionExample"
                     >
-                        <div className="accordion-body">
+                        <div className="accordion-body-mobile">
                             {/* Aca es donde va la lista de profesores */}
                             <ul className="ulprofesor">
                                 {listTeachers ? (
@@ -45,7 +45,7 @@ function ProfesorListMobile({ list }) {
                                                     .split(" ")
                                                     .slice(0, 2)
                                                     .join(" ")}
-                                                <br />
+
                                                 <span className="courseprofesor">
                                                     {e.course
                                                         .split(" ")
@@ -62,7 +62,7 @@ function ProfesorListMobile({ list }) {
                         </div>
                     </div>
                 </div>
-                <div className="accordion-item">
+                <div className="accordion-item-mobile">
                     <h2 className="accordion-header" id="headingThree">
                         <button
                             className="accordion-button collapsed"
