@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import GradesTable from "../components/GradesTable";
 import { getGrade } from "../redux/actions";
-// import '@styles/gradestable.css';
+import GradesTable from "../components/GradesTable";
+import '@styles/gradestable.css';
 
 function GradesTables() {
     const user = useSelector((state) => state.user);
@@ -17,7 +17,7 @@ function GradesTables() {
 
     return (
         <div className="grades-section">
-            <h1 className="calificaciones"> Mis Calificaciones</h1>
+            <h1 className="calificaciones">Mis Calificaciones</h1>
             <GradesTable grades={grades} />
         </div>
     );

@@ -3,9 +3,9 @@ import Profile from "../containers/Profile";
 
 const Perfil = () => {
     return (
-        <div>
+        <>
             <Profile />
-        </div>
+        </>
     );
 };
 
