@@ -1,39 +1,85 @@
 .cardLesson {
     margin-bottom: 1rem;
-    border: 1px solid var(--black-color);
+    border       : 1px solid var(--black-color);
     border-radius: 8px;
 }
 
 .cardLesson-item {
-    display: flex;
+    display        : flex;
     justify-content: space-between;
-    padding-top: 0.5rem;
+    padding-top    : 0.5rem;
 }
 
-.cardLesson-title {
-    font-size: var(--fz-1);
-    padding-top: 0.5rem;
-    margin-left: 2rem;
+
+.accordion {
+    overflow: hidden;
 }
 
-.cardLesson-img {
-    width: var(--fz2);
-    padding-top: 0.4rem;
-    margin-right: 2rem;
+.accordion-item {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--black-color);
+    border-radius: 8px;
+}
+
+#heading1,
+#heading2,
+#heading3,
+#heading4,
+#heading5,
+#heading6,
+#heading7,
+#heading8 {
+    overflow     : hidden;
+    border       : 1px solid var(--black-color);
+    border-radius: 8px;
+    border-bottom: none;
+}
+
+.accordion-collapse {
+    background-color: green;
+    background-color: var(--whiteSmoke-color);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--white-color);
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: grayscale(1);
+}
+
+.accordion-button {
+    background-color: var(--white-color);
+    padding         : 1rem;
+    padding-top     : 1.2rem;
+}
+
+.accordionh3 {
+    font-size  : var(--fz-1);
+    color      : var(--black-color);
+    font-weight: 300;
+}
+
+.accordion-body {
+    border-radius: 8px;
 }
 
 .cardLesson-video {
-    width: 95%;
-    height: clamp(200px, 10rem + 20vw, 400px);
+    width               : 95%;
+    height              : clamp(200px, 10rem + 20vw, 400px);
+    display             : block;
+    margin              : auto;
+    /* margin-top       : 1rem; */
+    padding-bottom      : 1rem;
+}
+
+.accordion {
     display: block;
-    margin: auto;
-    /* margin-top    : 1rem; */
-    padding-bottom: 1rem;
 }
 
 @media screen and (min-width: 768px) {
     .cardLesson-video {
-        margin-top: 1rem;
+        margin-top    : 1rem;
         padding-bottom: 2rem;
     }
 }
