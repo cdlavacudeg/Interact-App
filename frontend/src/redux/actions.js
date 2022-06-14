@@ -233,6 +233,23 @@ export function deleteNotification(id, token) {
     };
 }
 
+export function addNotification(data, token) {
+    return async function (dispacht) {
+        let config = {
+            headers: {
+                xtoken: token,
+            },
+        };
+
+        await axios.post(`/notification`, data, config);
+        var json = await axios.get('/notification');
+        return dispacht({
+            type: 'GET_NOTIFICATIONS',
+            payload: json.data.data.notification,
+        });
+    };
+}
+
 //============================
 //       EVENTS
 //============================
