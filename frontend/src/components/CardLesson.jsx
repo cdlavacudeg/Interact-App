@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 const CardLesson = () => {
     let lectures = useSelector((state) => state.course.lessons.lectures);
-    console.log(lectures)
+    console.log(lectures);
     return (
         <>
             <div className="accordion" id="accordionExample">

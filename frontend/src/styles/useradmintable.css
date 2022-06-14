@@ -7,7 +7,7 @@
 .bg-color-honey {
     background-color: #efb365;
 }
-.user-section{
+.user-section {
     padding: 3rem;
 }
 .plusUser {
@@ -15,18 +15,15 @@
     color: var(--primer-color);
     cursor: pointer;
     width: 100%;
-    display:flex;
-    justify-content:flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 .plusUser__imgPlusLogo {
-    width:50px;
+    width: 50px;
     padding-top: 1rem;
-
 }
 
 @media only screen and (max-width: 800px) {
-
-
     #no-more-tables tbody,
     #no-more-tables tr,
     #no-more-tables td {
@@ -38,7 +35,6 @@
         top: -99999px;
         left: -9999px;
     }
-
 
     #no-more-tables td {
         position: relative;
@@ -58,7 +54,6 @@
         border-bottom: 1px solid #ccc;
     }
 }
-
 
 @media screen and (max-width: 430px) {
     .user-section{

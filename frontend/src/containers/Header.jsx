@@ -8,15 +8,15 @@ import "@styles/header.css";
 const Header = ({ showed }) => {
     const [active, setActive] = useState(false);
 
-    const handleClick = () => setActive(!active);
+    const closeNavbar = () => setActive(false)
 
     return (
         <header className="header">
-            <button onClick={handleClick} className="header-button">
+            <button onClick={() => setActive(true)} className="header-button">
                 <img src={menuSVG} alt="button menu" />
             </button>
             <Logo />
-            <NavBar show={active} change={handleClick} />
+            <NavBar show={active}  close={closeNavbar} />
             <button onClick={showed} className="header-button button-calendar">
                 <img src={calendarSVG} alt="button menu" />
             </button>

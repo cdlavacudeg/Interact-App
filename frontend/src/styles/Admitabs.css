@@ -15,14 +15,14 @@
 
 .AdminId-item a {
     font-size: var(--fz-1);
-    padding  : .5rem 1rem;
-    color    : var(--black-color);
+    padding: 0.5rem 1rem;
+    color: var(--black-color);
 }
 
 .AdminId-item a.active {
     background-color: var(--cuarto-color);
-    color           : var(--black-color);
-    filter          : invert(0);
+    color: var(--black-color);
+    filter: invert(0);
 }
 
 .button_listAdmin {
@@ -58,8 +58,6 @@
     padding-bottom: 40px;
     width: 100%;
     }
-
-
 }
 
 /* @media screen and (min-width: 900px) {

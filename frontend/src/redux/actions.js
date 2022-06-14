@@ -40,10 +40,7 @@ export function deleteUser(id) {
 
 export function updateUser(id, data) {
     return async function (dispatch) {
-        var json = await axios.put(
-            '/user' + id,
-            data
-        );
+        var json = await axios.put('/user' + id, data);
         console.log(json.data);
         return dispatch({
             type: 'UPDATE_USER',
@@ -54,10 +51,7 @@ export function updateUser(id, data) {
 
 export function postUser(id, data) {
     return async function (dispatch) {
-        var json = await axios.post(
-            '/user' + id,
-            data
-        );
+        var json = await axios.post('/user' + id, data);
         console.log(json.data);
         return dispatch({
             type: 'POST_USER',
@@ -221,6 +215,22 @@ export function getNotifications() {
             payload: json.data.data.notification,
         });
     };
+}
+
+export function deleteNotification(id,token){
+    return async function (dispacht){
+        let config ={
+            headers:{
+                xtoken:token
+            }
+        }
+        await axios.delete(`/notification/${id}`,config);
+        var json = await axios.get('/notification');
+        return dispacht({
+            type: 'GET_NOTIFICATIONS',
+            payload: json.data.data.notification
+        })
+    }
 }
 
 //============================

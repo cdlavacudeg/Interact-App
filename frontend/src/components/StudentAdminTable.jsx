@@ -1,4 +1,3 @@
-
 import "@styles/useradmintable.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,10 +11,6 @@ function StudentAdminTable() {
            active: false,
        });
 
-        useEffect(() => {
-            dispatch(getUsers()).catch((error) => console.log(error));
-        }, []);
-        console.log(listUsers);
     return (
         <div className="user-section">
             <h1 className="listUser_title">Lista de Alumnos</h1>

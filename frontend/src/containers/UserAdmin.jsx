@@ -1,5 +1,4 @@
-
-import  UserAdminTable from "../components/AdminTabs"
+import UserAdminTable from "../components/AdminTabs";
 import "@styles/useradmintable.css";
 
 const UserAdmin = () => {

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import '@styles/AdmiTabs.css'
+import '@styles/Admitabs.css'
 import logoicon from"../assets/icons/undraw_teacher_re_sico 1.svg"
 import welcomeimg from "@img/welcome-img.svg";
 
@@ -40,4 +40,4 @@ const AdminTabs = () => {
   );
 }
 
-export default AdminTabs
+export default AdminTabs;

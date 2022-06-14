@@ -11,7 +11,7 @@ function TeacherAdminTable() {
     useEffect(() => {
         dispatch(getUsers()).catch((error) => console.log(error));
     }, []);
-    console.log(listUsers);
+
     return (
         <div className="user-section">
             <h1 className="listUser_title">Lista de Profesores</h1>
@@ -54,7 +54,7 @@ function TeacherAdminTable() {
                 </div>
             </section>
             <div className="plusUser">
-                <img className="plusUser__imgPlusLogo" src={logoPlus} alt=""  />
+                <img className="plusUser__imgPlusLogo" src={logoPlus} alt="" />
             </div>
         </div>
     );
