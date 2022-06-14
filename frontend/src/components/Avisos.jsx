@@ -2,7 +2,7 @@ import * as React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getNotifications } from "../redux/actions";
+import { deleteNotification, getNotifications } from "../redux/actions";
 import "@styles/avisos.css";
 import avisosimg from "@img/img-avisos.png";
 import trashimg from "@icons/trash.svg";
@@ -37,6 +37,10 @@ function Avisos() {
         }
     };
 
+    const handleDelete = (id,token)=>{
+        dispatch(deleteNotification(id,token)).catch(error=>console.log(error))
+    }
+    console.log(avisosAll)
     return (
         <section className="section-avisos">
             <h2 className="h2-avisos"> Avisos</h2>
@@ -45,6 +49,7 @@ function Avisos() {
                 avisosAll.map(
                     (item, index) =>
                         index < avisos && (
+
                             <li key={index} className="avisos-li">
                                 <div className={`avisosimg ${user.user.role !=='admin'?'user':' '}`}>
                                     <img
@@ -66,7 +71,7 @@ function Avisos() {
                                     </span>
                                 </span>
                                 {user.user.role == 'admin' &&
-                                (<div className="trash-icon" >
+                                (<div className="trash-icon" onClick={()=>handleDelete(item.uid,user.token)}>
                                     <img src={trashimg} alt='trash icon' />
                                 </div>)}
 

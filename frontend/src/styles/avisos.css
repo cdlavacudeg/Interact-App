@@ -22,7 +22,7 @@
 .content-aviso {
     margin-top: 11px;
     margin-bottom: 11px;
-    width: 30%;
+    width: 50%;
     margin-right: auto;
 }
 .content-aviso.user{
@@ -58,11 +58,11 @@
 /* Tamaño de la imagen */
 .avisosimg {
     display: flex;
-    width: 30%;
+    width: 20%;
     height: 100%;
 }
 .avisosimg.user{
-    width: 20%;
+    width: 15%;
 }
 .avisosimg img{
     width: 100%;

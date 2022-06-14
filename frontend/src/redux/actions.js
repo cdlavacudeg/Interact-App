@@ -217,6 +217,22 @@ export function getNotifications() {
     };
 }
 
+export function deleteNotification(id,token){
+    return async function (dispacht){
+        let config ={
+            headers:{
+                xtoken:token
+            }
+        }
+        await axios.delete(`/notification/${id}`,config);
+        var json = await axios.get('/notification');
+        return dispacht({
+            type: 'GET_NOTIFICATIONS',
+            payload: json.data.data.notification
+        })
+    }
+}
+
 //============================
 //       EVENTS
 //============================
