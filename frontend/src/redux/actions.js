@@ -217,20 +217,20 @@ export function getNotifications() {
     };
 }
 
-export function deleteNotification(id,token){
-    return async function (dispacht){
-        let config ={
-            headers:{
-                xtoken:token
-            }
-        }
-        await axios.delete(`/notification/${id}`,config);
+export function deleteNotification(id, token) {
+    return async function (dispacht) {
+        let config = {
+            headers: {
+                xtoken: token,
+            },
+        };
+        await axios.delete(`/notification/${id}`, config);
         var json = await axios.get('/notification');
         return dispacht({
             type: 'GET_NOTIFICATIONS',
-            payload: json.data.data.notification
-        })
-    }
+            payload: json.data.data.notification,
+        });
+    };
 }
 
 //============================
@@ -250,6 +250,36 @@ export function getEvents(courses_id) {
         return dispatch({
             type: 'GET_EVENTS',
             payload: events,
+        });
+    };
+}
+
+//============================
+//        MODAL
+//============================
+
+export function showModal(modal) {
+    return async function (dispacht) {
+        let obj = {
+            name: modal,
+            active: true,
+        };
+        return dispacht({
+            type: 'MODAL_SHOW',
+            payload: obj,
+        });
+    };
+}
+
+export function hideModal() {
+    return async function (dispacht) {
+        let obj = {
+            name: '',
+            active: false,
+        };
+        return dispacht({
+            type: 'MODAL_HIDE',
+            payload: obj,
         });
     };
 }

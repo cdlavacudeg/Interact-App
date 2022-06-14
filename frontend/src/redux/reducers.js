@@ -24,6 +24,7 @@ const initialState = {
     course: localCourse ? localCourse : {},
     notifications: [],
     profile: {},
+    modal: { name: '', active: false },
 };
 
 function rootReducer(state = initialState, action) {
@@ -153,6 +154,19 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 profile: action.payload,
+            };
+
+        // Modal
+        case 'MODAL_SHOW':
+            return {
+                ...state,
+                modal: action.payload,
+            };
+
+        case 'MODAL_HIDE':
+            return {
+                ...state,
+                modal: action.payload,
             };
 
         default:

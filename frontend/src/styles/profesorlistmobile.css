@@ -4,7 +4,7 @@
 
 .accordionh3 {
     font-size: var(--fz0);
-    color    : var(--primer-color);
+    color: var(--primer-color);
 }
 
 .accordion-item {
@@ -17,8 +17,8 @@
 
 @media only screen and (max-width: 899px) {
     .accordion-mobile {
-        display   : block;
-        border    : none;
+        display: block;
+        border: none;
         margin-top: 1rem;
     }
 

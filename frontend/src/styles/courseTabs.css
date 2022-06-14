@@ -28,7 +28,6 @@
 }
 
 @media screen and (min-width: 900px) {
-
     .courseId-list {
         display: flex;
         /* justify-content   : space-around; */

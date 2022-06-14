@@ -15,9 +15,7 @@ function PersonalDataProfile() {
                         <tr>
                             <th className="clamp-responsive">Institucion</th>
                             <th className="clamp-responsive">Curso</th>
-                            <th className="clamp-responsive">
-                                Correo
-                            </th>
+                            <th className="clamp-responsive">Correo</th>
                         </tr>
                     </thead>
                     <tbody className="tbody-dataname">

@@ -7,8 +7,8 @@ function WelcomeUser() {
     const user = useSelector((state) => state.user) || "";
     const name = user.user.fullName;
     const gender = user.user.gender;
-    const rol = user.user.role
-    console.log(rol)
+    const rol = user.user.role;
+    console.log(rol);
     return (
         <section className="welcome">
             <div className="welcome-user">
@@ -18,8 +18,8 @@ function WelcomeUser() {
                 </h2>
                 <p className="welcome-body">
                     {" "}
-                    ¿{gender === "female" ? "Lista" : "Listo"} para seguir {" "}
-                     {rol === "student" ? "aprendiendo" : "enseñando" } hoy?
+                    ¿{gender === "female" ? "Lista" : "Listo"} para seguir{" "}
+                    {rol === "student" ? "aprendiendo" : "enseñando"} hoy?
                 </p>
             </div>
             <div className="welcome-img">

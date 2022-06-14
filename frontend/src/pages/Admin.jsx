@@ -4,11 +4,13 @@ import notfound from "@img/notfound.png";
 import { useNavigate } from "react-router-dom";
 
 export default function Admin() {
-    const user = useSelector(state=>state.user)
-    const navigate = useNavigate()
+    const user = useSelector((state) => state.user);
+    const navigate = useNavigate();
     return (
         <>
-            {user.user.role == 'admin' ? <UserAdmin /> :(
+            {user.user.role == "admin" ? (
+                <UserAdmin />
+            ) : (
                 <div className="content_404 unauthorized">
                     <img className="img_404" src={notfound} alt="notfound" />
                     <p className="p_404">Pagina no encontrada</p>

@@ -20,7 +20,7 @@
     margin: 0 auto;
 }
 
-.content_404.unauthorized{
+.content_404.unauthorized {
     display: flex;
     flex-direction: column;
     align-items: center;

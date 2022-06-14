@@ -5,11 +5,11 @@ import { getUsers } from "../redux/actions";
 import logoPlus from "@icons/PlusButton.svg";
 
 function StudentAdminTable() {
-     const dispatch = useDispatch();
-     const listUsers = useSelector((state) => state.users);
-       const [activeModal, setActiveModal] = useState({
-           active: false,
-       });
+    const dispatch = useDispatch();
+    const listUsers = useSelector((state) => state.users);
+    const [activeModal, setActiveModal] = useState({
+        active: false,
+    });
 
     return (
         <div className="user-section">
@@ -53,7 +53,7 @@ function StudentAdminTable() {
                 </div>
             </section>
             <div className="plusUser">
-                    <img className="plusUser__imgPlusLogo" src={logoPlus} alt="" />
+                <img className="plusUser__imgPlusLogo" src={logoPlus} alt="" />
             </div>
         </div>
     );

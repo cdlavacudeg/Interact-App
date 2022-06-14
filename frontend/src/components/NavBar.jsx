@@ -10,7 +10,7 @@ import logoutSVG from "@icons/logout.svg";
 import backArrowSVG from "@icons/back-arrow.svg";
 import "@styles/navBar.css";
 
-const NavBar = ({ show ,close}) => {
+const NavBar = ({ show, close }) => {
     const user = useSelector((state) => state.user);
     const isActive = show ? "show" : " ";
 
