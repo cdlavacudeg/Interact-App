@@ -1,12 +1,16 @@
-.AdminId-info {
+.AdminId-item {
+    flex: 1 0 auto;
+    text-align: center;
+    width: 50%;
 }
 
+
 .AdminId-list {
-    display: flex;
-    padding: 0;
-    overflow-x: scroll;
-    margin: auto;
+    display      : flex;
+    padding      : 0;
+    margin       : auto;
     margin-bottom: 1rem;
+    padding-top  : 120px;
 }
 
 .AdminId-item a {
@@ -22,27 +26,50 @@
 }
 
 .button_listAdmin {
-    border-radius: 16px;
+    border-radius   :    16px;
+    background      :  #EFCD6A;
+    width           :    80%;
+    height          :    120%;
+    padding         :    20px ;
 }
 
-@media screen and (min-width: 425px) {
+.AdminId_item__button_listAdmin {
+    font-size: var(--fz-1);
+    padding  : .5rem 1rem;
+    color    : var(--black-color);
+
+}
+@media screen and (max-width: 425px) {
     .AdminId-list {
-        overflow-x: visible;
+
+    display: flex;
+    padding: 0;
+    margin: auto;
+    margin-bottom: 1rem;
+    padding-top: 81px;
+    flex-direction: column;
+    align-items: center;
+    }
+
+
+    .AdminId-item {
+    flex: 1 0 auto;
+    text-align: center;
+    padding-bottom: 40px;
+    width: 100%;
     }
 }
 
-@media screen and (min-width: 900px) {
-    .AdminId-info {
-    }
+/* @media screen and (min-width: 900px) {
 
-    .courseId-list {
-        display: flex;
-        /* justify-content   : space-around; */
-        background-color: var(--whiteSmoke-color);
+    .AdminId-list {
+            padding-top: 35px;
+
     }
 
     .AdminId-item {
-        flex: 1 0 auto;
-        text-align: center;
+    flex: 1 0 auto;
     }
-}
+
+
+} */

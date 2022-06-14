@@ -2,6 +2,7 @@ import "@styles/useradmintable.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../redux/actions";
+import logoPlus from "@icons/PlusButton.svg";
 
 function StudentAdminTable() {
     const dispatch = useDispatch();
@@ -10,7 +11,7 @@ function StudentAdminTable() {
     useEffect(() => {
         dispatch(getUsers()).catch((error) => console.log(error));
     }, []);
-    console.log(listUsers);
+
     return (
         <div className="user-section">
             <h1 className="listUser_title">Lista de Alumnos</h1>
@@ -52,6 +53,9 @@ function StudentAdminTable() {
                     </table>
                 </div>
             </section>
+            <div className="plusUser">
+                    <img className="plusUser__imgPlusLogo" src={logoPlus} alt="" />
+            </div>
         </div>
     );
 }

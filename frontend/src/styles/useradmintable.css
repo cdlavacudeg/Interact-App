@@ -56,7 +56,8 @@
 }
 
 @media screen and (max-width: 430px) {
-    .grades-section {
-        padding: 1rem;
+    .user-section{
+        padding: 3rem;
+        text-align: center;
     }
 }
