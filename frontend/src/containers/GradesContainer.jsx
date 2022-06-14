@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getGrade } from "../redux/actions";
 import GradesTable from "../components/GradesTable";
-import '@styles/gradestable.css';
+import "@styles/Gradestable.css";
 
 function GradesTables() {
     const user = useSelector((state) => state.user);

@@ -21,7 +21,9 @@ function GradesTable({ grades }) {
                                 <td data-title="Tipo de evaluacion">
                                     {item.obs}
                                 </td>
-                                <td className="grade" data-title="Calificación">{item.grade}</td>
+                                <td className="grade" data-title="Calificación">
+                                    {item.grade}
+                                </td>
                             </tr>
                         ))}
                     </tbody>

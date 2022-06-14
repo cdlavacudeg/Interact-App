@@ -5,11 +5,11 @@
 
 .h2-avisos {
     font-size: var(--fz1);
-    padding  : 0rem 1rem 1rem 1rem;
+    padding: 0rem 1rem 1rem 1rem;
 }
 
 .content-aviso {
-    font-size  : var(--fz-1);
+    font-size: var(--fz-1);
     line-height: 1.4;
 }
 
@@ -28,30 +28,30 @@
 }
 
 .avisos-li {
-    width          : 100%;
-    display        : flex;
+    width: 100%;
+    display: flex;
     justify-content: flex-start;
-    align-items    : center;
-    border         : thin solid black;
-    padding        : .5rem 1rem;
-    border-radius  : 12px;
-    margin-bottom  : 0.5rem;
+    align-items: center;
+    border: thin solid black;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
 }
 
 .avisos-li .trash-icon {
-    display    : flex;
-    width      : 30%;
+    display: flex;
+    width: 30%;
     margin-left: auto;
-    cursor     : pointer;
+    cursor: pointer;
 }
 
 .avisos-li .trash-icon img {
-    max-width    : 44px;
-    margin-left  : auto;
-    margin-right : 15px;
+    max-width: 44px;
+    margin-left: auto;
+    margin-right: 15px;
     border-radius: 50%;
-    padding      : 10px;
-    transition   : var(--transition);
+    padding: 10px;
+    transition: var(--transition);
 }
 
 .avisos-li .trash-icon img:hover {
@@ -64,13 +64,12 @@
 }
 
 .avisosimg img {
-    width    : 100%;
+    width: 100%;
     max-width: 84px;
 }
 
-
-
-@media only screen and (max-width: 1000px) {}
+@media only screen and (max-width: 1000px) {
+}
 
 @media only screen and (max-width: 500px) {
     .avisosimg {
@@ -82,17 +81,17 @@
     }
 
     .avisos-li .trash-icon {
-        width      : 4rem;
+        width: 4rem;
         margin-left: auto;
-        text-align : left;
+        text-align: left;
     }
 
     .avisos-li .trash-icon img {
-        width        : 40%;
-        margin       : 0;
+        width: 40%;
+        margin: 0;
         border-radius: 50%;
-        padding      : 0;
-        margin-left  : auto;
+        padding: 0;
+        margin-left: auto;
     }
 
     .avisos-li .trash-icon img:hover {

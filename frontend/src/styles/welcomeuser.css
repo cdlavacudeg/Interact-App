@@ -1,11 +1,11 @@
 .welcome {
-    width           : 100%;
+    width: 100%;
     background-color: var(--cuarto-color);
-    border-radius   : 30px;
-    position        : relative;
-    padding         : 1rem;
-    margin-top      : 1rem;
-    margin-bottom   : 1.5rem;
+    border-radius: 30px;
+    position: relative;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .welcome-user {
@@ -14,19 +14,19 @@
 
 .welcome-title {
     font-size: var(--fz1);
-    margin   : 0;
+    margin: 0;
 }
 
 .welcome-body {
     font-size: var(--fz0);
-    margin   : 0;
+    margin: 0;
 }
 
 .welcome-img {
     position: absolute;
-    top     : 0;
-    right   : 0;
-    width   : clamp(6rem, 5rem + 10vw, 12rem);
+    top: 0;
+    right: 0;
+    width: clamp(6rem, 5rem + 10vw, 12rem);
 }
 
 .welcome-img img {
@@ -43,6 +43,4 @@
     .welcome-img {
         transform: translateY(-1rem);
     }
-
-
 }
