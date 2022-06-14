@@ -46,7 +46,7 @@ function Avisos() {
                     (item, index) =>
                         index < avisos && (
                             <li key={index} className="avisos-li">
-                                <div className="avisosimg">
+                                <div className={`avisosimg ${user.user.role !=='admin'?'user':' '}`}>
                                     <img
                                         src={avisosimg}
                                         alt="avisos img"

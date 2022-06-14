@@ -28,7 +28,7 @@
 .content-aviso.user{
     width: 60%;
 }
-.ul-avisos li {
+.container-avisos {
     padding: 0;
 }
 .avisos-li {
@@ -60,6 +60,9 @@
     display: flex;
     width: 30%;
     height: 100%;
+}
+.avisosimg.user{
+    width: 20%;
 }
 .avisosimg img{
     width: 100%;
