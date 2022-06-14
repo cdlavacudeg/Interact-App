@@ -1,12 +1,7 @@
-import { useState } from "react";
-import videoSVG from "@icons/video.svg";
 import "@styles/cardLesson.css";
 import { useSelector } from "react-redux";
 
 const CardLesson = () => {
-    const [video, setVideo] = useState(false);
-
-    const handleVideo = () => setVideo(!video);
     let lectures = useSelector((state) => state.course.lessons.lectures);
     console.log(lectures)
     return (
