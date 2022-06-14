@@ -2,10 +2,14 @@ import * as React from "react";
 import "@styles/studentprofesorlist.css";
 import imgprofile from "@img/imgprofile.png";
 
+
 function ProfesorStudentList({ list }) {
+
     const { listStudents, listTeachers } = list;
     return (
+
         <section className="profileProfesorStudentList">
+
             <article>
                 <h2 className="h2-profile">Mis Profesores</h2>
                 <ul className="ulprofesor">
@@ -37,9 +41,11 @@ function ProfesorStudentList({ list }) {
                     )}
                 </ul>
             </article>
+
             <article>
                 <h2 className="h2-profile">Mis Compañeros</h2>
                 <ul className="ulprofesor">
+
                     {listStudents ? (
                         listStudents.map((e, index) => {
                             return (
@@ -59,6 +65,7 @@ function ProfesorStudentList({ list }) {
                 </ul>
             </article>
         </section>
+
     );
 }
 export default ProfesorStudentList;
