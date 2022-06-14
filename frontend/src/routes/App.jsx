@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCourses } from "../redux/actions";
+import { getCourses, getGrade } from "../redux/actions";
 import Layout from "@containers/Layout";
 import Home from "@pages/Home.jsx";
 import Materias from "@pages/Materias.jsx";
@@ -14,17 +14,19 @@ import Admin from "../pages/Admin";
 import Materiaid from "../pages/Materiaid";
 import NotFound from "../pages/NotFound";
 import "@styles/App.css";
-import CourseIdActivity from "../components/courseIdActivity";
-import CourseSrc from "../components/courseSrc";
+import CourseIdActivity from "../components/CourseIdActivity";
+import CourseSrc from "../components/CourseSrc";
 import CourseForum from "../components/CourseForum";
 import CourseGrades from "../components/CourseGrades";
+import TeacherAdminTable from "../components/TeacherAdminTable";
+import StudentAdminTable from "../components/StudentAdminTable";
 
 const App = () => {
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
     if (!user.token) {
-        return <LoginPage/>;
+        return <LoginPage />;
     }
 
     dispatch(getCourses(user.user.uid)).catch((error) => {
@@ -38,11 +40,14 @@ const App = () => {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="/materias" element={<Materias />} />
-                    <Route path='/materias/:materiaId' element={<Materiaid />}>
+                    <Route path="/materias/:materiaId" element={<Materiaid />}>
                         <Route index element={<CourseIdActivity />} />
-                        <Route path='material' element={<CourseSrc />} />
-                        <Route path='foro' element={<CourseForum />} />
-                        <Route path='calificaciones' element={<CourseGrades />} />
+                        <Route path="material" element={<CourseSrc />} />
+                        <Route path="foro" element={<CourseForum />} />
+                        <Route
+                            path="calificaciones"
+                            element={<CourseGrades />}
+                        />
                     </Route>
                     <Route
                         path="/calificaciones"
@@ -50,8 +55,11 @@ const App = () => {
                     />
                     <Route path="/perfil" element={<Perfil />} />
                     <Route path="/contacto" element={<Contacto />} />
+                    <Route path="/admin" element={<Admin />} />
+                    <Route path="/admin/Teacher" element={<TeacherAdminTable />} />
+                    <Route path="/admin/Student" element={<StudentAdminTable />} />
                 </Route>
-                <Route path="/admin" element={<Admin />} />
+
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>

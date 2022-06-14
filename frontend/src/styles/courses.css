@@ -1,12 +1,13 @@
 .courses {
     width: 100%;
-    padding: 3rem;
-    
+    margin-top: 2rem;
+    /* padding: 3rem; */
 }
 
 .courses-title {
     font-size: var(--fz3);
     margin-bottom: 1rem;
+    margin-left: 1%;
     color: var(--primer-color);
 }
 
@@ -17,19 +18,29 @@
     gap: 1rem;
     margin: auto;
     margin-top: 1.5rem;
+    padding: 1%;
 }
 
 @media screen and (min-width: 900px) {
     .courses-container {
         display: grid;
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .courses-container {
+        display: grid;
         grid-template-columns: repeat(3, minmax(200px, 1fr));
         gap: 1rem;
     }
+}
 
-}
-@media screen and (max-width: 430px) {
+/* @media screen and (max-width: 430px) {
     .courses {
-       
-        padding: 1rem;
+        padding: .5rem;
+        gap    : .5rem;
+
     }
-}
+} */

@@ -26,7 +26,7 @@
     padding-left: 1.5rem;
 }
 
-.welcome-img {
+.welcome_img {
     width: 100%;
     position: relative;
     margin-right: 6.5rem;
@@ -57,12 +57,12 @@
 }
 
 @media screen and (max-width: 760px) {
-    .welcome-img {
+    .welcome_img {
         width: 20%;
         position: relative;
     }
 
-    .welcome-img img {
+    .welcome_img img {
         position: absolute;
         width: 10rem;
         top: 0px;
@@ -73,15 +73,14 @@
     }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 414px) {
     .welcome-user {
         width: 90%;
     }
 
-    .welcome-img img {
+    .welcome_img img {
         position: absolute;
         width: 10rem;
-        
     }
     .welcome-body {
         padding-left: 0.8rem;

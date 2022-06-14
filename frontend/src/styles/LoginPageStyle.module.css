@@ -5,6 +5,7 @@
     padding: 0px;
     grid-column-start: 1;
     grid-column-end: -1;
+    
 }
 .imgContent {
     width: 50%;
@@ -25,7 +26,6 @@
     align-items: center;
     justify-content: space-around;
     width: 50%;
-   
 }
 .logoContent {
     display: flex;
@@ -47,7 +47,8 @@
     padding: 1rem;
 }
 .motivatingPhraseContent {
-    width: 60%;
+    padding: 1rem;
+    margin: 0 auto;
 }
 .motivatingPhraseContent h3 {
     color: var(--primer-color);
@@ -66,7 +67,7 @@
 .choiceLoginButtons {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 55%;
     height: 100%;
     margin-top: 2rem;
 }
@@ -115,8 +116,9 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+  
     justify-content: center;
+   
 }
 .customInput {
     border: 1.5px solid #b9b9b9;
@@ -133,6 +135,7 @@
 .formikError {
     color: tomato;
     font-size: small;
+
 }
 
 .buttonSubmit {
@@ -163,40 +166,43 @@
         display: none;
     }
     .formsContent {
-        width: 70%;
+        width: 100%;
     }
-    .motivatingPhraseContent {
-        width: 50%;
-        padding: 10px;
-    }
+    
     .choiceLoginButtons {
-        width: 50%;
+        width: 45%;
     }
     .boxForm {
         width: 50%;
         height: 40%;
     }
     .choiceLoginButtons {
-        width: 50%;
+       
         height: 40%;
     }
     .loginPageContent {
         display: flex;
         height: 100vh;
         padding: 0px;
-        width: 164.5vh;
-       
+        width: 100%;
     }
-   
+    .motivatingPhraseContent h3 {
+        font-size: 35px;
+       }
 }
 @media only screen and (max-width: 500px) {
     .logo {
         width: 200px;
     }
     .motivatingPhraseContent {
-        width: 90%;
-        padding: 10px;
+        padding: 0px;
+        
+        
+      }
+    .motivatingPhraseContent h3 {
+     font-size: 30px;
     }
+
     .choiceLoginButtons {
         width: 90%;
     }
@@ -211,6 +217,10 @@
     .loginPageContent {
         height: 100vh;
         padding: 0px;
-        width: 82vh;
+       
+    }
+    .formsContent {
+        width: 90%;
+        margin: 0 auto;
     }
 }

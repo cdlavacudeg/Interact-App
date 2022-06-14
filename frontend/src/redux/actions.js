@@ -40,7 +40,10 @@ export function deleteUser(id) {
 
 export function updateUser(id, data) {
     return async function (dispatch) {
-        var json = await axios.put('/user' + id, data);
+        var json = await axios.put(
+            '/user' + id,
+            data
+        );
         console.log(json.data);
         return dispatch({
             type: 'UPDATE_USER',
@@ -51,7 +54,10 @@ export function updateUser(id, data) {
 
 export function postUser(id, data) {
     return async function (dispatch) {
-        var json = await axios.post('/user' + id, data);
+        var json = await axios.post(
+            '/user' + id,
+            data
+        );
         console.log(json.data);
         return dispatch({
             type: 'POST_USER',
@@ -126,7 +132,7 @@ export function login({ email, password, role }) {
         const resRole = json.data.data.user.role;
         if (resRole != role) {
             if (resRole != 'admin') {
-                throw new Error('Rol incorrecto');
+                throw new Error('Incorrect role');
             }
         }
         return dispatch({
@@ -192,6 +198,17 @@ export function getCourses(id) {
     };
 }
 
+export function getCourseById(id) {
+    return async function (dispacht) {
+        let course = await axios.get(`/course/${id}`);
+        course = course.data.data.course;
+
+        return dispacht({
+            type: 'GET_COURSE_ID',
+            payload: course,
+        });
+    };
+}
 //============================
 //       NOTIFICATIONS
 //============================
@@ -202,6 +219,27 @@ export function getNotifications() {
         return dispatch({
             type: 'GET_NOTIFICATIONS',
             payload: json.data.data.notification,
+        });
+    };
+}
+
+//============================
+//       EVENTS
+//============================
+
+export function getEvents(courses_id) {
+    return async function (dispatch) {
+        let events = await axios.get('/event');
+        events = events.data.data.event;
+        events = events.filter(
+            (event) =>
+                courses_id.indexOf(event.course_id._id) != -1 &&
+                event.events.length != 0
+        );
+
+        return dispatch({
+            type: 'GET_EVENTS',
+            payload: events,
         });
     };
 }

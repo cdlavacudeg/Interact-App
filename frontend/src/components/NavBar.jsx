@@ -39,6 +39,11 @@ const NavBar = ({ show, change }) => {
             name: "Contacto",
             icon: contactoSVG,
         },
+        {
+            path: "/admin",
+            name: "Admin",
+            icon: perfilSVG,
+        }
     ];
 
     const handleLogout = () => {
@@ -53,7 +58,11 @@ const NavBar = ({ show, change }) => {
             <ul className="header-nav-list">
                 {menuItem.map((item) => (
                     <li className="header-nav-item" key={item.name}>
-                        <NavLink onClick={change} className="header-nav-link" to={item.path}>
+                        <NavLink
+                            onClick={change}
+                            className="header-nav-link"
+                            to={item.path}
+                        >
                             <div className="header-nav-img">
                                 <img src={item.icon} alt={item.name} />
                             </div>

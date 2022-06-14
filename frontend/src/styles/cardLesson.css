@@ -1,0 +1,39 @@
+.cardLesson {
+    margin-bottom: 1rem;
+    border: 1px solid var(--black-color);
+    border-radius: 8px;
+}
+
+.cardLesson-item {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+}
+
+.cardLesson-title {
+    font-size: var(--fz-1);
+    padding-top: 0.5rem;
+    margin-left: 2rem;
+}
+
+.cardLesson-img {
+    width: var(--fz2);
+    padding-top: 0.4rem;
+    margin-right: 2rem;
+}
+
+.cardLesson-video {
+    width: 95%;
+    height: clamp(200px, 10rem + 20vw, 400px);
+    display: block;
+    margin: auto;
+    /* margin-top    : 1rem; */
+    padding-bottom: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+    .cardLesson-video {
+        margin-top: 1rem;
+        padding-bottom: 2rem;
+    }
+}

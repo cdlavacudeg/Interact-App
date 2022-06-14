@@ -1,0 +1,18 @@
+.accordion {
+    display: none;
+}
+
+.accordionh3 {
+    font-size: var(--fz0);
+    color: var(--primer-color);
+}
+
+.accordion-item {
+    border: 0;
+}
+@media only screen and (max-width: 899px) {
+    .accordion {
+        display: block;
+        border: none;
+    }
+}

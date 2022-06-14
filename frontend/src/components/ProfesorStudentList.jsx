@@ -14,7 +14,7 @@ function ProfesorStudentList({ list }) {
                             return (
                                 <li className="liprofesor" key={index}>
                                     <img
-                                        className="imagenprofile"
+                                        className="imagenprofile border-bottom-black"
                                         src={imgprofile}
                                         alt="imgprofile"
                                     />
