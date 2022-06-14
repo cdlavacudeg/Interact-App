@@ -6,25 +6,22 @@ import { deleteNotification, getNotifications } from "../redux/actions";
 import "@styles/avisos.css";
 import avisosimg from "@img/img-avisos.png";
 import trashimg from "@icons/trash.svg";
+import logoPlus from "@icons/PlusButton.svg";
 
 function Avisos() {
-    const [avisos, setAvisos] = useState(3);
-    const [btn, setbtn] = useState(1);
-    const user = useSelector((state) => state.user);
 
+    const user = useSelector((state) => state.user);
     const avisosAll = useSelector((state) => state.notifications);
+    const qty = user.user.role == 'admin' ? avisosAll.length : 3
+    const [avisos, setAvisos] = useState(qty||10);
+    const [btn, setbtn] = useState(1);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getNotifications())
             .catch((error) => {
-                console.log(error);
-            })
-            .then(() => {
-                if (user.user.role == "admin") {
-                    setAvisos(avisosAll.length);
-                }
-            });
+                console.log(error);});
     }, []);
 
     const verMas = () => {
@@ -40,7 +37,6 @@ function Avisos() {
     const handleDelete = (id,token)=>{
         dispatch(deleteNotification(id,token)).catch(error=>console.log(error))
     }
-    console.log(avisosAll)
     return (
         <section className="section-avisos">
             <h2 className="h2-avisos"> Avisos</h2>
@@ -88,6 +84,11 @@ function Avisos() {
                 <button onClick={() => verMas()} className="btn_second">
                     {btn === 1 ? "Ver mas" : "Ver menos"}
                 </button>
+            )}
+            {user.user.role == 'admin'&&(
+                <div className="plusUser">
+                    <img className="plusUser__imgPlusLogo" src={logoPlus} alt="" />
+                </div>
             )}
         </section>
     );
