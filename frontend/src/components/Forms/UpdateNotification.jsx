@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addNotification, hideModal, updateNotification } from "../../redux/actions";
+import {
+    addNotification,
+    hideModal,
+    updateNotification,
+} from "../../redux/actions";
 
 const UpdateNotification = ({ data }) => {
-    const { item,token } = data;
-    const {title,content,date,uid} = item
+    const { item, token } = data;
+    const { title, content, date, uid } = item;
     const [notification, setNotification] = useState({
         title,
         content,
-        date
+        date,
     });
     const dispatch = useDispatch();
 
@@ -22,15 +26,17 @@ const UpdateNotification = ({ data }) => {
         dispatch(hideModal()).catch((error) => console.log(error));
     };
 
-    const handleSubmit = (event, data,uid, token) => {
+    const handleSubmit = (event, data, uid, token) => {
         event.preventDefault();
-        dispatch(updateNotification(data, uid,token))
+        dispatch(updateNotification(data, uid, token))
             .then(() => dispatch(hideModal()))
             .catch((error) => console.log(error));
     };
 
     return (
-        <form onSubmit={(event) => handleSubmit(event, notification,uid, token)}>
+        <form
+            onSubmit={(event) => handleSubmit(event, notification, uid, token)}
+        >
             <div className="form-group">
                 <label>Titulo</label>
                 <input
