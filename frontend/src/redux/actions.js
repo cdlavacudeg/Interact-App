@@ -279,6 +279,29 @@ export function updateNotification(data,id,token){
         });
     }
 }
+//============================
+//       LESSONS
+//============================
+
+export function addLesson(course_id,data, token) {
+    return async function (dispacht) {
+        let config = {
+            headers: {
+                xtoken: token,
+            },
+        };
+
+        await axios.post(`/lesson/${course_id}`, data, config);
+        let course = await axios.get(`/course/${course_id}`);
+        course = course.data.data.course;
+
+        return dispacht({
+            type: 'GET_COURSE_ID',
+            payload: course,
+        });
+    };
+}
+
 
 //============================
 //       EVENTS

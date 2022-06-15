@@ -1,9 +1,34 @@
 import "@styles/cardLesson.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import trashimg from "@icons/trash.svg";
+import editimg from "@icons/editpen.svg";
+import { showModal } from "../redux/actions";
+import logoPlus from "@icons/PlusButton.svg";
+import { useState } from "react";
+import Modal from "./Modal";
+import AddLesson from "./Forms/AddLesson";
+import { useParams } from "react-router-dom";
 
 const CardLesson = () => {
     let lectures = useSelector((state) => state.course.lessons.lectures);
-    console.log(lectures);
+    const { materiaId } = useParams();
+    const user = useSelector((state) => state.user);
+    const activeModal = useSelector((state) => state.modal);
+    const [itemData, setItemData] = useState({});
+    const dispatch = useDispatch();
+
+    const handleDelete = (item, id, token) => {
+        dispatch(showModal("Delete Lesson"));
+    };
+
+    const handleAdd = (token, course_id) => {
+        dispatch(showModal("Add Lesson"));
+        setItemData({ token, course_id });
+    };
+
+    const handleUpdate = (item, token) => {
+        dispatch(showModal("Update Lesson"));
+    };
     return (
         <>
             <div className="accordion" id="accordionExample">
@@ -28,6 +53,28 @@ const CardLesson = () => {
                                             {lecture.title}
                                         </h3>
                                     </button>
+                                    {user.user.role == "teacher" && (
+                                        <div className="icons">
+                                            <div
+                                                className="trash-icon"
+                                                onClick={() => handleDelete()}
+                                            >
+                                                <img
+                                                    src={trashimg}
+                                                    alt="trash icon"
+                                                />
+                                            </div>
+                                            <div
+                                                className="edit-icon"
+                                                onClick={() => handleUpdate()}
+                                            >
+                                                <img
+                                                    src={editimg}
+                                                    alt="trash icon"
+                                                />
+                                            </div>
+                                        </div>
+                                    )}
                                 </h2>
                                 <div
                                     id={`collapse${index + 2}`}
@@ -50,6 +97,33 @@ const CardLesson = () => {
                     })
                 ) : (
                     <h5>No hay material disponible</h5>
+                )}
+                {user.user.role == "teacher" && (
+                    <div className="plusUser">
+                        <img
+                            onClick={() =>
+                                handleAdd(user.token, materiaId)
+                            }
+                            className="plusUser__imgPlusLogo"
+                            src={logoPlus}
+                            alt=""
+                        />
+                    </div>
+                )}
+                {activeModal.active && (
+                    <Modal>
+                        {activeModal.name === "Delete Lesson" && (
+                            //<DeleteNotification data={itemData} />
+                            <></>
+                        )}
+                        {activeModal.name === "Add Lesson" && (
+                            <AddLesson data={itemData} />
+                        )}
+                        {activeModal.name == "Update Lesson" && (
+                            //<UpdateNotification data={itemData} />
+                            <></>
+                        )}
+                    </Modal>
                 )}
             </div>
         </>

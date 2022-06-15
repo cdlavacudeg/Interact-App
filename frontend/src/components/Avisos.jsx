@@ -6,7 +6,7 @@ import { getNotifications, showModal } from "../redux/actions";
 import "@styles/avisos.css";
 import avisosimg from "@img/img-avisos.png";
 import trashimg from "@icons/trash.svg";
-import editimg from "@icons/editpen.svg"
+import editimg from "@icons/editpen.svg";
 import logoPlus from "@icons/PlusButton.svg";
 import Modal from "../components/Modal";
 import DeleteNotification from "./Forms/DeleteNotification";
@@ -55,10 +55,10 @@ function Avisos() {
         setItemData({ token });
     };
 
-    const handleUpdate = (item,token)=>{
+    const handleUpdate = (item, token) => {
         dispatch(showModal("Update Notification"));
-        setItemData({item,token})
-    }
+        setItemData({ item, token });
+    };
     return (
         <section className="section-avisos">
             <h2 className="h2-avisos"> Avisos</h2>
@@ -111,15 +111,16 @@ function Avisos() {
                                                     src={trashimg}
                                                     alt="trash icon"
                                                 />
-
                                             </div>
-                                            <div className="edit-icon"
+                                            <div
+                                                className="edit-icon"
                                                 onClick={() =>
                                                     handleUpdate(
                                                         item,
                                                         user.token
                                                     )
-                                                }>
+                                                }
+                                            >
                                                 <img
                                                     src={editimg}
                                                     alt="trash icon"
@@ -142,7 +143,7 @@ function Avisos() {
                 </button>
             )}
             {user.user.role == "admin" && (
-                <div className="plusUser" >
+                <div className="plusUser">
                     <img
                         onClick={() => handleAdd(user.token)}
                         className="plusUser__imgPlusLogo"
@@ -152,7 +153,7 @@ function Avisos() {
                 </div>
             )}
             {activeModal.active && (
-                <Modal >
+                <Modal>
                     {activeModal.name === "Delete Notification" && (
                         <DeleteNotification data={itemData} />
                     )}
