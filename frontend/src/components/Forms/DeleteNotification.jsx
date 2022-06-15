@@ -25,9 +25,9 @@ const DeleteNotification = ({ data }) => {
                 {item.title}
             </div>
             <div className="form-group form-group--actions">
-                <button className="primary-btn">Delete</button>
+                <button className="primary-btn">Eliminar</button>
                 <button className="cancel-btn" onClick={cancel}>
-                    Cancel
+                    Cancelar
                 </button>
             </div>
         </form>

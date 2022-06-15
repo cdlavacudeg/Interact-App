@@ -1,13 +1,12 @@
 import React from "react";
-
-// // Styles
+import logo from "../assets/images/logo.png";
 import "@styles/modal.css";
 
-const Modal = ({ activeModal, children }) => {
+const Modal = ({children }) => {
     return (
         <div className="modal">
             <div className="modal-content">
-                <div className="modal-content__title">{activeModal.name}</div>
+                <div style={{display: 'flex'}}><img className="logoWarningModal" src={logo} alt="" /></div>
                 <div className="modal-content__body">{children}</div>
             </div>
         </div>
