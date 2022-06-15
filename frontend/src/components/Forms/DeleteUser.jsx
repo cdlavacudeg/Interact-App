@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { hideModal } from "../../redux/actions";
+import "@styles/modalgeneral.css";
 
 const DeleteUser = () => {
     const dispatch = useDispatch();
@@ -8,8 +9,8 @@ const DeleteUser = () => {
         dispatch(hideModal()).catch((error) => console.log(error));
     };
     return (
-        <div className="modalWarningCard">
-            <div className="modalWarningBody">
+        <div>
+            <div>
                 <div>
                     <p className="warningMargin">
                         <strong>¿Querés eliminar este usuario?</strong>
