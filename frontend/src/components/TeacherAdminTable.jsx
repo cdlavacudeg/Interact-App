@@ -1,24 +1,18 @@
 import "@styles/useradmintable.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../redux/actions";
-import React, { useState } from "react";
+import { getUsers, showModal } from "../redux/actions";
 import logoPlus from "@icons/PlusButton.svg";
-import logo from "../assets/images/logo.png";
+import Modal from "./Modal";
+import DeleteUser from "./Forms/DeleteUser";
 
 function TeacherAdminTable() {
     const dispatch = useDispatch();
     const listUsers = useSelector((state) => state.users);
+    const activeModal = useSelector((state) => state.modal);
 
-    //Modal
-    const [show, setShow] = useState(false);
-    const handleModalClose = () => {
-
-        setShow(false);
-    };
-
-    const handleModalOpen = () => {
-        setShow(true);
+    const handleModal = () => {
+        dispatch(showModal("Delete User"));
     };
 
     useEffect(() => {
@@ -70,44 +64,19 @@ function TeacherAdminTable() {
                 <img className="plusUser__imgPlusLogo" src={logoPlus} alt="" />
             </div>
             <div>
-                            <div
-                                hidden={!show}
-                            >
-                                <div
-                                    className="modalWarningBackground"
-                                    
-                                >
-                                    <div className="modalWarningCard">
-                                        <div style={{display: 'flex'}}><img className="logoWarningModal" src={logo} alt="" /></div>
-                                        <div className="modalWarningBody">
-                                            <div>
-                                                <p className="warningMargin">
-                                                <strong>¿Querés eliminar este usuario?</strong>
-                                                </p>
-                                                <p className="pSoftColorWarning">
-                                                Estás por eliminar al usuario Nombre y Apellido de forma permanente y ya no tendrá acceso a la plataforma 
-                                                </p>
-                                            </div>
-                                            <button className="btn_primary mt-2"> <strong>Eliminar Usuario</strong></button>
-                                            <button className="cancelarWarningButton btn_primary mt-2" onClick={handleModalClose} ><strong>Cancelar</strong>  </button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <button
-
-                                onClick={handleModalOpen}
-                                className="WarningModalButton"
-                            >
-                                Modal
-                            </button>
-                        </div>
+                {activeModal.active && (
+                    <Modal>
+                        {activeModal.name === "Delete User" && (
+                            <DeleteUser />
+                        )}
+                    </Modal>
+                )}
+                <button onClick={handleModal} className="WarningModalButton">
+                    Modal
+                </button>
+            </div>
         </div>
     );
 }
 
 export default TeacherAdminTable;
-
-
-

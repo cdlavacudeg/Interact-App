@@ -6,11 +6,14 @@ import bgLoginPage from "../assets/images/bgLoginPage.png";
 import logo from "../assets/images/logo.png";
 import toast, { Toaster } from "react-hot-toast";
 import { FaArrowLeft } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { login } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { login, showModal } from "../redux/actions";
+import Modal from "../components/Modal";
+import ForgetPassword from "../components/Forms/ForgetPassword";
 
 // Render Login page-
 const LoginPage = () => {
+    const activeModal = useSelector((state) => state.modal);
     const [forms, setForms] = useState(false); // SHow form or button to select user.
     const [customForm, setCustomForm] = useState(false); // Use to select what form render.
 
@@ -33,22 +36,12 @@ const LoginPage = () => {
         setForms(false);
     };
 
-    // Forget your password
-    const handleResetPassword = () => {
-        console.log("CLICK ON RESET PASSWORD");
-    };
 
-     //Modal
-     const [show, setShow] = useState(false);
-     const handleModalClose = () => {
+    const handleModal=()=>{
+        dispatch(showModal("Forget Password"));
+    }
 
-         setShow(false);
-     };
- 
-     const handleModalOpen = () => {
-         setShow(true);
-     };
- 
+
 
     // Custom fomrs
     const FormLogin = () => {
@@ -179,28 +172,16 @@ const LoginPage = () => {
                         </div>
 
                         <div>
-                            <div
-                                hidden={!show}
-                            >
-                                <div
-                                    className={style.modalBackground}
-                                    
-                                >
-                                    <div className={style.modalCard}>
-                                        <div style={{display: 'flex'}}><img className={style.logoModal} src={logo} alt="" /><p style={{color: 'tomato', fontWeight:'600', cursor: 'pointer'}} onClick={handleModalClose} >X</p></div>
-                                        <div className={style.modalBody}>
-                                            <p style={{marginBottom: '0', marginTop: '0'}}>Recupera tu cuenta</p>
-                                            <p style={{color: '#656565', marginTop: '0'}}>Ingresa tu correo electronico</p>
-                                            <input className={style.customInput} type="text" />
-                                            <button className="btn_primary mt-2">Continuar</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                            {activeModal.active && (
+                                <Modal >
+                                    {activeModal.name === "Forget Password" && (
+                                        <ForgetPassword />
+                                    )}
+                                </Modal>
+                            )}
                             <p
 
-                                onClick={handleModalOpen}
+                                onClick={handleModal}
                                 className={style.resetPassword}
                             >
                                 ¿Olvidaste tu Contraseña?
@@ -213,7 +194,6 @@ const LoginPage = () => {
                             value="Iniciar sessión"
                         />
                     </form>
-
                 </div>
             );
         }
@@ -272,8 +252,15 @@ const LoginPage = () => {
                             </div>
                         ) : null}
                     </div>
+                    {activeModal.active && (
+                                <Modal >
+                                    {activeModal.name === "Forget Password" && (
+                                        <ForgetPassword />
+                                    )}
+                                </Modal>
+                            )}
                     <p
-                        onClick={handleResetPassword}
+                        onClick={handleModal}
                         className={style.resetPassword}
                     >
                         ¿Olvidaste tu Contraseña?
@@ -288,7 +275,7 @@ const LoginPage = () => {
         );
     };
 
-   
+
     return (
         <main className={style.loginPageContent}>
             <article className={style.imgContent}>

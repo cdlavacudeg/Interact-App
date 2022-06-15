@@ -191,7 +191,20 @@ export function getCourses(id) {
         });
     };
 }
-
+export function getAllCourses(){
+    return async function (dispacht) {
+        let courses = await axios.get(`/course`);
+        courses = courses.data.data.course;
+        window.localStorage.setItem(
+            'courses',
+            JSON.stringify(courses)
+        );
+        return dispacht({
+            type: 'GET_COURSES_ALL',
+            payload: courses,
+        });
+    };
+}
 export function getCourseById(id) {
     return async function (dispacht) {
         let course = await axios.get(`/course/${id}`);

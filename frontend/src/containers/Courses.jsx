@@ -16,8 +16,8 @@ const Courses = () => {
                                 name={item.courseName}
                                 image={item.image}
                                 nameProf={item.teacher.fullName}
-                                key={item._id}
-                                id={item._id}
+                                key={item._id || item.uid}
+                                id={item._id || item.uid}
                             />
                         );
                     })
