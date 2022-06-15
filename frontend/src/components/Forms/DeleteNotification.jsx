@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { deleteNotification, hideModal } from "../../redux/actions";
-
+import "@styles/modalgeneral.css";
 const DeleteNotification = ({ data }) => {
     const { item, id, token } = data;
     const dispatch = useDispatch();
@@ -20,14 +20,14 @@ const DeleteNotification = ({ data }) => {
     return (
         <form onSubmit={(event) => handleSubmit(event, id, token)}>
             <div className="form-group">
-                ¿Seguro que quieres eliminar este aviso? Estas el siguiente
+                ¿Seguro que quieres eliminar este aviso? Estas en el siguiente
                 aviso:
                 {item.title}
             </div>
             <div className="form-group form-group--actions">
-                <button className="primary-btn">Delete</button>
-                <button className="cancel-btn" onClick={cancel}>
-                    Cancel
+                <button className="btn_primary mt-2"><strong>Eliminar Aviso</strong></button>
+                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
+                   <strong>Cancel</strong> 
                 </button>
             </div>
         </form>

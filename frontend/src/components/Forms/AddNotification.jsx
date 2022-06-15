@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNotification, hideModal } from "../../redux/actions";
-
+import "@styles/modalgeneral.css";
 const AddNotification = ({ data }) => {
     const { token } = data;
     const [notification, setNotification] = useState({
