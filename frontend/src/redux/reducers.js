@@ -147,6 +147,12 @@ function rootReducer(state = initialState, action) {
                 course: action.payload,
             };
 
+        case 'GET_COURSES_ALL':
+            return{
+                ...state,
+                courses: action.payload,
+            }
+
         //Notifications
         case 'GET_NOTIFICATIONS':
             return {
