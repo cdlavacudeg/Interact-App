@@ -8,6 +8,7 @@ import { useState } from "react";
 import Modal from "./Modal";
 import AddLesson from "./Forms/AddLesson";
 import { useParams } from "react-router-dom";
+import UpdateLesson from "./Forms/UpdateLesson";
 
 const CardLesson = () => {
     let lectures = useSelector((state) => state.course.lessons.lectures);
@@ -26,8 +27,9 @@ const CardLesson = () => {
         setItemData({ token, course_id });
     };
 
-    const handleUpdate = (item, token) => {
+    const handleUpdate = (lecture,index,course_id, token) => {
         dispatch(showModal("Update Lesson"));
+        setItemData({lecture,index,course_id,token})
     };
     return (
         <>
@@ -66,7 +68,7 @@ const CardLesson = () => {
                                             </div>
                                             <div
                                                 className="edit-icon"
-                                                onClick={() => handleUpdate()}
+                                                onClick={() => handleUpdate(lecture,index,materiaId,user.token)}
                                             >
                                                 <img
                                                     src={editimg}
@@ -120,8 +122,7 @@ const CardLesson = () => {
                             <AddLesson data={itemData} />
                         )}
                         {activeModal.name == "Update Lesson" && (
-                            //<UpdateNotification data={itemData} />
-                            <></>
+                            <UpdateLesson data={itemData} />
                         )}
                     </Modal>
                 )}

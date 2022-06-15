@@ -2,22 +2,21 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
     hideModal,
-    updateNotification,
+    updateLesson,
 } from "../../redux/actions";
 
-const UpdateNotification = ({ data }) => {
-    const { item, token } = data;
-    const { title, content, date, uid } = item;
-    const [notification, setNotification] = useState({
+const UpdateLesson = ({ data }) => {
+    const {lecture,index,course_id,token} = data;
+    const { title, link } = lecture;
+    const [lesson, setNotification] = useState({
         title,
-        content,
-        date,
+        link
     });
     const dispatch = useDispatch();
 
     const onInputChange = (event) => {
         const { name, value } = event.target;
-        setNotification({ ...notification, [name]: value });
+        setNotification({ ...lesson, [name]: value });
     };
 
     const cancel = (event) => {
@@ -25,41 +24,33 @@ const UpdateNotification = ({ data }) => {
         dispatch(hideModal()).catch((error) => console.log(error));
     };
 
-    const handleSubmit = (event, data, uid, token) => {
+    const handleSubmit = (event, data,index, course_id, token) => {
         event.preventDefault();
-        dispatch(updateNotification(data, uid, token))
+        data.index =index
+        dispatch(updateLesson(data,course_id, token))
             .then(() => dispatch(hideModal()))
             .catch((error) => console.log(error));
     };
 
     return (
         <form
-            onSubmit={(event) => handleSubmit(event, notification, uid, token)}
+            onSubmit={(event) => handleSubmit(event, lesson, index, course_id, token)}
         >
             <div className="form-group">
                 <label>Titulo</label>
                 <input
                     type="text"
                     name="title"
-                    value={notification.title}
+                    value={lesson.title}
                     onChange={onInputChange}
                 />
             </div>
             <div className="form-group">
-                <label>Contenido</label>
+                <label>Link</label>
                 <input
                     type="text"
-                    name="content"
-                    value={notification.content}
-                    onChange={onInputChange}
-                />
-            </div>
-            <div className="form-group">
-                <label>Fecha</label>
-                <input
-                    type="text"
-                    name="date"
-                    value={notification.date}
+                    name="link"
+                    value={lesson.link}
                     onChange={onInputChange}
                 />
             </div>
@@ -73,4 +64,4 @@ const UpdateNotification = ({ data }) => {
     );
 };
 
-export default UpdateNotification;
+export default UpdateLesson;
