@@ -12,7 +12,7 @@ function Profile() {
     const user = useSelector((state) => state.user);
     const profile = useSelector((state) => state.profile);
     const dispatch = useDispatch();
-    const role = user.user.role
+    const role = user.user.role;
 
     useEffect(() => {
         dispatch(getProfile(user.user.uid));

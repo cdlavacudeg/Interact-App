@@ -2,17 +2,14 @@ import * as React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-    deleteNotification,
-    getNotifications,
-    showModal,
-} from "../redux/actions";
+import { getNotifications, showModal } from "../redux/actions";
 import "@styles/avisos.css";
 import avisosimg from "@img/img-avisos.png";
 import trashimg from "@icons/trash.svg";
 import logoPlus from "@icons/PlusButton.svg";
 import Modal from "../components/Modal";
 import DeleteNotification from "./Forms/DeleteNotification";
+import AddNotification from "./Forms/AddNotification";
 
 function Avisos() {
     const user = useSelector((state) => state.user);
@@ -49,6 +46,11 @@ function Avisos() {
             id,
             token,
         });
+    };
+
+    const handleAdd = (token) => {
+        dispatch(showModal("Add Notification"));
+        setItemData({ token });
     };
     return (
         <section className="section-avisos">
@@ -118,7 +120,7 @@ function Avisos() {
                 </button>
             )}
             {user.user.role == "admin" && (
-                <div className="plusUser">
+                <div className="plusUser" onClick={() => handleAdd(user.token)}>
                     <img
                         className="plusUser__imgPlusLogo"
                         src={logoPlus}
@@ -130,6 +132,9 @@ function Avisos() {
                 <Modal activeModal={activeModal}>
                     {activeModal.name === "Delete Notification" && (
                         <DeleteNotification data={itemData} />
+                    )}
+                    {activeModal.name === "Add Notification" && (
+                        <AddNotification data={itemData} />
                     )}
                 </Modal>
             )}
