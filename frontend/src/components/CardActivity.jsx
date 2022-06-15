@@ -1,8 +1,24 @@
 import "@styles/cardActivity.css";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getNotifications, showModal } from "../redux/actions";
+import avisosimg from "@img/img-avisos.png";
+import trashimg from "@icons/trash.svg";
+import editimg from "@icons/editpen.svg";
+import logoPlus from "@icons/PlusButton.svg";
+import Modal from "../components/Modal";
+import DeleteNotification from "./Forms/DeleteNotification";
+import AddNotification from "./Forms/AddNotification";
+import UpdateNotification from "./Forms/UpdateNotification";
 
 const CardActivity = () => {
     let events = useSelector((state) => state.course.events);
+        const user = useSelector((state) => state.user);
+        const [itemData, setItemData] = useState({});
+
+
+    const dispatch = useDispatch();
 
     if (events) {
         events = events.events.sort((a, b) => {
@@ -17,6 +33,26 @@ const CardActivity = () => {
     } else {
         events = [];
     }
+      useEffect(() => {
+          dispatch(getNotifications()).catch((error) => {
+              console.log(error);
+          });
+      }, []);
+
+    const handleDelete = (item, id, token) => {
+            dispatch(showModal("Delete Notification"));
+            setItemData({
+                item,
+                id,
+                token,
+            });
+        };
+
+     const handleUpdate = (item, token) => {
+         dispatch(showModal("Update Notification"));
+         setItemData({ item, token });
+     };
+
 
     return (
         <>
@@ -35,6 +71,30 @@ const CardActivity = () => {
                             <p className="cardActivity-status">
                                 {event.status ? "Pendiente" : "Entregado"}
                             </p>
+                            {user.user.role == "admin" && (
+                                <div className="icons">
+                                    <div
+                                        className="trash-icon"
+                                        onClick={() =>
+                                            handleDelete(
+                                                event,
+                                                event.uid,
+                                                user.token
+                                            )
+                                        }
+                                    >
+                                        <img src={trashimg} alt="trash icon" />
+                                    </div>
+                                    <div
+                                        className="edit-icon"
+                                        onClick={() =>
+                                            handleUpdate(event, user.token)
+                                        }
+                                    >
+                                        <img src={editimg} alt="trash icon" />
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     );
                 })
