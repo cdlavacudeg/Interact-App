@@ -322,6 +322,29 @@ export function updateLesson(data,course_id, token){
 }
 
 
+export function deleteLesson(index,course_id, token) {
+    return async function (dispacht) {
+        let config = {
+            headers: {
+                xtoken: token,
+            },
+            data:{
+                index:index
+            }
+        };
+
+        await axios.delete(`/lesson/${course_id}`,config);
+
+        let course = await axios.get(`/course/${course_id}`);
+        course = course.data.data.course;
+
+        return dispacht({
+            type: 'GET_COURSE_ID',
+            payload: course,
+        });
+    };
+}
+
 //============================
 //       EVENTS
 //============================

@@ -9,6 +9,7 @@ import Modal from "./Modal";
 import AddLesson from "./Forms/AddLesson";
 import { useParams } from "react-router-dom";
 import UpdateLesson from "./Forms/UpdateLesson";
+import DeleteLesson from "./Forms/DeleteLesson";
 
 const CardLesson = () => {
     let lectures = useSelector((state) => state.course.lessons.lectures);
@@ -18,8 +19,9 @@ const CardLesson = () => {
     const [itemData, setItemData] = useState({});
     const dispatch = useDispatch();
 
-    const handleDelete = (item, id, token) => {
+    const handleDelete = (lecture,index,course_id,token) => {
         dispatch(showModal("Delete Lesson"));
+        setItemData({lecture,index,course_id,token})
     };
 
     const handleAdd = (token, course_id) => {
@@ -59,7 +61,7 @@ const CardLesson = () => {
                                         <div className="icons">
                                             <div
                                                 className="trash-icon"
-                                                onClick={() => handleDelete()}
+                                                onClick={() => handleDelete(lecture,index,materiaId,user.token)}
                                             >
                                                 <img
                                                     src={trashimg}
@@ -115,8 +117,7 @@ const CardLesson = () => {
                 {activeModal.active && (
                     <Modal>
                         {activeModal.name === "Delete Lesson" && (
-                            //<DeleteNotification data={itemData} />
-                            <></>
+                            <DeleteLesson data={itemData} />
                         )}
                         {activeModal.name === "Add Lesson" && (
                             <AddLesson data={itemData} />
