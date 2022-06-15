@@ -38,6 +38,18 @@ const LoginPage = () => {
         console.log("CLICK ON RESET PASSWORD");
     };
 
+     //Modal
+     const [show, setShow] = useState(false);
+     const handleModalClose = () => {
+
+         setShow(false);
+     };
+ 
+     const handleModalOpen = () => {
+         setShow(true);
+     };
+ 
+
     // Custom fomrs
     const FormLogin = () => {
         // Initial values form Students
@@ -56,7 +68,7 @@ const LoginPage = () => {
                     (error) => {
                         let message =
                             error.message == "Network Error" ||
-                            error.message == "Incorrect role"
+                                error.message == "Incorrect role"
                                 ? error.message
                                 : error.response.data.error;
                         toast.error(`Error ${message} `, {
@@ -91,7 +103,7 @@ const LoginPage = () => {
                     (error) => {
                         let message =
                             error.message == "Network Error" ||
-                            error.message == "Rol incorrecto"
+                                error.message == "Rol incorrecto"
                                 ? error.message
                                 : error.response.data.error;
                         toast.error(`Error ${message} `, {
@@ -165,18 +177,43 @@ const LoginPage = () => {
                                 </div>
                             ) : null}
                         </div>
-                        <p
-                            onClick={handleResetPassword}
-                            className={style.resetPassword}
-                        >
-                            ¿Olvidaste tu Contraseña?
-                        </p>
+
+                        <div>
+                            <div
+                                hidden={!show}
+                            >
+                                <div
+                                    className={style.modalBackground}
+                                    
+                                >
+                                    <div className={style.modalCard}>
+                                        <div style={{display: 'flex'}}><img className={style.logoModal} src={logo} alt="" /><p style={{color: 'tomato', fontWeight:'600', cursor: 'pointer'}} onClick={handleModalClose} >X</p></div>
+                                        <div className={style.modalBody}>
+                                            <p style={{marginBottom: '0', marginTop: '0'}}>Recupera tu cuenta</p>
+                                            <p style={{color: '#656565', marginTop: '0'}}>Ingresa tu correo electronico</p>
+                                            <input className={style.customInput} type="text" />
+                                            <button className="btn_primary mt-2">Continuar</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <p
+
+                                onClick={handleModalOpen}
+                                className={style.resetPassword}
+                            >
+                                ¿Olvidaste tu Contraseña?
+                            </p>
+                        </div>
+
                         <input
                             className={style.choiceFormButton}
                             type="submit"
                             value="Iniciar sessión"
                         />
                     </form>
+
                 </div>
             );
         }
@@ -251,6 +288,7 @@ const LoginPage = () => {
         );
     };
 
+   
     return (
         <main className={style.loginPageContent}>
             <article className={style.imgContent}>
