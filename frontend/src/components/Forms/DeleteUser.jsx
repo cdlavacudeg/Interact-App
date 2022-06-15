@@ -15,9 +15,8 @@ const DeleteUser = () => {
                         <strong>¿Querés eliminar este usuario?</strong>
                     </p>
                     <p className="pSoftColorWarning">
-                        Estás por eliminar al usuario Nombre y Apellido
-                        de forma permanente y ya no tendrá acceso a la
-                        plataforma
+                        Estás por eliminar al usuario Nombre y Apellido de forma
+                        permanente y ya no tendrá acceso a la plataforma
                     </p>
                 </div>
                 <button className="btn_primary mt-2">
