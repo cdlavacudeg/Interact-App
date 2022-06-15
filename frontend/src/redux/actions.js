@@ -203,6 +203,21 @@ export function getCourseById(id) {
         });
     };
 }
+
+export function getCourse() {
+    return async function (dispatch) {
+        var json = await axios.get('/course/');
+        console.log(json.data.data.course)
+        window.localStorage.setItem(
+            'courses',
+            JSON.stringify(json.data.data.course)
+        );
+        return dispatch({
+            type: 'GET_COURSE',
+            payload: json.data.data.course,
+        });
+    };
+}
 //============================
 //       NOTIFICATIONS
 //============================

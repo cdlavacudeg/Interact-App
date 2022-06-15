@@ -5,7 +5,7 @@ import CourseIdActivity from "@components/CourseIdActivity";
 import "@styles/courseContainer.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getCourseById } from "../redux/actions";
+import { getCourseById} from "../redux/actions";
 
 const CourseContainer = () => {
     const [loading, setLoading] = useState(true);

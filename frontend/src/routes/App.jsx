@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCourses, getGrade } from "../redux/actions";
+import { getCourse, getCourses } from "../redux/actions";
 import Layout from "@containers/Layout";
 import Home from "@pages/Home.jsx";
 import Materias from "@pages/Materias.jsx";
@@ -29,9 +29,11 @@ const App = () => {
         return <LoginPage />;
     }
 
-    dispatch(getCourses(user.user.uid)).catch((error) => {
+
+          dispatch(getCourses(user.user.uid)).catch((error) => {
         console.log(error);
     });
+
 
     window.localStorage.setItem("loggedAppUser", JSON.stringify(user));
     return (
