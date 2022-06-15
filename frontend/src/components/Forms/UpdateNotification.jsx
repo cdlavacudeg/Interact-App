@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addNotification, hideModal } from "../../redux/actions";
+import {
+    addNotification,
+    hideModal,
+    updateNotification,
+} from "../../redux/actions";
 
-const AddNotification = ({ data }) => {
-    const { token } = data;
+const UpdateNotification = ({ data }) => {
+    const { item, token } = data;
+    const { title, content, date, uid } = item;
     const [notification, setNotification] = useState({
-        title: "",
-        content: "",
-        date: "30/06/2022",
+        title,
+        content,
+        date,
     });
     const dispatch = useDispatch();
 
@@ -21,15 +26,17 @@ const AddNotification = ({ data }) => {
         dispatch(hideModal()).catch((error) => console.log(error));
     };
 
-    const handleSubmit = (event, data, token) => {
+    const handleSubmit = (event, data, uid, token) => {
         event.preventDefault();
-        dispatch(addNotification(data, token))
+        dispatch(updateNotification(data, uid, token))
             .then(() => dispatch(hideModal()))
             .catch((error) => console.log(error));
     };
 
     return (
-        <form onSubmit={(event) => handleSubmit(event, notification, token)}>
+        <form
+            onSubmit={(event) => handleSubmit(event, notification, uid, token)}
+        >
             <div className="form-group">
                 <label>Titulo</label>
                 <input
@@ -58,7 +65,7 @@ const AddNotification = ({ data }) => {
                 />
             </div>
             <div className="form-group form-group--actions">
-                <button className="primary-btn">Crear</button>
+                <button className="primary-btn">Actualizar</button>
                 <button className="cancel-btn" onClick={cancel}>
                     Cancelar
                 </button>
@@ -67,4 +74,4 @@ const AddNotification = ({ data }) => {
     );
 };
 
-export default AddNotification;
+export default UpdateNotification;
