@@ -250,6 +250,23 @@ export function addNotification(data, token) {
     };
 }
 
+export function updateNotification(data,id,token){
+    return async function(dispacht){
+        let config = {
+            headers: {
+                xtoken: token,
+            },
+        };
+
+        await axios.put(`/notification/${id}`, data, config);
+        var json = await axios.get('/notification');
+        return dispacht({
+            type: 'GET_NOTIFICATIONS',
+            payload: json.data.data.notification,
+        });
+    }
+}
+
 //============================
 //       EVENTS
 //============================
