@@ -13,17 +13,43 @@
 }
 
 .plusUser {
-    font-size      : var(--fz-1);
-    color          : var(--primer-color);
-    cursor         : pointer;
-    width          : 100%;
-    display        : flex;
-    justify-content: flex-end;
+    font-size    : var(--fz-1);
+    color        : var(--primer-color);
+    cursor       : pointer;
+    width        : 3rem;
+    margin-left  : auto;
+    border-radius: 50%;
+}
+
+.plusUser:hover {
+    opacity: .8;
 }
 
 .plusUser__imgPlusLogo {
-    width      : 50px;
-    padding-top: 1rem;
+    width: 100%;
+}
+
+.table-buttons {
+    display        : flex;
+    justify-content: flex-start;
+}
+
+.trash-button,
+.edit-button {
+    border          : none;
+    background-color: var(--whiteSmoke-color);
+    transition      : var(--transition);
+    margin-right    : 1rem;
+    padding         : .1rem;
+    border-radius   : 50%;
+}
+
+.trash-button:hover {
+    background-color: var(--red-color);
+}
+
+.edit-button:hover {
+    background-color: var(--quinto-color);
 }
 
 
@@ -58,6 +84,11 @@
 
     #no-more-tables tr {
         border-bottom: 1px solid #ccc;
+    }
+
+    .trash-button,
+    .edit-button {
+        margin-right: 1rem;
     }
 }
 
