@@ -3,7 +3,6 @@ import { deleteActivity, hideModal } from "../../redux/actions";
 
 const DeleteActivity = ({ data }) => {
     const { events, index, course_id, token } = data;
-    console.log(data)
     const dispatch = useDispatch();
 
     const cancel = (event) => {
@@ -25,7 +24,7 @@ const DeleteActivity = ({ data }) => {
             <div className="form-group">
                 ¿Seguro que quieres eliminar este aviso? Estas el siguiente
                 aviso:
-                {events.title}
+                {events.description}
             </div>
             <div className="form-group form-group--actions">
                 <button className="primary-btn">Eliminar</button>

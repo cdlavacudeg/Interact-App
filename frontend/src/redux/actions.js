@@ -396,11 +396,10 @@ export function deleteActivity(index, course_id, token) {
                 index: index,
             }
         };
-
-       let delete1 = await axios.delete(`/event/${course_id}`, config);
-       console.log(delete1)
-        let course = await axios.get(`/course/${course_id}`);
-        course = course.data.data.course;
+        console.log(index);
+        await axios.delete(`/event/${course_id}`, config);
+         let course = await axios.get(`/course/${course_id}`);
+         course = course.data.data.course;
 
         return dispacht({
             type: 'GET_COURSE_ID',

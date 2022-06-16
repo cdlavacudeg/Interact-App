@@ -13,7 +13,6 @@ import DeleteActivity from "./Forms/DeleteActivity";
 
 const CardActivity = () => {
     let events = useSelector((state) => state.course.events);
-    console.log(events)
     const user = useSelector((state) => state.user);
     const { materiaId } = useParams();
     const activeModal = useSelector((state) => state.modal);
