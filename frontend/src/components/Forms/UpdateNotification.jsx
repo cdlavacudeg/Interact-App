@@ -37,8 +37,9 @@ const UpdateNotification = ({ data }) => {
             onSubmit={(event) => handleSubmit(event, notification, uid, token)}
         >
             <div className="form-group">
-                <label>Titulo</label>
+                <label className="mt-1">Titulo</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="title"
                     value={notification.title}
@@ -46,8 +47,9 @@ const UpdateNotification = ({ data }) => {
                 />
             </div>
             <div className="form-group">
-                <label>Contenido</label>
+                <label className="mt-2">Contenido</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="content"
                     value={notification.content}
@@ -55,8 +57,9 @@ const UpdateNotification = ({ data }) => {
                 />
             </div>
             <div className="form-group">
-                <label>Fecha</label>
+                <label className="mt-2">Fecha</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="date"
                     value={notification.date}
@@ -64,9 +67,9 @@ const UpdateNotification = ({ data }) => {
                 />
             </div>
             <div className="form-group form-group--actions">
-                <button className="primary-btn">Actualizar</button>
-                <button className="cancel-btn" onClick={cancel}>
-                    Cancelar
+                <button className="btn_primary mt-3"><strong>Actualizar</strong></button>
+                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
+                <strong> Cancelar </strong>
                 </button>
             </div>
         </form>
