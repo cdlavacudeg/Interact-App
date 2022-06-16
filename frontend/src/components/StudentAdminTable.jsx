@@ -1,15 +1,41 @@
 import "@styles/useradmintable.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../redux/actions";
+import { getUsers, showModal } from "../redux/actions";
+import Modal from "./Modal";
+import DeleteUser from "./Forms/DeleteUser";
+import AddUsers from "./Forms/AddUsers";
+import UpdateUser from "./Forms/UpdateUser";
 import logoPlus from "@icons/PlusButton.svg";
+import trashSVG from "@icons/trash.svg";
+import penSVG from "@icons/editpen.svg";
 
 function StudentAdminTable() {
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.user);
     const listUsers = useSelector((state) => state.users);
-    const [activeModal, setActiveModal] = useState({
-        active: false,
-    });
+    const activeModal = useSelector((state) => state.modal);
+    const [itemData, setItemData] = useState({});
+
+    const handleModalDelete = ( item, id, token) => {
+        dispatch(showModal("Delete User"));
+        setItemData({
+            item,
+            id,
+            token,
+        });
+    };
+    const handleModalPost = (token) => {
+        dispatch(showModal("Post User"));
+        let role = "student"
+        setItemData({ token, role });
+    };
+
+    const handleModalUpdate = (item, id,token) => {
+        dispatch(showModal("Update User"));
+        let role = "student"
+        setItemData({ item,id,token, role });
+    };
 
     return (
         <div className="user-section">
@@ -23,14 +49,15 @@ function StudentAdminTable() {
                                 <th>Genero</th>
                                 <th>Correo</th>
                                 <th>Rol</th>
+                                <th>Operaciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {listUsers.map((user) => {
-                                let { fullName, gender, email, role } = user;
-                                if (user.role === "student") {
+                            {listUsers.map((item) => {
+                                let { fullName, gender, email, role } = item;
+                                if (item.role === "student") {
                                     return (
-                                        <tr key={user.uid}>
+                                        <tr key={item.uid}>
                                             <td data-title="Nombre">
                                                 {" "}
                                                 {fullName}
@@ -44,6 +71,27 @@ function StudentAdminTable() {
                                                 {email}{" "}
                                             </td>
                                             <td data-title="role"> {role} </td>
+                                            <td data-title="operaciones" className="table-buttons">
+                                              <button onClick={() =>
+                                                    handleModalDelete(
+                                                        item,
+                                                        item.uid,
+                                                        item.token
+                                                    )}
+                                                    className="trash-button"
+                                                    >
+                                                <img src={trashSVG} alt="delete button"  />
+                                              </button>
+                                              <button onClick={() =>
+                                                    handleModalUpdate(
+                                                        item,
+                                                        item.uid,
+                                                        item.token
+                                                    )}
+                                              className="edit-button">
+                                                <img src={penSVG} alt="edit pen button" />
+                                              </button>
+                                            </td>
                                         </tr>
                                     );
                                 }
@@ -52,8 +100,23 @@ function StudentAdminTable() {
                     </table>
                 </div>
             </section>
-            <div className="plusUser">
+            <div onClick={() => handleModalPost(user.token)} className="plusUser">
                 <img className="plusUser__imgPlusLogo" src={logoPlus} alt="" />
+            </div>
+            <div>
+                {activeModal.active && (
+                    <Modal>
+                        {activeModal.name === "Delete User" && (
+                            <DeleteUser data={itemData}/>
+                        )}
+                        {activeModal.name === "Post User" && (
+                            <AddUsers data={itemData}/>
+                        )}
+                        {activeModal.name === "Update User" && (
+                            <UpdateUser data={itemData}/>
+                        )}
+                    </Modal>
+                )}
             </div>
         </div>
     );

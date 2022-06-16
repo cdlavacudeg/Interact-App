@@ -1,21 +1,24 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { hideModal, postUser } from '../../redux/actions';
+import { hideModal, updateUser } from '../../redux/actions';
 import '@styles/addUsers.css'
 
-const AddUsers = ({data}) => {
+const UpdateUser = ({data}) => {
     const dispatch = useDispatch();
     const courses = useSelector((state) => state.courses);
-    const { token,role } = data;
+    const { item, id, token,role } = data;
+    const { fullName, email, password, gender, courses : materias} = item;
+    console.log(data)
 
     const [user, setUser] = useState({
-        fullName: "",
-        gender: "",
-        email: "",
-        password: "",
-        role: role,
-        courses: []
+        fullName,
+        gender,
+        email,
+        password,
+        role,
+        courses: materias
       });
+      console.log(materias)
 
       const cancel = (event) => {
         event.preventDefault();
@@ -25,7 +28,8 @@ const AddUsers = ({data}) => {
     const _handleChange = ({ target: { name, value } }) => {
         setUser((prev) => ({ ...prev, [name]: value }));
       };
-      const _handleSelect = (event) => {
+
+    const _handleSelect = (event) => {
         const {value, checked, name} = event.target;
         setUser((prev) => {
             let materias = prev.courses;
@@ -44,10 +48,18 @@ const AddUsers = ({data}) => {
 
     const _handleSubmit = (e,data,token) => {
         e.preventDefault();
-        dispatch(postUser(data,token))
+        dispatch(updateUser( data, id, token))
             .then(() => dispatch(hideModal()))
+            .then(() => console.log('actualizado'))
             .catch((error) => console.log(error));
     }
+    const isChecked = (materia) => {
+        return materias.includes(materia);
+    }
+
+    console.log(isChecked('62a3a1d27b4a1f92f34627eb'))
+
+
 
   return (
     <form
@@ -75,11 +87,12 @@ const AddUsers = ({data}) => {
           name="password"
           onChange={_handleChange}
           value={user.password}
-          placeholder="Contraseña"
+          placeholder="Nueva Contraseña"
           />
         <div  className='addUsers-input'  >
           {
-            courses ?  (courses.map((course) => {
+            courses ?  (courses.map((course,index) => {
+                console.log(course.uid)
 
                return (
                 <Fragment key={course.uid}>
@@ -89,7 +102,9 @@ const AddUsers = ({data}) => {
                     id={course.courseName}
                     name="courses"
                     value={course.uid}
-                    onChange={_handleSelect}/>
+                    onChange={_handleSelect}
+                    checked={materias.includes(course.uid)}
+                    />
                    { course.courseName}
                 </label><br />
                 </Fragment>
@@ -100,7 +115,7 @@ const AddUsers = ({data}) => {
         }
 
         </div>
-        <button className='addUsers-button' type="submit">Crear</button>
+        <button className='addUsers-button' type="submit">Actualizar</button>
         <button className='addUsers-button cancel-button' onClick={cancel}>
           Cancelar
         </button>
@@ -108,4 +123,4 @@ const AddUsers = ({data}) => {
     );
 }
 
-export default AddUsers
+export default UpdateUser
