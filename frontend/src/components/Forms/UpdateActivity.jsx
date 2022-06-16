@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addLesson, hideModal } from "../../redux/actions";
-import "@styles/modalgeneral.css";
+import { hideModal, updateActivity } from "../../redux/actions";
 
-const AddLesson = ({ data }) => {
-    const { token, course_id } = data;
-    const [lesson, setNotification] = useState({
-        title: "",
-        link: "",
+const UpdateActivity = ({ data }) => {
+    const { event:events, index, course_id, token } = data;
+    const { description, date } = events;
+    const [eventActivity, setNotification] = useState({
+        description,
+        date,
+        index
     });
     const dispatch = useDispatch();
 
     const onInputChange = (event) => {
         const { name, value } = event.target;
-        setNotification({ ...lesson, [name]: value });
+        setNotification({ ...eventActivity, [name]: value });
     };
 
     const cancel = (event) => {
@@ -21,45 +22,48 @@ const AddLesson = ({ data }) => {
         dispatch(hideModal()).catch((error) => console.log(error));
     };
 
-    const handleSubmit = (event, course_id, data, token) => {
+    const handleSubmit = (event, data,index, course_id, token) => {
         event.preventDefault();
-        dispatch(addLesson(course_id, data, token))
+        data.index = index;
+        dispatch(updateActivity(course_id, data, token))
             .then(() => dispatch(hideModal()))
             .catch((error) => console.log(error));
     };
 
     return (
         <form
-            onSubmit={(event) => handleSubmit(event, course_id, lesson, token)}
+            onSubmit={(event) =>
+                handleSubmit(event, eventActivity, index, course_id, token)
+            }
         >
             <div className="form-group">
-                <label>Titulo</label>
+                <label>Descripción</label>
                 <input
                     className="customInput"
                     type="text"
-                    name="title"
-                    value={lesson.title}
+                    name="description"
+                    value={eventActivity.description}
                     onChange={onInputChange}
                 />
             </div>
             <div className="form-group">
-                <label>Link</label>
+                <label>Fecha</label>
                 <input
                     className="customInput"
                     type="text"
-                    name="link"
-                    value={lesson.link}
+                    name="date"
+                    value={eventActivity.date}
                     onChange={onInputChange}
                 />
             </div>
             <div className="form-group form-group--actions">
-                <button className="btn_primary mt-2"><strong>Crear</strong></button>
+                <button className="btn_primary mt-2"> <strong>Actualizar</strong></button>
                 <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
-                    <strong>Cancelar</strong>
+                   <strong>Cancelar</strong> 
                 </button>
             </div>
         </form>
     );
 };
 
-export default AddLesson;
+export default UpdateActivity;

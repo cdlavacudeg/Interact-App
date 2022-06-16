@@ -2,13 +2,13 @@ import "@styles/cardActivity.css";
 import { useDispatch, useSelector } from "react-redux";
 import trashimg from "@icons/trash.svg";
 import editimg from "@icons/editpen.svg";
-import { showModal } from "../redux/actions";
+import { showModal} from "../redux/actions";
 import logoPlus from "@icons/PlusButton.svg";
 import { useState } from "react";
 import Modal from "./Modal";
 import AddActivity from "./Forms/AddActivity";
 import { useParams } from "react-router-dom";
-// import UpdateActivity from "./Forms/UpdateLesson";
+import UpdateActivity from "./Forms/UpdateActivity"
 import DeleteActivity from "./Forms/DeleteActivity";
 
 const CardActivity = () => {
@@ -29,25 +29,12 @@ const CardActivity = () => {
         setItemData({ token, course_id });
     };
 
-    const handleUpdate = (lecture, index, course_id, token) => {
+    const handleUpdate = (index, event,  course_id, token) => {
         dispatch(showModal("Update Activity"));
-        setItemData({ lecture, index, course_id, token });
+        setItemData({ event, index, course_id, token });
     };
 
-    if (events) {
-        events = events.events.sort((a, b) => {
-            let aDate = a.date.split("/");
-            let bDate = b.date.split("/");
-
-            aDate = new Date(aDate[2], parseInt(aDate[1]) - 1, aDate[0]);
-            bDate = new Date(bDate[2], parseInt(bDate[1]) - 1, bDate[0]);
-
-            return aDate - bDate;
-        });
-    } else {
-        events = [];
-    }
-
+    events = events ? events.events: [];
     return (
         <>
             {events.length != 0 ? (
@@ -116,12 +103,12 @@ const CardActivity = () => {
                     {activeModal.name === "Delete Activity" && (
                         <DeleteActivity data={itemData} />
                     )}
-                   {activeModal.name === "Add Activity" && (
+                    {activeModal.name === "Add Activity" && (
                         <AddActivity data={itemData} />
                     )}
-                   {/*   {activeModal.name == "Update Lesson" && (
+                    {activeModal.name == "Update Activity" && (
                         <UpdateActivity data={itemData} />
-                    )} */}
+                    )}
                 </Modal>
             )}
         </>

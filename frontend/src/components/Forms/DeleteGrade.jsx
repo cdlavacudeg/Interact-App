@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { deleteGrade, deleteLesson, hideModal } from "../../redux/actions";
+import "@styles/modalgeneral.css";
 
 const DeleteGrade = ({ data }) => {
     const { grade, course_id, token } = data;
@@ -23,9 +24,9 @@ const DeleteGrade = ({ data }) => {
                 ¿Seguro que quieres eliminar Todas las notas de {grade.student}?
             </div>
             <div className="form-group form-group--actions">
-                <button className="primary-btn">Eliminar</button>
-                <button className="cancel-btn" onClick={cancel}>
-                    Cancelar
+                <button className="btn_primary mt-2"><strong>Eliminar</strong></button>
+                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
+                   <strong>Cancelar</strong> 
                 </button>
             </div>
         </form>

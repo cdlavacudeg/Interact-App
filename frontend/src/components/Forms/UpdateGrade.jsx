@@ -4,6 +4,7 @@ import {
     hideModal,
     updateGrade,
 } from "../../redux/actions";
+import "@styles/modalgeneral.css";
 
 const UpdateGrade = ({ data }) => {
     const {gradeData,index,course_id,token} = data;
@@ -42,6 +43,7 @@ const UpdateGrade = ({ data }) => {
             <div className="form-group">
                 <label>Descripción</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="obs"
                     value={gradeState.obs}
@@ -51,6 +53,7 @@ const UpdateGrade = ({ data }) => {
             <div className="form-group">
                 <label>Nota</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="grade"
                     value={gradeState.grade}
@@ -60,6 +63,7 @@ const UpdateGrade = ({ data }) => {
             <div className="form-group">
                 <label>Fecha</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="date"
                     value={gradeState.date}
@@ -67,9 +71,9 @@ const UpdateGrade = ({ data }) => {
                 />
             </div>
             <div className="form-group form-group--actions">
-                <button className="primary-btn">Actualizar</button>
-                <button className="cancel-btn" onClick={cancel}>
-                    Cancelar
+                <button className="btn_primary mt-2"><strong>Actualizar</strong></button>
+                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
+                    <strong>Cancelar</strong>
                 </button>
             </div>
         </form>

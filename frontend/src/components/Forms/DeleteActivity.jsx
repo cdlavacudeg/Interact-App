@@ -22,8 +22,8 @@ const DeleteActivity = ({ data }) => {
             onSubmit={(event) => handleSubmit(event, index, course_id, token)}
         >
             <div className="form-group">
-                ¿Seguro que quieres eliminar este aviso? Estas en el siguiente
-                aviso:
+                <p className="pSoftColorWarning">¿Seguro que quieres eliminar este aviso? Estas en el siguiente
+                aviso: </p>
                 {events.description}
             </div>
             <div className="form-group form-group--actions">

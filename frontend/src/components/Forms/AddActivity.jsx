@@ -33,16 +33,7 @@ const AddActivity = ({ data }) => {
         <form
             onSubmit={(event) => handleSubmit(event, course_id, events, token)}
         >
-            <div className="form-group">
-                <label>Fecha</label>
-                <input
-                    className="customInput"
-                    type="text"
-                    name="date"
-                    value={events.date}
-                    onChange={onInputChange}
-                />
-            </div>
+        
             <div className="form-group">
                 <label>Descripción</label>
                 <input
@@ -50,6 +41,16 @@ const AddActivity = ({ data }) => {
                     type="text"
                     name="description"
                     value={events.description}
+                    onChange={onInputChange}
+                />
+            </div>
+            <div className="form-group">
+                <label>Fecha</label>
+                <input
+                    className="customInput"
+                    type="text"
+                    name="date"
+                    value={events.date}
                     onChange={onInputChange}
                 />
             </div>

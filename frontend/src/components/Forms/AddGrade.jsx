@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addGrade, hideModal } from "../../redux/actions";
+import "@styles/modalgeneral.css";
 
 const AddGrade = ({ data }) => {
     const { token, course_id ,student_list} = data;
@@ -38,6 +39,7 @@ const AddGrade = ({ data }) => {
             <div className="form-group">
                 <label>Descripción</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="obs"
                     value={grade.obs}
@@ -46,7 +48,7 @@ const AddGrade = ({ data }) => {
             </div>
             <div className="form-group">
                 <label>Estudiante</label>
-                <select name="student_id" value={grade.student_id} onChange={onInputChange}>
+                <select  className ="customInput" name="student_id" value={grade.student_id} onChange={onInputChange}>
                     <option value="select_student">Selecciona</option>
                     {student_list.map((student,index)=>
                         <option value={student._id} key={index}>{student.fullName}</option>
@@ -56,6 +58,7 @@ const AddGrade = ({ data }) => {
             <div className="form-group">
                 <label>Nota</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="grade"
                     value={grade.grade}
@@ -65,6 +68,7 @@ const AddGrade = ({ data }) => {
             <div className="form-group">
                 <label>Fecha</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="date"
                     value={grade.date}
@@ -72,9 +76,9 @@ const AddGrade = ({ data }) => {
                 />
             </div>
             <div className="form-group form-group--actions">
-                <button className="primary-btn">Crear</button>
-                <button className="cancel-btn" onClick={cancel}>
-                    Cancelar
+                <button className="btn_primary mt-2"><strong>Crear</strong></button>
+                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
+                    <strong>Cancelar</strong>
                 </button>
             </div>
         </form>

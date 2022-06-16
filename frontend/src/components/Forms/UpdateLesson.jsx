@@ -4,6 +4,7 @@ import {
     hideModal,
     updateLesson,
 } from "../../redux/actions";
+import "@styles/modalgeneral.css";
 
 const UpdateLesson = ({ data }) => {
     const {lecture,index,course_id,token} = data;
@@ -24,10 +25,10 @@ const UpdateLesson = ({ data }) => {
         dispatch(hideModal()).catch((error) => console.log(error));
     };
 
-    const handleSubmit = (event, data,index, course_id, token) => {
+    const handleSubmit = (event, index,data, course_id, token) => {
         event.preventDefault();
         data.index =index
-        dispatch(updateLesson(data,course_id, token))
+        dispatch(updateLesson(course_id,data, token))
             .then(() => dispatch(hideModal()))
             .catch((error) => console.log(error));
     };
@@ -39,6 +40,7 @@ const UpdateLesson = ({ data }) => {
             <div className="form-group">
                 <label>Titulo</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="title"
                     value={lesson.title}
@@ -48,6 +50,7 @@ const UpdateLesson = ({ data }) => {
             <div className="form-group">
                 <label>Link</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="link"
                     value={lesson.link}
@@ -55,9 +58,9 @@ const UpdateLesson = ({ data }) => {
                 />
             </div>
             <div className="form-group form-group--actions">
-                <button className="primary-btn">Actualizar</button>
-                <button className="cancel-btn" onClick={cancel}>
-                    Cancelar
+                <button className="btn_primary mt-2"><strong>Actualizar</strong></button>
+                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
+                   <strong>Cancelar</strong> 
                 </button>
             </div>
         </form>
