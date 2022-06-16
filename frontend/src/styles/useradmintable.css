@@ -1,29 +1,35 @@
 .listUser_title {
-    font-size: var(--fz3);
+    font-size    : var(--fz3);
     margin-bottom: 1.5rem;
-    color: var(--primer-color);
+    color        : var(--primer-color);
 }
 
 .bg-color-honey {
     background-color: #efb365;
 }
+
 .user-section {
-    padding: 3rem;
+    margin-top: 3rem;
 }
+
 .plusUser {
-    font-size: var(--fz-1);
-    color: var(--primer-color);
-    cursor: pointer;
-    width: 100%;
-    display: flex;
+    font-size      : var(--fz-1);
+    color          : var(--primer-color);
+    cursor         : pointer;
+    width          : 100%;
+    display        : flex;
     justify-content: flex-end;
 }
+
 .plusUser__imgPlusLogo {
-    width: 50px;
+    width      : 50px;
     padding-top: 1rem;
 }
 
+
+
 @media only screen and (max-width: 800px) {
+
     #no-more-tables tbody,
     #no-more-tables tr,
     #no-more-tables td {
@@ -32,21 +38,21 @@
 
     #no-more-tables thead tr {
         position: absolute;
-        top: -99999px;
-        left: -9999px;
+        top     : -99999px;
+        left    : -9999px;
     }
 
     #no-more-tables td {
-        position: relative;
-        padding-left: 50%;
-        border: none;
+        position     : relative;
+        padding-left : 50%;
+        border       : none;
         border-bottom: 1px solid #eee;
     }
 
     #no-more-tables td:before {
-        content: attr(data-title);
-        position: absolute;
-        left: 6px;
+        content    : attr(data-title);
+        position   : absolute;
+        left       : 6px;
         font-weight: bold;
     }
 
@@ -56,45 +62,45 @@
 }
 
 .modalWarningBackground {
-    position: absolute;
-    right: 0;
-    top: 0;
-    left: 0;
-    bottom: 0;
+    position        : absolute;
+    right           : 0;
+    top             : 0;
+    left            : 0;
+    bottom          : 0;
     background-color: rgba(10, 10, 10, 0.86);
-    z-index: 999999;
+    z-index         : 999999;
 }
 
 .modalWarningCard {
-    margin: 0 auto;
-    display: block;
-    margin-top: 3rem;
-    width: 25rem;
-    height: 19rem;
+    margin          : 0 auto;
+    display         : block;
+    margin-top      : 3rem;
+    width           : 25rem;
+    height          : 19rem;
     background-color: white;
-    border-radius: 6px;
-    padding: 1rem;
-    transition: var(--transition);
-  }
-
-  .modalWarningBody {
-        padding: 1rem;
-  }
-
-  .logoWarningModal{
-    width: 35%;
-    margin: 0 auto;
-    display: block;
-    
+    border-radius   : 6px;
+    padding         : 1rem;
+    transition      : var(--transition);
 }
 
-  .customWarningInput {
-    border: 1.5px solid #b9b9b9;
+.modalWarningBody {
+    padding: 1rem;
+}
+
+.logoWarningModal {
+    width  : 35%;
+    margin : 0 auto;
+    display: block;
+
+}
+
+.customWarningInput {
+    border       : 1.5px solid #b9b9b9;
     border-radius: 6px;
 
     background-color: #fff;
-    padding: 0.5em;
-    width: 100%;
+    padding         : 0.5em;
+    width           : 100%;
 }
 
 .customWarningInput:focus {
@@ -103,11 +109,11 @@
 
 .cancelarWarningButton {
     background-color: #fff;
-    border: .15rem solid #efcd6a;
+    border          : .15rem solid #efcd6a;
 }
 
 .pSoftColorWarning {
-    color: #6e6d6d;
+    color : #6e6d6d;
     margin: 0;
 }
 
@@ -134,10 +140,8 @@
 
 @media screen and (max-width: 430px) {
     .user-section {
-        padding: 3rem;
-        text-align: center;
+        width      : 90%;
+        padding-top: 1rem;
+        margin     : auto;
     }
 }
-
-
-

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/actions";
 import homeSVG from "@icons/home.svg";
@@ -12,6 +12,7 @@ import "@styles/navBar.css";
 
 const NavBar = ({ show, close }) => {
     const user = useSelector((state) => state.user);
+    const navigate = useNavigate()
     const isActive = show ? "show" : " ";
 
     const dispatch = useDispatch();
@@ -95,6 +96,9 @@ const NavBar = ({ show, close }) => {
     const handleLogout = () => {
         dispatch(logout());
         window.localStorage.setItem("loggedAppUser", JSON.stringify({}));
+        window.localStorage.setItem("courses", JSON.stringify({}));
+        window.localStorage.setItem("course", JSON.stringify({}));
+        navigate("/");
     };
     return (
         <nav className={`header-nav ${isActive}`}>
@@ -116,7 +120,7 @@ const NavBar = ({ show, close }) => {
                         </NavLink>
                     </li>
                 ))}
-                <li className="header-nav-item">
+                <li className="header-nav-item" >
                     <button
                         id="logout"
                         className="header-nav-link"

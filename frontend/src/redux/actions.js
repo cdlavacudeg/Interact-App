@@ -49,13 +49,18 @@ export function updateUser(id, data) {
     };
 }
 
-export function postUser(id, data) {
+export function postUser(data,token) {
     return async function (dispatch) {
-        var json = await axios.post('/user' + id, data);
-        console.log(json.data);
+        let config = {
+            headers: {
+                xtoken: token,
+        }
+    }
+        await axios.post('/user', data, config);
+        var json = await axios.get('/user');
         return dispatch({
-            type: 'POST_USER',
-            payload: json.data,
+            type: 'GET_USERS',
+            payload: json.data.data.user,
         });
     };
 }
@@ -213,6 +218,21 @@ export function getCourseById(id) {
         return dispacht({
             type: 'GET_COURSE_ID',
             payload: course,
+        });
+    };
+}
+
+export function getCourse() {
+    return async function (dispatch) {
+        var json = await axios.get('/course/');
+        console.log(json.data.data.course)
+        window.localStorage.setItem(
+            'courses',
+            JSON.stringify(json.data.data.course)
+        );
+        return dispatch({
+            type: 'GET_COURSE',
+            payload: json.data.data.course,
         });
     };
 }

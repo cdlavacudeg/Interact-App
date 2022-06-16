@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNotification, hideModal } from "../../redux/actions";
+import "@styles/modalgeneral.css";
 
 const AddNotification = ({ data }) => {
     const { token } = data;
@@ -31,8 +32,9 @@ const AddNotification = ({ data }) => {
     return (
         <form onSubmit={(event) => handleSubmit(event, notification, token)}>
             <div className="form-group">
-                <label>Titulo</label>
+                <label className="mt-1">Titulo</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="title"
                     value={notification.title}
@@ -40,8 +42,9 @@ const AddNotification = ({ data }) => {
                 />
             </div>
             <div className="form-group">
-                <label>Contenido</label>
+                <label className="mt-2">Contenido</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="content"
                     value={notification.content}
@@ -49,8 +52,9 @@ const AddNotification = ({ data }) => {
                 />
             </div>
             <div className="form-group">
-                <label>Fecha</label>
-                <input
+                <label className="mt-2">Fecha</label>
+                <input 
+                    className="customInput"
                     type="text"
                     name="date"
                     value={notification.date}
@@ -58,9 +62,9 @@ const AddNotification = ({ data }) => {
                 />
             </div>
             <div className="form-group form-group--actions">
-                <button className="primary-btn">Crear</button>
-                <button className="cancel-btn" onClick={cancel}>
-                    Cancelar
+                <button className="btn_primary mt-2"><strong>Crear</strong></button>
+                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
+                <strong>  Cancelar </strong>
                 </button>
             </div>
         </form>
