@@ -7,7 +7,7 @@ const AddActivity = ({ data }) => {
     const [events, setNotification] = useState({
         date: "30/06/2022",
         description: "",
-        status: "",
+        status: "true",
     });
     const dispatch = useDispatch();
 
@@ -47,15 +47,6 @@ const AddActivity = ({ data }) => {
                     type="text"
                     name="description"
                     value={events.description}
-                    onChange={onInputChange}
-                />
-            </div>
-            <div className="form-group">
-                <label>Status</label>
-                <input
-                    type="text"
-                    name="status"
-                    value={events.status}
                     onChange={onInputChange}
                 />
             </div>
