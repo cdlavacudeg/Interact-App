@@ -9,6 +9,7 @@ import { showModal } from "../redux/actions";
 import Modal from "./Modal";
 import AddGrade from "./Forms/AddGrade";
 import DeleteGrade from "./Forms/DeleteGrade";
+import UpdateGrade from "./Forms/UpdateGrade";
 
 function GradesTable({ grades ,students}) {
     const user = useSelector(state=>state.user);
@@ -25,9 +26,9 @@ function GradesTable({ grades ,students}) {
         dispatch(showModal("Delete Grade"));
         setItemData({grade,course_id,token})
     };
-    const handleUpdate = (lecture,index,course_id, token) => {
+    const handleUpdate = (grade,index,course_id, token) => {
         dispatch(showModal("Update Grade"));
-        setItemData({lecture,index,course_id,token})
+        setItemData({gradeData:grade,index,course_id,token})
     };
     console.log(grades)
     return (
@@ -67,7 +68,7 @@ function GradesTable({ grades ,students}) {
                                             </div>
                                             <div
                                                 className="edit-icon"
-                                                onClick={() => handleUpdate(item,materiaId,user.token)}
+                                                onClick={() => handleUpdate(item,index,materiaId,user.token)}
                                             >
                                                 <img
                                                     src={editimg}
@@ -108,8 +109,8 @@ function GradesTable({ grades ,students}) {
                         {activeModal.name === "Add Grade" && (
                             <AddGrade data={itemData} />
                         )}
-                        {activeModal.name == "Update Lesson" && (
-                            {/* <UpdateLesson data={itemData} /> */}
+                        {activeModal.name == "Update Grade" && (
+                            <UpdateGrade data={itemData} />
                         )}
                     </Modal>
                 )}
