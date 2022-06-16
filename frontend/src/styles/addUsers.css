@@ -1,0 +1,36 @@
+.addUsers {
+    width         : 100%;
+    display       : flex;
+    flex-direction: column;
+}
+
+.addUsers-input {
+    display      : inline-block;
+    border       : 1.5px solid #B9B9B9;
+    padding      : .5rem 1rem;
+    border-radius: .3rem;
+    margin-bottom: .5rem;
+}
+
+/* select.addUsers-input {
+    background-color      : #fff;
+    /* color              : #9f9e9e; */
+/* width              : 50%; */
+
+
+
+
+.addUsers-button {
+    display         : inline-block;
+    border          : none;
+    border-radius   : .3rem;
+    color           : var(--black-color);
+    background-color: var(--cuarto-color);
+    padding         : .5rem 1rem;
+    margin-bottom   : .5rem;
+}
+
+.cancel-button {
+    border          : 2px solid var(--cuarto-color);
+    background-color: var(--white-color);
+}
