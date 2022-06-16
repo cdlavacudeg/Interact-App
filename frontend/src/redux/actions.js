@@ -27,24 +27,33 @@ export function getUser(id) {
     };
 }
 
-export function deleteUser(id) {
+export function deleteUser(id,token) {
     return async function (dispatch) {
-        var json = await axios.delete('/user' + id);
+        let config = {
+            headers: {
+                xtoken: token,
+        }}
+        await axios.delete('/user/' + id, config);
+        var json = await axios.get('/user');
         console.log(json.data);
         return dispatch({
-            type: 'DELETE_USER',
-            payload: json.data,
+            type: 'GET_USERS',
+            payload: json.data.data.user,
         });
     };
 }
 
-export function updateUser(id, data) {
+export function updateUser(data,id,token) {
     return async function (dispatch) {
-        var json = await axios.put('/user' + id, data);
-        console.log(json.data);
+        let config = {
+            headers: {
+                xtoken: token,
+        }}
+        await axios.put('/user/' + id,data, config);
+        var json = await axios.get('/user');
         return dispatch({
-            type: 'UPDATE_USER',
-            payload: json.data,
+            type: 'GET_USERS',
+            payload: json.data.data.user,
         });
     };
 }
