@@ -7,7 +7,7 @@ const AddActivity = ({ data }) => {
     const [events, setNotification] = useState({
         date: "30/06/2022",
         description: "",
-        state: "",
+        status: "",
     });
     const dispatch = useDispatch();
 
