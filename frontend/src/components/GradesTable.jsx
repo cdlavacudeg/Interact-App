@@ -8,6 +8,7 @@ import { useState } from "react";
 import { showModal } from "../redux/actions";
 import Modal from "./Modal";
 import AddGrade from "./Forms/AddGrade";
+import DeleteGrade from "./Forms/DeleteGrade";
 
 function GradesTable({ grades ,students}) {
     const user = useSelector(state=>state.user);
@@ -20,14 +21,15 @@ function GradesTable({ grades ,students}) {
         dispatch(showModal("Add Grade"));
         setItemData({ token, course_id ,student_list});
     };
-    const handleDelete = (lecture,index,course_id,token) => {
-        dispatch(showModal("Delete Lesson"));
-        setItemData({lecture,index,course_id,token})
+    const handleDelete = ( grade, course_id,token) => {
+        dispatch(showModal("Delete Grade"));
+        setItemData({grade,course_id,token})
     };
     const handleUpdate = (lecture,index,course_id, token) => {
-        dispatch(showModal("Update Lesson"));
+        dispatch(showModal("Update Grade"));
         setItemData({lecture,index,course_id,token})
     };
+    console.log(grades)
     return (
         <section className="bg-light table-container">
             <div className="table-responsive" id="no-more-tables">
@@ -56,7 +58,7 @@ function GradesTable({ grades ,students}) {
                                         <div className="icons">
                                             <div
                                                 className="trash-icon"
-                                                onClick={() => handleDelete(item,index,materiaId,user.token)}
+                                                onClick={() => handleDelete(item,materiaId,user.token)}
                                             >
                                                 <img
                                                     src={trashimg}
@@ -65,7 +67,7 @@ function GradesTable({ grades ,students}) {
                                             </div>
                                             <div
                                                 className="edit-icon"
-                                                onClick={() => handleUpdate(item,index,materiaId,user.token)}
+                                                onClick={() => handleUpdate(item,materiaId,user.token)}
                                             >
                                                 <img
                                                     src={editimg}
@@ -100,8 +102,8 @@ function GradesTable({ grades ,students}) {
                 )}
                 {activeModal.active && (
                     <Modal>
-                        {activeModal.name === "Delete Lesson" && (
-                            {/* <DeleteLesson data={itemData} /> */}
+                        {activeModal.name === "Delete Grade" && (
+                            <DeleteGrade data={itemData} />
                         )}
                         {activeModal.name === "Add Grade" && (
                             <AddGrade data={itemData} />

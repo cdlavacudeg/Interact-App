@@ -24,6 +24,7 @@ const CourseGrades = () => {
                             Object.assign(e,
                             {
                                student: objStudent.student_id.fullName,
+                               student_id:objStudent.student_id._id
                             })
                         )
                     })

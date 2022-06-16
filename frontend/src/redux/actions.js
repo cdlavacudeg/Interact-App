@@ -199,6 +199,28 @@ export function addGrade(course_id, data, token) {
     };
 }
 
+export function deleteGrade(student_id,course_id, token) {
+    return async function (dispacht) {
+        let config = {
+            headers: {
+                xtoken: token,
+            },
+            data:{
+                student_id:student_id,
+            }
+        };
+
+        await axios.delete(`/grade/student/${course_id}`,config);
+
+        let course = await axios.get(`/course/${course_id}`);
+        course = course.data.data.course;
+
+        return dispacht({
+            type: 'GET_COURSE_ID',
+            payload: course,
+        });
+    };
+}
 
 
 //============================
