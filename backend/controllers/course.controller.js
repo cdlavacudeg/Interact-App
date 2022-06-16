@@ -214,7 +214,21 @@ const courseGetById = async (req, res) => {
         const { id } = req.params;
         const course = await Course.findById(id)
             .populate({ path: 'lessons', select: 'lectures' })
-            .populate({ path: 'grades', select: 'studentGrades' })
+            .populate([
+                {
+                    path: 'grades',
+                    model: 'Grade',
+                    select: 'studentGrades',
+                    populate: {
+                        path: 'studentGrades',
+                        populate:{
+                            path:'student_id',
+                            model: 'User',
+                            select: 'fullName',
+                        }
+                    },
+                },
+            ])
             .populate({ path: 'events', select: 'events' })
             .populate({ path: 'students', select: 'fullName' })
             .populate({ path: 'teacher', select: 'fullName' })
