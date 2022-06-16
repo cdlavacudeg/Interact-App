@@ -7,22 +7,39 @@ const CourseGrades = () => {
     const user = useSelector((state) => state.user.user);
     let list = [];
     if (course.grades.studentGrades) {
-        let gradesList = course.grades.studentGrades.filter(
-            (objGrade) => objGrade.student_id === user.uid
-        )[0];
+        let gradesList = []
+        if(user.role == 'teacher'){
+            gradesList=course.grades.studentGrades
+        }else{
+            gradesList = course.grades.studentGrades.filter(
+            (objGrade) => objGrade.student_id._id === user.uid
+            )[0];
+        }
 
         if (gradesList) {
-            gradesList.grades.map((e) =>
+            if(user.role =='teacher'){
+                gradesList.map(objStudent=>{
+                    objStudent.grades.map(e=>{
+                        list.push(
+                            Object.assign(e,
+                            {
+                               student: objStudent.student_id.fullName,
+                            })
+                        )
+                    })
+                })
+            }else{
+                gradesList.grades.map((e) =>
                 list.push(
                     Object.assign(e, {
                         course: course.courseName,
                     })
                 )
-            );
+            );}
         }
     }
 
-    return <GradesTable grades={list} />;
+    return <GradesTable grades={list} students={course.students}/>;
 };
 
 export default CourseGrades;

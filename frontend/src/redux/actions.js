@@ -19,7 +19,7 @@ export function getUsers() {
 export function getUser(id) {
     return async function (dispatch) {
         var json = await axios.get(`/user/${id}`);
-        console.log(json.data);
+
         return dispatch({
             type: 'GET_USER',
             payload: json.data,
@@ -30,7 +30,7 @@ export function getUser(id) {
 export function deleteUser(id) {
     return async function (dispatch) {
         var json = await axios.delete('/user' + id);
-        console.log(json.data);
+
         return dispatch({
             type: 'DELETE_USER',
             payload: json.data,
@@ -41,7 +41,7 @@ export function deleteUser(id) {
 export function updateUser(id, data) {
     return async function (dispatch) {
         var json = await axios.put('/user' + id, data);
-        console.log(json.data);
+
         return dispatch({
             type: 'UPDATE_USER',
             payload: json.data,
@@ -179,6 +179,28 @@ export function getGrade(courses_id, student_id) {
     };
 }
 
+
+export function addGrade(course_id, data, token) {
+    return async function (dispacht) {
+        let config = {
+            headers: {
+                xtoken: token,
+            },
+        };
+
+        await axios.post(`/grade/student/${course_id}`, data ,config);
+        let course = await axios.get(`/course/${course_id}`);
+        course = course.data.data.course;
+
+        return dispacht({
+            type: 'GET_COURSE_ID',
+            payload: course,
+        });
+    };
+}
+
+
+
 //============================
 //         COURSES
 //============================
@@ -225,7 +247,7 @@ export function getCourseById(id) {
 export function getCourse() {
     return async function (dispatch) {
         var json = await axios.get('/course/');
-        console.log(json.data.data.course)
+
         window.localStorage.setItem(
             'courses',
             JSON.stringify(json.data.data.course)
@@ -396,7 +418,7 @@ export function deleteActivity(index, course_id, token) {
                 index: index,
             }
         };
-        console.log(index);
+
         await axios.delete(`/event/${course_id}`, config);
          let course = await axios.get(`/course/${course_id}`);
          course = course.data.data.course;

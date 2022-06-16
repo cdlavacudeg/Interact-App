@@ -1,13 +1,31 @@
 import "@styles/Gradestable.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import logoPlus from "@icons/PlusButton.svg";
+import { useState } from "react";
+import { showModal } from "../redux/actions";
+import Modal from "./Modal";
+import AddGrade from "./Forms/AddGrade";
 
-function GradesTable({ grades }) {
+function GradesTable({ grades ,students}) {
+    const user = useSelector(state=>state.user);
+    const { materiaId } = useParams();
+    const activeModal = useSelector((state) => state.modal);
+    const [itemData, setItemData] = useState({});
+    const dispatch = useDispatch();
+
+    const handleAdd = (token, course_id,student_list) => {
+        dispatch(showModal("Add Grade"));
+        setItemData({ token, course_id ,student_list});
+    };
+
     return (
         <section className="bg-light table-container">
             <div className="table-responsive" id="no-more-tables">
                 <table className="table">
                     <thead>
                         <tr className="bg-color-honey">
-                            <th>Materia</th>
+                            <th>{user.user.role == 'teacher'?'Estudiante':'Materia'}</th>
                             <th>Fecha</th>
                             <th>Tipo de evaluacion</th>
                             <th>Calificación</th>
@@ -16,13 +34,16 @@ function GradesTable({ grades }) {
                     <tbody>
                         {grades.map((item, index) => (
                             <tr key={index}>
-                                <td data-title="Materia">{item.course}</td>
+                                <td data-title={user.user.role == 'teacher'?'Estudiante':'Materia'}>
+                                {user.user.role =='teacher'?item.student:item.course}
+                                </td>
                                 <td data-title="Fecha">{item.date}</td>
                                 <td data-title="Tipo de evaluacion">
                                     {item.obs}
                                 </td>
                                 <td className="grade" data-title="Calificación">
                                     {item.grade}
+
                                 </td>
                             </tr>
                         ))}
@@ -33,7 +54,33 @@ function GradesTable({ grades }) {
                 ) : (
                     <></>
                 )}
+
             </div>
+            {user.user.role == "teacher" && (
+                    <div className="plusUser">
+                        <img
+                            onClick={() =>
+                                handleAdd(user.token, materiaId,students)
+                            }
+                            className="plusUser__imgPlusLogo"
+                            src={logoPlus}
+                            alt=""
+                        />
+                    </div>
+                )}
+                {activeModal.active && (
+                    <Modal>
+                        {activeModal.name === "Delete Lesson" && (
+                            {/* <DeleteLesson data={itemData} /> */}
+                        )}
+                        {activeModal.name === "Add Grade" && (
+                            <AddGrade data={itemData} />
+                        )}
+                        {activeModal.name == "Update Lesson" && (
+                            {/* <UpdateLesson data={itemData} /> */}
+                        )}
+                    </Modal>
+                )}
         </section>
     );
 }
