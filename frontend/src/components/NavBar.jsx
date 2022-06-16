@@ -96,6 +96,8 @@ const NavBar = ({ show, close }) => {
     const handleLogout = () => {
         dispatch(logout());
         window.localStorage.setItem("loggedAppUser", JSON.stringify({}));
+        window.localStorage.setItem("courses", JSON.stringify({}));
+        window.localStorage.setItem("course", JSON.stringify({}));
         navigate("/");
     };
     return (
