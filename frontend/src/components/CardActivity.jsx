@@ -34,20 +34,7 @@ const CardActivity = () => {
         setItemData({ event, index, course_id, token });
     };
 
-    if (events) {
-        events = events.events.sort((a, b) => {
-            let aDate = a.date.split("/");
-            let bDate = b.date.split("/");
-
-            aDate = new Date(aDate[2], parseInt(aDate[1]) - 1, aDate[0]);
-            bDate = new Date(bDate[2], parseInt(bDate[1]) - 1, bDate[0]);
-
-            return aDate - bDate;
-        });
-    } else {
-        events = [];
-    }
-
+    events = events ? events.events: [];
     return (
         <>
             {events.length != 0 ? (

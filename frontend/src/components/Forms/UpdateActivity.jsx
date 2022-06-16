@@ -3,11 +3,12 @@ import { useDispatch } from "react-redux";
 import { hideModal, updateActivity } from "../../redux/actions";
 
 const UpdateActivity = ({ data }) => {
-    const { events, index, course_id, token } = data;
+    const { event:events, index, course_id, token } = data;
     const { description, date } = events;
     const [eventActivity, setNotification] = useState({
         description,
         date,
+        index
     });
     const dispatch = useDispatch();
 
@@ -21,7 +22,7 @@ const UpdateActivity = ({ data }) => {
         dispatch(hideModal()).catch((error) => console.log(error));
     };
 
-    const handleSubmit = (event, index, data, course_id, token) => {
+    const handleSubmit = (event, data,index, course_id, token) => {
         event.preventDefault();
         data.index = index;
         dispatch(updateActivity(course_id, data, token))
@@ -39,7 +40,7 @@ const UpdateActivity = ({ data }) => {
                 <label>Description</label>
                 <input
                     type="text"
-                    name="title"
+                    name="description"
                     value={eventActivity.description}
                     onChange={onInputChange}
                 />
@@ -48,7 +49,7 @@ const UpdateActivity = ({ data }) => {
                 <label>Date</label>
                 <input
                     type="text"
-                    name="link"
+                    name="date"
                     value={eventActivity.date}
                     onChange={onInputChange}
                 />

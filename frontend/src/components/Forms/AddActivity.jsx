@@ -33,20 +33,20 @@ const AddActivity = ({ data }) => {
             onSubmit={(event) => handleSubmit(event, course_id, events, token)}
         >
             <div className="form-group">
-                <label>Date</label>
-                <input
-                    type="text"
-                    name="date"
-                    value={events.date}
-                    onChange={onInputChange}
-                />
-            </div>
-            <div className="form-group">
                 <label>Description</label>
                 <input
                     type="text"
                     name="description"
                     value={events.description}
+                    onChange={onInputChange}
+                />
+            </div>
+            <div className="form-group">
+                <label>Date</label>
+                <input
+                    type="text"
+                    name="date"
+                    value={events.date}
                     onChange={onInputChange}
                 />
             </div>
