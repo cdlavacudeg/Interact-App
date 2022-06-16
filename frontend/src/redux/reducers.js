@@ -122,6 +122,11 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 course: action.payload,
             };
+        case 'GET_COURSE':
+            return {
+                ...state,
+                course: action.payload,
+            };
 
         case 'GET_COURSES_ALL':
             return{

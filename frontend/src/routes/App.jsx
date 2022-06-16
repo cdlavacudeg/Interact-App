@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCourses, getCourses, getGrade } from "../redux/actions";
+import { getAllCourses, getCourses } from "../redux/actions";
 import Layout from "@containers/Layout";
 import Home from "@pages/Home.jsx";
 import Materias from "@pages/Materias.jsx";
@@ -38,6 +38,7 @@ const App = () => {
             console.log(error)
         });
     }
+
 
     window.localStorage.setItem("loggedAppUser", JSON.stringify(user));
     return (
