@@ -1,24 +1,39 @@
 import "@styles/cardActivity.css";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getNotifications, showModal } from "../redux/actions";
-import avisosimg from "@img/img-avisos.png";
+import { useDispatch, useSelector } from "react-redux";
 import trashimg from "@icons/trash.svg";
 import editimg from "@icons/editpen.svg";
+import { showModal } from "../redux/actions";
 import logoPlus from "@icons/PlusButton.svg";
-import Modal from "../components/Modal";
-import DeleteNotification from "./Forms/DeleteNotification";
-import AddNotification from "./Forms/AddNotification";
-import UpdateNotification from "./Forms/UpdateNotification";
+import { useState } from "react";
+import Modal from "./Modal";
+import AddActivity from "./Forms/AddActivity";
+import { useParams } from "react-router-dom";
+// import UpdateActivity from "./Forms/UpdateLesson";
+import DeleteActivity from "./Forms/DeleteActivity";
 
 const CardActivity = () => {
     let events = useSelector((state) => state.course.events);
-        const user = useSelector((state) => state.user);
-        const [itemData, setItemData] = useState({});
-
-
+    console.log(events)
+    const user = useSelector((state) => state.user);
+    const { materiaId } = useParams();
+    const activeModal = useSelector((state) => state.modal);
+    const [itemData, setItemData] = useState({});
     const dispatch = useDispatch();
+
+    const handleDelete = ( index, events, course_id, token) => {
+        dispatch(showModal("Delete Activity"));
+        setItemData({events, index, course_id, token });
+    };
+
+    const handleAdd = (token, course_id) => {
+        dispatch(showModal("Add Activity"));
+        setItemData({ token, course_id });
+    };
+
+    const handleUpdate = (lecture, index, course_id, token) => {
+        dispatch(showModal("Update Activity"));
+        setItemData({ lecture, index, course_id, token });
+    };
 
     if (events) {
         events = events.events.sort((a, b) => {
@@ -33,26 +48,6 @@ const CardActivity = () => {
     } else {
         events = [];
     }
-      useEffect(() => {
-          dispatch(getNotifications()).catch((error) => {
-              console.log(error);
-          });
-      }, []);
-
-    const handleDelete = (item, id, token) => {
-            dispatch(showModal("Delete Notification"));
-            setItemData({
-                item,
-                id,
-                token,
-            });
-        };
-
-     const handleUpdate = (item, token) => {
-         dispatch(showModal("Update Notification"));
-         setItemData({ item, token });
-     };
-
 
     return (
         <>
@@ -71,14 +66,15 @@ const CardActivity = () => {
                             <p className="cardActivity-status">
                                 {event.status ? "Pendiente" : "Entregado"}
                             </p>
-                            {user.user.role == "admin" && (
+                            {user.user.role == "teacher" && (
                                 <div className="icons">
                                     <div
                                         className="trash-icon"
                                         onClick={() =>
                                             handleDelete(
+                                                index,
                                                 event,
-                                                event.uid,
+                                                materiaId,
                                                 user.token
                                             )
                                         }
@@ -88,7 +84,12 @@ const CardActivity = () => {
                                     <div
                                         className="edit-icon"
                                         onClick={() =>
-                                            handleUpdate(event, user.token)
+                                            handleUpdate(
+                                                index,
+                                                event,
+                                                materiaId,
+                                                user.token
+                                            )
                                         }
                                     >
                                         <img src={editimg} alt="trash icon" />
@@ -100,6 +101,29 @@ const CardActivity = () => {
                 })
             ) : (
                 <h5>No hay actividades disponibles</h5>
+            )}
+            {user.user.role == "teacher" && (
+                <div className="plusUser">
+                    <img
+                        onClick={() => handleAdd(user.token, materiaId)}
+                        className="plusUser__imgPlusLogo"
+                        src={logoPlus}
+                        alt=""
+                    />
+                </div>
+            )}
+            {activeModal.active && (
+                <Modal>
+                    {activeModal.name === "Delete Activity" && (
+                        <DeleteActivity data={itemData} />
+                    )}
+                   {activeModal.name === "Add Activity" && (
+                        <AddActivity data={itemData} />
+                    )}
+                   {/*   {activeModal.name == "Update Lesson" && (
+                        <UpdateActivity data={itemData} />
+                    )} */}
+                </Modal>
             )}
         </>
     );

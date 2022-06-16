@@ -381,6 +381,46 @@ export function getEvents(courses_id) {
     };
 }
 
+export function deleteActivity(index, course_id, token) {
+    return async function (dispacht) {
+        let config = {
+            headers: {
+                xtoken: token,
+            },
+            data: {
+                index: index,
+            }
+        };
+
+       let delete1 = await axios.delete(`/event/${course_id}`, config);
+       console.log(delete1)
+        let course = await axios.get(`/course/${course_id}`);
+        course = course.data.data.course;
+
+        return dispacht({
+            type: 'GET_COURSE_ID',
+            payload: course,
+        });
+    };
+}
+export function addActivity(course_id, data, token) {
+    return async function (dispacht) {
+        let config = {
+            headers: {
+                xtoken: token,
+            },
+        };
+
+        await axios.post(`/event/${course_id}`, data, config);
+        let course = await axios.get(`/course/${course_id}`);
+        course = course.data.data.course;
+
+        return dispacht({
+            type: 'GET_COURSE_ID',
+            payload: course,
+        });
+    };
+}
 //============================
 //        MODAL
 //============================
