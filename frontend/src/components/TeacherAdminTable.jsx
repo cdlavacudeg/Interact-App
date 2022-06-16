@@ -1,18 +1,26 @@
-import "@styles/useradmintable.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers, showModal } from "../redux/actions";
-import logoPlus from "@icons/PlusButton.svg";
 import Modal from "./Modal";
 import DeleteUser from "./Forms/DeleteUser";
+import AddUsers from "./Forms/AddUsers";
+import logoPlus from "@icons/PlusButton.svg";
+import "@styles/useradmintable.css";
 
 function TeacherAdminTable() {
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.user);
     const listUsers = useSelector((state) => state.users);
     const activeModal = useSelector((state) => state.modal);
+    const [itemData, setItemData] = useState({});
 
-    const handleModal = () => {
+    const handleModalDelete = () => {
         dispatch(showModal("Delete User"));
+    };
+    const handleModalPost = (token) => {
+        dispatch(showModal("Post User"));
+        let role = "teacher"
+        setItemData({ token, role });
     };
 
     useEffect(() => {
@@ -60,7 +68,7 @@ function TeacherAdminTable() {
                     </table>
                 </div>
             </section>
-            <div className="plusUser">
+            <div onClick={() => handleModalPost(user.token)} className="plusUser">
                 <img className="plusUser__imgPlusLogo" src={logoPlus} alt="" />
             </div>
             <div>
@@ -69,9 +77,12 @@ function TeacherAdminTable() {
                         {activeModal.name === "Delete User" && (
                             <DeleteUser />
                         )}
+                        {activeModal.name === "Post User" && (
+                            <AddUsers data={itemData}/>
+                        )}
                     </Modal>
                 )}
-                <button onClick={handleModal} className="WarningModalButton">
+                <button onClick={handleModalDelete} className="WarningModalButton">
                     Modal
                 </button>
             </div>

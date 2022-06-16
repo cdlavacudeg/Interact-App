@@ -6,7 +6,7 @@ const Modal = ({children }) => {
     return (
         <div className="modal">
             <div className="modal-content">
-                <div style={{display: 'flex'}}><img className="logoWarningModal" src={logo} alt="" /></div>
+                <div className="modal-img"><img  src={logo} alt="" /></div>
                 <div className="modal-content__body">{children}</div>
             </div>
         </div>

@@ -15,7 +15,7 @@ const Courses = () => {
                             <CoursesCard
                                 name={item.courseName}
                                 image={item.image}
-                                nameProf={item.teacher.fullName || 'No asignado' }
+                                nameProf={item.teacher.fullName || "No asignado"}
                                 key={item._id || item.uid}
                                 id={item._id || item.uid}
                             />
