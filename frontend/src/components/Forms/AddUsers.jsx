@@ -41,7 +41,6 @@ const AddUsers = ({data}) => {
         }
          });
       }
-      console.log(user)
 
     const _handleSubmit = (e,data,token) => {
         e.preventDefault();
