@@ -1,22 +1,19 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-    hideModal,
-    updateLesson,
-} from "../../redux/actions";
+import { hideModal, updateActivity } from "../../redux/actions";
 
-const UpdateLesson = ({ data }) => {
-    const {lecture,index,course_id,token} = data;
-    const { title, link } = lecture;
-    const [lesson, setNotification] = useState({
-        title,
-        link
+const UpdateActivity = ({ data }) => {
+    const { events, index, course_id, token } = data;
+    const { description, date } = events;
+    const [eventActivity, setNotification] = useState({
+        description,
+        date,
     });
     const dispatch = useDispatch();
 
     const onInputChange = (event) => {
         const { name, value } = event.target;
-        setNotification({ ...lesson, [name]: value });
+        setNotification({ ...eventActivity, [name]: value });
     };
 
     const cancel = (event) => {
@@ -24,33 +21,35 @@ const UpdateLesson = ({ data }) => {
         dispatch(hideModal()).catch((error) => console.log(error));
     };
 
-    const handleSubmit = (event, index,data, course_id, token) => {
+    const handleSubmit = (event, index, data, course_id, token) => {
         event.preventDefault();
-        data.index =index
-        dispatch(updateLesson(course_id,data, token))
+        data.index = index;
+        dispatch(updateActivity(course_id, data, token))
             .then(() => dispatch(hideModal()))
             .catch((error) => console.log(error));
     };
 
     return (
         <form
-            onSubmit={(event) => handleSubmit(event, lesson, index, course_id, token)}
+            onSubmit={(event) =>
+                handleSubmit(event, eventActivity, index, course_id, token)
+            }
         >
             <div className="form-group">
-                <label>Titulo</label>
+                <label>Description</label>
                 <input
                     type="text"
                     name="title"
-                    value={lesson.title}
+                    value={eventActivity.description}
                     onChange={onInputChange}
                 />
             </div>
             <div className="form-group">
-                <label>Link</label>
+                <label>Date</label>
                 <input
                     type="text"
                     name="link"
-                    value={lesson.link}
+                    value={eventActivity.date}
                     onChange={onInputChange}
                 />
             </div>
@@ -64,4 +63,4 @@ const UpdateLesson = ({ data }) => {
     );
 };
 
-export default UpdateLesson;
+export default UpdateActivity;
