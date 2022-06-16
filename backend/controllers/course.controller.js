@@ -110,9 +110,13 @@ const courseUpdate = async (req, res) => {
             }
 
             newTeacher.courses.push(oldCourse._id);
-            newTeacher.courses = newTeacher.courses.map((e) => e.toString());
-            newTeacher.courses = [...new Set(newTeacher.courses)];
-
+            let auxcourses = [];
+            newTeacher.courses = newTeacher.courses.map((e) => {
+                if (!auxcourses.includes(e.toString())) {
+                    auxcourses.push(e.toString());
+                }
+            });
+            newTeacher.courses = auxcourses;
             await newTeacher.save();
 
             newCourse.teacher = teacher;

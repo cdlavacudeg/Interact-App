@@ -5,7 +5,7 @@ const eventGet = async (req, res) => {
     try {
         const [total, event] = await Promise.all([
             await Event.countDocuments(),
-            await Event.find().populate('course_id','courseName'),
+            await Event.find().populate('course_id', 'courseName'),
         ]);
 
         response.success(req, res, 'get API - list of events', {

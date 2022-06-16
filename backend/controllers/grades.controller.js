@@ -6,7 +6,7 @@ const gradesGet = async (req, res) => {
     try {
         const [total, grade] = await Promise.all([
             await Grade.countDocuments(),
-            await Grade.find().populate('course_id','courseName'),
+            await Grade.find().populate('course_id', 'courseName'),
         ]);
         response.success(req, res, 'get API - list of grades', {
             total,

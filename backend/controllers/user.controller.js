@@ -55,6 +55,13 @@ const userPost = async (req, res) => {
                 const courseObj = await Course.findById(course);
 
                 if (user.role == 'teacher') {
+                    const oldTeacher = await User.findById(courseObj.teacher);
+                    if (oldTeacher) {
+                        oldTeacher.courses = oldTeacher.courses.filter(
+                            (id) => !id.equals(courseObj._id)
+                        );
+                        await oldTeacher.save();
+                    }
                     courseObj.teacher = user._id;
                 } else if (user.role == 'student') {
                     courseObj.students.push(user._id);
@@ -109,7 +116,7 @@ const userPut = async (req, res) => {
                     }
                     await courseObj.save();
                 })
-            ).then(() => {
+            ).then(async () => {
                 courses.map(async (course) => {
                     const courseObj = await Course.findById(course);
                     if (user_past.role == 'teacher') {
@@ -125,7 +132,7 @@ const userPut = async (req, res) => {
 
         const user = await User.findByIdAndUpdate(
             id,
-            Object.assign({courses}, rest),
+            Object.assign({ courses }, rest),
             { new: true }
         );
 
