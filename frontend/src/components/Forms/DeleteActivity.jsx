@@ -22,14 +22,14 @@ const DeleteActivity = ({ data }) => {
             onSubmit={(event) => handleSubmit(event, index, course_id, token)}
         >
             <div className="form-group">
-                ¿Seguro que quieres eliminar este aviso? Estas el siguiente
+                ¿Seguro que quieres eliminar este aviso? Estas en el siguiente
                 aviso:
                 {events.description}
             </div>
             <div className="form-group form-group--actions">
-                <button className="primary-btn">Eliminar</button>
-                <button className="cancel-btn" onClick={cancel}>
-                    Cancelar
+                <button className="btn_primary mt-2"><strong>Eliminar</strong></button>
+                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
+                   <strong>Cancelar</strong> 
                 </button>
             </div>
         </form>

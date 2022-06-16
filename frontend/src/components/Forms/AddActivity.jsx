@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addActivity, hideModal } from "../../redux/actions";
+import "@styles/modalgeneral.css";
 
 const AddActivity = ({ data }) => {
     const { token, course_id } = data;
@@ -33,8 +34,9 @@ const AddActivity = ({ data }) => {
             onSubmit={(event) => handleSubmit(event, course_id, events, token)}
         >
             <div className="form-group">
-                <label>Date</label>
+                <label>Fecha</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="date"
                     value={events.date}
@@ -42,8 +44,9 @@ const AddActivity = ({ data }) => {
                 />
             </div>
             <div className="form-group">
-                <label>Description</label>
+                <label>Descripción</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="description"
                     value={events.description}
@@ -52,9 +55,9 @@ const AddActivity = ({ data }) => {
             </div>
 
             <div className="form-group form-group--actions">
-                <button className="primary-btn">Crear</button>
-                <button className="cancel-btn" onClick={cancel}>
-                    Cancelar
+                <button className="btn_primary mt-2"><strong>Crear</strong></button>
+                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
+                   <strong> Cancelar</strong> 
                 </button>
             </div>
         </form>
