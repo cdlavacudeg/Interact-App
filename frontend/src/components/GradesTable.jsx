@@ -2,6 +2,8 @@ import "@styles/Gradestable.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import logoPlus from "@icons/PlusButton.svg";
+import trashimg from "@icons/trash.svg";
+import editimg from "@icons/editpen.svg";
 import { useState } from "react";
 import { showModal } from "../redux/actions";
 import Modal from "./Modal";
@@ -18,7 +20,14 @@ function GradesTable({ grades ,students}) {
         dispatch(showModal("Add Grade"));
         setItemData({ token, course_id ,student_list});
     };
-
+    const handleDelete = (lecture,index,course_id,token) => {
+        dispatch(showModal("Delete Lesson"));
+        setItemData({lecture,index,course_id,token})
+    };
+    const handleUpdate = (lecture,index,course_id, token) => {
+        dispatch(showModal("Update Lesson"));
+        setItemData({lecture,index,course_id,token})
+    };
     return (
         <section className="bg-light table-container">
             <div className="table-responsive" id="no-more-tables">
@@ -42,8 +51,29 @@ function GradesTable({ grades ,students}) {
                                     {item.obs}
                                 </td>
                                 <td className="grade" data-title="Calificación">
-                                    {item.grade}
-
+                                    <span className="grade-note">{item.grade}</span>
+                                    {user.user.role == "teacher" && (
+                                        <div className="icons">
+                                            <div
+                                                className="trash-icon"
+                                                onClick={() => handleDelete(item,index,materiaId,user.token)}
+                                            >
+                                                <img
+                                                    src={trashimg}
+                                                    alt="trash icon"
+                                                />
+                                            </div>
+                                            <div
+                                                className="edit-icon"
+                                                onClick={() => handleUpdate(item,index,materiaId,user.token)}
+                                            >
+                                                <img
+                                                    src={editimg}
+                                                    alt="trash icon"
+                                                />
+                                            </div>
+                                        </div>
+                                    )}
                                 </td>
                             </tr>
                         ))}
