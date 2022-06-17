@@ -37,8 +37,9 @@ const UpdateActivity = ({ data }) => {
             }
         >
             <div className="form-group">
-                <label>Description</label>
+                <label>Descripción</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="description"
                     value={eventActivity.description}
@@ -46,8 +47,9 @@ const UpdateActivity = ({ data }) => {
                 />
             </div>
             <div className="form-group">
-                <label>Date</label>
+                <label>Fecha</label>
                 <input
+                    className="customInput"
                     type="text"
                     name="date"
                     value={eventActivity.date}
@@ -55,9 +57,9 @@ const UpdateActivity = ({ data }) => {
                 />
             </div>
             <div className="form-group form-group--actions">
-                <button className="primary-btn">Actualizar</button>
-                <button className="cancel-btn" onClick={cancel}>
-                    Cancelar
+                <button className="btn_primary mt-2"> <strong>Actualizar</strong></button>
+                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
+                   <strong>Cancelar</strong> 
                 </button>
             </div>
         </form>

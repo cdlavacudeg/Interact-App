@@ -123,8 +123,13 @@
     #no-more-tables tr {
         border-bottom: 1px solid #ccc;
     }
+
+    .grade {
+        transform: translateX(0rem);
+     }
 }
 
+    
 @media screen and (max-width: 430px) {
     .grades-section {
         padding: 1rem;
