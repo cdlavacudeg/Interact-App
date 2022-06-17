@@ -5,6 +5,9 @@ import Modal from "./Modal";
 import DeleteUser from "./Forms/DeleteUser";
 import AddUsers from "./Forms/AddUsers";
 import logoPlus from "@icons/PlusButton.svg";
+import trashSVG from "@icons/trash.svg";
+import penSVG from "@icons/editpen.svg";
+import UpdateUser from "./Forms/UpdateUser";
 import "@styles/useradmintable.css";
 
 function TeacherAdminTable() {
@@ -14,13 +17,24 @@ function TeacherAdminTable() {
     const activeModal = useSelector((state) => state.modal);
     const [itemData, setItemData] = useState({});
 
-    const handleModalDelete = () => {
+    const handleModalDelete = ( item, id, token) => {
         dispatch(showModal("Delete User"));
+        setItemData({
+            item,
+            id,
+            token,
+        });
     };
     const handleModalPost = (token) => {
         dispatch(showModal("Post User"));
         let role = "teacher"
         setItemData({ token, role });
+    };
+
+    const handleModalUpdate = (item, id,token) => {
+        dispatch(showModal("Update User"));
+        let role = "teacher"
+        setItemData({ item,id,token, role });
     };
 
     useEffect(() => {
@@ -39,14 +53,15 @@ function TeacherAdminTable() {
                                 <th>Genero</th>
                                 <th>Correo</th>
                                 <th>Rol</th>
+                                <th>Operaciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {listUsers.map((user) => {
-                                let { fullName, gender, email, role } = user;
-                                if (user.role === "teacher") {
+                            {listUsers.map((item) => {
+                                let { fullName, gender, email, role } = item;
+                                if (item.role === "teacher") {
                                     return (
-                                        <tr key={user.uid}>
+                                        <tr key={item.uid}>
                                             <td data-title="Nombre">
                                                 {" "}
                                                 {fullName}
@@ -60,6 +75,27 @@ function TeacherAdminTable() {
                                                 {email}{" "}
                                             </td>
                                             <td data-title="role"> {role} </td>
+                                            <td data-title="operaciones" className="table-buttons">
+                                              <button onClick={() =>
+                                                    handleModalDelete(
+                                                        item,
+                                                        item.uid,
+                                                        user.token
+                                                    )}
+                                                    className="trash-button"
+                                                    >
+                                                <img src={trashSVG} alt="delete button"  />
+                                              </button>
+                                              <button onClick={() =>
+                                                    handleModalUpdate(
+                                                        item,
+                                                        item.uid,
+                                                        user.token
+                                                    )}
+                                              className="edit-button">
+                                                <img src={penSVG} alt="edit pen button" />
+                                              </button>
+                                            </td>
                                         </tr>
                                     );
                                 }
@@ -75,16 +111,16 @@ function TeacherAdminTable() {
                 {activeModal.active && (
                     <Modal>
                         {activeModal.name === "Delete User" && (
-                            <DeleteUser />
+                            <DeleteUser data={itemData}/>
                         )}
                         {activeModal.name === "Post User" && (
                             <AddUsers data={itemData}/>
                         )}
+                        {activeModal.name === "Update User" && (
+                            <UpdateUser data={itemData}/>
+                        )}
                     </Modal>
                 )}
-                <button onClick={handleModalDelete} className="WarningModalButton">
-                    Modal
-                </button>
             </div>
         </div>
     );
