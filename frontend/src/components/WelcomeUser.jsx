@@ -8,7 +8,7 @@ function WelcomeUser() {
     const name = user.user.fullName;
     const gender = user.user.gender;
     const rol = user.user.role;
-    console.log(rol);
+
     return (
         <section className="welcome">
             <div className="welcome-user">

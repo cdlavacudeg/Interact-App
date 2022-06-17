@@ -44,7 +44,49 @@
 }
 
 .card-text {
+    display: flex;
+    justify-content: space-between;
     font-size: var(--fz-1);
+}
+.card-text .icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin-left: auto;
+    cursor: pointer;
+}
+.card-text .trash-icon {
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.card-text .trash-icon img {
+    max-width: 44px;
+    min-width: 40px;
+    margin-left: auto;
+    border-radius: 50%;
+    padding: 10px;
+    transition: var(--transition);
+}
+.card-text .edit-icon {
+    cursor: pointer;
+}
+
+.card-text .edit-icon img {
+    max-width: 44px;
+    min-width: 40px;
+    margin-left: auto;
+    border-radius: 50%;
+    padding: 10px;
+    transition: var(--transition);
+}
+
+.card-text .trash-icon img:hover {
+    background-color: #F51A1A;
+}
+.card-text .edit-icon img:hover {
+    background-color: #efcd6a;
 }
 
 .courses-card:hover {

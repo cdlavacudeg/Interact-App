@@ -1,13 +1,24 @@
 import { useNavigate } from "react-router-dom";
 import "@styles/coursesCard.css";
+import { useDispatch, useSelector } from "react-redux";
+import { showModal } from "../redux/actions";
+import trashimg from "@icons/trash.svg";
+import editimg from "@icons/editpen.svg";
 
-const CoursesCard = ({ name, image, nameProf, id }) => {
+
+const CoursesCard = ({ name, image, nameProf, id ,course,handleDelete,handleUpdate}) => {
+    const user = useSelector((state) => state.user);
     const navigate = useNavigate();
 
     return (
         <div
-            onClick={() => navigate(`/materias/${id}/`)}
+            onClick={() => {
+                if (user.user.role !== "admin") {
+                    navigate(`/materias/${id}/`);
+                }
+            }}
             className="courses-card"
+            style={user.user.role == "admin" ? { cursor: "default" }:{}}
         >
             <img
                 src={image}
@@ -20,7 +31,28 @@ const CoursesCard = ({ name, image, nameProf, id }) => {
             />
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
-                <p className="card-text">{nameProf}</p>
+                <div className="card-text">
+                    {nameProf}
+                    {user.user.role == "admin" && (
+                    <div className="icons">
+                        <div
+                            className="trash-icon"
+                            onClick={() =>
+                                handleDelete(course,id,user.token)
+                            }
+                        >
+                            <img src={trashimg} alt="trash icon" />
+                        </div>
+                        <div
+                            className="edit-icon"
+                            onClick={() => handleUpdate(course,id,user.token)}
+                        >
+                            <img src={editimg} alt="trash icon" />
+                        </div>
+                    </div>
+                )}
+                </div>
+
             </div>
         </div>
     );

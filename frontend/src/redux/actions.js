@@ -307,6 +307,28 @@ export function getCourse() {
         });
     };
 }
+
+export function deleteCourse(id, token) {
+    return async function (dispacht) {
+        let config = {
+            headers: {
+                xtoken: token,
+            },
+        };
+        await axios.delete(`/course/${id}`, config);
+        let courses = await axios.get(`/course`);
+        courses = courses.data.data.course;
+        window.localStorage.setItem(
+            'courses',
+            JSON.stringify(courses)
+        );
+        return dispacht({
+            type: 'GET_COURSES_ALL',
+            payload: courses,
+        });
+    };
+}
+
 //============================
 //       NOTIFICATIONS
 //============================
