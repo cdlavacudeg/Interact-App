@@ -2,8 +2,13 @@ import { NavLink } from "react-router-dom";
 import "@styles/Admitabs.css";
 import logoicon from "../assets/icons/undraw_teacher_re_sico 1.svg";
 import welcomeimg from "@img/welcome-img.svg";
+import Modal from "../components/Modal";
+import WarningCloseSession from "../components/Forms/WarningCloseSession";
+import { useSelector } from "react-redux";
 
 const AdminTabs = () => {
+    const activeModal = useSelector((state) => state.modal);
+
     return (
         <div className="Admin">
             <ul className="AdminId-list">
@@ -33,6 +38,13 @@ const AdminTabs = () => {
                     </button>
                 </li>
             </ul>
+            {activeModal.active && (
+                <Modal>
+                    {activeModal.name === "Warning Close Session" && (
+                        <WarningCloseSession />
+                    )}
+                </Modal>
+            )}
         </div>
     );
 };

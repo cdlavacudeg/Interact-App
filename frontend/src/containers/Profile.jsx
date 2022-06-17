@@ -7,8 +7,13 @@ import ProfesorListMobile from "../components/ProfesorListMobile";
 import StudentList from "../components/StudentList";
 import StudentListMobile from "../components/StudentListMobile";
 import { getProfile } from "../redux/actions";
+import Modal from "../components/Modal";
+import WarningCloseSession from "../components/Forms/WarningCloseSession";
+
+
 
 function Profile() {
+    const activeModal = useSelector((state) => state.modal);
     const user = useSelector((state) => state.user);
     const profile = useSelector((state) => state.profile);
     const dispatch = useDispatch();
@@ -34,6 +39,13 @@ function Profile() {
                     <StudentList list={profile} />
                     <StudentListMobile list={profile} />
                 </>
+            )}
+            {activeModal.active && (
+                <Modal>
+                    {activeModal.name === "Warning Close Session" && (
+                        <WarningCloseSession />
+                    )}
+                </Modal>
             )}
         </section>
     );

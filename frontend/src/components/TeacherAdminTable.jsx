@@ -11,6 +11,7 @@ import penSVG from "@icons/editpen.svg";
 import backArrow from '@icons/back-arrow.svg';
 import UpdateUser from "./Forms/UpdateUser";
 import "@styles/useradmintable.css";
+import WarningCloseSession from "./Forms/WarningCloseSession";
 
 function TeacherAdminTable() {
     const dispatch = useDispatch();
@@ -125,6 +126,9 @@ function TeacherAdminTable() {
                         )}
                         {activeModal.name === "Update User" && (
                             <UpdateUser data={itemData}/>
+                        )}
+                        {activeModal.name === "Warning Close Session" && (
+                            <WarningCloseSession />
                         )}
                     </Modal>
                 )}

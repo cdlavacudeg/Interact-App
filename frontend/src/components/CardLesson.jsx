@@ -10,6 +10,7 @@ import AddLesson from "./Forms/AddLesson";
 import { useParams } from "react-router-dom";
 import UpdateLesson from "./Forms/UpdateLesson";
 import DeleteLesson from "./Forms/DeleteLesson";
+import WarningCloseSession from "./Forms/WarningCloseSession";
 
 const CardLesson = () => {
     let lectures = useSelector((state) => state.course.lessons.lectures);
@@ -124,6 +125,9 @@ const CardLesson = () => {
                         )}
                         {activeModal.name == "Update Lesson" && (
                             <UpdateLesson data={itemData} />
+                        )}
+                        {activeModal.name === "Warning Close Session" && (
+                            <WarningCloseSession />
                         )}
                     </Modal>
                 )}

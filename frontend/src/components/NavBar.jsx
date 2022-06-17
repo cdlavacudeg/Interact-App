@@ -1,6 +1,5 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../redux/actions";
 import homeSVG from "@icons/home.svg";
 import materiasSVG from "@icons/courses.svg";
 import calificacionesSVG from "@icons/clasification.svg";
@@ -15,13 +14,7 @@ import WarningCloseSession from "./Forms/WarningCloseSession";
 
 const NavBar = ({ show, close }) => {
     const user = useSelector((state) => state.user);
-    const navigate = useNavigate()
     const isActive = show ? "show" : " ";
-    const activeModal = useSelector((state) => state.modal);
-
-    const handleWarnings = () => {
-         dispatch(showModal("Warning Close Session"));
-     };
 
     const dispatch = useDispatch();
     let menuItem = [
@@ -101,12 +94,9 @@ const NavBar = ({ show, close }) => {
             },
         ];
     }
-    const handleLogout = () => {
-        dispatch(logout());
-        window.localStorage.setItem("loggedAppUser", JSON.stringify({}));
-        window.localStorage.setItem("courses", JSON.stringify({}));
-        window.localStorage.setItem("course", JSON.stringify({}));
-        navigate("/");
+    const handleWarnings = (event) => {
+        event.preventDefault();
+        dispatch(showModal("Warning Close Session"));
     };
 
 
@@ -135,8 +125,6 @@ const NavBar = ({ show, close }) => {
                         id="logout"
                         className="header-nav-link"
                         onClick={handleWarnings}
-                        // onClick={handleLogout}
-                        // to={"/"}
                     >
                         <div className="header-nav-img">
                             <img src={logoutSVG} alt="Cerrar Sesión" />
@@ -145,13 +133,6 @@ const NavBar = ({ show, close }) => {
                     </button>
                 </li>
             </ul>
-            {activeModal.active && (
-                <Modal>
-                    {activeModal.name === "Warning Close Session" && (
-                        <WarningCloseSession  />
-                    )}
-                </Modal>
-            )}
         </nav>
     );
 };

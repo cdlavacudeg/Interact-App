@@ -10,6 +10,7 @@ import Modal from "./Modal";
 import AddGrade from "./Forms/AddGrade";
 import DeleteGrade from "./Forms/DeleteGrade";
 import UpdateGrade from "./Forms/UpdateGrade";
+import WarningCloseSession from "./Forms/WarningCloseSession";
 
 function GradesTable({ grades ,students}) {
     const user = useSelector(state=>state.user);
@@ -110,6 +111,9 @@ function GradesTable({ grades ,students}) {
                         )}
                         {activeModal.name == "Update Grade" && (
                             <UpdateGrade data={itemData} />
+                        )}
+                        {activeModal.name === "Warning Close Session" && (
+                            <WarningCloseSession />
                         )}
                     </Modal>
                 )}

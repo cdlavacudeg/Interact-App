@@ -12,6 +12,7 @@ import penSVG from "@icons/editpen.svg";
 import backArrow from '@icons/back-arrow.svg';
 import "@styles/useradmintable.css";
 
+import WarningCloseSession from "./Forms/WarningCloseSession";
 
 function StudentAdminTable() {
     const dispatch = useDispatch();
@@ -121,6 +122,9 @@ function StudentAdminTable() {
                         )}
                         {activeModal.name === "Update User" && (
                             <UpdateUser data={itemData}/>
+                        )}
+                        {activeModal.name === "Warning Close Session" && (
+                            <WarningCloseSession />
                         )}
                     </Modal>
                 )}
