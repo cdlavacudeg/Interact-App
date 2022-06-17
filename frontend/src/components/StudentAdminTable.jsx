@@ -9,6 +9,7 @@ import UpdateUser from "./Forms/UpdateUser";
 import logoPlus from "@icons/PlusButton.svg";
 import trashSVG from "@icons/trash.svg";
 import penSVG from "@icons/editpen.svg";
+import WarningCloseSession from "./Forms/WarningCloseSession";
 
 function StudentAdminTable() {
     const dispatch = useDispatch();
@@ -114,6 +115,9 @@ function StudentAdminTable() {
                         )}
                         {activeModal.name === "Update User" && (
                             <UpdateUser data={itemData}/>
+                        )}
+                        {activeModal.name === "Warning Close Session" && (
+                            <WarningCloseSession />
                         )}
                     </Modal>
                 )}
