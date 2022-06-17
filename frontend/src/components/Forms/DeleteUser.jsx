@@ -30,14 +30,14 @@ const DeleteUser = ({data}) => {
                     <button
                     className="btn_primary mt-2">
                         {" "}
-                        Eliminar Usuario
+                       <strong>Eliminar Usuario</strong>
                     </button>
                     <button
                          onClick={() => dispatch(hideModal())}
                         className="cancelarWarningButton btn_primary mt-2"
                         type="submit"
                     >
-                        Cancelar{" "}
+                      <strong>Cancelar{" "}</strong>
                     </button>
 
                 </form>

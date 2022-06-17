@@ -100,9 +100,9 @@ const AddUsers = ({data}) => {
         }
 
         </div>
-        <button className='addUsers-button' type="submit">Crear</button>
+        <button className='addUsers-button' type="submit"><strong>Crear</strong></button>
         <button className='addUsers-button cancel-button' onClick={cancel}>
-          Cancelar
+          <strong>Cancelar</strong>
         </button>
       </form>
     );
