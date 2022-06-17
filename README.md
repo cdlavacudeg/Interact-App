@@ -6,7 +6,7 @@ Platform for administration of courses, qualifications, events, classes and user
 ## Stack
 
 - [Diseño]
-- (https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+- ![image]({https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white})
 
 ## Team Roles:
 
