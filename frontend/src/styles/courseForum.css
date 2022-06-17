@@ -1,0 +1,11 @@
+.courseForum-title {
+    text-align   : center;
+    color        : var(--primer-color);
+    font-size    : var(--fz1);
+    margin-bottom: 2rem;
+}
+
+.courseForum-img {
+    width : 60%;
+    margin: auto;
+}

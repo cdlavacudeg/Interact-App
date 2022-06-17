@@ -115,9 +115,9 @@ const UpdateUser = ({data}) => {
         }
 
         </div>
-        <button className='addUsers-button' type="submit">Actualizar</button>
+        <button className='addUsers-button' type="submit"><strong>Actualizar</strong></button>
         <button className='addUsers-button cancel-button' onClick={cancel}>
-          Cancelar
+         <strong>Cancelar</strong>
         </button>
       </form>
     );

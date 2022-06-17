@@ -1,7 +1,7 @@
-import "@styles/useradmintable.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers, showModal } from "../redux/actions";
+import { showModal } from "../redux/actions";
+import { useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 import DeleteUser from "./Forms/DeleteUser";
 import AddUsers from "./Forms/AddUsers";
@@ -9,6 +9,9 @@ import UpdateUser from "./Forms/UpdateUser";
 import logoPlus from "@icons/PlusButton.svg";
 import trashSVG from "@icons/trash.svg";
 import penSVG from "@icons/editpen.svg";
+import backArrow from '@icons/back-arrow.svg';
+import "@styles/useradmintable.css";
+
 import WarningCloseSession from "./Forms/WarningCloseSession";
 
 function StudentAdminTable() {
@@ -17,6 +20,7 @@ function StudentAdminTable() {
     const listUsers = useSelector((state) => state.users);
     const activeModal = useSelector((state) => state.modal);
     const [itemData, setItemData] = useState({});
+    const navigate = useNavigate();
 
     const handleModalDelete = ( item, id, token) => {
         dispatch(showModal("Delete User"));
@@ -40,6 +44,9 @@ function StudentAdminTable() {
 
     return (
         <div className="user-section">
+            <div onClick={() => navigate(-1)} className="user-arrow">
+                <img src={backArrow} alt="" />
+            </div>
             <h1 className="listUser_title">Lista de Alumnos</h1>
             <section className="bg-light p-2 user-section">
                 <div className="table-responsive" id="no-more-tables">
