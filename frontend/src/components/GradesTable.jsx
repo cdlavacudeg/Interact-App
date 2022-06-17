@@ -30,7 +30,6 @@ function GradesTable({ grades ,students}) {
         dispatch(showModal("Update Grade"));
         setItemData({gradeData:grade,index,course_id,token})
     };
-    console.log(grades)
     return (
         <section className="bg-light table-container">
             <div className="table-responsive" id="no-more-tables">
