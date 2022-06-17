@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { showModal } from "../redux/actions";
 import { logout } from "../redux/actions";
 import homeSVG from "@icons/home.svg";
 import materiasSVG from "@icons/courses.svg";
@@ -9,11 +10,19 @@ import contactoSVG from "@icons/contact.svg";
 import logoutSVG from "@icons/logout.svg";
 import backArrowSVG from "@icons/back-arrow.svg";
 import "@styles/navBar.css";
+import Modal from "./Modal";
+import ForgetPassword from "./Forms/ForgetPassword";
+
 
 const NavBar = ({ show, close }) => {
     const user = useSelector((state) => state.user);
     const navigate = useNavigate()
     const isActive = show ? "show" : " ";
+    const activeModal = useSelector((state) => state.modal);
+
+    const handleModal=()=>{
+        dispatch(showModal("Forget Password"));
+    }
 
     const dispatch = useDispatch();
     let menuItem = [
@@ -100,8 +109,18 @@ const NavBar = ({ show, close }) => {
         window.localStorage.setItem("course", JSON.stringify({}));
         navigate("/");
     };
+
+
     return (
         <nav className={`header-nav ${isActive}`}>
+              {activeModal.active && (
+                                <Modal >
+                                    {activeModal.name === "Forget Password" && (
+                                        <ForgetPassword />
+                                    )}
+
+                                </Modal>
+                            )}
             <button onClick={close} className="header-backarrow">
                 <img src={backArrowSVG} alt="back arrow" />
             </button>
@@ -124,7 +143,7 @@ const NavBar = ({ show, close }) => {
                     <button
                         id="logout"
                         className="header-nav-link"
-                        onClick={handleLogout}
+                         onClick={handleModal}
                         to={"/"}
                     >
                         <div className="header-nav-img">
