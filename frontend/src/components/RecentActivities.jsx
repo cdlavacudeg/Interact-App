@@ -16,7 +16,7 @@ function Recentactivities() {
                                     name={item.courseName}
                                     image={item.image}
                                     nameProf={item.teacher.fullName}
-                                    key={item._id}
+                                    key={index}
                                     id={item._id}
                                 />
                             )

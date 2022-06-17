@@ -1,14 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import "@styles/coursesCard.css";
-import { useDispatch, useSelector } from "react-redux";
-import { showModal } from "../redux/actions";
+import {  useSelector } from "react-redux";
 import trashimg from "@icons/trash.svg";
 import editimg from "@icons/editpen.svg";
+
 
 
 const CoursesCard = ({ name, image, nameProf, id ,course,handleDelete,handleUpdate}) => {
     const user = useSelector((state) => state.user);
     const navigate = useNavigate();
+    const listUsers = useSelector((state) => state.users);
+
 
     return (
         <div
@@ -45,7 +47,7 @@ const CoursesCard = ({ name, image, nameProf, id ,course,handleDelete,handleUpda
                         </div>
                         <div
                             className="edit-icon"
-                            onClick={() => handleUpdate(course,id,user.token)}
+                            onClick={() => handleUpdate(course,listUsers,id,user.token)}
                         >
                             <img src={editimg} alt="trash icon" />
                         </div>

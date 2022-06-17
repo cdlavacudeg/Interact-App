@@ -309,7 +309,7 @@ export function getCourse() {
 }
 
 export function deleteCourse(id, token) {
-    return async function (dispacht) {
+    return async function (dispatch) {
         let config = {
             headers: {
                 xtoken: token,
@@ -322,13 +322,32 @@ export function deleteCourse(id, token) {
             'courses',
             JSON.stringify(courses)
         );
-        return dispacht({
+        return dispatch({
             type: 'GET_COURSES_ALL',
             payload: courses,
         });
     };
 }
 
+export function updateCourse(data,id,token) {
+    return async function (dispatch) {
+        let config = {
+            headers: {
+                xtoken: token,
+        }}
+        await axios.put(`/course/${id}`, data , config);
+        let courses = await axios.get(`/course`);
+        courses = courses.data.data.course;
+        window.localStorage.setItem(
+            'courses',
+            JSON.stringify(courses)
+        );
+        return dispatch({
+            type: 'GET_COURSES_ALL',
+            payload: courses,
+        });
+    };
+}
 //============================
 //       NOTIFICATIONS
 //============================

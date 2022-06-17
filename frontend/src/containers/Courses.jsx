@@ -2,31 +2,39 @@ import CoursesCard from "../components/CoursesCard";
 import { useSelector, useDispatch } from "react-redux";
 import "@styles/courses.css";
 import DeleteCourse from "../components/Forms/DeleteCourse";
-import { useState } from "react";
-import { showModal } from "../redux/actions";
+import { useEffect, useState } from "react";
+import { getUsers, showModal } from "../redux/actions";
 import Modal from "../components/Modal";
+import UpdateCourse from "../components/Forms/UpdateCourse";
 
 const Courses = () => {
     const materias = useSelector((state) => state.courses);
     const activeModal = useSelector((state) => state.modal);
     const [itemData, setItemData] = useState({});
     const dispatch = useDispatch();
+
     const handleDelete = (item,id,token) => {
         dispatch(showModal("Delete Course"));
+        console.log(item)
         setItemData({
             item,
             id,
             token
         })
     };
-    const handleUpdate = (item,id, token) => {
+
+    const handleUpdate = (item,listUsers,id, token) => {
         dispatch(showModal("Update Course"));
         setItemData({
             item,
+            listUsers,
             id,
             token
         })
     };
+    useEffect(() => {
+        dispatch(getUsers()).catch((error) => console.log(error));
+    }, []);
     return (
         <div className="courses">
             <h1 className="courses-title">Mis Materias</h1>
@@ -53,12 +61,11 @@ const Courses = () => {
             {activeModal.active && (
                 <Modal>
                     {activeModal.name === "Delete Course" &&(
-                            <DeleteCourse data={itemData} />
+                        <DeleteCourse data={itemData} />
                     )}
-                    {activeModal.name == "Update Course" &&
-                        {
-                            /* <UpdateNotification data={itemData} /> */
-                        }}
+                    {activeModal.name == "Update Course" &&(
+                        <UpdateCourse data={itemData} />
+                    )}
                 </Modal>
             )}
         </div>
