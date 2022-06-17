@@ -6,9 +6,13 @@ import { useEffect, useState } from "react";
 import { getUsers, showModal } from "../redux/actions";
 import Modal from "../components/Modal";
 import UpdateCourse from "../components/Forms/UpdateCourse";
+import logoPlus from "@icons/PlusButton.svg";
+import AddCourse from "../components/Forms/AddCourse";
 
 const Courses = () => {
     const materias = useSelector((state) => state.courses);
+    const user = useSelector(state=>state.user);
+    const listUsers = useSelector((state) => state.users);
     const activeModal = useSelector((state) => state.modal);
     const [itemData, setItemData] = useState({});
     const dispatch = useDispatch();
@@ -29,6 +33,13 @@ const Courses = () => {
             item,
             listUsers,
             id,
+            token
+        })
+    };
+    const handleAdd = (listUsers, token) => {
+        dispatch(showModal("Add Course"));
+        setItemData({
+            listUsers,
             token
         })
     };
@@ -58,6 +69,16 @@ const Courses = () => {
                     <div>No hay materias</div>
                 )}
             </section>
+            {user.user.role == "admin" && (
+                <div className="plusUser">
+                    <img
+                        onClick={() => handleAdd(listUsers,user.token)}
+                        className="plusUser__imgPlusLogo"
+                        src={logoPlus}
+                        alt=""
+                    />
+                </div>
+            )}
             {activeModal.active && (
                 <Modal>
                     {activeModal.name === "Delete Course" &&(
@@ -65,6 +86,9 @@ const Courses = () => {
                     )}
                     {activeModal.name == "Update Course" &&(
                         <UpdateCourse data={itemData} />
+                    )}
+                    {activeModal.name == "Add Course" &&(
+                        <AddCourse data={itemData} />
                     )}
                 </Modal>
             )}

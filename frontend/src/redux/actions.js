@@ -348,6 +348,30 @@ export function updateCourse(data,id,token) {
         });
     };
 }
+
+export function addCourse(data,token) {
+    return async function (dispatch) {
+        let config = {
+            headers: {
+                xtoken: token,
+        }}
+        if (data.courseName == ""){
+            delete data.courseName;
+        }
+        await axios.post(`/course/`, data , config);
+
+        let courses = await axios.get(`/course`);
+        courses = courses.data.data.course;
+        window.localStorage.setItem(
+            'courses',
+            JSON.stringify(courses)
+        );
+        return dispatch({
+            type: 'GET_COURSES_ALL',
+            payload: courses,
+        });
+    };
+}
 //============================
 //       NOTIFICATIONS
 //============================

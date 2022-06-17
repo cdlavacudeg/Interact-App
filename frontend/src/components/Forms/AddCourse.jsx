@@ -1,21 +1,20 @@
 import { Fragment, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { hideModal, updateCourse } from '../../redux/actions';
+import { addCourse, hideModal } from '../../redux/actions';
 import '@styles/addUsers.css'
 
-const UpdateCourse = ({data}) => {
+const AddCourse = ({data}) => {
     const dispatch = useDispatch();
-    const { item,listUsers, id, token} = data;
-    const { courseName, image, description, teacher, students} = item;
+    const {listUsers, token} = data;
     const listStudents = listUsers.filter(user=>user.role == 'student');
     const listTeachers = listUsers.filter(user=>user.role == 'teacher');
 
     const [course, setCourse] = useState({
-        courseName,
-        image,
-        description,
-        teacher:teacher._id,
-        students:students.map(e=>e._id)
+        courseName:"",
+        image:"",
+        description:"",
+        teacher:listTeachers[0].uid,
+        students:[]
       });
 
 
@@ -47,10 +46,7 @@ const UpdateCourse = ({data}) => {
 
     const _handleSubmit = (e,data,token) => {
         e.preventDefault();
-        if(data.courseName == courseName){
-            data.courseName="";
-        }
-        dispatch(updateCourse( data, id, token))
+        dispatch(addCourse( data, token))
             .then(() => dispatch(hideModal()))
             .then(() => console.log('actualizado'))
             .catch((error) => console.log(error));
@@ -115,7 +111,7 @@ const UpdateCourse = ({data}) => {
         }
 
         </div>
-        <button className='addUsers-button' type="submit">Actualizar</button>
+        <button className='addUsers-button' type="submit">Crear</button>
         <button className='addUsers-button cancel-button' onClick={cancel}>
           Cancelar
         </button>
@@ -123,4 +119,4 @@ const UpdateCourse = ({data}) => {
     );
 }
 
-export default UpdateCourse
+export default AddCourse
