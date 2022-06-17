@@ -12,6 +12,7 @@ import Modal from "../components/Modal";
 import DeleteNotification from "./Forms/DeleteNotification";
 import AddNotification from "./Forms/AddNotification";
 import UpdateNotification from "./Forms/UpdateNotification";
+import WarningCloseSession from "./Forms/WarningCloseSession";
 
 function Avisos() {
     const user = useSelector((state) => state.user);
@@ -162,6 +163,9 @@ function Avisos() {
                     )}
                     {activeModal.name == "Update Notification" && (
                         <UpdateNotification data={itemData} />
+                    )}
+                    {activeModal.name === "Warning Close Session" && (
+                        <WarningCloseSession />
                     )}
                 </Modal>
             )}

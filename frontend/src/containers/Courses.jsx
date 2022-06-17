@@ -8,6 +8,7 @@ import Modal from "../components/Modal";
 import UpdateCourse from "../components/Forms/UpdateCourse";
 import logoPlus from "@icons/PlusButton.svg";
 import AddCourse from "../components/Forms/AddCourse";
+import WarningCloseSession from "../components/Forms/WarningCloseSession";
 
 const Courses = () => {
     const materias = useSelector((state) => state.courses);
@@ -89,6 +90,9 @@ const Courses = () => {
                     )}
                     {activeModal.name == "Add Course" &&(
                         <AddCourse data={itemData} />
+                    )}
+                    {activeModal.name === "Warning Close Session" && (
+                            <WarningCloseSession />
                     )}
                 </Modal>
             )}

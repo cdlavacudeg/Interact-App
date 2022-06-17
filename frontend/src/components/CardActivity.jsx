@@ -10,6 +10,7 @@ import AddActivity from "./Forms/AddActivity";
 import { useParams } from "react-router-dom";
 import UpdateActivity from "./Forms/UpdateActivity"
 import DeleteActivity from "./Forms/DeleteActivity";
+import WarningCloseSession from "./Forms/WarningCloseSession";
 
 const CardActivity = () => {
     let events = useSelector((state) => state.course.events);
@@ -108,6 +109,9 @@ const CardActivity = () => {
                     )}
                     {activeModal.name == "Update Activity" && (
                         <UpdateActivity data={itemData} />
+                    )}
+                    {activeModal.name === "Warning Close Session" && (
+                        <WarningCloseSession />
                     )}
                 </Modal>
             )}
