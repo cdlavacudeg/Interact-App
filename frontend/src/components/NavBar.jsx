@@ -6,15 +6,22 @@ import materiasSVG from "@icons/courses.svg";
 import calificacionesSVG from "@icons/clasification.svg";
 import perfilSVG from "@icons/profile.svg";
 import contactoSVG from "@icons/contact.svg";
+import { showModal } from "../redux/actions";
 import logoutSVG from "@icons/logout.svg";
 import backArrowSVG from "@icons/back-arrow.svg";
 import "@styles/navBar.css";
-
+import Modal from "./Modal";
+import WarningCloseSession from "./Forms/WarningCloseSession";
 
 const NavBar = ({ show, close }) => {
     const user = useSelector((state) => state.user);
     const navigate = useNavigate()
     const isActive = show ? "show" : " ";
+    const activeModal = useSelector((state) => state.modal);
+
+    const handleWarnings = () => {
+         dispatch(showModal("Warning Close Session"));
+     };
 
     const dispatch = useDispatch();
     let menuItem = [
@@ -123,12 +130,13 @@ const NavBar = ({ show, close }) => {
                         </NavLink>
                     </li>
                 ))}
-                <li className="header-nav-item" >
+                <li className="header-nav-item">
                     <button
                         id="logout"
                         className="header-nav-link"
-                         onClick={handleLogout}
-                        to={"/"}
+                        onClick={handleWarnings}
+                        // onClick={handleLogout}
+                        // to={"/"}
                     >
                         <div className="header-nav-img">
                             <img src={logoutSVG} alt="Cerrar Sesión" />
@@ -137,6 +145,13 @@ const NavBar = ({ show, close }) => {
                     </button>
                 </li>
             </ul>
+            {activeModal.active && (
+                <Modal>
+                    {activeModal.name === "Warning Close Session" && (
+                        <WarningCloseSession  />
+                    )}
+                </Modal>
+            )}
         </nav>
     );
 };
