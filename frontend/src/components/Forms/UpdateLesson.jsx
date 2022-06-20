@@ -1,17 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-    hideModal,
-    updateLesson,
-} from "../../redux/actions";
+import { hideModal, updateLesson } from "../../redux/actions";
 import "@styles/modalgeneral.css";
 
 const UpdateLesson = ({ data }) => {
-    const {lecture,index,course_id,token} = data;
+    const { lecture, index, course_id, token } = data;
     const { title, link } = lecture;
     const [lesson, setNotification] = useState({
         title,
-        link
+        link,
     });
     const dispatch = useDispatch();
 
@@ -25,17 +22,19 @@ const UpdateLesson = ({ data }) => {
         dispatch(hideModal()).catch((error) => console.log(error));
     };
 
-    const handleSubmit = (event, index,data, course_id, token) => {
+    const handleSubmit = (event, index, data, course_id, token) => {
         event.preventDefault();
-        data.index =index
-        dispatch(updateLesson(course_id,data, token))
+        data.index = index;
+        dispatch(updateLesson(course_id, data, token))
             .then(() => dispatch(hideModal()))
             .catch((error) => console.log(error));
     };
 
     return (
         <form
-            onSubmit={(event) => handleSubmit(event, lesson, index, course_id, token)}
+            onSubmit={(event) =>
+                handleSubmit(event, lesson, index, course_id, token)
+            }
         >
             <div className="form-group">
                 <label>Titulo</label>
@@ -58,9 +57,14 @@ const UpdateLesson = ({ data }) => {
                 />
             </div>
             <div className="form-group form-group--actions">
-                <button className="btn_primary mt-2"><strong>Actualizar</strong></button>
-                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
-                   <strong>Cancelar</strong> 
+                <button className="btn_primary mt-2">
+                    <strong>Actualizar</strong>
+                </button>
+                <button
+                    className="btn_primary mt-2 cancelarWarningButton"
+                    onClick={cancel}
+                >
+                    <strong>Cancelar</strong>
                 </button>
             </div>
         </form>

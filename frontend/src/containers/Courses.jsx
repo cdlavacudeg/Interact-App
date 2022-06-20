@@ -12,37 +12,37 @@ import WarningCloseSession from "../components/Forms/WarningCloseSession";
 
 const Courses = () => {
     const materias = useSelector((state) => state.courses);
-    const user = useSelector(state=>state.user);
+    const user = useSelector((state) => state.user);
     const listUsers = useSelector((state) => state.users);
     const activeModal = useSelector((state) => state.modal);
     const [itemData, setItemData] = useState({});
     const dispatch = useDispatch();
 
-    const handleDelete = (item,id,token) => {
+    const handleDelete = (item, id, token) => {
         dispatch(showModal("Delete Course"));
-        console.log(item)
+        console.log(item);
         setItemData({
             item,
             id,
-            token
-        })
+            token,
+        });
     };
 
-    const handleUpdate = (item,listUsers,id, token) => {
+    const handleUpdate = (item, listUsers, id, token) => {
         dispatch(showModal("Update Course"));
         setItemData({
             item,
             listUsers,
             id,
-            token
-        })
+            token,
+        });
     };
     const handleAdd = (listUsers, token) => {
         dispatch(showModal("Add Course"));
         setItemData({
             listUsers,
-            token
-        })
+            token,
+        });
     };
     useEffect(() => {
         dispatch(getUsers()).catch((error) => console.log(error));
@@ -52,13 +52,15 @@ const Courses = () => {
             <h1 className="courses-title">Mis Materias</h1>
             <section className="courses-container">
                 {materias ? (
-                    materias.map((item) => {
+                    materias.map((item, index) => {
                         return (
                             <CoursesCard
                                 name={item.courseName}
                                 image={item.image}
-                                nameProf={item.teacher.fullName || "No asignado"}
-                                key={item._id || item.uid}
+                                nameProf={
+                                    item.teacher.fullName || "No asignado"
+                                }
+                                key={index}
                                 course={item}
                                 handleDelete={handleDelete}
                                 handleUpdate={handleUpdate}
@@ -73,7 +75,7 @@ const Courses = () => {
             {user.user.role == "admin" && (
                 <div className="plusUser">
                     <img
-                        onClick={() => handleAdd(listUsers,user.token)}
+                        onClick={() => handleAdd(listUsers, user.token)}
                         className="plusUser__imgPlusLogo"
                         src={logoPlus}
                         alt=""
@@ -82,17 +84,17 @@ const Courses = () => {
             )}
             {activeModal.active && (
                 <Modal>
-                    {activeModal.name === "Delete Course" &&(
+                    {activeModal.name === "Delete Course" && (
                         <DeleteCourse data={itemData} />
                     )}
-                    {activeModal.name == "Update Course" &&(
+                    {activeModal.name == "Update Course" && (
                         <UpdateCourse data={itemData} />
                     )}
-                    {activeModal.name == "Add Course" &&(
+                    {activeModal.name == "Add Course" && (
                         <AddCourse data={itemData} />
                     )}
                     {activeModal.name === "Warning Close Session" && (
-                            <WarningCloseSession />
+                        <WarningCloseSession />
                     )}
                 </Modal>
             )}

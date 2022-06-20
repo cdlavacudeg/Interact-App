@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Outlet } from "react-router-dom";
-import { getCourseById} from "../redux/actions";
+import { getCourseById } from "../redux/actions";
 import CourseTabs from "../components/CourseTabs";
 import { useDispatch, useSelector } from "react-redux";
 import "@styles/courseContainer.css";

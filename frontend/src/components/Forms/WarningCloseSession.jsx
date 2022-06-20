@@ -13,7 +13,6 @@ const WarningCloseSession = () => {
         dispatch(hideModal()).catch((error) => console.log(error));
     };
 
-
     const handleLogout = (event) => {
         event.preventDefault();
         dispatch(logout())
@@ -32,7 +31,7 @@ const WarningCloseSession = () => {
                 <p>¿Estás seguro que deseas cerrar sesión?</p>
             </div>
             <div className="form-group form-group--actions">
-                <button className="btn_primary mt-2"  onClick={handleLogout}>
+                <button className="btn_primary mt-2" onClick={handleLogout}>
                     <strong>Continuar</strong>
                 </button>
                 <button

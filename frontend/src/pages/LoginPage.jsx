@@ -36,12 +36,9 @@ const LoginPage = () => {
         setForms(false);
     };
 
-
-    const handleModal=()=>{
+    const handleModal = () => {
         dispatch(showModal("Forget Password"));
-    }
-
-
+    };
 
     // Custom fomrs
     const FormLogin = () => {
@@ -61,7 +58,7 @@ const LoginPage = () => {
                     (error) => {
                         let message =
                             error.message == "Network Error" ||
-                                error.message == "Incorrect role"
+                            error.message == "Incorrect role"
                                 ? error.message
                                 : error.response.data.error;
                         toast.error(`Error ${message} `, {
@@ -96,7 +93,7 @@ const LoginPage = () => {
                     (error) => {
                         let message =
                             error.message == "Network Error" ||
-                                error.message == "Rol incorrecto"
+                            error.message == "Rol incorrecto"
                                 ? error.message
                                 : error.response.data.error;
                         toast.error(`Error ${message} `, {
@@ -173,14 +170,13 @@ const LoginPage = () => {
 
                         <div>
                             {activeModal.active && (
-                                <Modal >
+                                <Modal>
                                     {activeModal.name === "Forget Password" && (
                                         <ForgetPassword />
                                     )}
                                 </Modal>
                             )}
                             <p
-
                                 onClick={handleModal}
                                 className={style.resetPassword}
                             >
@@ -253,16 +249,13 @@ const LoginPage = () => {
                         ) : null}
                     </div>
                     {activeModal.active && (
-                                <Modal >
-                                    {activeModal.name === "Forget Password" && (
-                                        <ForgetPassword />
-                                    )}
-                                </Modal>
+                        <Modal>
+                            {activeModal.name === "Forget Password" && (
+                                <ForgetPassword />
                             )}
-                    <p
-                        onClick={handleModal}
-                        className={style.resetPassword}
-                    >
+                        </Modal>
+                    )}
+                    <p onClick={handleModal} className={style.resetPassword}>
                         ¿Olvidaste tu Contraseña?
                     </p>
                     <input
@@ -274,7 +267,6 @@ const LoginPage = () => {
             </div>
         );
     };
-
 
     return (
         <main className={style.loginPageContent}>

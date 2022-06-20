@@ -27,12 +27,13 @@ export function getUser(id) {
     };
 }
 
-export function deleteUser(id,token) {
+export function deleteUser(id, token) {
     return async function (dispatch) {
         let config = {
             headers: {
                 xtoken: token,
-        }}
+            },
+        };
         await axios.delete('/user/' + id, config);
         var json = await axios.get('/user');
         console.log(json.data);
@@ -43,13 +44,14 @@ export function deleteUser(id,token) {
     };
 }
 
-export function updateUser(data,id,token) {
+export function updateUser(data, id, token) {
     return async function (dispatch) {
         let config = {
             headers: {
                 xtoken: token,
-        }}
-        await axios.put('/user/' + id,data, config);
+            },
+        };
+        await axios.put('/user/' + id, data, config);
         var json = await axios.get('/user');
         return dispatch({
             type: 'GET_USERS',
@@ -58,13 +60,13 @@ export function updateUser(data,id,token) {
     };
 }
 
-export function postUser(data,token) {
+export function postUser(data, token) {
     return async function (dispatch) {
         let config = {
             headers: {
                 xtoken: token,
-        }
-    }
+            },
+        };
         await axios.post('/user', data, config);
         var json = await axios.get('/user');
         return dispatch({
@@ -188,7 +190,6 @@ export function getGrade(courses_id, student_id) {
     };
 }
 
-
 export function addGrade(course_id, data, token) {
     return async function (dispacht) {
         let config = {
@@ -197,7 +198,7 @@ export function addGrade(course_id, data, token) {
             },
         };
 
-        await axios.post(`/grade/student/${course_id}`, data ,config);
+        await axios.post(`/grade/student/${course_id}`, data, config);
         let course = await axios.get(`/course/${course_id}`);
         course = course.data.data.course;
 
@@ -208,18 +209,18 @@ export function addGrade(course_id, data, token) {
     };
 }
 
-export function deleteGrade(student_id,course_id, token) {
+export function deleteGrade(student_id, course_id, token) {
     return async function (dispacht) {
         let config = {
             headers: {
                 xtoken: token,
             },
-            data:{
-                student_id:student_id,
-            }
+            data: {
+                student_id: student_id,
+            },
         };
 
-        await axios.delete(`/grade/student/${course_id}`,config);
+        await axios.delete(`/grade/student/${course_id}`, config);
 
         let course = await axios.get(`/course/${course_id}`);
         course = course.data.data.course;
@@ -231,8 +232,8 @@ export function deleteGrade(student_id,course_id, token) {
     };
 }
 
-export function updateGrade(data,course_id, token){
-    return async function(dispacht){
+export function updateGrade(data, course_id, token) {
+    return async function (dispacht) {
         let config = {
             headers: {
                 xtoken: token,
@@ -247,7 +248,7 @@ export function updateGrade(data,course_id, token){
             type: 'GET_COURSE_ID',
             payload: course,
         });
-    }
+    };
 }
 
 //============================
@@ -267,14 +268,11 @@ export function getCourses(id) {
         });
     };
 }
-export function getAllCourses(){
+export function getAllCourses() {
     return async function (dispacht) {
         let courses = await axios.get(`/course`);
         courses = courses.data.data.course;
-        window.localStorage.setItem(
-            'courses',
-            JSON.stringify(courses)
-        );
+        window.localStorage.setItem('courses', JSON.stringify(courses));
         return dispacht({
             type: 'GET_COURSES_ALL',
             payload: courses,
@@ -318,10 +316,7 @@ export function deleteCourse(id, token) {
         await axios.delete(`/course/${id}`, config);
         let courses = await axios.get(`/course`);
         courses = courses.data.data.course;
-        window.localStorage.setItem(
-            'courses',
-            JSON.stringify(courses)
-        );
+        window.localStorage.setItem('courses', JSON.stringify(courses));
         return dispatch({
             type: 'GET_COURSES_ALL',
             payload: courses,
@@ -329,19 +324,17 @@ export function deleteCourse(id, token) {
     };
 }
 
-export function updateCourse(data,id,token) {
+export function updateCourse(data, id, token) {
     return async function (dispatch) {
         let config = {
             headers: {
                 xtoken: token,
-        }}
-        await axios.put(`/course/${id}`, data , config);
+            },
+        };
+        await axios.put(`/course/${id}`, data, config);
         let courses = await axios.get(`/course`);
         courses = courses.data.data.course;
-        window.localStorage.setItem(
-            'courses',
-            JSON.stringify(courses)
-        );
+        window.localStorage.setItem('courses', JSON.stringify(courses));
         return dispatch({
             type: 'GET_COURSES_ALL',
             payload: courses,
@@ -349,23 +342,21 @@ export function updateCourse(data,id,token) {
     };
 }
 
-export function addCourse(data,token) {
+export function addCourse(data, token) {
     return async function (dispatch) {
         let config = {
             headers: {
                 xtoken: token,
-        }}
-        if (data.courseName == ""){
+            },
+        };
+        if (data.courseName == '') {
             delete data.courseName;
         }
-        await axios.post(`/course/`, data , config);
+        await axios.post(`/course/`, data, config);
 
         let courses = await axios.get(`/course`);
         courses = courses.data.data.course;
-        window.localStorage.setItem(
-            'courses',
-            JSON.stringify(courses)
-        );
+        window.localStorage.setItem('courses', JSON.stringify(courses));
         return dispatch({
             type: 'GET_COURSES_ALL',
             payload: courses,
@@ -419,8 +410,8 @@ export function addNotification(data, token) {
     };
 }
 
-export function updateNotification(data,id,token){
-    return async function(dispacht){
+export function updateNotification(data, id, token) {
+    return async function (dispacht) {
         let config = {
             headers: {
                 xtoken: token,
@@ -433,13 +424,13 @@ export function updateNotification(data,id,token){
             type: 'GET_NOTIFICATIONS',
             payload: json.data.data.notification,
         });
-    }
+    };
 }
 //============================
 //       LESSONS
 //============================
 
-export function addLesson(course_id,data, token) {
+export function addLesson(course_id, data, token) {
     return async function (dispacht) {
         let config = {
             headers: {
@@ -458,8 +449,8 @@ export function addLesson(course_id,data, token) {
     };
 }
 
-export function updateLesson(data,course_id, token){
-    return async function(dispacht){
+export function updateLesson(data, course_id, token) {
+    return async function (dispacht) {
         let config = {
             headers: {
                 xtoken: token,
@@ -474,22 +465,21 @@ export function updateLesson(data,course_id, token){
             type: 'GET_COURSE_ID',
             payload: course,
         });
-    }
+    };
 }
 
-
-export function deleteLesson(index,course_id, token) {
+export function deleteLesson(index, course_id, token) {
     return async function (dispacht) {
         let config = {
             headers: {
                 xtoken: token,
             },
-            data:{
-                index:index
-            }
+            data: {
+                index: index,
+            },
         };
 
-        await axios.delete(`/lesson/${course_id}`,config);
+        await axios.delete(`/lesson/${course_id}`, config);
 
         let course = await axios.get(`/course/${course_id}`);
         course = course.data.data.course;
@@ -530,12 +520,12 @@ export function deleteActivity(index, course_id, token) {
             },
             data: {
                 index: index,
-            }
+            },
         };
 
         await axios.delete(`/event/${course_id}`, config);
-         let course = await axios.get(`/course/${course_id}`);
-         course = course.data.data.course;
+        let course = await axios.get(`/course/${course_id}`);
+        course = course.data.data.course;
 
         return dispacht({
             type: 'GET_COURSE_ID',
@@ -561,7 +551,7 @@ export function addActivity(course_id, data, token) {
         });
     };
 }
-export function updateActivity(course_id, data,  token) {
+export function updateActivity(course_id, data, token) {
     return async function (dispacht) {
         let config = {
             headers: {
@@ -577,7 +567,7 @@ export function updateActivity(course_id, data,  token) {
             type: 'GET_COURSE_ID',
             payload: course,
         });
-    }
+    };
 }
 
 //============================

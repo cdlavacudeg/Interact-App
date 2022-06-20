@@ -53,7 +53,7 @@
     padding-top: 1.2rem;
 }
 
-.accordion-button:focus{
+.accordion-button:focus {
     border-color: none;
     box-shadow: none;
 }
@@ -87,10 +87,10 @@
         padding-bottom: 2rem;
     }
 }
-.accordion-header{
+.accordion-header {
     display: flex;
 }
-.accordion-header .icons{
+.accordion-header .icons {
     display: flex;
     width: 15%;
     justify-content: center;
@@ -124,7 +124,7 @@
 }
 
 .accordion-header .icons .trash-icon img:hover {
-    background-color: #F51A1A;
+    background-color: #f51a1a;
 }
 .accordion-header .icons .edit-icon img:hover {
     background-color: #efcd6a;

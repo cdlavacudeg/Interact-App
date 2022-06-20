@@ -29,16 +29,15 @@ const App = () => {
         return <LoginPage />;
     }
 
-    if(user.user.role !== 'admin'){
+    if (user.user.role !== "admin") {
         dispatch(getCourses(user.user.uid)).catch((error) => {
-        console.log(error);
+            console.log(error);
         });
-    }else{
-        dispatch(getAllCourses()).catch((error)=>{
-            console.log(error)
+    } else {
+        dispatch(getAllCourses()).catch((error) => {
+            console.log(error);
         });
     }
-
 
     window.localStorage.setItem("loggedAppUser", JSON.stringify(user));
     return (

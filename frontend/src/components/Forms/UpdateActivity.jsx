@@ -3,12 +3,12 @@ import { useDispatch } from "react-redux";
 import { hideModal, updateActivity } from "../../redux/actions";
 
 const UpdateActivity = ({ data }) => {
-    const { event:events, index, course_id, token } = data;
+    const { event: events, index, course_id, token } = data;
     const { description, date } = events;
     const [eventActivity, setNotification] = useState({
         description,
         date,
-        index
+        index,
     });
     const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ const UpdateActivity = ({ data }) => {
         dispatch(hideModal()).catch((error) => console.log(error));
     };
 
-    const handleSubmit = (event, data,index, course_id, token) => {
+    const handleSubmit = (event, data, index, course_id, token) => {
         event.preventDefault();
         data.index = index;
         dispatch(updateActivity(course_id, data, token))
@@ -57,9 +57,15 @@ const UpdateActivity = ({ data }) => {
                 />
             </div>
             <div className="form-group form-group--actions">
-                <button className="btn_primary mt-2"> <strong>Actualizar</strong></button>
-                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
-                   <strong>Cancelar</strong> 
+                <button className="btn_primary mt-2">
+                    {" "}
+                    <strong>Actualizar</strong>
+                </button>
+                <button
+                    className="btn_primary mt-2 cancelarWarningButton"
+                    onClick={cancel}
+                >
+                    <strong>Cancelar</strong>
                 </button>
             </div>
         </form>

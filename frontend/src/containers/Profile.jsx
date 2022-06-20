@@ -10,8 +10,6 @@ import { getProfile } from "../redux/actions";
 import Modal from "../components/Modal";
 import WarningCloseSession from "../components/Forms/WarningCloseSession";
 
-
-
 function Profile() {
     const activeModal = useSelector((state) => state.modal);
     const user = useSelector((state) => state.user);

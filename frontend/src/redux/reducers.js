@@ -129,10 +129,10 @@ function rootReducer(state = initialState, action) {
             };
 
         case 'GET_COURSES_ALL':
-            return{
+            return {
                 ...state,
                 courses: action.payload,
-            }
+            };
 
         //Notifications
         case 'GET_NOTIFICATIONS':

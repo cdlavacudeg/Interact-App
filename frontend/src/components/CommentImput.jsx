@@ -26,7 +26,6 @@ function CommentImputs() {
                 </Modal>
             )}
         </div>
-
     );
 }
 

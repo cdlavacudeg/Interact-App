@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-    hideModal,
-    updateNotification,
-} from "../../redux/actions";
+import { hideModal, updateNotification } from "../../redux/actions";
 
 const UpdateNotification = ({ data }) => {
     const { item, token } = data;
@@ -67,9 +64,14 @@ const UpdateNotification = ({ data }) => {
                 />
             </div>
             <div className="form-group form-group--actions">
-                <button className="btn_primary mt-3"><strong>Actualizar</strong></button>
-                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
-                <strong> Cancelar </strong>
+                <button className="btn_primary mt-3">
+                    <strong>Actualizar</strong>
+                </button>
+                <button
+                    className="btn_primary mt-2 cancelarWarningButton"
+                    onClick={cancel}
+                >
+                    <strong> Cancelar </strong>
                 </button>
             </div>
         </form>

@@ -12,24 +12,24 @@ import DeleteGrade from "./Forms/DeleteGrade";
 import UpdateGrade from "./Forms/UpdateGrade";
 import WarningCloseSession from "./Forms/WarningCloseSession";
 
-function GradesTable({ grades ,students}) {
-    const user = useSelector(state=>state.user);
+function GradesTable({ grades, students }) {
+    const user = useSelector((state) => state.user);
     const { materiaId } = useParams();
     const activeModal = useSelector((state) => state.modal);
     const [itemData, setItemData] = useState({});
     const dispatch = useDispatch();
 
-    const handleAdd = (token, course_id,student_list) => {
+    const handleAdd = (token, course_id, student_list) => {
         dispatch(showModal("Add Grade"));
-        setItemData({ token, course_id ,student_list});
+        setItemData({ token, course_id, student_list });
     };
-    const handleDelete = ( grade, course_id,token) => {
+    const handleDelete = (grade, course_id, token) => {
         dispatch(showModal("Delete Grade"));
-        setItemData({grade,course_id,token})
+        setItemData({ grade, course_id, token });
     };
-    const handleUpdate = (grade,index,course_id, token) => {
+    const handleUpdate = (grade, index, course_id, token) => {
         dispatch(showModal("Update Grade"));
-        setItemData({gradeData:grade,index,course_id,token})
+        setItemData({ gradeData: grade, index, course_id, token });
     };
     return (
         <section className="bg-light table-container">
@@ -37,7 +37,11 @@ function GradesTable({ grades ,students}) {
                 <table className="table">
                     <thead>
                         <tr className="bg-color-honey">
-                            <th>{user.user.role == 'teacher'?'Estudiante':'Materia'}</th>
+                            <th>
+                                {user.user.role == "teacher"
+                                    ? "Estudiante"
+                                    : "Materia"}
+                            </th>
                             <th>Fecha</th>
                             <th>Tipo de evaluacion</th>
                             <th>Calificación</th>
@@ -46,20 +50,36 @@ function GradesTable({ grades ,students}) {
                     <tbody>
                         {grades.map((item, index) => (
                             <tr key={index}>
-                                <td data-title={user.user.role == 'teacher'?'Estudiante':'Materia'}>
-                                {user.user.role =='teacher'?item.student:item.course}
+                                <td
+                                    data-title={
+                                        user.user.role == "teacher"
+                                            ? "Estudiante"
+                                            : "Materia"
+                                    }
+                                >
+                                    {user.user.role == "teacher"
+                                        ? item.student
+                                        : item.course}
                                 </td>
                                 <td data-title="Fecha">{item.date}</td>
                                 <td data-title="Tipo de evaluacion">
                                     {item.obs}
                                 </td>
                                 <td className="grade" data-title="Calificación">
-                                    <span className="grade-note">{item.grade}</span>
+                                    <span className="grade-note">
+                                        {item.grade}
+                                    </span>
                                     {user.user.role == "teacher" && (
                                         <div className="icons">
                                             <div
                                                 className="trash-icon"
-                                                onClick={() => handleDelete(item,materiaId,user.token)}
+                                                onClick={() =>
+                                                    handleDelete(
+                                                        item,
+                                                        materiaId,
+                                                        user.token
+                                                    )
+                                                }
                                             >
                                                 <img
                                                     src={trashimg}
@@ -68,7 +88,14 @@ function GradesTable({ grades ,students}) {
                                             </div>
                                             <div
                                                 className="edit-icon"
-                                                onClick={() => handleUpdate(item,index,materiaId,user.token)}
+                                                onClick={() =>
+                                                    handleUpdate(
+                                                        item,
+                                                        index,
+                                                        materiaId,
+                                                        user.token
+                                                    )
+                                                }
                                             >
                                                 <img
                                                     src={editimg}
@@ -87,36 +114,35 @@ function GradesTable({ grades ,students}) {
                 ) : (
                     <></>
                 )}
-
             </div>
             {user.user.role == "teacher" && (
-                    <div className="plusUser">
-                        <img
-                            onClick={() =>
-                                handleAdd(user.token, materiaId,students)
-                            }
-                            className="plusUser__imgPlusLogo"
-                            src={logoPlus}
-                            alt=""
-                        />
-                    </div>
-                )}
-                {activeModal.active && (
-                    <Modal>
-                        {activeModal.name === "Delete Grade" && (
-                            <DeleteGrade data={itemData} />
-                        )}
-                        {activeModal.name === "Add Grade" && (
-                            <AddGrade data={itemData} />
-                        )}
-                        {activeModal.name == "Update Grade" && (
-                            <UpdateGrade data={itemData} />
-                        )}
-                        {activeModal.name === "Warning Close Session" && (
-                            <WarningCloseSession />
-                        )}
-                    </Modal>
-                )}
+                <div className="plusUser">
+                    <img
+                        onClick={() =>
+                            handleAdd(user.token, materiaId, students)
+                        }
+                        className="plusUser__imgPlusLogo"
+                        src={logoPlus}
+                        alt=""
+                    />
+                </div>
+            )}
+            {activeModal.active && (
+                <Modal>
+                    {activeModal.name === "Delete Grade" && (
+                        <DeleteGrade data={itemData} />
+                    )}
+                    {activeModal.name === "Add Grade" && (
+                        <AddGrade data={itemData} />
+                    )}
+                    {activeModal.name == "Update Grade" && (
+                        <UpdateGrade data={itemData} />
+                    )}
+                    {activeModal.name === "Warning Close Session" && (
+                        <WarningCloseSession />
+                    )}
+                </Modal>
+            )}
         </section>
     );
 }

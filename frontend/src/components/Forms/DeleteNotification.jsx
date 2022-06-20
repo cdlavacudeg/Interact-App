@@ -20,14 +20,19 @@ const DeleteNotification = ({ data }) => {
     return (
         <form onSubmit={(event) => handleSubmit(event, id, token)}>
             <div className="form-group pSoftColorWarning">
-                ¿Seguro que quieres eliminar este aviso? <br /> Estas en el siguiente
-                aviso: 
+                ¿Seguro que quieres eliminar este aviso? <br /> Estas en el
+                siguiente aviso:
                 {item.title}
             </div>
             <div className="form-group form-group--actions">
-                <button className="btn_primary mt-2"><strong>Eliminar Aviso</strong></button>
-                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
-                   <strong>Cancel</strong> 
+                <button className="btn_primary mt-2">
+                    <strong>Eliminar Aviso</strong>
+                </button>
+                <button
+                    className="btn_primary mt-2 cancelarWarningButton"
+                    onClick={cancel}
+                >
+                    <strong>Cancel</strong>
                 </button>
             </div>
         </form>

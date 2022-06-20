@@ -99,7 +99,6 @@ const NavBar = ({ show, close }) => {
         dispatch(showModal("Warning Close Session"));
     };
 
-
     return (
         <nav className={`header-nav ${isActive}`}>
             <button onClick={close} className="header-backarrow">

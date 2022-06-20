@@ -37,7 +37,7 @@
     border-radius: 12px;
     margin-bottom: 0.5rem;
 }
-.avisos-li .icons{
+.avisos-li .icons {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,7 +72,7 @@
 }
 
 .avisos-li .trash-icon img:hover {
-    background-color: #F51A1A;
+    background-color: #f51a1a;
 }
 .avisos-li .edit-icon img:hover {
     background-color: #efcd6a;

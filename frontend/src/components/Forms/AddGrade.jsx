@@ -4,13 +4,13 @@ import { addGrade, hideModal } from "../../redux/actions";
 import "@styles/modalgeneral.css";
 
 const AddGrade = ({ data }) => {
-    const { token, course_id ,student_list} = data;
+    const { token, course_id, student_list } = data;
 
     const [grade, setNotification] = useState({
-        student_id:"",
+        student_id: "",
         grade: "",
         obs: "",
-        date:""
+        date: "",
     });
     const dispatch = useDispatch();
 
@@ -48,11 +48,18 @@ const AddGrade = ({ data }) => {
             </div>
             <div className="form-group">
                 <label>Estudiante</label>
-                <select  className ="customInput" name="student_id" value={grade.student_id} onChange={onInputChange}>
+                <select
+                    className="customInput"
+                    name="student_id"
+                    value={grade.student_id}
+                    onChange={onInputChange}
+                >
                     <option value="select_student">Selecciona</option>
-                    {student_list.map((student,index)=>
-                        <option value={student._id} key={index}>{student.fullName}</option>
-                    )}
+                    {student_list.map((student, index) => (
+                        <option value={student._id} key={index}>
+                            {student.fullName}
+                        </option>
+                    ))}
                 </select>
             </div>
             <div className="form-group">
@@ -76,8 +83,13 @@ const AddGrade = ({ data }) => {
                 />
             </div>
             <div className="form-group form-group--actions">
-                <button className="btn_primary mt-2"><strong>Crear</strong></button>
-                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
+                <button className="btn_primary mt-2">
+                    <strong>Crear</strong>
+                </button>
+                <button
+                    className="btn_primary mt-2 cancelarWarningButton"
+                    onClick={cancel}
+                >
                     <strong>Cancelar</strong>
                 </button>
             </div>
