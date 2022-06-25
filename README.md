@@ -71,3 +71,15 @@ Platform for administration of courses, qualifications, events, classes and user
 - [Backend](https://nocountry-c5-t31.herokuapp.com/api/v1)
 - [Backend Documentation](https://documenter.getpostman.com/view/18494581/Uz5NhsiG)
 
+## Credentials:
+- Teacher:
+mail: javier@interact.com
+password: 123456
+- Student:
+mail: omar@interact.com
+password: 123456
+- Admin:
+mail: Poncho@test.com
+password: 123456
+
+
