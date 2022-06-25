@@ -5,11 +5,11 @@ Platform for administration of courses, qualifications, events, classes and user
 
 ## Stack
 
-- Design
+- <strong>Design</strong>
 
 ![image](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
-- Front-end
+- <strong>Front-end</strong>
 
 ![image](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
@@ -19,7 +19,7 @@ Platform for administration of courses, qualifications, events, classes and user
 
 ![image](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
 
-- Back-end
+- <strong>Back-end</strong>
 
 ![image](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 
