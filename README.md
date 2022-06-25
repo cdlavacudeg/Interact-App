@@ -45,7 +45,7 @@ Platform for administration of courses, qualifications, events, classes and user
 ## Deployment:
 
 - [FIGMA](https://www.figma.com/file/PoWRi5mAXemUbeNwpsuuut/INTERACT?node-id=0%3A1)
-- [Frontend](https://nocountry-c5-t31.herokuapp.com/)
+- [Frontend](interact-chi.vercel.app/)
 - [Backend](https://nocountry-c5-t31.herokuapp.com/api/v1)
 - [Backend Documentation](https://documenter.getpostman.com/view/18494581/Uz5NhsiG)
 
