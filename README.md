@@ -10,6 +10,7 @@ Platform for administration of courses, qualifications, events, classes and user
 ![image](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
 - Front-end
+
 ![image](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 
 
