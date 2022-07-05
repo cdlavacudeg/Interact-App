@@ -11,24 +11,34 @@ const DeleteLesson = ({ data }) => {
         dispatch(hideModal()).catch((error) => console.log(error));
     };
 
-    const handleSubmit = (event, index,course_id, token) => {
+    const handleSubmit = (event, index, course_id, token) => {
         event.preventDefault();
-        dispatch(deleteLesson(index,course_id, token))
+        dispatch(deleteLesson(index, course_id, token))
             .then(() => dispatch(hideModal()))
             .catch((error) => console.log(error));
     };
 
     return (
-        <form onSubmit={(event) => handleSubmit(event,index,course_id, token)}>
+        <form
+            onSubmit={(event) => handleSubmit(event, index, course_id, token)}
+        >
             <div className="form-group">
-               <p className="pSoftColorWarning"> ¿Seguro que quieres eliminar este aviso? Estas en el siguiente
-                aviso: </p>
+                <p className="pSoftColorWarning">
+                    {" "}
+                    ¿Seguro que quieres eliminar este aviso? Estas en el
+                    siguiente aviso:{" "}
+                </p>
                 {lecture.title}
             </div>
             <div className="form-group form-group--actions">
-                <button className="btn_primary mt-2"><strong>Eliminar</strong></button>
-                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
-                   <strong>Cancelar</strong> 
+                <button className="btn_primary mt-2">
+                    <strong>Eliminar</strong>
+                </button>
+                <button
+                    className="btn_primary mt-2 cancelarWarningButton"
+                    onClick={cancel}
+                >
+                    <strong>Cancelar</strong>
                 </button>
             </div>
         </form>

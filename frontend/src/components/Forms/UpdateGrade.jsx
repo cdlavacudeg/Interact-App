@@ -1,20 +1,17 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-    hideModal,
-    updateGrade,
-} from "../../redux/actions";
+import { hideModal, updateGrade } from "../../redux/actions";
 import "@styles/modalgeneral.css";
 
 const UpdateGrade = ({ data }) => {
-    const {gradeData,index,course_id,token} = data;
-    const { grade, obs, date,student_id} = gradeData;
+    const { gradeData, index, course_id, token } = data;
+    const { grade, obs, date, student_id } = gradeData;
     const [gradeState, setNotification] = useState({
         student_id,
         grade,
         obs,
         date,
-        index
+        index,
     });
     const dispatch = useDispatch();
 
@@ -31,14 +28,16 @@ const UpdateGrade = ({ data }) => {
     const handleSubmit = (event, data, course_id, token) => {
         event.preventDefault();
 
-        dispatch(updateGrade(data,course_id, token))
+        dispatch(updateGrade(data, course_id, token))
             .then(() => dispatch(hideModal()))
             .catch((error) => console.log(error));
     };
 
     return (
         <form
-            onSubmit={(event) => handleSubmit(event, gradeState, course_id, token)}
+            onSubmit={(event) =>
+                handleSubmit(event, gradeState, course_id, token)
+            }
         >
             <div className="form-group">
                 <label>Descripción</label>
@@ -71,8 +70,13 @@ const UpdateGrade = ({ data }) => {
                 />
             </div>
             <div className="form-group form-group--actions">
-                <button className="btn_primary mt-2"><strong>Actualizar</strong></button>
-                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
+                <button className="btn_primary mt-2">
+                    <strong>Actualizar</strong>
+                </button>
+                <button
+                    className="btn_primary mt-2 cancelarWarningButton"
+                    onClick={cancel}
+                >
                     <strong>Cancelar</strong>
                 </button>
             </div>

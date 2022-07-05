@@ -153,13 +153,12 @@
 
 /***************** Modal *********************/
 
-.logoModal{
+.logoModal {
     width: 35%;
     margin: 0 auto;
     display: block;
-    
 }
-.modalBody{
+.modalBody {
     padding: 1rem;
 }
 
@@ -170,10 +169,9 @@
     left: 0;
     bottom: 0;
     background-color: rgba(10, 10, 10, 0.86);
-    
-  }
-  
-  .modalCard {
+}
+
+.modalCard {
     margin: 0 auto;
     display: block;
     margin-top: 3rem;
@@ -183,7 +181,7 @@
     border-radius: 6px;
     padding: 1rem;
     transition: var(--transition);
-  }
+}
 /*******************************************/
 
 /* Responsive ******************************/
@@ -251,9 +249,6 @@
         margin: 0 auto;
     }
     .modalCard {
-       
         width: 100%;
-       
-      
-      }
+    }
 }

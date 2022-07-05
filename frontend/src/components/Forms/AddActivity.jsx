@@ -33,7 +33,6 @@ const AddActivity = ({ data }) => {
         <form
             onSubmit={(event) => handleSubmit(event, course_id, events, token)}
         >
-        
             <div className="form-group">
                 <label>Descripción</label>
                 <input
@@ -56,9 +55,14 @@ const AddActivity = ({ data }) => {
             </div>
 
             <div className="form-group form-group--actions">
-                <button className="btn_primary mt-2"><strong>Crear</strong></button>
-                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
-                   <strong> Cancelar</strong> 
+                <button className="btn_primary mt-2">
+                    <strong>Crear</strong>
+                </button>
+                <button
+                    className="btn_primary mt-2 cancelarWarningButton"
+                    onClick={cancel}
+                >
+                    <strong> Cancelar</strong>
                 </button>
             </div>
         </form>

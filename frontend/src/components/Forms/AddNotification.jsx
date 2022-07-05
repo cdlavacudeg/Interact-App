@@ -53,7 +53,7 @@ const AddNotification = ({ data }) => {
             </div>
             <div className="form-group">
                 <label className="mt-2">Fecha</label>
-                <input 
+                <input
                     className="customInput"
                     type="text"
                     name="date"
@@ -62,9 +62,14 @@ const AddNotification = ({ data }) => {
                 />
             </div>
             <div className="form-group form-group--actions">
-                <button className="btn_primary mt-2"><strong>Crear</strong></button>
-                <button className="btn_primary mt-2 cancelarWarningButton" onClick={cancel}>
-                <strong>  Cancelar </strong>
+                <button className="btn_primary mt-2">
+                    <strong>Crear</strong>
+                </button>
+                <button
+                    className="btn_primary mt-2 cancelarWarningButton"
+                    onClick={cancel}
+                >
+                    <strong> Cancelar </strong>
                 </button>
             </div>
         </form>

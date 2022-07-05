@@ -20,9 +20,9 @@ const CardLesson = () => {
     const [itemData, setItemData] = useState({});
     const dispatch = useDispatch();
 
-    const handleDelete = (lecture,index,course_id,token) => {
+    const handleDelete = (lecture, index, course_id, token) => {
         dispatch(showModal("Delete Lesson"));
-        setItemData({lecture,index,course_id,token})
+        setItemData({ lecture, index, course_id, token });
     };
 
     const handleAdd = (token, course_id) => {
@@ -30,9 +30,9 @@ const CardLesson = () => {
         setItemData({ token, course_id });
     };
 
-    const handleUpdate = (lecture,index,course_id, token) => {
+    const handleUpdate = (lecture, index, course_id, token) => {
         dispatch(showModal("Update Lesson"));
-        setItemData({lecture,index,course_id,token})
+        setItemData({ lecture, index, course_id, token });
     };
     return (
         <>
@@ -62,7 +62,14 @@ const CardLesson = () => {
                                         <div className="icons">
                                             <div
                                                 className="trash-icon"
-                                                onClick={() => handleDelete(lecture,index,materiaId,user.token)}
+                                                onClick={() =>
+                                                    handleDelete(
+                                                        lecture,
+                                                        index,
+                                                        materiaId,
+                                                        user.token
+                                                    )
+                                                }
                                             >
                                                 <img
                                                     src={trashimg}
@@ -71,7 +78,14 @@ const CardLesson = () => {
                                             </div>
                                             <div
                                                 className="edit-icon"
-                                                onClick={() => handleUpdate(lecture,index,materiaId,user.token)}
+                                                onClick={() =>
+                                                    handleUpdate(
+                                                        lecture,
+                                                        index,
+                                                        materiaId,
+                                                        user.token
+                                                    )
+                                                }
                                             >
                                                 <img
                                                     src={editimg}
@@ -106,9 +120,7 @@ const CardLesson = () => {
                 {user.user.role == "teacher" && (
                     <div className="plusUser">
                         <img
-                            onClick={() =>
-                                handleAdd(user.token, materiaId)
-                            }
+                            onClick={() => handleAdd(user.token, materiaId)}
                             className="plusUser__imgPlusLogo"
                             src={logoPlus}
                             alt=""

@@ -48,7 +48,7 @@
     justify-content: space-between;
     font-size: var(--fz-1);
 }
-.card-text .icons{
+.card-text .icons {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,7 +83,7 @@
 }
 
 .card-text .trash-icon img:hover {
-    background-color: #F51A1A;
+    background-color: #f51a1a;
 }
 .card-text .edit-icon img:hover {
     background-color: #efcd6a;

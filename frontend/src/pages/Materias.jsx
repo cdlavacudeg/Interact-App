@@ -1,9 +1,7 @@
 import React from "react";
 import Courses from "@containers/Courses";
 
-
-const Materias = ()=>{
-
+const Materias = () => {
     return (
         <>
             <Courses />

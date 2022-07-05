@@ -1,11 +1,9 @@
-import { useParams, Outlet } from "react-router-dom";
-import CourseTabs from "../components/CourseTabs";
-import biologiaImg from "@img/biologia.jpeg";
-import CourseIdActivity from "@components/CourseIdActivity";
-import "@styles/courseContainer.css";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getCourseById} from "../redux/actions";
+import { useParams, Outlet } from "react-router-dom";
+import { getCourseById } from "../redux/actions";
+import CourseTabs from "../components/CourseTabs";
+import { useDispatch, useSelector } from "react-redux";
+import "@styles/courseContainer.css";
 
 const CourseContainer = () => {
     const [loading, setLoading] = useState(true);

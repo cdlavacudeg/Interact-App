@@ -1,28 +1,28 @@
 .grades-section {
-    width     : 100%;
-    padding   : 0 !important;
+    width: 100%;
+    padding: 0 !important;
     margin-top: 3rem;
-    padding   : 1rem;
+    padding: 1rem;
 }
 
 .calificaciones {
-    font-size    : var(--fz3);
-    color        : var(--primer-color);
-    margin-left  : 1.5rem;
+    font-size: var(--fz3);
+    color: var(--primer-color);
+    margin-left: 1.5rem;
     margin-bottom: 2rem;
 }
 
 .courses {
-    width     : 100%;
+    width: 100%;
     margin-top: 2rem;
-    padding   : 1rem;
+    padding: 1rem;
 }
 
 .courses-title {
-    font-size    : var(--fz3);
+    font-size: var(--fz3);
     margin-bottom: 1rem;
-    margin-left  : 1%;
-    color        : var(--primer-color);
+    margin-left: 1%;
+    color: var(--primer-color);
 }
 
 .bg-color-honey {
@@ -30,35 +30,35 @@
 }
 
 .table-responsive {
-    width : 100%;
+    width: 100%;
     margin: auto;
 }
 
 .table-container {
-    width         : 90%;
-    margin        : auto;
+    width: 90%;
+    margin: auto;
     padding-bottom: 0;
 }
-.table-container td{
+.table-container td {
     vertical-align: middle;
 }
 .grade {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    transform : translateX(-1rem);
+    transform: translateX(-1rem);
 }
-.grade .grade-note{
+.grade .grade-note {
     margin-inline: auto;
 }
-.grade .icons{
+.grade .icons {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     cursor: pointer;
 }
 
-.grade .icons .trash-icon{
+.grade .icons .trash-icon {
     margin-left: auto;
     cursor: pointer;
 }
@@ -86,14 +86,13 @@
 }
 
 .grade .icons .trash-icon img:hover {
-    background-color: #F51A1A;
+    background-color: #f51a1a;
 }
 .grade .icons .edit-icon img:hover {
     background-color: #efcd6a;
 }
 
 @media only screen and (max-width: 800px) {
-
     #no-more-tables tbody,
     #no-more-tables tr,
     #no-more-tables td {
@@ -102,21 +101,21 @@
 
     #no-more-tables thead tr {
         position: absolute;
-        top     : -99999px;
-        left    : -9999px;
+        top: -99999px;
+        left: -9999px;
     }
 
     #no-more-tables td {
-        position     : relative;
-        padding-left : 50%;
-        border       : none;
+        position: relative;
+        padding-left: 50%;
+        border: none;
         border-bottom: 1px solid #eee;
     }
 
     #no-more-tables td:before {
-        content    : attr(data-title);
-        position   : absolute;
-        left       : 6px;
+        content: attr(data-title);
+        position: absolute;
+        left: 6px;
         font-weight: bold;
     }
 
@@ -126,10 +125,9 @@
 
     .grade {
         transform: translateX(0rem);
-     }
+    }
 }
 
-    
 @media screen and (max-width: 430px) {
     .grades-section {
         padding: 1rem;

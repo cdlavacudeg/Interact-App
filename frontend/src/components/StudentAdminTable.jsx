@@ -1,7 +1,7 @@
-import "@styles/useradmintable.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers, showModal } from "../redux/actions";
+import { showModal } from "../redux/actions";
+import { useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 import DeleteUser from "./Forms/DeleteUser";
 import AddUsers from "./Forms/AddUsers";
@@ -9,6 +9,9 @@ import UpdateUser from "./Forms/UpdateUser";
 import logoPlus from "@icons/PlusButton.svg";
 import trashSVG from "@icons/trash.svg";
 import penSVG from "@icons/editpen.svg";
+import backArrow from "@icons/back-arrow.svg";
+import "@styles/useradmintable.css";
+
 import WarningCloseSession from "./Forms/WarningCloseSession";
 
 function StudentAdminTable() {
@@ -17,8 +20,9 @@ function StudentAdminTable() {
     const listUsers = useSelector((state) => state.users);
     const activeModal = useSelector((state) => state.modal);
     const [itemData, setItemData] = useState({});
+    const navigate = useNavigate();
 
-    const handleModalDelete = ( item, id, token) => {
+    const handleModalDelete = (item, id, token) => {
         dispatch(showModal("Delete User"));
         setItemData({
             item,
@@ -28,18 +32,21 @@ function StudentAdminTable() {
     };
     const handleModalPost = (token) => {
         dispatch(showModal("Post User"));
-        let role = "student"
+        let role = "student";
         setItemData({ token, role });
     };
 
-    const handleModalUpdate = (item, id,token) => {
+    const handleModalUpdate = (item, id, token) => {
         dispatch(showModal("Update User"));
-        let role = "student"
-        setItemData({ item,id,token, role });
+        let role = "student";
+        setItemData({ item, id, token, role });
     };
 
     return (
         <div className="user-section">
+            <div onClick={() => navigate(-1)} className="user-arrow">
+                <img src={backArrow} alt="" />
+            </div>
             <h1 className="listUser_title">Lista de Alumnos</h1>
             <section className="bg-light p-2 user-section">
                 <div className="table-responsive" id="no-more-tables">
@@ -72,26 +79,40 @@ function StudentAdminTable() {
                                                 {email}{" "}
                                             </td>
                                             <td data-title="role"> {role} </td>
-                                            <td data-title="operaciones" className="table-buttons">
-                                              <button onClick={() =>
-                                                    handleModalDelete(
-                                                        item,
-                                                        item.uid,
-                                                        item.token
-                                                    )}
+                                            <td
+                                                data-title="operaciones"
+                                                className="table-buttons"
+                                            >
+                                                <button
+                                                    onClick={() =>
+                                                        handleModalDelete(
+                                                            item,
+                                                            item.uid,
+                                                            item.token
+                                                        )
+                                                    }
                                                     className="trash-button"
-                                                    >
-                                                <img src={trashSVG} alt="delete button"  />
-                                              </button>
-                                              <button onClick={() =>
-                                                    handleModalUpdate(
-                                                        item,
-                                                        item.uid,
-                                                        item.token
-                                                    )}
-                                              className="edit-button">
-                                                <img src={penSVG} alt="edit pen button" />
-                                              </button>
+                                                >
+                                                    <img
+                                                        src={trashSVG}
+                                                        alt="delete button"
+                                                    />
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        handleModalUpdate(
+                                                            item,
+                                                            item.uid,
+                                                            item.token
+                                                        )
+                                                    }
+                                                    className="edit-button"
+                                                >
+                                                    <img
+                                                        src={penSVG}
+                                                        alt="edit pen button"
+                                                    />
+                                                </button>
                                             </td>
                                         </tr>
                                     );
@@ -101,20 +122,23 @@ function StudentAdminTable() {
                     </table>
                 </div>
             </section>
-            <div onClick={() => handleModalPost(user.token)} className="plusUser">
+            <div
+                onClick={() => handleModalPost(user.token)}
+                className="plusUser"
+            >
                 <img className="plusUser__imgPlusLogo" src={logoPlus} alt="" />
             </div>
             <div>
                 {activeModal.active && (
                     <Modal>
                         {activeModal.name === "Delete User" && (
-                            <DeleteUser data={itemData}/>
+                            <DeleteUser data={itemData} />
                         )}
                         {activeModal.name === "Post User" && (
-                            <AddUsers data={itemData}/>
+                            <AddUsers data={itemData} />
                         )}
                         {activeModal.name === "Update User" && (
-                            <UpdateUser data={itemData}/>
+                            <UpdateUser data={itemData} />
                         )}
                         {activeModal.name === "Warning Close Session" && (
                             <WarningCloseSession />

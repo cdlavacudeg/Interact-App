@@ -1,16 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import "@styles/coursesCard.css";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import trashimg from "@icons/trash.svg";
 import editimg from "@icons/editpen.svg";
 
-
-
-const CoursesCard = ({ name, image, nameProf, id ,course,handleDelete,handleUpdate}) => {
+const CoursesCard = ({
+    name,
+    image,
+    nameProf,
+    id,
+    course,
+    handleDelete,
+    handleUpdate,
+}) => {
     const user = useSelector((state) => state.user);
     const navigate = useNavigate();
     const listUsers = useSelector((state) => state.users);
-
 
     return (
         <div
@@ -20,7 +25,7 @@ const CoursesCard = ({ name, image, nameProf, id ,course,handleDelete,handleUpda
                 }
             }}
             className="courses-card"
-            style={user.user.role == "admin" ? { cursor: "default" }:{}}
+            style={user.user.role == "admin" ? { cursor: "default" } : {}}
         >
             <img
                 src={image}
@@ -36,25 +41,31 @@ const CoursesCard = ({ name, image, nameProf, id ,course,handleDelete,handleUpda
                 <div className="card-text">
                     {nameProf}
                     {user.user.role == "admin" && (
-                    <div className="icons">
-                        <div
-                            className="trash-icon"
-                            onClick={() =>
-                                handleDelete(course,id,user.token)
-                            }
-                        >
-                            <img src={trashimg} alt="trash icon" />
+                        <div className="icons">
+                            <div
+                                className="trash-icon"
+                                onClick={() =>
+                                    handleDelete(course, id, user.token)
+                                }
+                            >
+                                <img src={trashimg} alt="trash icon" />
+                            </div>
+                            <div
+                                className="edit-icon"
+                                onClick={() =>
+                                    handleUpdate(
+                                        course,
+                                        listUsers,
+                                        id,
+                                        user.token
+                                    )
+                                }
+                            >
+                                <img src={editimg} alt="trash icon" />
+                            </div>
                         </div>
-                        <div
-                            className="edit-icon"
-                            onClick={() => handleUpdate(course,listUsers,id,user.token)}
-                        >
-                            <img src={editimg} alt="trash icon" />
-                        </div>
-                    </div>
-                )}
+                    )}
                 </div>
-
             </div>
         </div>
     );

@@ -44,47 +44,46 @@
         margin-left: 1rem;
     }
 
-.cardActivity .icons{
-    display: flex;
-    width: 15%;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-.cardActivity .icons .trash-icon {
-    margin-left: auto;
-    cursor: pointer;
+    .cardActivity .icons {
+        display: flex;
+        width: 15%;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    .cardActivity .icons .trash-icon {
+        margin-left: auto;
+        cursor: pointer;
+    }
+
+    .cardActivity .icons .trash-icon img {
+        max-width: 44px;
+        min-width: 40px;
+        margin-left: auto;
+        border-radius: 50%;
+        padding: 10px;
+        transition: var(--transition);
+    }
+    .cardActivity .icons .edit-icon {
+        cursor: pointer;
+    }
+
+    .cardActivity .icons .edit-icon img {
+        max-width: 44px;
+        min-width: 40px;
+        margin-left: auto;
+        border-radius: 50%;
+        padding: 10px;
+        transition: var(--transition);
+    }
+
+    .cardActivity .icons .trash-icon img:hover {
+        background-color: #f51a1a;
+    }
+    .cardActivity .icons .edit-icon img:hover {
+        background-color: #efcd6a;
+    }
 }
 
-.cardActivity .icons .trash-icon img {
-    max-width: 44px;
-    min-width: 40px;
-    margin-left: auto;
-    border-radius: 50%;
-    padding: 10px;
-    transition: var(--transition);
-}
-.cardActivity .icons .edit-icon {
-    cursor: pointer;
-}
-
-.cardActivity .icons .edit-icon img {
-    max-width: 44px;
-    min-width: 40px;
-    margin-left: auto;
-    border-radius: 50%;
-    padding: 10px;
-    transition: var(--transition);
-}
-
-.cardActivity .icons .trash-icon img:hover {
-    background-color: #F51A1A;
-}
-.cardActivity .icons .edit-icon img:hover {
-    background-color: #efcd6a;
-}
-}
-
-@media screen and (max-width: 430px){
-
+@media screen and (max-width: 430px) {
 }
