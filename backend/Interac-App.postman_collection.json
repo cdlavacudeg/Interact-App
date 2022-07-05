@@ -1,0 +1,874 @@
+{
+    "info": {
+        "_postman_id": "ffa73afe-1078-4528-b490-2d9e9c5a495c",
+        "name": "Interac-App",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "18494581"
+    },
+    "item": [
+        {
+            "name": "auth",
+            "item": [
+                {
+                    "name": "authPost",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"teacher@teacher.com\",\n    \"password\": \"123456\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/auth/login",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "auth", "login"]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Authentification of the user"
+        },
+        {
+            "name": "user",
+            "item": [
+                {
+                    "name": "userGet",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/user/",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "user", ""]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "userPost",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_admin}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"fullName\": \"Teacher Test\",\n    \"email\": \"teacher@teacher.com\",\n    \"password\": \"123456\",\n    \"gender\":\"female\",\n    \"courses\": [],\n    \"role\":\"teacher\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/user",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "user"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "userPut",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_admin}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"fullName\":\"Admin Test\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/user/:user_id",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "user", ":user_id"],
+                            "variable": [
+                                {
+                                    "key": "user_id",
+                                    "value": "{{$user_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "userDelete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_admin}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/user/:user_id",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "user", ":user_id"],
+                            "query": [
+                                {
+                                    "key": "",
+                                    "value": null,
+                                    "disabled": true
+                                }
+                            ],
+                            "variable": [
+                                {
+                                    "key": "user_id",
+                                    "value": "{{$user_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "course",
+            "item": [
+                {
+                    "name": "courseGet",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/course/",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "course", ""]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "getCourseStudentsName",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/course/students/:course_id",
+                            "host": ["{{base_url}}"],
+                            "path": [
+                                "api",
+                                "v1",
+                                "course",
+                                "students",
+                                ":course_id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "course_id",
+                                    "value": "{{$course_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "coursePost",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_admin}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"courseName\":\"Curso Sociales\",\n    \"image\":\"https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80\",\n    \"description\":\"Validación en Frontend\",\n    \"teacher\":\"629a1c6f303bbea2cb5704c7\",\n    \"students\":[\"6294e235efd88606783232ea\",\"6294e46befd88606783232f0\",\"62a3a1397b4a1f92f346278b\"]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/course",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "course"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "coursePut",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_admin}}",
+                                "type": "text"
+                            },
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_teacher}}",
+                                "type": "text",
+                                "disabled": true
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n   \"teacher\":\"62aa6a1a937ef5698ea4f354\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/course/:course_id",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "course", ":course_id"],
+                            "variable": [
+                                {
+                                    "key": "course_id",
+                                    "value": "{{$course_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "courseDelete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_admin}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/course/:course_id",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "course", ":course_id"],
+                            "variable": [
+                                {
+                                    "key": "course_id",
+                                    "value": "{{$course_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "lessons",
+            "item": [
+                {
+                    "name": "lessonsGet",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/lesson",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "lesson"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "lesssonsPost",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_teacher}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n        \"title\":\"Lecture 3\",\n        \"link\":\"Link of lecture 3\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/lesson/:course_id",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "lesson", ":course_id"],
+                            "variable": [
+                                {
+                                    "key": "course_id",
+                                    "value": "{{$course_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "lesssonsPut",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_teacher}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"index\":2,\n    \"title\":\"Lesson 3\",\n    \"link\":\"https://www.youtube.com/embed/d7Y9Om4KCUM\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/lesson/:course_id",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "lesson", ":course_id"],
+                            "variable": [
+                                {
+                                    "key": "course_id",
+                                    "value": "{{$course_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "lesssonsDelete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_teacher}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"index\":0\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/lesson/:course_id",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "lesson", ":course_id"],
+                            "variable": [
+                                {
+                                    "key": "course_id",
+                                    "value": "{{$course_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "grade",
+            "item": [
+                {
+                    "name": "gradeGet",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/grade",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "grade"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "gradePost",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_teacher}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n        \"student_id\": \"62a3a1397b4a1f92f346278b\",\n        \"grade\": \"9\",\n        \"obs\": \"Grade 6\",\n        \"date\":\"10/04/2022\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/grade/student/:course_id",
+                            "host": ["{{base_url}}"],
+                            "path": [
+                                "api",
+                                "v1",
+                                "grade",
+                                "student",
+                                ":course_id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "course_id",
+                                    "value": "{{$course_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "gradePut",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_teacher}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n        \"student_id\": \"628e9cbe3663e1b65f550584\",\n        \"grade\": 1,\n        \"obs\": \"Obs del mundo real 2\",\n        \"date\":\"05/12/1900\",\n        \"index\":2\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/grade/student/:course_id",
+                            "host": ["{{base_url}}"],
+                            "path": [
+                                "api",
+                                "v1",
+                                "grade",
+                                "student",
+                                ":course_id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "course_id",
+                                    "value": "{{$course_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "gradeDelete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_teacher}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"student_id\":\"628e9cbe3663e1b65f550584\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/grade/student/:course_id",
+                            "host": ["{{base_url}}"],
+                            "path": [
+                                "api",
+                                "v1",
+                                "grade",
+                                "student",
+                                ":course_id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "course_id",
+                                    "value": "{{$course_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "event",
+            "item": [
+                {
+                    "name": "eventGet",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/event",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "event"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "eventPost",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_teacher}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"date\":\"09/06/2022\",\n    \"description\":\"Taller\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/event/:course_id",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "event", ":course_id"],
+                            "variable": [
+                                {
+                                    "key": "course_id",
+                                    "value": "{{$course_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "eventPut",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_teacher}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"index\":\"0\",\n    \"date\":\"13/06/2022\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/event/:course_id",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "event", ":course_id"],
+                            "variable": [
+                                {
+                                    "key": "course_id",
+                                    "value": "{{$course_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "eventDelete",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_teacher}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"index\":\"0\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/event/:course_id",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "event", ":course_id"],
+                            "variable": [
+                                {
+                                    "key": "course_id",
+                                    "value": "{{$course_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "notifications",
+            "item": [
+                {
+                    "name": "getNotifications",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/notification",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "notification"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "postNotification",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_admin}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\":\"Aviso importante para borrar\",\n    \"content\":\"Contenido del aviso\",\n    \"date\":\"30/06/2022\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/notification",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "notification"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "putNotification",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_admin}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{   \n    \"title\":\"Dia de la marmota\",\n    \"content\":\"Día de la marmota\",\n    \"date\":\"03/05/2022\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/notification/:notification_id",
+                            "host": ["{{base_url}}"],
+                            "path": [
+                                "api",
+                                "v1",
+                                "notification",
+                                ":notification_id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "notification_id",
+                                    "value": "{{$notification_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "deleteNotification",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "xtoken",
+                                "value": "{{$token_admin}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/notification/:notification_id",
+                            "host": ["{{base_url}}"],
+                            "path": [
+                                "api",
+                                "v1",
+                                "notification",
+                                ":notification_id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "notification_id",
+                                    "value": "{{$notification_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "https://nocountry-c5-t31.herokuapp.com",
+            "disabled": true
+        },
+        {
+            "key": "base_url",
+            "value": "http://localhost:5000",
+            "type": "string"
+        },
+        {
+            "key": "$token_admin",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MmM0NGJlMjNhMzU1YWVhMmRkZWMzNzMiLCJpYXQiOjE2NTcwMzE4MjcsImV4cCI6MTY1NzExODIyN30.KYXtqu6CRocmF40Yn5ETDblThG1k4OOxFCLgHj2hLJM",
+            "type": "string"
+        },
+        {
+            "key": "$token_teacher",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MmM0NGM4MTNhMzU1YWVhMmRkZWMzN2IiLCJpYXQiOjE2NTcwMzE4NjMsImV4cCI6MTY1NzExODI2M30.Z-sTI0jlJB0-vACzKrJ9dfnX8Roed0zP2NHXCmfnEew",
+            "type": "string"
+        },
+        {
+            "key": "$user_id",
+            "value": "62c44be23a355aea2ddec373",
+            "type": "string"
+        },
+        {
+            "key": "$course_id",
+            "value": "62add808d557a0f334f139ea",
+            "type": "string"
+        },
+        {
+            "key": "$notification_id",
+            "value": "62add7bfd557a0f334f139da",
+            "type": "string"
+        }
+    ]
+}

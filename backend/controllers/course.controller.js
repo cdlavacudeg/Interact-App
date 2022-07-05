@@ -221,11 +221,11 @@ const courseGetById = async (req, res) => {
                     select: 'studentGrades',
                     populate: {
                         path: 'studentGrades',
-                        populate:{
-                            path:'student_id',
+                        populate: {
+                            path: 'student_id',
                             model: 'User',
                             select: 'fullName',
-                        }
+                        },
                     },
                 },
             ])
